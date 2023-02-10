@@ -11,3 +11,8 @@ parts:
   - file: markdown
   - file: notebooks
   - file: markdown-notebooks
+
+- caption:
+  numbered: False
+  chapters:
+  - file: notebook/reference.md
