@@ -1,32 +1,76 @@
+plugins:
+  - jekyll-sitemap
+
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: My sample book
-author: The Jupyter Book Community
-logo: logo.png
+title: Mathematical Modeling and Simulation
+author: ""
+copyright: "2023-present by 成塚拓真（Takuma Narizuka）"
+# logo: logo.png
+exclude_patterns: [_build, README.md, .DS_Store]
+only_build_toc_files: true
 
-# Force re-execution of notebooks on each build.
-# See https://jupyterbook.org/content/execute.html
+#######################################################################################
+# Execution settings
 execute:
-  execute_notebooks: force
+  execute_notebooks: off
+
+#######################################################################################
+# Parse and render settings
+parse:
+  myst_enable_extensions:  # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
+    - amsmath
+    - colon_fence
+    # - deflist
+    - dollarmath
+    # - html_admonition
+    - html_image
+    - linkify
+    # - replacements
+    # - smartquotes
+    - substitution
+    - tasklist
+  myst_url_schemes: [mailto, http, https] # URI schemes that will be recognised as external URLs in Markdown links
+  myst_dmath_double_inline: true  # Allow display math ($$) within an inline context
+
+#######################################################################################
+# HTML-specific settings
+html:
+  google_analytics_id : ""
+  use_issues_button: true
+  use_repository_button: true
+  home_page_in_navbar: false
+  extra_footer: |
+    © Copyright 2023-present by 成塚拓真 (Takuma Narizuka). この講義ノートは<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja">CC BY-NC-ND 4.0</a>の下に提供する．</a>ただし，コード部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供する．
+
+#######################################################################################
+# Launch button settings
+# launch_buttons:
+#   notebook_interface        : "jupyterlab" # The interface interactive links will activate ["classic", "jupyterlab"]
+#   binderhub_url             : ""  # The URL of the BinderHub (e.g., https://mybinder.org)
+#   jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
+#   thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
+#   colab_url                 : "" # The URL of Google Colab (https://colab.research.google.com)
 
 # Define the name of the latex output file for PDF builds
 latex:
   latex_documents:
     targetname: book.tex
 
-# Add a bibtex file so that we can create citations
+repository:
+  url: https://github.com/tnarizuka/modeling_simulation  # Online location of your book
+  path_to_book: docs  # Optional path to your book, relative to the repository root
+  branch: main  # Which branch of the repository should be used when creating links (optional)
+
 bibtex_bibfiles:
   - references.bib
 
-# Information about where the book exists on the web
-repository:
-  url: https://github.com/executablebooks/jupyter-book  # Online location of your book
-  path_to_book: docs  # Optional path to your book, relative to the repository root
-  branch: master  # Which branch of the repository should be used when creating links (optional)
-
-# Add GitHub buttons to your book
-# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
-html:
-  use_issues_button: true
-  use_repository_button: true
+sphinx:
+  config:
+    language: ja
+    html_show_copyright: false
+    # bibtex_reference_style: author_year
+  #   html_baseurl: 'https://github.com/tnarizuka/AIP_2022/'
+  # extra_extension:
+  #   - sphinx_sitemap
