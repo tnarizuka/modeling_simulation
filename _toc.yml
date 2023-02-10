@@ -8,9 +8,7 @@ parts:
 - caption:
   numbered: 3
   chapters:
-  - file: sample/markdown.md
-  - file: sample/notebooks.ipynb
-  - file: sample/markdown-notebooks.md
+  - file: notebook/1_introduction.md
 
 - caption:
   numbered: False
