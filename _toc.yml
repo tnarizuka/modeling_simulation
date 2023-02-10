@@ -9,6 +9,8 @@ parts:
   numbered: 3
   chapters:
   - file: notebook/1_introduction.md
+  - file: notebook/2_basic.md
+  - file: notebook/3_curve_fitting.ipynb
 
 - caption:
   numbered: False
