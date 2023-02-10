@@ -1,11 +1,18 @@
-# Welcome to your Jupyter Book
+# 数理モデリングとシミュレーション［社会・経済］
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+## 講義情報
 
-Check out the content pages bundled with this sample book to see more.
+- 対象：立正大学データサイエンス学部３年
+- 担当：成塚拓真
+- 科目群：専門科目・専門基礎科目群
+- 必選区分：選択
+- 曜日・時限：第１期・金曜・４限
+
+## テキスト
+
+- {cite}`Hashimoto2021` 橋本洋志・牧野浩二，「Pythonコンピュータシミュレーション入門」，オーム社，2021
+
+## 目次
 
 ```{tableofcontents}
 ```
