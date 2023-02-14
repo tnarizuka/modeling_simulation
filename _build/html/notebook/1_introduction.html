@@ -297,23 +297,45 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   1.1. モデルとは？
+  <a class="reference internal nav-link" href="#hashimoto2021-abe2021-ezaki2021">
+   1.1. 数理モデルとは？
+   <span class="xref cite">
+    Hashimoto2021, Abe2021, Ezaki2021
+   </span>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.1.1. 数理モデルの構成要素
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     1.1.2. 数理モデルの種類
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       理解志向型の数理モデル
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       応用志向型の数理モデル
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
+  <a class="reference internal nav-link" href="#id7">
    1.2. シミュレーションとは？
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
+  <a class="reference internal nav-link" href="#id8">
    1.3. プログラミング環境の整備
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python">
-   1.4. Pythonについて
   </a>
  </li>
 </ul>
@@ -336,23 +358,45 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   1.1. モデルとは？
+  <a class="reference internal nav-link" href="#hashimoto2021-abe2021-ezaki2021">
+   1.1. 数理モデルとは？
+   <span class="xref cite">
+    Hashimoto2021, Abe2021, Ezaki2021
+   </span>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.1.1. 数理モデルの構成要素
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     1.1.2. 数理モデルの種類
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       理解志向型の数理モデル
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       応用志向型の数理モデル
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
+  <a class="reference internal nav-link" href="#id7">
    1.2. シミュレーションとは？
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
+  <a class="reference internal nav-link" href="#id8">
    1.3. プログラミング環境の整備
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python">
-   1.4. Pythonについて
   </a>
  </li>
 </ul>
@@ -367,17 +411,95 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1><span class="section-number">1. </span>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">#</a></h1>
-<section id="id2">
-<h2><span class="section-number">1.1. </span>モデルとは？<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">#</a></h2>
-</section>
+<section id="hashimoto2021-abe2021-ezaki2021">
+<h2><span class="section-number">1.1. </span>数理モデルとは？<span id="id2">[<a class="reference internal" href="reference.html#id3" title="橋本洋志・牧野浩二. Pythonコンピュータシミュレーション入門. オーム社, 2021.">1</a>, <a class="reference internal" href="reference.html#id4" title="阿部真人. 統計学入門. ソシム, 2021.">2</a>, <a class="reference internal" href="reference.html#id5" title="江崎貴裕. データ分析のための数理モデル入門. ソシム, 2021.">3</a>]</span><a class="headerlink" href="#hashimoto2021-abe2021-ezaki2021" title="このヘッドラインへのパーマリンク">#</a></h2>
+<p>データ分析では，ある対象（現象）を観測することでデータを取得し，それを様々な手法で分析する．
+データ分析でまず行うのは，データを可視化したり，取得したデータから平均値や標準偏差などの記述統計量を計算することである．
+一方，取得したデータを基に，未来の予測や制御を行ったり，データが生成されたメカニズムを明らかにすることもデータ分析の一部である．
+こうした高度なデータ分析を行う際には，<strong>数理モデル</strong>が用いられる．
+数理モデルを作成することを<strong>数理モデリング</strong>と呼ぶ．
+本講義では，数理モデリングの基礎を解説する．</p>
 <section id="id3">
-<h2><span class="section-number">1.2. </span>シミュレーションとは？<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">#</a></h2>
+<h3><span class="section-number">1.1.1. </span>数理モデルの構成要素<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>数理モデルとは，「対象とする現象のデータ生成ルールを数学的に記述したもの」であり，以下の３つの要素から成り立っている：</p>
+<ol class="simple">
+<li><p>変数</p>
+<ul class="simple">
+<li><p>対象となる現象の状態・性質・量などを数字やラベルで表したもの</p></li>
+<li><p>変数を実際に観測したものがデータ</p></li>
+</ul>
+</li>
+<li><p>数理構造</p>
+<ul class="simple">
+<li><p>変数の間の関係性（ルール）を数学的に表すために用いる数式</p></li>
+<li><p>数理モデルの骨組み</p></li>
+</ul>
+</li>
+<li><p>パラメータ</p>
+<ul class="simple">
+<li><p>数理構造の中に含まれる定数</p></li>
+<li><p>数理モデルをデータに合わせる際に調節する</p></li>
+</ul>
+</li>
+</ol>
 </section>
 <section id="id4">
-<h2><span class="section-number">1.3. </span>プログラミング環境の整備<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">#</a></h2>
+<h3><span class="section-number">1.1.2. </span>数理モデルの種類<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>数理モデルには，大きく分けて以下の３つのタイプが存在する．</p>
+<ol class="simple">
+<li><p>データの生成元として確率分布を仮定したモデル（統計モデル）</p>
+<ul class="simple">
+<li><p>回帰モデル</p></li>
+<li><p>ベイズモデル</p></li>
+</ul>
+</li>
+<li><p>機械学習に基づくモデル</p>
+<ul class="simple">
+<li><p>教師なし学習（クラスタリング，次元削減）</p></li>
+<li><p>教師あり学習（ニューラルネットワーク）</p></li>
+<li><p>強化学習</p></li>
+</ul>
+</li>
+<li><p>現象のメカニズムを取り入れたモデル（物理モデル）</p>
+<ul class="simple">
+<li><p>決定論的モデル（運動方程式）</p></li>
+<li><p>確率モデル（ランダムウォーク）</p></li>
+<li><p>ルールーベースのモデル（セルオートマトン，ボイドモデル）</p></li>
+</ul>
+</li>
+</ol>
+<p>以上の数理モデルはその目的によって以下の２つに分類できる．</p>
+<section id="id5">
+<h4>理解志向型の数理モデル<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>理解志向型の数理モデルは「データがどのようなメカニズムで生成されているのかを理解する」ためのモデルである．
+通常，対象とする現象は非常に複雑であるが，現象を細かい構成要素に分けて考えると，重要な部分とそうでない部分が存在する．
+そこで，理解志向型の数理モデルを作成する際には，現象を構成する様々な要素のうち「本質的な部分だけを簡略化して取り出す」ことが行われる．
+これは，変数やパラメータをできるだけ減らし，単純な数理構造のモデルを目指すということである．
+もし，このような単純化を行った上でもモデルがデータを説明できるのであれば，実際の現象の背後にも数理モデルで仮定した数理構造が潜んでいる可能性が高い．
+よって，単純な数理構造のモデルで幅広い現象を説明できれば，これらの現象のメカニズムの本質的な部分を理解できたことになる．</p>
+<p>物理学では，ある現象の背後に潜む数理構造を見出し，その現象の発生メカニズムを明らかにすることを目的とする．
+よって，物理学において用いられるモデル（物理モデル）は理解志向型の数理モデルである．
+例えば，ニュートンの運動方程式．</p>
 </section>
-<section id="python">
-<h2><span class="section-number">1.4. </span>Pythonについて<a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">#</a></h2>
+<section id="id6">
+<h4>応用志向型の数理モデル<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>応用志向型の数理モデルは「手元のデータを基に，未知のデータに対して予測・制御を行ったり新しいデータを生成して利用する」ためのモデルである．
+応用志向型の数理モデルでは，現象の理解のしやすさよりも，実装したときの性能を重視する．
+よって，変数やパラメータを増やし，さらに数理構造も複雑にすることが多い．</p>
+<p>数理モデルの中で，統計モデルの一部と機械学習モデルは応用志向型の数理モデルに分類される．
+統計モデルとは，データの生成元として仮定する確率分布のことである．
+例えば，手元にあるデータが正規分布から得られたとすると，この場合には正規分布という統計モデルを考えていることになる．</p>
+</section>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">1.2. </span>シミュレーションとは？<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h2>
+<p>数理モデルの分析では，実際のデータに合うようにパラメータを調節するだけでなく，パラメータを変化させたときに変数の値がどのように変化するかを模擬実験することもある．
+これを<strong>シミュレーション</strong>と呼ぶ．
+本講義では，数理モデリングに加えてシミュレーションについても解説する．</p>
+</section>
+<section id="id8">
+<h2><span class="section-number">1.3. </span>プログラミング環境の整備<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">#</a></h2>
 </section>
 </section>
 
