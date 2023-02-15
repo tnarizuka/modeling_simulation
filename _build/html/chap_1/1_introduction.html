@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="2. プログラミング環境の整備" href="2_environment.html" />
+    <link rel="next" title="2. プログラミング環境の構築" href="../chap_2/2_environment.html" />
     <link rel="prev" title="数理モデリングとシミュレーション［社会・経済］" href="../intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="ja">
@@ -115,14 +115,14 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="2_environment.html">
-   2. プログラミング環境の整備
+  <a class="reference internal" href="../chap_2/2_environment.html">
+   2. プログラミング環境の構築
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="reference.html">
+  <a class="reference internal" href="../reference.html">
    参考文献リスト
   </a>
  </li>
@@ -216,7 +216,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/tnarizuka/modeling_simulation/issues/new?title=Issue%20on%20page%20%2Fnotebook/1_introduction.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/tnarizuka/modeling_simulation/issues/new?title=Issue%20on%20page%20%2Fchap_1/1_introduction.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -244,7 +244,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/notebook/1_introduction.md"
+        <a href="../_sources/chap_1/1_introduction.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -472,7 +472,7 @@ title="Print to PDF"
 <h1><span class="section-number">1. </span>イントロダクション<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">#</a></h1>
 <section id="id2">
 <h2><span class="section-number">1.1. </span>モデルとシミュレーション<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">#</a></h2>
-<p>本節の内容は，文献<span id="id3">[<a class="reference internal" href="reference.html#id3" title="橋本洋志・牧野浩二. Pythonコンピュータシミュレーション入門. オーム社, 2021.">1</a>, <a class="reference internal" href="reference.html#id5" title="江崎貴裕. データ分析のための数理モデル入門. ソシム, 2021.">2</a>, <a class="reference internal" href="reference.html#id4" title="阿部真人. 統計学入門. ソシム, 2021.">3</a>]</span> を参考にしている．</p>
+<p>本節の内容は，文献<span id="id3">[<a class="reference internal" href="../reference.html#id3" title="橋本洋志・牧野浩二. Pythonコンピュータシミュレーション入門. オーム社, 2021.">1</a>, <a class="reference internal" href="../reference.html#id5" title="江崎貴裕. データ分析のための数理モデル入門. ソシム, 2021.">2</a>, <a class="reference internal" href="../reference.html#id4" title="阿部真人. データ分析に必須の知識・考え方 統計学入門. ソシム, 2021.">3</a>]</span> を参考にしている．</p>
 <section id="id4">
 <h3><span class="section-number">1.1.1. </span>数理モデルとは？<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p>データ分析では，ある対象（現象）を観測することでデータを取得し，それを様々な手法で分析する．
@@ -538,7 +538,7 @@ title="Print to PDF"
 <section id="id7">
 <h3><span class="section-number">1.1.3. </span>数理モデリングの目的<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p>数理モデリングには大きく分けて，データの背後にあるメカニズムの理解を目指す場合と，データを用いて未来の予測や制御に応用する場合の２つの目的がある．
-前者に用いられるモデルは<strong>理解志向型の数理モデル</strong>，後者に用いられるモデルは<strong>応用志向型の数理モデル</strong>と呼ばれる<span id="id8">[<a class="reference internal" href="reference.html#id5" title="江崎貴裕. データ分析のための数理モデル入門. ソシム, 2021.">2</a>]</span>．</p>
+前者に用いられるモデルは<strong>理解志向型の数理モデル</strong>，後者に用いられるモデルは<strong>応用志向型の数理モデル</strong>と呼ばれる<span id="id8">[<a class="reference internal" href="../reference.html#id5" title="江崎貴裕. データ分析のための数理モデル入門. ソシム, 2021.">2</a>]</span>．</p>
 <section id="id9">
 <h4>理解志向型の数理モデル<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>理解志向型の数理モデルは「データがどのようなメカニズムで生成されているのかを理解する」ためのモデルである．
@@ -571,21 +571,29 @@ title="Print to PDF"
 </section>
 <section id="id11">
 <h3><span class="section-number">1.1.4. </span>シミュレーションとは？<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">#</a></h3>
-<p>数理モデルの分析では，実際のデータに合うようにパラメータを調節するだけでなく，パラメータを変化させたときに変数の値がどのように変化するかを模擬実験することもある．
+<p>数理モデルの分析では，実際のデータに合うようにパラメータを調節するだけでなく，パラメータを変化させたときに変数の値がどのように変化するかを調べることもできる．
 これを<strong>シミュレーション</strong>と呼ぶ．
-シミュレーションにも数理モデルと対応して理解志向型と応用志向型がある．</p>
+通常，元の現象は実験が難しいことが多いが，数理モデルを用いたシミュレーションでは模擬的な実験が実現できる．</p>
+<p>数理モデルの中でも，物理モデルや統計モデルの一部は手計算によって理論的な解析が可能であるが，モデルが複雑になるとそれも困難になる．
+このような場合には，コンピュータによるシミュレーション（数値計算）が用いられる．
+コンピュータシミュレーションを行うには，数理モデルをコンピュータ上で計算するためのアルゴリズムをプログラミング言語を用いて実装する必要がある．
+プログラミング言語には様々なものがあり（例えば，C++, Fortran, Java, Python, Juliaなど），用途に応じて使い分ける必要があるが，本講義ではPythonを用いる．
+Pythonはコンパイルが不要なスクリプト言語であり，対話的な実行から大規模な開発まで可能である．
+また，使用人口が多く，用途に応じた様々なパッケージが用意されている．
+なお，プログラミング環境の構築については次章で説明する．</p>
+<!-- シミュレーションにも数理モデルと対応して理解志向型と応用志向型がある． -->
 </section>
 </section>
 <section id="id12">
 <h2><span class="section-number">1.2. </span>講義の概要<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">#</a></h2>
 <section id="id13">
 <h3><span class="section-number">1.2.1. </span>講義の目的<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">#</a></h3>
-<p>理解志向型の数理モデルを対象とする．
-Pythonを用いたシミュレーションの実装方法についても解説する．</p>
+<p>本講義では，様々な数理モデルの中でも特に理解志向型の数理モデルを対象とし，各モデルの理論的な背景とPythonによる実装方法を概説する．</p>
 </section>
 <section id="id14">
 <h3><span class="section-number">1.2.2. </span>講義スタイル<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">#</a></h3>
-<p>板書による講義とノートPCによるプログラミングの実習から成る．</p>
+<p>講義の内容は全てこの講義ノートに含まれている．
+各講義は板書による理論背景の説明と各自のPCによるプログラミングの実習から成る．</p>
 </section>
 <section id="id15">
 <h3><span class="section-number">1.2.3. </span>評価方法<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">#</a></h3>
@@ -607,7 +615,7 @@ Pythonを用いたシミュレーションの実装方法についても解説�
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./notebook"
+            path: "./chap_1"
         },
         predefinedOutput: true
     }
@@ -628,10 +636,10 @@ Pythonを用いたシミュレーションの実装方法についても解説�
             <p class="prev-next-title">数理モデリングとシミュレーション［社会・経済］</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="2_environment.html" title="次へ ページ">
+    <a class='right-next' id="next-link" href="../chap_2/2_environment.html" title="次へ ページ">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">次へ</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>プログラミング環境の整備</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>プログラミング環境の構築</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

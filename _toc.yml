@@ -8,11 +8,11 @@ parts:
 - caption:
   numbered: 3
   chapters:
-  - file: notebook/1_introduction.md
-  # - file: notebook/2_basic.md
+  - file: chap_1/1_introduction.md
+  - file: chap_2/2_environment.ipynb
   # - file: notebook/3_curve_fitting.ipynb
 
 - caption:
   numbered: False
   chapters:
-  - file: notebook/reference.md
+  - file: reference.md
