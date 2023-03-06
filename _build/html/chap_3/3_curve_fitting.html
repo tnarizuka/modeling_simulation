@@ -342,13 +342,32 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id3">
-   3.2. 最小二乗法
+   3.2. 回帰分析
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     3.2.1. Pythonによる実装
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     3.2.2. 具体例
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
-   3.3. 最尤推定
+  <a class="reference internal nav-link" href="#id5">
+   3.3. 確率分布のパラメータ推定
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     3.3.1. 最尤推定
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -376,13 +395,32 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id3">
-   3.2. 最小二乗法
+   3.2. 回帰分析
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     3.2.1. Pythonによる実装
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     3.2.2. 具体例
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
-   3.3. 最尤推定
+  <a class="reference internal nav-link" href="#id5">
+   3.3. 確率分布のパラメータ推定
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     3.3.1. 最尤推定
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -405,16 +443,44 @@ title="Print to PDF"
 </div>
 <section id="id2">
 <h2><span class="section-number">3.1. </span>カーブフィッティングとは？<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">#</a></h2>
+<p>手元にあるデータをある理論曲線に当てはめることを<strong>カーブフィッティング</strong>と呼ぶ．
+データ分析では，以下の場面でカーブフィッティングを行う：</p>
+<ol class="simple">
+<li><p>回帰分析</p>
 <ul class="simple">
-<li><p>最小二乗法</p></li>
-<li><p>最尤推定法</p></li>
+<li><p>手元のデータに対して説明変数と目的変数の間の関数関係（理論曲線）を仮定し，パラメータを調整して当てはめる</p></li>
 </ul>
+</li>
+<li><p>確率分布のパラメータ推定</p>
+<ul class="simple">
+<li><p>手元のデータから求めたヒストグラムに対して理論的な確率分布を仮定し，そのパラメータを推定する</p></li>
+</ul>
+</li>
+</ol>
+<p>なお，統計モデルでは，回帰分析における関数関係や理論的な確率分布など，データを当てはめる理論曲線そのものをモデルと呼ぶ．
+一方，物理モデルでは，単純化した基礎方程式などから成るモデルがまずあり，それを解析することによって理論曲線を導出する．</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">3.2. </span>最小二乗法<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">#</a></h2>
+<h2><span class="section-number">3.2. </span>回帰分析<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">#</a></h2>
+<section id="python">
+<h3><span class="section-number">3.2.1. </span>Pythonによる実装<a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">#</a></h3>
 </section>
 <section id="id4">
-<h2><span class="section-number">3.3. </span>最尤推定<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">#</a></h2>
+<h3><span class="section-number">3.2.2. </span>具体例<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">#</a></h3>
+</section>
+</section>
+<section id="id5">
+<h2><span class="section-number">3.3. </span>確率分布のパラメータ推定<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">#</a></h2>
+<p>確率分布のパラメータ推定では，以下の方法がよく用いられる：</p>
+<ul class="simple">
+<li><p>最小二乗法</p></li>
+<li><p>最尤推定</p></li>
+</ul>
+<p>このうち，最小二乗法によるパラメータ推定は回帰分析と手続きは同じである．
+そこで，以下では最尤推定を扱う．</p>
+<section id="id6">
+<h3><span class="section-number">3.3.1. </span>最尤推定<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">#</a></h3>
+</section>
 </section>
 </section>
 
