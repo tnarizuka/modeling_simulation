@@ -26,10 +26,54 @@ import numpy as np
 
 # ### Pythonによる実装
 
-# In[ ]:
+# Scipyにはカーブフィッティングを実行するための`scipy.optimize.curve_fit`関数が用意されている．
+
+# In[1]:
 
 
+from scipy.optimize import curve_fit
 
+
+# In[13]:
+
+
+# データの作成
+x_data = np.linspace(0, 4, 50)
+y_data = func(x_data, 2.5, 1.3, 0.5) + 0.2 * np.random.normal(size=len(xdata))
+
+fig, ax = plt.subplots()
+ax.plot(x_data, y_data, 'x')
+
+
+# **関数の定義**
+
+# In[9]:
+
+
+def func(x, a, b, c):
+    return a * np.exp(-b * x) + c
+
+# または
+# func = lambda x, a, b, c: a * np.exp(-b * x) + c
+
+
+# **フィッティングの実行**
+
+# In[10]:
+
+
+a_ini, b_ini, c_ini= 1, 1, 0.5
+p_opt, p_cov = curve_fit(func, xdata, ydata, (a_ini, b_ini, c_ini))
+
+
+# **可視化**
+
+# In[12]:
+
+
+fig, ax = plt.subplots()
+ax.plot(x_data, y_data, 'x')
+ax.plot(x_data, func(x_data, *p_opt), '-')
 
 
 # ### 具体例
