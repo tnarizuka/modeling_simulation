@@ -6,7 +6,11 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
+import scipy
+from scipy.optimize import curve_fit
+from scipy.stats import bernoulli, norm, poisson, expon
 
 # 日本語フォントの設定（Mac:'Hiragino Sans', Windows:'MS Gothic'）
 plt.rcParams['font.family'] = 'Hiragino Sans'
@@ -150,23 +154,22 @@ fig.savefig("./graph2.pdf")
 
 # ## Pythonの基礎知識
 
-# In[5]:
-
-
-import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-import pandas as pd
-import scipy
-from scipy.optimize import curve_fit
-from scipy.stats import bernoulli, norm, poisson, expon
-
-
 # ### Matplotlibの基礎
 
-# #### グラフ作成の流れ
-# データのプロット，グラフの装飾，グラフの保存までの一連の流れは以下の通りである．
+# #### グラフの作成手順
 # 
+# Matplotlibを用いたグラフ作成にはいくつかのスタイルがあるが，本講義ではオブジェクトを明示的に生成するスタイル（オブジェクト指向スタイル）に従う．
+# このスタイルでは，`plt.subplots()`を用いて{numref}`fig:fig_axes`のようにFigureオブジェクトとAxesオブジェクトを生成し，個々のAxesオブジェクトに対してプロットを行う．
+# データのプロット，グラフの装飾，グラフの保存までの手順は以下の通りである．
+
+# ```{figure} ../figure/fig_axes.png
+# ---
+# height: 250px
+# name: fig:fig_axes
+# ---
+# MatplotlibにおけるFigureオブジェクトとAxesオブジェクト
+# ```
+
 # 1. FigureオブジェクトとAxesオブジェクトを生成する
 #     ```python
 #     fig, ax = plt.subplots(figsize=(3, 3))
@@ -186,7 +189,7 @@ from scipy.stats import bernoulli, norm, poisson, expon
 #     fig.savefig('abc.pdf', dpi=80, transparent=True, bbox_inches='tight', pad_inches=0.2)
 #     ```
 
-# In[1]:
+# In[2]:
 
 
 # FigureとAxesを生成する
@@ -203,12 +206,12 @@ ax.set_xlim(0, 2*np.pi); ax.set_ylim(-2.1, 2.1)
 ax.set_xlabel('X'); ax.set_ylabel('Y')
 
 # Figureを保存する（相対パスを指定）
-# fig.savefig('./5_matplotlib/graph1.pdf', bbox_inches="tight", pad_inches=0.2, transparent=True, dpi=300)
+fig.savefig('./graph1.pdf', bbox_inches="tight", pad_inches=0.2, transparent=True, dpi=300);
 
 
 # #### ヒストグラムの描画
 
-# Matplotlibで1次元ヒストグラムを描画するには`ax.hist`メソッドを用いる：
+# Matplotlibで1次元ヒストグラムを描画するには`ax.hist()`を用いる：
 # 
 # ```python
 # ax.hist(data, bins, option)
@@ -231,6 +234,48 @@ ret = ax.hist(data, bins=10, color='gray', edgecolor='k')  # 階級数10
 # 軸のラベル
 ax.set_xlabel('$X$', fontsize=15)
 ax.set_ylabel('Frequency', fontsize=15)
+ax.set_xticks(np.arange(130, 210, 10));
+
+
+# **ヒストグラムの装飾**
+# 
+# `ax.hist`メソッドにも，色やスタイルを変更するためのオプションが多数用意されている．
+# 主要なオプションを以下にまとめる．
+
+# | オプション |  内容 | 指定の仕方（例） | 
+# | ---- | ---- | ---- |
+# | histtype | ヒストグラムのスタイル | 'bar', 'step', 'stepfilled', 'barstacked' |
+# | color | 塗りつぶしの色 | 色名 |
+# | edgecolor | 枠線の色 | 色名 |
+# | linewidth | 枠線の太さ | 数値 |
+# | linestyle | 線種 | '-', '--', '-.', ':' |
+# | rwidth | バーの幅 | 数値（0~1） |
+# | align | バーの中央を階級のどこに合わせるか | 'left'（階級の左端）, 'mid'（階級の中央＝デフォルト）, 'right'（階級の右端） |
+# | density | Trueの場合は縦軸を相対度数に変更 | True/False |
+# | cumulative | Trueの場合は縦軸を累積度数に変更 | 1（下側累積）, 0, -1（上側累積） |
+
+# In[5]:
+
+
+# データの作成
+np.random.seed(20)
+data = np.random.normal(170, 10, 1000)
+
+fig, ax = plt.subplots()
+ret = ax.hist(data, 
+              bins=10,
+              # bins=[-4, -3, -2, -1, 0, 1, 2, 3, 4], # 階級の左端の値を指定する場合
+              histtype='bar',  # ヒストグラムのスタイルを棒グラフに
+              color='c',       # バーの色をシアンに
+              edgecolor='k',   # バーの枠線の色を黒に
+              linewidth=0.5,   # バーの枠線の太さを1に
+              linestyle='--',  # 枠線を点線に
+              density=True     # 縦軸を相対度数に
+              )
+
+# 軸のラベル
+ax.set_xlabel('$X$', fontsize=15)
+ax.set_ylabel('Relative Frequency', fontsize=15)
 ax.set_xticks(np.arange(130, 210, 10));
 
 
