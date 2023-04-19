@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="参考文献リスト" href="../reference.html" />
+    <link rel="next" title="付録" href="../appendix/appendix.html" />
     <link rel="prev" title="2. 準備" href="../chap_2/2_environment.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="ja">
@@ -126,6 +126,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/appendix.html">
+   付録
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../reference.html">
    参考文献リスト
@@ -590,6 +595,9 @@ title="Print to PDF"
 <span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">bernoulli</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">poisson</span><span class="p">,</span> <span class="n">expon</span>
+
+<span class="c1"># 日本語フォントの設定（Mac:&#39;Hiragino Sans&#39;, Windows:&#39;MS Gothic&#39;）</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Hiragino Sans&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1199,10 +1207,10 @@ MLE of standard deviation: 1.02857877771493
             <p class="prev-next-title"><span class="section-number">2. </span>準備</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../reference.html" title="次へ ページ">
+    <a class='right-next' id="next-link" href="../appendix/appendix.html" title="次へ ページ">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">次へ</p>
-        <p class="prev-next-title">参考文献リスト</p>
+        <p class="prev-next-title">付録</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -3,7 +3,7 @@
 
 # # カーブフィッティング
 
-# In[143]:
+# In[1]:
 
 
 import numpy as np
@@ -12,6 +12,9 @@ import pandas as pd
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.optimize import curve_fit
 from scipy.stats import bernoulli, norm, poisson, expon
+
+# 日本語フォントの設定（Mac:'Hiragino Sans', Windows:'MS Gothic'）
+plt.rcParams['font.family'] = 'Hiragino Sans'
 
 
 # ## カーブフィッティングとは？
