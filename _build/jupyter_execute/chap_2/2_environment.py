@@ -97,13 +97,13 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # パスを使用する場面の具体例として，matplotlibで描画した図を指定したフォルダ内に保存する場合を考える．
 # まず，以下のプログラムを実行する．
 
-# In[1]:
+# In[3]:
 
 
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots(figsize=(3.5, 3))
 x = np.arange(-np.pi, np.pi, 0.01)
-ax.plot(x, np.sin(x))
+ax.plot(x, np.sin(x));
 
 
 # 実行がうまくいけば，サイン関数が出力されるはずである．
