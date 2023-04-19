@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[6]:
 
 
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
-import scipy
+import scipy as sp
 from scipy.optimize import curve_fit
 from scipy.stats import bernoulli, norm, poisson, expon
 
@@ -283,33 +283,43 @@ ax.set_xticks(np.arange(130, 210, 10));
 
 # Pythonには，科学技術計算に特化した `scipy` というライブラリが存在する．
 # 確率分布に関する計算（例えば，正規分布に従う乱数の生成など）には，`numpy`を使用することもできるが，`scipy.stats`の方が機能が充実している．
-
-# `scipy`には，確率分布の種類別に様々なメソッドが用意されており，
+# ここでは，`scipy`の中で確率分布や乱数に関する機能をまとめた`sciy.stats`の基礎をまとめる．
+# `scipy`のその他の機能についてはその都度解説する．
 # 
-# ```python
-# scipy.stats.確率分布名.メソッド名
-# ```
-# 
-# のように使用する．
-# 例えば，標準正規分布（Normal Distribution）に従うサイズ10の標本を生成するには以下のように`rvs`メソッドを用いる
+# 本講義では，`scipy`を`sp`という名前でインポートする：
 
 # In[7]:
 
 
-scipy.stats.norm.rvs(loc=0, scale=1, size=10)
+import scipy as sp
 
 
-# **主要な確率分布**
+# `scipy`には，確率分布の種類別に様々なメソッドが用意されており，
+# 
+# ```python
+# sp.stats.確率分布名.メソッド名
+# ```
+# 
+# のように使用する．
+# 例えば，標準正規分布（平均0，標準偏差1のNormal Distribution）に従うサイズ10の標本を生成するには以下のように`rvs`メソッドを用いる
+
+# In[8]:
+
+
+sp.stats.norm.rvs(loc=0, scale=1, size=10)
+
+
+# **[主要な確率分布](https://docs.scipy.org/doc/scipy/reference/stats.html)**
 
 # | コマンド | 確率分布 |
 # | --- | --- |
-# | `scipy.stats.bernoulli` | ベルヌーイ分布 |
-# | `scipy.stats.binom` | 二項分布 |
-# | `scipy.stats.poisson` | ポアソン分布 |
-# | `scipy.stats.geom` | 幾何分布 |
-# | `scipy.stats.norm` | 正規分布 |
-# | `scipy.stats.expon` | 指数分布 |
-# | `scipy.stats.gamma` | ガンマ分布 |
+# | `sp.stats.bernoulli` | ベルヌーイ分布 |
+# | `sp.stats.binom` | 二項分布 |
+# | `sp.stats.poisson` | ポアソン分布 |
+# | `sp.stats.geom` | 幾何分布 |
+# | `sp.stats.norm` | 正規分布 |
+# | `sp.stats.expon` | 指数分布 |
+# | `sp.stats.gamma` | ガンマ分布 |
 
 # **主なメソッド**
 
@@ -323,14 +333,14 @@ scipy.stats.norm.rvs(loc=0, scale=1, size=10)
 
 # #### 例：ポアソン分布
 
-# In[29]:
+# In[9]:
 
 
 # ポアソン分布に従うサイズ100の標本を生成
-data = scipy.stats.poisson.rvs(mu=3, size=100)
+data = sp.stats.poisson.rvs(mu=3, size=100)
 
 
-# In[30]:
+# In[10]:
 
 
 # ヒストグラムを描画する
@@ -339,19 +349,19 @@ ret = ax.hist(data, bins=np.arange(data.max()+2)-0.5, density=1, color='gray', e
 
 # 確率質量関数を描画する
 k = np.arange(0, 10, 1)
-ax.plot(k, scipy.stats.poisson.pmf(k, mu=3), 'r-')
+ax.plot(k, sp.stats.poisson.pmf(k, mu=3), 'r-')
 
 
 # #### 例：正規分布
 
-# In[17]:
+# In[11]:
 
 
 # 標準正規分布に従うサイズ100の標本を生成
-data = scipy.stats.norm.rvs(size=100)
+data = sp.stats.norm.rvs(size=100)
 
 
-# In[18]:
+# In[12]:
 
 
 # ヒストグラムを描画する
@@ -360,5 +370,5 @@ ret = ax.hist(data, bins=10, density=1, color='gray', edgecolor='k')  # 階級�
 
 # 確率密度関数を描画する
 x = np.arange(-5, 5, 0.1)
-ax.plot(x, scipy.stats.norm.pdf(x, loc=0, scale=1), 'r-')
+ax.plot(x, sp.stats.norm.pdf(x, loc=0, scale=1), 'r-')
 
