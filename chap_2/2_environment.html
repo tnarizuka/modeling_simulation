@@ -599,7 +599,7 @@ title="Print to PDF"
 <p>まず本講義専用の作業フォルダを作成する．
 名前は自分で分かれば何でも良いが，なるべく半角英数字とし，スペースは絶対に入れないこと．
 作業フォルダの作成場所はできればクラウドストレージのフォルダ（OneDriveやGoogle Drive）の中に作ることを推奨する（こうすれば，自動的にクラウド上にバックアップされる）．</p>
-<p>ここでは，<code class="docutils literal notranslate"><span class="pre">ローカルディスク（C:）&gt;ユーザー&gt;username&gt;OneDrive</span></code>の中に<code class="docutils literal notranslate"><span class="pre">work</span></code>という作業フォルダを作ったとする：</p>
+<p>ここでは，<code class="docutils literal notranslate"><span class="pre">ローカルディスク（C:）&gt;Users&gt;username&gt;OneDrive</span></code>の中に<code class="docutils literal notranslate"><span class="pre">work</span></code>という作業フォルダを作ったとする：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">OneDrive</span><span class="p">]</span>
     <span class="o">-</span> <span class="p">[</span><span class="n">デスクトップ</span><span class="p">]</span>
     <span class="o">-</span> <span class="p">[</span><span class="n">ドキュメント</span><span class="p">]</span>
@@ -608,7 +608,7 @@ title="Print to PDF"
 
 </pre></div>
 </div>
-<p>本講義で扱うファイルは全てこの<code class="docutils literal notranslate"><span class="pre">work</span></code>の中に保存する．
+<p>本講義で扱うファイルは全てこの<code class="docutils literal notranslate"><span class="pre">work</span></code>の中に保存することを想定する．
 <code class="docutils literal notranslate"><span class="pre">work</span></code>フォルダの中身は次のように章ごとのサブフォルダやレポート用のフォルダに分けておくと良い：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">work</span><span class="p">]</span>
     <span class="o">-</span> <span class="p">[</span><span class="mi">1</span><span class="n">_introduction</span><span class="p">]</span>
@@ -651,11 +651,11 @@ Jupyterの環境構築の方法はいくつかあるので自分の好きな方�
 <p>Pythonプログラムの実行，自分のPC上のファイルの読み込み，加工したデータの保存を行うには，対象となるファイルの在り処，つまりアドレスが分からないといけない．
 このアドレスを指定する文字列のことをパス（Path）と呼ぶ．
 Windowsの場合，パスはフォルダの階層構造を区切り文字<code class="docutils literal notranslate"><span class="pre">¥</span></code>（またはバックスラッシュ<code class="docutils literal notranslate"><span class="pre">\</span></code>）によって区切った形式で以下のように表される：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>C:¥ユーザー¥ドキュメント
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>C:¥Users¥narizuka¥Documents
 </pre></div>
 </div>
 <p>フォルダの階層の区切りは<code class="docutils literal notranslate"><span class="pre">¥</span></code>（またはバックスラッシュ<code class="docutils literal notranslate"><span class="pre">\\</span></code>）によって表されており，<code class="docutils literal notranslate"><span class="pre">¥</span></code>の隣にはフォルダの名前が記載されている．
-上の例は，Cドライブ（<code class="docutils literal notranslate"><span class="pre">C:</span></code>）の中にある<code class="docutils literal notranslate"><span class="pre">ユーザー</span></code>フォルダの中の<code class="docutils literal notranslate"><span class="pre">ドキュメント</span></code>フォルダのパスを表す．</p>
+上の例は，Cドライブ（<code class="docutils literal notranslate"><span class="pre">C:</span></code>）の<code class="docutils literal notranslate"><span class="pre">Users</span></code>フォルダの中の<code class="docutils literal notranslate"><span class="pre">narizuka</span></code>フォルダにある<code class="docutils literal notranslate"><span class="pre">Documents</span></code>フォルダのパスを表す．</p>
 </section>
 <section id="id5">
 <h4>絶対パスと相対パス<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">#</a></h4>
@@ -900,7 +900,7 @@ Windowsで絶対パスを取得するには，パスをコピーしたいファ�
 確率分布に関する計算（例えば，正規分布に従う乱数の生成など）には，<code class="docutils literal notranslate"><span class="pre">numpy</span></code>を使用することもできるが，<code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>の方が機能が充実している．
 ここでは，<code class="docutils literal notranslate"><span class="pre">scipy</span></code>の中で確率分布や乱数に関する機能をまとめた<code class="docutils literal notranslate"><span class="pre">sciy.stats</span></code>の基礎をまとめる．
 <code class="docutils literal notranslate"><span class="pre">scipy</span></code>のその他の機能についてはその都度解説する．</p>
-<p>本講義では，<code class="docutils literal notranslate"><span class="pre">scipy</span></code>を<code class="docutils literal notranslate"><span class="pre">sp</span></code>という名前でインポートする：</p>
+<p>まず，本講義では，<code class="docutils literal notranslate"><span class="pre">scipy</span></code>を<code class="docutils literal notranslate"><span class="pre">sp</span></code>という名前でインポートする：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
