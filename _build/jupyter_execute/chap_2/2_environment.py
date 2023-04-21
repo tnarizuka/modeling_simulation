@@ -447,14 +447,14 @@ fig.savefig('./poisson.pdf', bbox_inches="tight", pad_inches=0.2, transparent=Fa
 
 # #### 例：正規分布
 
-# In[65]:
+# In[78]:
 
 
 # 標準正規分布に従うサイズ100の標本を生成
 data = sp.stats.norm.rvs(size=100)
 
 
-# In[68]:
+# In[80]:
 
 
 # ヒストグラムを描画する
@@ -468,5 +468,7 @@ ax.plot(x, sp.stats.norm.pdf(x, loc=0, scale=1), 'r-')
 # 装飾
 ax.set_xlabel('$x$', fontsize=12)
 ax.set_ylabel('相対度数', fontsize=12)
+
+# 保存
 fig.savefig('./normal.pdf', bbox_inches="tight", pad_inches=0.2, transparent=False, dpi=300)
 
