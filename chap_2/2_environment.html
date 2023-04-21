@@ -894,7 +894,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 
 <span class="sd">&#39;&#39;&#39;Figureの保存&#39;&#39;&#39;</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;./multi_sin.pdf&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;./multi_sin.pdf&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -934,6 +934,126 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 <div class="cell_output docutils container">
 <img alt="../_images/2_environment_32_0.png" src="../_images/2_environment_32_0.png" />
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">ret</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ret</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">+</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">f</span><span class="p">,</span> <span class="n">f</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)],</span>
+                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;最小&#39;</span><span class="p">,</span> <span class="s1">&#39;最大&#39;</span><span class="p">,</span> <span class="s1">&#39;階級値&#39;</span><span class="p">,</span> <span class="s1">&#39;度数&#39;</span><span class="p">,</span> <span class="s1">&#39;相対度数&#39;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>最小</th>
+      <th>最大</th>
+      <th>階級値</th>
+      <th>度数</th>
+      <th>相対度数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>138.102972</td>
+      <td>144.180495</td>
+      <td>141.141733</td>
+      <td>4.0</td>
+      <td>0.004</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>144.180495</td>
+      <td>150.258017</td>
+      <td>147.219256</td>
+      <td>15.0</td>
+      <td>0.015</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>150.258017</td>
+      <td>156.335540</td>
+      <td>153.296779</td>
+      <td>70.0</td>
+      <td>0.070</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>156.335540</td>
+      <td>162.413063</td>
+      <td>159.374301</td>
+      <td>148.0</td>
+      <td>0.148</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>162.413063</td>
+      <td>168.490585</td>
+      <td>165.451824</td>
+      <td>205.0</td>
+      <td>0.205</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>168.490585</td>
+      <td>174.568108</td>
+      <td>171.529347</td>
+      <td>226.0</td>
+      <td>0.226</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>174.568108</td>
+      <td>180.645631</td>
+      <td>177.606869</td>
+      <td>181.0</td>
+      <td>0.181</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>180.645631</td>
+      <td>186.723153</td>
+      <td>183.684392</td>
+      <td>114.0</td>
+      <td>0.114</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>186.723153</td>
+      <td>192.800676</td>
+      <td>189.761915</td>
+      <td>31.0</td>
+      <td>0.031</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>192.800676</td>
+      <td>198.878199</td>
+      <td>195.839437</td>
+      <td>6.0</td>
+      <td>0.006</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p><strong>ヒストグラムの装飾</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">ax.hist</span></code>メソッドにも，色やスタイルを変更するためのオプションが多数用意されている．
@@ -1010,7 +1130,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2_environment_35_0.png" src="../_images/2_environment_35_0.png" />
+<img alt="../_images/2_environment_36_0.png" src="../_images/2_environment_36_0.png" />
 </div>
 </div>
 </section>
@@ -1122,21 +1242,29 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ヒストグラムを描画する</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ヒストグラムの階級の左端の値</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># ヒストグラムを描画する</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ret</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">rwidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>  <span class="c1"># 階級数10</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> 
+              <span class="n">bins</span><span class="o">=</span><span class="n">k</span><span class="p">,</span>        <span class="c1"># 階級の左端の値を指定</span>
+              <span class="n">align</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>  <span class="c1"># バーの中央を階級の左端に合わせる</span>
+              <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>     <span class="c1"># 縦軸を相対度数に</span>
+              <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span>       
+              <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> 
+              <span class="n">rwidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
 <span class="c1"># 確率質量関数を描画する</span>
-<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;r-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;k-o&#39;</span><span class="p">)</span>
+
+<span class="c1"># 装飾</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1cb942520&gt;]
-</pre></div>
-</div>
-<img alt="../_images/2_environment_47_1.png" src="../_images/2_environment_47_1.png" />
+<img alt="../_images/2_environment_48_0.png" src="../_images/2_environment_48_0.png" />
 </div>
 </div>
 </section>
@@ -1166,7 +1294,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1cb9ba0a0&gt;]
 </pre></div>
 </div>
-<img alt="../_images/2_environment_50_1.png" src="../_images/2_environment_50_1.png" />
+<img alt="../_images/2_environment_51_1.png" src="../_images/2_environment_51_1.png" />
 </div>
 </div>
 </section>
