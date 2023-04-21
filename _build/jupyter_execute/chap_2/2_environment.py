@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# # 準備
+
 # In[1]:
 
 
@@ -15,8 +17,6 @@ from scipy.stats import bernoulli, norm, poisson, expon
 # 日本語フォントの設定（Mac:'Hiragino Sans', Windows:'MS Gothic'）
 plt.rcParams['font.family'] = 'Hiragino Sans'
 
-
-# # 準備
 
 # ## プログラミング環境の構築
 
