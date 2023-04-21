@@ -442,19 +442,19 @@ ax.set_xticks(k);
 
 # #### 例：正規分布
 
-# In[11]:
+# In[54]:
 
 
 # 標準正規分布に従うサイズ100の標本を生成
 data = sp.stats.norm.rvs(size=100)
 
 
-# In[12]:
+# In[56]:
 
 
 # ヒストグラムを描画する
 fig, ax = plt.subplots()
-ret = ax.hist(data, bins=10, density=1, color='gray', edgecolor='k')  # 階級数10
+ret = ax.hist(data, bins=10, density=1, color='c', edgecolor='k')  # 階級数10
 
 # 確率密度関数を描画する
 x = np.arange(-5, 5, 0.1)
