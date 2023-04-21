@@ -382,6 +382,11 @@ title="Print to PDF"
      </li>
     </ul>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyterpython">
+     2.1.5. JupyterとPythonスクリプトの使い分け
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -395,17 +400,27 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#maplotlib">
+       maplotlibの日本語対応
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id8">
-       グラフの作成手順
+       描画結果の出力先
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id9">
-       基本のプロット関数
+       グラフの作成手順
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id10">
+       基本のプロット関数
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
        ヒストグラム
       </a>
      </li>
@@ -423,12 +438,12 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id11">
+      <a class="reference internal nav-link" href="#id12">
        例：ポアソン分布
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id12">
+      <a class="reference internal nav-link" href="#id13">
        例：正規分布
       </a>
      </li>
@@ -502,6 +517,11 @@ title="Print to PDF"
      </li>
     </ul>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyterpython">
+     2.1.5. JupyterとPythonスクリプトの使い分け
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -515,17 +535,27 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#maplotlib">
+       maplotlibの日本語対応
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id8">
-       グラフの作成手順
+       描画結果の出力先
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id9">
-       基本のプロット関数
+       グラフの作成手順
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id10">
+       基本のプロット関数
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
        ヒストグラム
       </a>
      </li>
@@ -543,12 +573,12 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id11">
+      <a class="reference internal nav-link" href="#id12">
        例：ポアソン分布
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id12">
+      <a class="reference internal nav-link" href="#id13">
        例：正規分布
       </a>
      </li>
@@ -728,13 +758,85 @@ Windowsで絶対パスを取得するには，パスをコピーしたいファ�
 <p>相対パスを用いると，パスが短くなるので便利であるが，カレントディレクトリがどこなのかを認識しておく必要がある．</p>
 </section>
 </section>
+<section id="jupyterpython">
+<h3><span class="section-number">2.1.5. </span>JupyterとPythonスクリプトの使い分け<a class="headerlink" href="#jupyterpython" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>Jupyterは短いコードを逐次実行しながら結果を確認するのには適しているが，コードが長くなると分かりにくくなる．そこで，コードが長くなってきたら関数やクラスに適宜まとめてスクリプト（<code class="docutils literal notranslate"><span class="pre">.py</span></code>ファイル）に保存すると良い．保存したスクリプトはNumPyやPandasと同じようにimportできるので，Jupyter上ではimportしたスクリプト内の関数を実行するだけにすると結果が整理しやすい．その際，以下に説明する自作モジュールの自動リロードの設定をしておくと便利である．</p>
+<p>※ ローカル環境で<code class="docutils literal notranslate"><span class="pre">.py</span></code>ファイルを編集するにはエディタを使用する．Windowsに標準搭載されているメモ帳を使うのが最も手軽だが，非常に使いづらいので推奨しない．まずは自分の好みに合うエディタを探すことを推奨する．よく使われるエディタは以下の通り：</p>
+<ul class="simple">
+<li><p>Visual Studio Code</p></li>
+<li><p>Atom</p></li>
+<li><p>Sublime Text</p></li>
+</ul>
+</section>
 </section>
 <section id="python">
 <h2><span class="section-number">2.2. </span>Pythonの基礎知識<a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">#</a></h2>
 <section id="matplotlib">
 <h3><span class="section-number">2.2.1. </span>matplotlibの基礎<a class="headerlink" href="#matplotlib" title="このヘッドラインへのパーマリンク">#</a></h3>
+<section id="maplotlib">
+<h4>maplotlibの日本語対応<a class="headerlink" href="#maplotlib" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>Matplotlibはグラフ作成のためのライブラリである（詳しくは基礎編で解説する）．
+Matplotlibは標準で日本語に対応していないので，ここでは日本語対応する方法を2つ紹介する．</p>
+<p><strong>方法1：<code class="docutils literal notranslate"><span class="pre">rcParams</span></code>に使用するフォント名を指定する</strong></p>
+<p>以下のように，<code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>をインポートしておき，<code class="docutils literal notranslate"><span class="pre">plt.rcParams['font.family']</span></code>に日本語フォントを指定する．
+使用可能なフォントは環境によって異なるが，Windowsの場合は<code class="docutils literal notranslate"><span class="pre">'MS</span> <span class="pre">Gothic'</span></code>，<code class="docutils literal notranslate"><span class="pre">'Meiryo'</span></code>などを指定する．
+Macの場合は<code class="docutils literal notranslate"><span class="pre">'Hiragino</span> <span class="pre">Sans'</span></code>を指定する．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 日本語フォントの設定（Mac:&#39;Hiragino Sans&#39;, Windows:&#39;MS Gothic&#39;）</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Hiragino Sans&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>方法2： japanize_matplotlib を利用する（詳しくは<a class="reference external" href="https://pypi.org/project/japanize-matplotlib/">こちら</a>）</strong></p>
+<p>japanize_matplotlibはPythonのモジュールなので，最初にインストールしておけば，あとは他のモジュールと同じように<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">japanize_matplotlib</span></code>とするだけで日本語が使用可能になる．
+ただし，使用可能なフォントはIPAexゴシックだけなので，フォントにこだわりたい場合は方法１をおすすめする．</p>
+<!-- **japanize_matplotlibのインストール（詳しくは[こちら](https://pypi.org/project/japanize-matplotlib/)）** -->
+<ul>
+<li><p>ターミナルを開いて以下のコマンドを実行し，AnacondaのインストールされているフォルダのPathを取得する</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">info</span> <span class="o">-</span><span class="n">e</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code>の右に表示された文字列（フォルダのパス）をコピーして以下を実行</p>
+<div class="highlight-zsh notranslate"><div class="highlight"><pre><span></span>activate <span class="s2">&quot;フォルダのパス&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>以下のコマンドを実行してインストールする</p>
+<div class="highlight-zsh notranslate"><div class="highlight"><pre><span></span>pip install japanize-matplotlib
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
 <section id="id8">
-<h4>グラフの作成手順<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>描画結果の出力先<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>Jupyterでは，デフォルトでコードセルの下に描画結果が表示される設定になっている．
+これを明示的に指定するには，Jupyterのマジックコマンド<code class="docutils literal notranslate"><span class="pre">%matplotlib</span></code>の後に<code class="docutils literal notranslate"><span class="pre">inline</span></code>を指定する．</p>
+<p><strong>※ 一番最後のコマンドにセミコロンを付けることがある．これは，不要な文字列が出力されるのを防ぐ（隠す）ためである．</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># notebook内に出力する</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<p>一方，<code class="docutils literal notranslate"><span class="pre">%matplotlib</span></code>の後に<code class="docutils literal notranslate"><span class="pre">tk</span></code>を指定すると，描画結果を別画面に出力することができる．
+この機能はアニメーションを出力するときに使用する．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 別ウインドウに出力する</span>
+<span class="o">%</span><span class="k">matplotlib</span> tk
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id9">
+<h4>グラフの作成手順<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>matplotlibを用いたグラフ作成にはいくつかのスタイルがあるが，本講義ではオブジェクトを明示的に生成するスタイル（オブジェクト指向スタイル）に従う．
 このスタイルでは，<code class="docutils literal notranslate"><span class="pre">plt.subplots()</span></code>を用いて<a class="reference internal" href="#fig-fig-axes"><span class="std std-numref">図 2.1</span></a>のようにFigureオブジェクトとAxesオブジェクトを生成し，個々のAxesオブジェクトに対してプロットを行う．</p>
 <figure class="align-default" id="fig-fig-axes">
@@ -787,12 +889,12 @@ Windowsで絶対パスを取得するには，パスをコピーしたいファ�
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2_environment_25_0.png" src="../_images/2_environment_25_0.png" />
+<img alt="../_images/2_environment_34_0.png" src="../_images/2_environment_34_0.png" />
 </div>
 </div>
 </section>
-<section id="id9">
-<h4>基本のプロット関数<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">#</a></h4>
+<section id="id10">
+<h4>基本のプロット関数<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>Matplotlibの最も基本的なプロット関数が<code class="docutils literal notranslate"><span class="pre">pyplot.plot()</span></code>である．
 Axesオブジェクトを<code class="docutils literal notranslate"><span class="pre">ax</span></code>として取得したい場合，<code class="docutils literal notranslate"><span class="pre">plot</span></code>関数は以下のように実行する：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;rx-&#39;</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
@@ -899,12 +1001,12 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2_environment_29_0.png" src="../_images/2_environment_29_0.png" />
+<img alt="../_images/2_environment_38_0.png" src="../_images/2_environment_38_0.png" />
 </div>
 </div>
 </section>
-<section id="id10">
-<h4>ヒストグラム<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">#</a></h4>
+<section id="id11">
+<h4>ヒストグラム<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>Matplotlibで1次元ヒストグラムを描画するには<code class="docutils literal notranslate"><span class="pre">ax.hist()</span></code>を用いる：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
 </pre></div>
@@ -932,7 +1034,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2_environment_32_0.png" src="../_images/2_environment_32_0.png" />
+<img alt="../_images/2_environment_41_0.png" src="../_images/2_environment_41_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1130,7 +1232,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2_environment_36_0.png" src="../_images/2_environment_36_0.png" />
+<img alt="../_images/2_environment_45_0.png" src="../_images/2_environment_45_0.png" />
 </div>
 </div>
 </section>
@@ -1230,8 +1332,8 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </tr>
 </tbody>
 </table>
-<section id="id11">
-<h4>例：ポアソン分布<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">#</a></h4>
+<section id="id12">
+<h4>例：ポアソン分布<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ポアソン分布に従うサイズ100の標本を生成</span>
@@ -1269,12 +1371,12 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2_environment_48_0.png" src="../_images/2_environment_48_0.png" />
+<img alt="../_images/2_environment_57_0.png" src="../_images/2_environment_57_0.png" />
 </div>
 </div>
 </section>
-<section id="id12">
-<h4>例：正規分布<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">#</a></h4>
+<section id="id13">
+<h4>例：正規分布<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 標準正規分布に従うサイズ100の標本を生成</span>
@@ -1291,7 +1393,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 
 <span class="c1"># 確率密度関数を描画する</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;r-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;k-&#39;</span><span class="p">)</span>
 
 <span class="c1"># 装飾</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
@@ -1301,9 +1403,6 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;./normal.pdf&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/2_environment_51_0.png" src="../_images/2_environment_51_0.png" />
 </div>
 </div>
 </section>
