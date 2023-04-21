@@ -191,16 +191,14 @@ fig.savefig("./graph2.pdf")
 #     fig.savefig('abc.pdf', dpi=80, transparent=True, bbox_inches='tight', pad_inches=0.2)
 #     ```
 
-# In[3]:
+# In[15]:
 
 
 # FigureとAxesを生成する
-fig, ax = plt.subplots(figsize=(4, 3))
+fig, ax = plt.subplots(figsize=(5, 3))
 
 # Axesに対してプロットする
 x = np.linspace(0, 2*np.pi, 20)
-ax.plot(x, np.cos(x), '-')   # 折れ線
-ax.plot(x, np.sin(x), 'rx')  # 赤のo
 ax.plot(x, 2*np.sin(x), 'bo--');  # 青のoを点線で結ぶ
 
 # Axesを装飾する
