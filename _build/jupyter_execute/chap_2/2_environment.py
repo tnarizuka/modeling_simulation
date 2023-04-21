@@ -230,7 +230,7 @@ fig.savefig('./sin.pdf', bbox_inches="tight", pad_inches=0.2, transparent=False,
 # | linewidth | lw | 線の太さ | 数値 |
 # | alpha | なし | 透過度 | 0~1 |
 
-# In[13]:
+# In[16]:
 
 
 '''FigureとAxesの生成'''
@@ -274,7 +274,7 @@ ax.set_xticklabels(['0', '$\pi$', '$2\pi$', '$3\pi$'])
 ax.tick_params(axis='both', labelsize=12)
 
 '''Figureの保存'''
-fig.savefig('./multi_sin.pdf', bbox_inches='tight')
+fig.savefig('./multi_sin.pdf', bbox_inches="tight", pad_inches=0.2, transparent=False, dpi=300)
 
 
 # #### ヒストグラム
@@ -288,7 +288,7 @@ fig.savefig('./multi_sin.pdf', bbox_inches='tight')
 # - `bins`引数には，ヒストグラムの階級数（または各階級の左端の値）を指定する．
 # - 例えば，`bins=n`とした場合，１つの階級の大きさは`(最大値-最小値) / n`となる．
 
-# In[2]:
+# In[17]:
 
 
 # データの作成
@@ -303,6 +303,15 @@ ret = ax.hist(data, bins=10, color='gray', edgecolor='k')  # 階級数10
 ax.set_xlabel('$X$', fontsize=15)
 ax.set_ylabel('Frequency', fontsize=15)
 ax.set_xticks(np.arange(130, 210, 10));
+
+
+# In[18]:
+
+
+f, x = ret[0], ret[1]
+df = pd.DataFrame(np.c_[x[:-1], x[1:], 0.5*(x[1:]+x[:-1]), f, f/len(data)],
+                  columns=['最小', '最大', '階級値', '度数', '相対度数'])
+df
 
 
 # **ヒストグラムの装飾**
@@ -356,7 +365,7 @@ ax.set_xticks(np.arange(130, 210, 10));
 # 
 # まず，本講義では，`scipy`を`sp`という名前でインポートする：
 
-# In[7]:
+# In[19]:
 
 
 import scipy as sp
@@ -371,7 +380,7 @@ import scipy as sp
 # のように使用する．
 # 例えば，標準正規分布（平均0，標準偏差1のNormal Distribution）に従うサイズ10の標本を生成するには以下のように`rvs`メソッドを用いる
 
-# In[8]:
+# In[20]:
 
 
 sp.stats.norm.rvs(loc=0, scale=1, size=10)
@@ -401,23 +410,34 @@ sp.stats.norm.rvs(loc=0, scale=1, size=10)
 
 # #### 例：ポアソン分布
 
-# In[9]:
+# In[21]:
 
 
 # ポアソン分布に従うサイズ100の標本を生成
 data = sp.stats.poisson.rvs(mu=3, size=100)
 
 
-# In[10]:
+# In[53]:
 
+
+# ヒストグラムの階級の左端の値
+k = np.arange(data.max()+1)
 
 # ヒストグラムを描画する
 fig, ax = plt.subplots()
-ret = ax.hist(data, bins=np.arange(data.max()+2)-0.5, density=1, color='gray', edgecolor='k', rwidth=0.5)  # 階級数10
+ret = ax.hist(data, 
+              bins=k,        # 階級の左端の値を指定
+              align='left',  # バーの中央を階級の左端に合わせる
+              density=1,     # 縦軸を相対度数に
+              color='c',       
+              edgecolor='k', 
+              rwidth=0.5)
 
 # 確率質量関数を描画する
-k = np.arange(0, 10, 1)
-ax.plot(k, sp.stats.poisson.pmf(k, mu=3), 'r-')
+ax.plot(k, sp.stats.poisson.pmf(k, mu=3), 'k-o')
+
+# 装飾
+ax.set_xticks(k);
 
 
 # #### 例：正規分布
