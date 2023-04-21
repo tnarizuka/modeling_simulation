@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[6]:
+# In[1]:
 
 
 import numpy as np
@@ -101,13 +101,14 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # パスを使用する場面の具体例として，matplotlibで描画した図を指定したフォルダ内に保存する場合を考える．
 # まず，以下のプログラムを実行する．
 
-# In[3]:
+# In[4]:
 
 
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots(figsize=(3.5, 3))
 x = np.arange(-np.pi, np.pi, 0.01)
-ax.plot(x, np.sin(x));
+ax.plot(x, np.sin(x))
+ax.set_xlabel('X軸'); ax.set_ylabel('Y軸');
 
 
 # 実行がうまくいけば，サイン関数が出力されるはずである．
@@ -119,7 +120,7 @@ ax.plot(x, np.sin(x));
 # In[ ]:
 
 
-fig.savefig(r"C:\Users\narizuka\OneDrive\sport_data\2_environment\graph.pdf")
+fig.savefig(r"C:\Users\narizuka\OneDrive\modeling_simulation_2023\2_environment\graph.pdf")
 
 
 # この方法では，最も上の階層であるドライブ名（ここではCドライブ）から始まるパスを指定しており，これを**絶対パス**と呼ぶ．
@@ -154,13 +155,12 @@ fig.savefig("./graph2.pdf")
 
 # ## Pythonの基礎知識
 
-# ### Matplotlibの基礎
+# ### matplotlibの基礎
 
 # #### グラフの作成手順
 # 
-# Matplotlibを用いたグラフ作成にはいくつかのスタイルがあるが，本講義ではオブジェクトを明示的に生成するスタイル（オブジェクト指向スタイル）に従う．
+# matplotlibを用いたグラフ作成にはいくつかのスタイルがあるが，本講義ではオブジェクトを明示的に生成するスタイル（オブジェクト指向スタイル）に従う．
 # このスタイルでは，`plt.subplots()`を用いて{numref}`fig:fig_axes`のようにFigureオブジェクトとAxesオブジェクトを生成し，個々のAxesオブジェクトに対してプロットを行う．
-# データのプロット，グラフの装飾，グラフの保存までの手順は以下の通りである．
 
 # ```{figure} ../figure/fig_axes.png
 # ---
@@ -170,6 +170,8 @@ fig.savefig("./graph2.pdf")
 # MatplotlibにおけるFigureオブジェクトとAxesオブジェクト
 # ```
 
+# データのプロット，グラフの装飾，グラフの保存までの手順は以下の通りである．
+# 
 # 1. FigureオブジェクトとAxesオブジェクトを生成する
 #     ```python
 #     fig, ax = plt.subplots(figsize=(3, 3))
@@ -189,7 +191,7 @@ fig.savefig("./graph2.pdf")
 #     fig.savefig('abc.pdf', dpi=80, transparent=True, bbox_inches='tight', pad_inches=0.2)
 #     ```
 
-# In[2]:
+# In[3]:
 
 
 # FigureとAxesを生成する
@@ -203,13 +205,81 @@ ax.plot(x, 2*np.sin(x), 'bo--');  # 青のoを点線で結ぶ
 
 # Axesを装飾する
 ax.set_xlim(0, 2*np.pi); ax.set_ylim(-2.1, 2.1)
-ax.set_xlabel('X'); ax.set_ylabel('Y')
+ax.set_xlabel('X軸'); ax.set_ylabel('Y軸')
 
 # Figureを保存する（相対パスを指定）
-fig.savefig('./graph1.pdf', bbox_inches="tight", pad_inches=0.2, transparent=True, dpi=300);
+fig.savefig('./sin.pdf', bbox_inches="tight", pad_inches=0.2, transparent=False, dpi=300);
 
 
-# #### ヒストグラムの描画
+# #### 基本のプロット関数
+
+# Matplotlibの最も基本的なプロット関数が`pyplot.plot()`である．
+# Axesオブジェクトを`ax`として取得したい場合，`plot`関数は以下のように実行する：
+# ```python
+# ax.plot(x, y, 'rx-', option)
+# ```
+# `plot`関数の第3引数は色・マーカー・線種を同時指定することができる．
+# 主要なoptionを以下にまとめる．
+
+# | オプション名 | 省略表記 | 内容 | 指定の仕方（例） | 
+# | ---- | ---- | ---- | ---- |
+# | color | c | 色 | 'k'(='black'), 'r'(='red'), 'b'(='blue') |
+# | linestyle | ls | 線種 | '-', '--', ':' , '-.', 'None' |
+# | marker | なし |マーカーの種類 | 'x', 'o', '^', '.', '+', 's', 'd' |
+# | markersize | ms | マーカーのサイズ | 数値 |
+# | markeredgecolor | mec | マーカーの境界の色 | 色名 |
+# | markerfacecolor | mfc | マーカーの塗りつぶしの色 | 色名 |
+# | linewidth | lw | 線の太さ | 数値 |
+# | alpha | なし | 透過度 | 0~1 |
+
+# In[13]:
+
+
+'''FigureとAxesの生成'''
+fig, ax = plt.subplots(figsize=(5, 3))
+
+'''Axesに対する描画'''
+x = np.linspace(0, 10, 30)
+ax.plot(x, np.sin(x), '-', label='A')
+ax.plot(x, np.sin(x-np.pi/2), 'x-.', label='B')
+ax.plot(x, np.sin(x-2*np.pi/2), '^--', label='C')
+
+''' Axesの装飾 '''
+# 座標軸の範囲の設定
+ax.set_xlim(0, 10)
+ax.set_ylim(-3, 3)
+
+# アスペクト比
+ax.set_aspect('equal')
+
+# タイトル
+ax.set_title('三角関数のグラフ', fontsize=12)
+
+# 軸ラベル
+ax.set_xlabel('角度 $X$ [rad]', fontsize=12)
+ax.set_ylabel('$Y$', fontsize=12)
+
+# 凡例
+ax.legend(loc='best', frameon=True, fontsize=8, numpoints=1)
+
+# 補助目盛りの表示
+ax.minorticks_on()
+
+# 目盛線の表示
+ax.grid(axis='both', which='major', linestyle='--')
+
+# 目盛りラベルを文字列に変更
+ax.set_xticks([0, np.pi, 2*np.pi, 3*np.pi])
+ax.set_xticklabels(['0', '$\pi$', '$2\pi$', '$3\pi$'])
+
+# 目盛りのラベルサイズ
+ax.tick_params(axis='both', labelsize=12)
+
+'''Figureの保存'''
+fig.savefig('./multi_sin.pdf', bbox_inches='tight')
+
+
+# #### ヒストグラム
 
 # Matplotlibで1次元ヒストグラムを描画するには`ax.hist()`を用いる：
 # 
