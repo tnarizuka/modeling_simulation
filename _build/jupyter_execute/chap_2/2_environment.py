@@ -410,14 +410,14 @@ sp.stats.norm.rvs(loc=0, scale=1, size=10)
 
 # #### 例：ポアソン分布
 
-# In[21]:
+# In[70]:
 
 
 # ポアソン分布に従うサイズ100の標本を生成
 data = sp.stats.poisson.rvs(mu=3, size=100)
 
 
-# In[53]:
+# In[71]:
 
 
 # ヒストグラムの階級の左端の値
@@ -437,19 +437,24 @@ ret = ax.hist(data,
 ax.plot(k, sp.stats.poisson.pmf(k, mu=3), 'k-o')
 
 # 装飾
+ax.set_xlabel('$k$', fontsize=12)
+ax.set_ylabel('相対度数', fontsize=12)
 ax.set_xticks(k);
+
+# 保存
+fig.savefig('./poisson.pdf', bbox_inches="tight", pad_inches=0.2, transparent=False, dpi=300)
 
 
 # #### 例：正規分布
 
-# In[54]:
+# In[65]:
 
 
 # 標準正規分布に従うサイズ100の標本を生成
 data = sp.stats.norm.rvs(size=100)
 
 
-# In[56]:
+# In[68]:
 
 
 # ヒストグラムを描画する
@@ -459,4 +464,9 @@ ret = ax.hist(data, bins=10, density=1, color='c', edgecolor='k')  # 階級数10
 # 確率密度関数を描画する
 x = np.arange(-5, 5, 0.1)
 ax.plot(x, sp.stats.norm.pdf(x, loc=0, scale=1), 'r-')
+
+# 装飾
+ax.set_xlabel('$x$', fontsize=12)
+ax.set_ylabel('相対度数', fontsize=12)
+fig.savefig('./normal.pdf', bbox_inches="tight", pad_inches=0.2, transparent=False, dpi=300)
 
