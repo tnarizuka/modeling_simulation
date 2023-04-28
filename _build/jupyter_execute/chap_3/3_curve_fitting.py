@@ -73,7 +73,7 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # $$(eq:rss)
 # 
 # が最小となるようなパラメータ $ \hat{\boldsymbol{\theta}} = (\hat{\theta_1}, \hat{\theta_2}, \ldots) $ を選ぶ．
-# このとき，$ E $ のことを**残差変動**（残差平方和）と呼ぶ．
+# このとき，$ E $ のことを**残差変動**（残差二乗和）と呼ぶ．
 # 残差変動 $ E $ を最小にすることは，$ \theta_1,\ \theta_2,\ \ldots $ を変数とする関数 $ E(\boldsymbol{\theta}) $ の最小値を求めることと言い換えられる．
 # このための必要条件は，残差変動 $ E(\boldsymbol{\theta}) $ の $ \theta_1,\ \theta_2,\ \ldots $ による偏微分がゼロになることである：
 # 
