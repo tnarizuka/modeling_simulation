@@ -34,7 +34,7 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 
 # ## 回帰分析
 
-# ### 単回帰モデル
+# ### 回帰モデル
 # 
 # データ $ X, Y $ が与えられたとき，変数 $ X,\ Y $ の間に
 # 
