@@ -682,11 +682,11 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a312e1c-fddf-46f7-b88d-f3d379e53ee7">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-8a312e1c-fddf-46f7-b88d-f3d379e53ee7" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6306d8a9-9529-441d-b31b-c3550e1de312">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-6306d8a9-9529-441d-b31b-c3550e1de312" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
-<p>で与えられるので，残差変動は</p>
+<p>で与えられ，残差変動は</p>
 <div class="math notranslate nohighlight">
 \[
 	E(a, b) = \sum_{i=1}^{n} (ax_{i}+b - y_{i})^{2}
@@ -700,8 +700,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( \hat{a},\ \hat{b} \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d45fb81b-727b-42ce-86b3-4ae09fa0c90e">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-d45fb81b-727b-42ce-86b3-4ae09fa0c90e" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-96cdc002-20c7-4e59-96bc-45159fc48a8e">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-96cdc002-20c7-4e59-96bc-45159fc48a8e" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	\hat{a} &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	\hat{b} &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}

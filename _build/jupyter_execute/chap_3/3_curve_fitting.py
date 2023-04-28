@@ -91,7 +91,7 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 #  y = ax + b + \varepsilon
 # \end{align}
 # 
-# で与えられるので，残差変動は
+# で与えられ，残差変動は
 # 
 # $$
 # 	E(a, b) = \sum_{i=1}^{n} (ax_{i}+b - y_{i})^{2}
