@@ -682,11 +682,16 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-76b78f00-aeaf-44dd-a374-6a8016be1f6d">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-76b78f00-aeaf-44dd-a374-6a8016be1f6d" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-917d62a7-d4c1-466e-a1c7-56857468b2ca">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-917d62a7-d4c1-466e-a1c7-56857468b2ca" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
-<p>で与えられる．
+<p>で与えられるので，残差変動は</p>
+<div class="math notranslate nohighlight">
+\[
+	E(a, b) = \sum_{i=1}^{n} (ax_{i}+b - y_{i})^{2}
+\]</div>
+<p>である．
 この場合には，最小二乗法による最適なパラメータ <span class="math notranslate nohighlight">\( a,\ b \)</span> を理論的に求めることができる．
 実際に条件を適用すると，<span class="math notranslate nohighlight">\( a,\ b \)</span> を変数とする以下の連立方程式が得られる：</p>
 <div class="amsmath math notranslate nohighlight">
@@ -695,8 +700,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-901ceb97-ac5a-4c7d-aa42-6584247082ff">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-901ceb97-ac5a-4c7d-aa42-6584247082ff" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5f049d2f-62f5-47f5-a12a-6c2e38db25d1">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-5f049d2f-62f5-47f5-a12a-6c2e38db25d1" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
