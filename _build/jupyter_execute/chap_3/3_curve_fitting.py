@@ -176,7 +176,15 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # #### Pythonによる実装
 
 # `scipy`には最小二乗法を用いてカーブフィッティングを実行するための `scipy.optimize.curve_fit` 関数が用意されている．
-# `curve_fit` 関数は以下のように使用する．
+# まずはこの関数をインポートしておく．
+
+# In[17]:
+
+
+from scipy.optimize import curve_fit
+
+
+# `curve_fit` 関数を用いたカーブフィッティングは以下の手順に従う．
 
 # **1. フィッティングに用いる関数を定義する**
 

@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3c51d190-4f89-4555-9e44-aab711b4cb11">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-3c51d190-4f89-4555-9e44-aab711b4cb11" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4d3e6464-be04-4168-ba5a-9060b352f6ca">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-4d3e6464-be04-4168-ba5a-9060b352f6ca" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-54c809ae-e8a9-42fc-8708-e498cc13bb9a">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-54c809ae-e8a9-42fc-8708-e498cc13bb9a" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-22b26f11-e4b4-41c7-9313-a32c35b8f08a">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-22b26f11-e4b4-41c7-9313-a32c35b8f08a" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -761,7 +761,15 @@ title="Print to PDF"
 <section id="python">
 <h4>Pythonによる実装<a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">scipy</span></code>には最小二乗法を用いてカーブフィッティングを実行するための <code class="docutils literal notranslate"><span class="pre">scipy.optimize.curve_fit</span></code> 関数が用意されている．
-<code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> 関数は以下のように使用する．</p>
+まずはこの関数をインポートしておく．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> 関数を用いたカーブフィッティングは以下の手順に従う．</p>
 <p><strong>1. フィッティングに用いる関数を定義する</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -787,7 +795,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_17_0.png" src="../_images/3_curve_fitting_17_0.png" />
+<img alt="../_images/3_curve_fitting_19_0.png" src="../_images/3_curve_fitting_19_0.png" />
 </div>
 </div>
 <p><strong>3. フィッティングを実行する</strong></p>
@@ -837,7 +845,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_23_0.png" src="../_images/3_curve_fitting_23_0.png" />
+<img alt="../_images/3_curve_fitting_25_0.png" src="../_images/3_curve_fitting_25_0.png" />
 </div>
 </div>
 <p><strong>5. 決定係数を求める</strong></p>
@@ -895,7 +903,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_31_0.png" src="../_images/3_curve_fitting_31_0.png" />
+<img alt="../_images/3_curve_fitting_33_0.png" src="../_images/3_curve_fitting_33_0.png" />
 </div>
 </div>
 <p><strong>3. フィッティングを実行する</strong></p>
@@ -926,7 +934,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_35_0.png" src="../_images/3_curve_fitting_35_0.png" />
+<img alt="../_images/3_curve_fitting_37_0.png" src="../_images/3_curve_fitting_37_0.png" />
 </div>
 </div>
 <section id="id10">
@@ -974,7 +982,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1d6e81760&gt;]
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_42_1.png" src="../_images/3_curve_fitting_42_1.png" />
+<img alt="../_images/3_curve_fitting_44_1.png" src="../_images/3_curve_fitting_44_1.png" />
 </div>
 </div>
 </section>
@@ -1101,7 +1109,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.3603279030607903e-25)
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_57_2.png" src="../_images/3_curve_fitting_57_2.png" />
+<img alt="../_images/3_curve_fitting_59_2.png" src="../_images/3_curve_fitting_59_2.png" />
 </div>
 </div>
 <p>得られた最尤推定値は <span class="math notranslate nohighlight">\( p=0.26 \)</span> であるが，これは解析解である標本平均と一致している．</p>
@@ -1187,7 +1195,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Likelihood&#39;)
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_66_1.png" src="../_images/3_curve_fitting_66_1.png" />
+<img alt="../_images/3_curve_fitting_68_1.png" src="../_images/3_curve_fitting_68_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1246,7 +1254,7 @@ MLE of standard deviation: 1.02857877771493
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1d69a4c40&gt;]
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_71_1.png" src="../_images/3_curve_fitting_71_1.png" />
+<img alt="../_images/3_curve_fitting_73_1.png" src="../_images/3_curve_fitting_73_1.png" />
 </div>
 </div>
 </section>
