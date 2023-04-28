@@ -657,10 +657,11 @@ title="Print to PDF"
 <p>１つの説明変数 <span class="math notranslate nohighlight">\( X \)</span> と目的変数 <span class="math notranslate nohighlight">\( Y \)</span> について <span class="math notranslate nohighlight">\( n \)</span> 組のデータ <span class="math notranslate nohighlight">\( (x_{1}, y_{1}), \ldots, (x_{n}, y_{n}) \)</span> を取得したとする．
 このとき，横軸に変数 <span class="math notranslate nohighlight">\( X \)</span>，縦軸に変数 <span class="math notranslate nohighlight">\( Y \)</span> を取ったグラフを<strong>散布図</strong>と呼ぶ．
 散布図に対し，回帰モデル<a class="reference internal" href="#equation-eq-regression-model">(3.1)</a>のパラメータを変化させて理論曲線をうまく当てはめる作業がカーブフィッティングである．
-一般に，カーブフィッティングによって得られた式（<strong>回帰曲線</strong>）は，真の値を表す <a class="reference internal" href="#equation-eq-regression-model">(3.1)</a>と区別して以下のようにハット <span class="math notranslate nohighlight">\(\hat{}\)</span> を付けて表す：</p>
+カーブフィッティングによって得られた式（<strong>回帰曲線</strong>）にデータの <span class="math notranslate nohighlight">\( x_{i} \)</span> を代入すると回帰モデルによる予測値が得られる．
+以下では，この予測値をハット <span class="math notranslate nohighlight">\(\hat{}\)</span> を付けて次のように表す：</p>
 <div class="math notranslate nohighlight" id="equation-eq-regression-curve">
 <span class="eqno">(3.2)<a class="headerlink" href="#equation-eq-regression-curve" title="この数式へのパーマリンク">#</a></span>\[
-	\hat{y} = f(x; \boldsymbol{\theta})
+	\hat{y}_{i} = f(x_{i}; \boldsymbol{\theta})
 \]</div>
 <p>回帰分析では，最適な曲線を求める手法がいくつか存在するが，最も基本的な手法が<strong>最小二乗法</strong>である．
 最小二乗法では，回帰モデルによる予測値 <span class="math notranslate nohighlight">\( \hat{y}_{i}=f(x_{i}; \boldsymbol{\theta}) \)</span> と実データ <span class="math notranslate nohighlight">\( y_{i} \)</span> の差（<strong>残差</strong>）の二乗和</p>
@@ -668,7 +669,7 @@ title="Print to PDF"
 <span class="eqno">(3.3)<a class="headerlink" href="#equation-eq-rss" title="この数式へのパーマリンク">#</a></span>\[
 	E(\boldsymbol{\theta}) = \sum_{i=1}^{n}(\hat{y}-y_{i})^{2} = \sum_{i=1}^{n}(f(x_{i}; \boldsymbol{\theta})-y_{i})^{2}
 \]</div>
-<p>が最小となるようなパラメータ <span class="math notranslate nohighlight">\( \hat{\boldsymbol{\theta}} = (\hat{\theta_1}, \hat{\theta_2}, \ldots) \)</span> を選ぶ．
+<p>が最小となるようなパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} = (\theta_1, \theta_2, \ldots) \)</span> を選ぶ．
 このとき，<span class="math notranslate nohighlight">\( E \)</span> のことを<strong>残差変動</strong>（残差二乗和）と呼ぶ．
 残差変動 <span class="math notranslate nohighlight">\( E \)</span> を最小にすることは，<span class="math notranslate nohighlight">\( \theta_1,\ \theta_2,\ \ldots \)</span> を変数とする関数 <span class="math notranslate nohighlight">\( E(\boldsymbol{\theta}) \)</span> の最小値を求めることと言い換えられる．
 このための必要条件は，残差変動 <span class="math notranslate nohighlight">\( E(\boldsymbol{\theta}) \)</span> の <span class="math notranslate nohighlight">\( \theta_1,\ \theta_2,\ \ldots \)</span> による偏微分がゼロになることである：</p>
@@ -682,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6d643383-2fae-472b-9671-b775474e68b7">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-6d643383-2fae-472b-9671-b775474e68b7" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-87eb7f5c-8e72-4506-a247-a98e22e4a5d9">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-87eb7f5c-8e72-4506-a247-a98e22e4a5d9" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -699,16 +700,16 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i})x_{i} &amp;= 0 \\
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
-<p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( \hat{a},\ \hat{b} \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b2ce44e0-4501-47a7-81aa-71d5f2c479df">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-b2ce44e0-4501-47a7-81aa-71d5f2c479df" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
-	\hat{a} &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
+<p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
+<div class="amsmath math notranslate nohighlight" id="equation-127d460c-6247-4f49-9502-b3095c92f386">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-127d460c-6247-4f49-9502-b3095c92f386" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
-	\hat{b} &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
+	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
 \end{align}\]</div>
 <p>と求まる．
-なお，傾き <span class="math notranslate nohighlight">\( \hat{a} \)</span> の式の分子は <span class="math notranslate nohighlight">\( X, Y \)</span> の共分散，分母は <span class="math notranslate nohighlight">\( X \)</span> の分散となっている（相関係数の式に似ているが違う）．
-よって，傾き <span class="math notranslate nohighlight">\( \hat{a} \)</span> が正なら正の相関，負なら負の相関，ゼロなら無相関であることが分かる．</p>
+なお，傾き <span class="math notranslate nohighlight">\( a \)</span> の式の分子は <span class="math notranslate nohighlight">\( X, Y \)</span> の共分散，分母は <span class="math notranslate nohighlight">\( X \)</span> の分散となっている（相関係数の式に似ているが違う）．
+よって，傾き <span class="math notranslate nohighlight">\( a \)</span> が正なら正の相関，負なら負の相関，ゼロなら無相関であることが分かる．</p>
 <div class="dropdown admonition">
 <p class="admonition-title">分散公式と共分散</p>
 <p><span class="math notranslate nohighlight">\( X \)</span> の分散は以下のように表すことができる：</p>

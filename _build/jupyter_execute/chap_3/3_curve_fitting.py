@@ -58,10 +58,11 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # １つの説明変数 $ X $ と目的変数 $ Y $ について $ n $ 組のデータ $ (x_{1}, y_{1}), \ldots, (x_{n}, y_{n}) $ を取得したとする．
 # このとき，横軸に変数 $ X $，縦軸に変数 $ Y $ を取ったグラフを**散布図**と呼ぶ．
 # 散布図に対し，回帰モデル{eq}`eq:regression_model`のパラメータを変化させて理論曲線をうまく当てはめる作業がカーブフィッティングである．
-# 一般に，カーブフィッティングによって得られた式（**回帰曲線**）は，真の値を表す {eq}`eq:regression_model`と区別して以下のようにハット $\hat{}$ を付けて表す：
+# カーブフィッティングによって得られた式（**回帰曲線**）にデータの $ x_{i} $ を代入すると回帰モデルによる予測値が得られる．
+# 以下では，この予測値をハット $\hat{}$ を付けて次のように表す：
 # 
 # $$
-# 	\hat{y} = f(x; \boldsymbol{\theta})
+# 	\hat{y}_{i} = f(x_{i}; \boldsymbol{\theta})
 # $$(eq:regression_curve)
 # 
 
@@ -72,7 +73,7 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # 	E(\boldsymbol{\theta}) = \sum_{i=1}^{n}(\hat{y}-y_{i})^{2} = \sum_{i=1}^{n}(f(x_{i}; \boldsymbol{\theta})-y_{i})^{2}
 # $$(eq:rss)
 # 
-# が最小となるようなパラメータ $ \hat{\boldsymbol{\theta}} = (\hat{\theta_1}, \hat{\theta_2}, \ldots) $ を選ぶ．
+# が最小となるようなパラメータ $ \boldsymbol{\theta} = (\theta_1, \theta_2, \ldots) $ を選ぶ．
 # このとき，$ E $ のことを**残差変動**（残差二乗和）と呼ぶ．
 # 残差変動 $ E $ を最小にすることは，$ \theta_1,\ \theta_2,\ \ldots $ を変数とする関数 $ E(\boldsymbol{\theta}) $ の最小値を求めることと言い換えられる．
 # このための必要条件は，残差変動 $ E(\boldsymbol{\theta}) $ の $ \theta_1,\ \theta_2,\ \ldots $ による偏微分がゼロになることである：
@@ -106,17 +107,17 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &= 0
 # \end{align*}
 # 
-# この連立方程式を解くと，最適解$ \hat{a},\ \hat{b} $ は
+# この連立方程式を解くと，最適解$ a,\ b $ は
 # 
 # \begin{align}
-# 	\hat{a} &=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
+# 	a &=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 # 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
-# 	\hat{b} &= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
+# 	b &= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
 # \end{align}
 # 
 # と求まる．
-# なお，傾き $ \hat{a} $ の式の分子は $ X, Y $ の共分散，分母は $ X $ の分散となっている（相関係数の式に似ているが違う）．
-# よって，傾き $ \hat{a} $ が正なら正の相関，負なら負の相関，ゼロなら無相関であることが分かる．
+# なお，傾き $ a $ の式の分子は $ X, Y $ の共分散，分母は $ X $ の分散となっている（相関係数の式に似ているが違う）．
+# よって，傾き $ a $ が正なら正の相関，負なら負の相関，ゼロなら無相関であることが分かる．
 # 
 # ```{admonition} 分散公式と共分散
 # :class: dropdown
