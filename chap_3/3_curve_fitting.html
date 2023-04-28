@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4d3e6464-be04-4168-ba5a-9060b352f6ca">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-4d3e6464-be04-4168-ba5a-9060b352f6ca" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-39101dc0-2032-4190-a53e-17f0169759d7">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-39101dc0-2032-4190-a53e-17f0169759d7" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-22b26f11-e4b4-41c7-9313-a32c35b8f08a">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-22b26f11-e4b4-41c7-9313-a32c35b8f08a" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f4da4d89-062e-4665-b822-2d4cf5050746">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-f4da4d89-062e-4665-b822-2d4cf5050746" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -782,6 +782,8 @@ title="Print to PDF"
 </div>
 <p>この関数は，第1引数に <span class="math notranslate nohighlight">\( x \)</span> 座標のデータ，第２引数以降にパラメータを入力し，出力として <span class="math notranslate nohighlight">\( y \)</span> 座標のデータが得られる．</p>
 <p><strong>2. フィッティング対象となる実データを用意する</strong></p>
+<p>実データはNumPy配列やPandasのデータフレーム形式で読み込んでおく．
+ここでは以下のように乱数を用いて生成する．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データの作成</span>
