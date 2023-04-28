@@ -106,17 +106,17 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &= 0
 # \end{align*}
 # 
-# この連立方程式を解くと，$ a,\ b $ は
+# この連立方程式を解くと，最適解$ \hat{a},\ \hat{b} $ は
 # 
 # \begin{align}
-# 	a &=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
+# 	\hat{a} &=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 # 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
-# 	b &= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
+# 	\hat{b} &= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
 # \end{align}
 # 
 # と求まる．
-# なお，傾き $ a $ の式の分子は $ X, Y $ の共分散，分母は $ X $ の分散となっている（相関係数の式に似ているが違う）．
-# よって，傾き $ a $ が正なら正の相関，負なら負の相関，ゼロなら無相関であることが分かる．
+# なお，傾き $ \hat{a} $ の式の分子は $ X, Y $ の共分散，分母は $ X $ の分散となっている（相関係数の式に似ているが違う）．
+# よって，傾き $ \hat{a} $ が正なら正の相関，負なら負の相関，ゼロなら無相関であることが分かる．
 # 
 # ```{admonition} 分散公式と共分散
 # :class: dropdown

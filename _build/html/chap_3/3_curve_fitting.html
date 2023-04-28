@@ -682,8 +682,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-917d62a7-d4c1-466e-a1c7-56857468b2ca">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-917d62a7-d4c1-466e-a1c7-56857468b2ca" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bcd28823-438f-4906-b3bb-22bf90e7fc08">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-bcd28823-438f-4906-b3bb-22bf90e7fc08" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられるので，残差変動は</p>
@@ -699,16 +699,16 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i})x_{i} &amp;= 0 \\
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
-<p>この連立方程式を解くと，<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5f049d2f-62f5-47f5-a12a-6c2e38db25d1">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-5f049d2f-62f5-47f5-a12a-6c2e38db25d1" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
-	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
+<p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( \hat{a},\ \hat{b} \)</span> は</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f32cd5da-a5f0-49c0-be62-2e31b95ff953">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-f32cd5da-a5f0-49c0-be62-2e31b95ff953" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+	\hat{a} &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
-	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
+	\hat{b} &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
 \end{align}\]</div>
 <p>と求まる．
-なお，傾き <span class="math notranslate nohighlight">\( a \)</span> の式の分子は <span class="math notranslate nohighlight">\( X, Y \)</span> の共分散，分母は <span class="math notranslate nohighlight">\( X \)</span> の分散となっている（相関係数の式に似ているが違う）．
-よって，傾き <span class="math notranslate nohighlight">\( a \)</span> が正なら正の相関，負なら負の相関，ゼロなら無相関であることが分かる．</p>
+なお，傾き <span class="math notranslate nohighlight">\( \hat{a} \)</span> の式の分子は <span class="math notranslate nohighlight">\( X, Y \)</span> の共分散，分母は <span class="math notranslate nohighlight">\( X \)</span> の分散となっている（相関係数の式に似ているが違う）．
+よって，傾き <span class="math notranslate nohighlight">\( \hat{a} \)</span> が正なら正の相関，負なら負の相関，ゼロなら無相関であることが分かる．</p>
 <div class="dropdown admonition">
 <p class="admonition-title">分散公式と共分散</p>
 <p><span class="math notranslate nohighlight">\( X \)</span> の分散は以下のように表すことができる：</p>
