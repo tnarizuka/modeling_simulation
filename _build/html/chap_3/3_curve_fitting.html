@@ -682,8 +682,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a8d9b5ce-6cba-46db-8662-7059ab81bd3e">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-a8d9b5ce-6cba-46db-8662-7059ab81bd3e" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a8177686-f3a9-4880-89b1-42ecdb413e1b">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-a8177686-f3a9-4880-89b1-42ecdb413e1b" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられる．
@@ -695,8 +695,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4413b137-556e-4c78-8d70-c76c875df73d">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-4413b137-556e-4c78-8d70-c76c875df73d" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-354644db-a7b4-44ed-b822-4a982c76509e">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-354644db-a7b4-44ed-b822-4a982c76509e" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -706,14 +706,15 @@ title="Print to PDF"
 よって，傾き <span class="math notranslate nohighlight">\( a \)</span> が正なら正の相関，負なら負の相関，ゼロなら無相関であることが分かる．</p>
 <div class="dropdown admonition">
 <p class="admonition-title">分散公式と共分散</p>
-<p><span class="math notranslate nohighlight">\( X \)</span> の分散は以下のように表すことができ，これを<strong>分散公式</strong>と呼ぶ：</p>
+<p><span class="math notranslate nohighlight">\( X \)</span> の分散は以下のように表すことができる：</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{1}{n} \sum_{i=1}^{n} (x_{i} - \bar{x})^{2} 
     = \frac{1}{n} \sum_{i=1}^{n} x_{i}^{2} - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)^{2}
 	= \overline{x^2}-\bar{x}^2
 \]</div>
-<p>また，<span class="math notranslate nohighlight">\( X, Y \)</span> の共分散は分散公式を用いると以下のように表される：</p>
+<p>これを<strong>分散公式</strong>と呼ぶ．
+また，<span class="math notranslate nohighlight">\( X, Y \)</span> の共分散は分散公式を用いると以下のように表される：</p>
 <div class="math notranslate nohighlight">
 \[
 	\frac{1}{n} \sum_{i=1}^{n}(x_{i}-\bar{x})(y_{i}-\bar{y}) = \overline{xy} - \bar{x}\bar{y}

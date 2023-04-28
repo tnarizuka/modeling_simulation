@@ -114,7 +114,7 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # 
 # ```{admonition} 分散公式と共分散
 # :class: dropdown
-# $ X $ の分散は以下のように表すことができ，これを**分散公式**と呼ぶ：
+# $ X $ の分散は以下のように表すことができる：
 # 
 # $$
 # \frac{1}{n} \sum_{i=1}^{n} (x_{i} - \bar{x})^{2} 
@@ -122,6 +122,7 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # 	= \overline{x^2}-\bar{x}^2
 # $$
 # 
+# これを**分散公式**と呼ぶ．
 # また，$ X, Y $ の共分散は分散公式を用いると以下のように表される：
 # 
 # $$
