@@ -620,7 +620,7 @@ title="Print to PDF"
 <ol class="simple">
 <li><p>回帰分析</p>
 <ul class="simple">
-<li><p>手元のデータから求めた散布図に対して説明変数と目的変数の間の関数関係（理論曲線）を仮定し，パラメータを調整して当てはめる</p></li>
+<li><p>複数の変数から成るデータに対して説明変数と目的変数の間の関数関係（理論曲線）を仮定し，パラメータを調整して当てはめる</p></li>
 </ul>
 </li>
 <li><p>確率分布のパラメータ推定</p>
@@ -682,8 +682,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fb7907b3-51aa-4f0b-8fed-797a362420a6">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-fb7907b3-51aa-4f0b-8fed-797a362420a6" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-972f06e8-3f2a-4261-999d-74edbbfa4863">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-972f06e8-3f2a-4261-999d-74edbbfa4863" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられる．
@@ -695,8 +695,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e7fa4149-e8c5-41da-9440-c62273f6ac19">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-e7fa4149-e8c5-41da-9440-c62273f6ac19" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-42639949-a26a-43db-b2cd-374f4a2a04a6">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-42639949-a26a-43db-b2cd-374f4a2a04a6" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
