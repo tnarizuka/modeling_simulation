@@ -302,6 +302,7 @@ ax.plot(x_data, func(x_data, opt_p[0], opt_p[1], opt_p[2]), 'r-', mfc='None');
 
 # #### 演習問題
 # 
+# to be prepared
 
 # ## 確率分布のパラメータ推定
 # 
