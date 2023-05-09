@@ -166,7 +166,7 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # で定義する．
 # これを**決定係数**と呼ぶ（他の定義もあるので注意）．
 # 
-# 最小二乗法による単回帰分析の場合，決定係数は $ X,\ Y $ の相関係数の２乗に等しく，その定義域は $ 0 \leq R^{2} \leq 1 $ である．
+# 最小二乗法による線形単回帰分析の場合，決定係数は $ X,\ Y $ の相関係数の２乗に等しく，その定義域は $ 0 \leq R^{2} \leq 1 $ である．
 # よって，以下が成り立つ
 # - 残差変動 $ S_{e}^{2} $ が $ S_{y}^{2} $ に比べて小さくなると $ R^{2} $ は $ 1 $ に近づく（データへの当てはまりが良い）
 # - 残差変動 $ S_{e}^{2} $ が $ S_{y}^{2} $ に比べて大きくなると $ R^{2} $ は $ 0 $ に近づく（データへの当てはまりが悪い）
@@ -178,17 +178,17 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # `scipy`には最小二乗法を用いてカーブフィッティングを実行するための `scipy.optimize.curve_fit` 関数が用意されている．
 # まずはこの関数をインポートしておく．
 
-# In[17]:
+# In[2]:
 
 
 from scipy.optimize import curve_fit
 
 
-# `curve_fit` 関数を用いたカーブフィッティングは以下の手順に従う．
+# `curve_fit` 関数を用いたカーブフィッティングは以下の手順に従って行う．
 
 # **1. フィッティングに用いる関数を定義する**
 
-# In[2]:
+# In[3]:
 
 
 # フィッティング関数の定義
@@ -196,79 +196,94 @@ def func(x, a, b):
     return a*x + b
 
 
-# この関数は，第1引数に $ x $ 座標のデータ，第２引数以降にパラメータを入力し，出力として $ y $ 座標のデータが得られる．
+# この関数は，第１引数に $ x $ 座標のデータ，第２引数以降にパラメータ $ a, b $ を入力し，出力として $ y $ 座標のデータが得られる．
 
 # **2. フィッティング対象となる実データを用意する**
 # 
-# 実データはNumPy配列やPandasのデータフレーム形式で読み込んでおく．
-# ここでは以下のように乱数を用いて生成する．
+# 実データはNumPy配列やPandasのデータフレーム形式で準備する．
+# ここでは，以下のように乱数を用いて生成したデータをcsv形式で一旦保存する．
+# その上で，保存したcsvをPandasのDataFrame形式で読み込み，解析する．
 
-# In[3]:
+# In[27]:
 
 
 # データの作成
 np.random.seed(1234)
 x_data = np.linspace(-10, 10, num=100)
 y_data = func(x_data, 2, 5) + 5.*np.random.randn(x_data.size)
+data = np.vstack([x_data, y_data]).T
 
+# データをcsv形式で保存
+np.savetxt('./data_linear.csv', data, delimiter=',')
+
+
+# In[28]:
+
+
+# データをDataFrame形式で読み込む
+data = pd.read_csv('./data_linear.csv', header=None, names=['x', 'y'])
+
+# 散布図の描画
 fig, ax = plt.subplots()
-ax.plot(x_data, y_data, 'ko', mfc='None');
+ax.plot(data['x'], data['y'], 'ko', mfc='None')
+ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 
 
 # **3. フィッティングを実行する**
 # 
-# `curve_fit` 関数には，第1引数にフィッティング関数，第2, 3引数にデータ，それ以降にオプションを指定する．
+# `curve_fit` 関数には，第１引数にフィッティング関数，第２，３引数にデータ，それ以降にオプションを指定する．
 # オプションにはパラメータの初期値 `p0` などを指定することができる．
-# `curve_fit` 関数を実行すると，戻り値として最小二乗法によって得られた最適なパラメータ（`p_opt`） と共分散（`p_cov`）が得られる．
+# `curve_fit` 関数を実行すると，最小二乗法によって得られた最適なパラメータ（`p_opt`） と共分散（`p_cov`）が戻り値として得られる．
 
-# In[8]:
+# In[20]:
 
 
 # フィッティングの実行
-p_opt, p_cov = curve_fit(func, x_data, y_data)
+p_opt, p_cov = curve_fit(func, data['x'], data['y'], p0=[1, 1])
 print(p_opt)
 
 
 # 以下は公式から得られた最適解を求めた結果である．
 # 確かに，`curve_fit` 関数から求めた値と同じ値が得られていることが分かる．
 
-# In[9]:
+# In[22]:
 
 
 # 公式から
-nume = np.mean(x_data * y_data) - np.mean(x_data) * np.mean(y_data)
-denom = np.mean(x_data**2) - np.mean(x_data)**2
+nume = np.mean(data['x'] * data['y']) - np.mean(data['x']) * np.mean(data['y'])
+denom = np.mean(data['x']**2) - np.mean(data['x'])**2
 a = nume / denom
-b = np.mean(y_data - a*x_data)
+b = np.mean(data['y'] - a*data['x'])
 print(a, b)
 
 
 # **4. フィッティング結果を可視化する**
 
-# In[10]:
+# In[24]:
 
 
 fig, ax = plt.subplots()
-ax.plot(x_data, y_data, 'ko', mfc='None')
-ax.plot(x_data, func(x_data, p_opt[0], p_opt[1]), 'r-', mfc='None');
+ax.plot(data['x'], data['y'], 'ko', mfc='None')
+ax.plot(data['x'], func(data['x'], p_opt[0], p_opt[1]), 'r-', mfc='None')
+ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 
 
 # **5. 決定係数を求める**
 
-# In[14]:
+# In[25]:
 
 
 # 決定係数
-y_reg = func(x_data, p_opt[0], p_opt[1]) # 回帰直線の値
-R2 = 1 - np.var(y_data-y_reg) / np.var(y_data) # 決定係数
+y_reg = func(data['x'], p_opt[0], p_opt[1]) # 回帰直線の値
+R2 = 1 - np.var(data['y'] - y_reg) / np.var(data['y']) # 決定係数
 R2
 
 
-# In[15]:
+# In[26]:
 
 
 # 相関係数の２乗
-r_xy = pd.DataFrame(np.c_[x_data, y_data]).corr()[0][1] # pandasのcorr()関数で相関係数を計算
+r_xy = pd.DataFrame(np.c_[data['x'], data['y']]).corr()[0][1] # pandasのcorr()関数で相関係数を計算
 r_xy**2
 
 
@@ -276,7 +291,7 @@ r_xy**2
 
 # **1. フィッティングに用いる関数を定義する**
 
-# In[11]:
+# In[30]:
 
 
 def func(x, a, b, c):
@@ -285,7 +300,7 @@ def func(x, a, b, c):
 
 # **2. フィッティング対象となる実データを用意する**
 
-# In[12]:
+# In[31]:
 
 
 x_data = np.linspace(0, 4, 50)
@@ -297,17 +312,17 @@ ax.plot(x_data, y_data, 'x');
 
 # **3. フィッティングを実行する**
 
-# In[13]:
+# In[32]:
 
 
 # フィッティングの実行
-opt_p = curve_fit(func, x_data, y_data)[0]
-print(opt_p)
+p_opt = curve_fit(func, x_data, y_data)[0]
+print(p_opt)
 
 
 # **4. フィッティング結果を可視化する**
 
-# In[17]:
+# In[33]:
 
 
 x_data = np.linspace(0, 4, 50)
@@ -315,7 +330,18 @@ y_data = func(x_data, 2.5, 1.3, 0.5) + 0.2 * np.random.normal(size=len(x_data))
 
 fig, ax = plt.subplots()
 ax.plot(x_data, y_data, 'x')
-ax.plot(x_data, func(x_data, opt_p[0], opt_p[1], opt_p[2]), 'r-', mfc='None');
+ax.plot(x_data, func(x_data, p_opt[0], p_opt[1], p_opt[2]), 'r-', mfc='None');
+
+
+# **5. 決定係数を求める**
+
+# In[34]:
+
+
+# 決定係数
+y_reg = func(x_data, p_opt[0], p_opt[1], p_opt[2]) # 回帰直線の値
+R2 = 1 - np.var(y_data-y_reg) / np.var(y_data) # 決定係数
+R2
 
 
 # #### 演習問題
