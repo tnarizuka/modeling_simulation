@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-55eb2c42-6c38-49ae-b00d-b060c4675bb3">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-55eb2c42-6c38-49ae-b00d-b060c4675bb3" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5eba4cf2-42be-4552-bd39-59d5d32c3b2f">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-5eba4cf2-42be-4552-bd39-59d5d32c3b2f" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-50529c90-2be5-4c1d-8a54-2efe693c1c6d">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-50529c90-2be5-4c1d-8a54-2efe693c1c6d" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-521fe845-701f-4347-9ea2-5f0b8808cc99">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-521fe845-701f-4347-9ea2-5f0b8808cc99" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -900,6 +900,9 @@ title="Print to PDF"
 </section>
 <section id="id9">
 <h3><span class="section-number">3.2.4. </span>非線形単回帰モデル<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>次に，非線形単回帰モデルを考える．
+この場合はフィッティング関数に任意の非線形関数 <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> を指定することができる．
+フィッティングの手順は線形単回帰モデルの場合と同様である．</p>
 <p><strong>1. フィッティングに用いる関数を定義する</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -937,7 +940,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_35_0.png" src="../_images/3_curve_fitting_35_0.png" />
+<img alt="../_images/3_curve_fitting_36_0.png" src="../_images/3_curve_fitting_36_0.png" />
 </div>
 </div>
 <p><strong>3. フィッティングを実行する</strong></p>
@@ -970,7 +973,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_39_0.png" src="../_images/3_curve_fitting_39_0.png" />
+<img alt="../_images/3_curve_fitting_40_0.png" src="../_images/3_curve_fitting_40_0.png" />
 </div>
 </div>
 <p><strong>5. 決定係数を求める</strong></p>
@@ -1034,7 +1037,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1d6e81760&gt;]
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_48_1.png" src="../_images/3_curve_fitting_48_1.png" />
+<img alt="../_images/3_curve_fitting_49_1.png" src="../_images/3_curve_fitting_49_1.png" />
 </div>
 </div>
 </section>
@@ -1161,7 +1164,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.3603279030607903e-25)
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_63_2.png" src="../_images/3_curve_fitting_63_2.png" />
+<img alt="../_images/3_curve_fitting_64_2.png" src="../_images/3_curve_fitting_64_2.png" />
 </div>
 </div>
 <p>得られた最尤推定値は <span class="math notranslate nohighlight">\( p=0.26 \)</span> であるが，これは解析解である標本平均と一致している．</p>
@@ -1247,7 +1250,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Likelihood&#39;)
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_72_1.png" src="../_images/3_curve_fitting_72_1.png" />
+<img alt="../_images/3_curve_fitting_73_1.png" src="../_images/3_curve_fitting_73_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1306,7 +1309,7 @@ MLE of standard deviation: 1.02857877771493
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1d69a4c40&gt;]
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_77_1.png" src="../_images/3_curve_fitting_77_1.png" />
+<img alt="../_images/3_curve_fitting_78_1.png" src="../_images/3_curve_fitting_78_1.png" />
 </div>
 </div>
 </section>
