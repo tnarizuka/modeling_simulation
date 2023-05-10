@@ -369,8 +369,6 @@ R2
 # 
 # 1. 適当な非線形関数からデータを生成し，手順１〜５に従ってフィッティングを実行せよ．
 # 2. to be prepared
-# 
-# [link](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/tnarizuka/modeling_simulation/blob/e8d1b42576af284d042438a957472810f422884c/chap_3/3_curve_fitting.ipynb)
 
 # ## 確率分布のパラメータ推定
 # 
