@@ -370,7 +370,7 @@ R2
 # 1. 適当な非線形関数からデータを生成し，手順１〜５に従ってフィッティングを実行せよ．
 # 2. to be prepared
 # 
-# [score_nba.csv](https://github.com/tnarizuka/modeling_simulation/blob/c20460bb0042bf167eb5de41ccb95af132ad317f/chap_3/score_nba.csv)
+# [score_nba.csv](https://raw.githubusercontent.com/tnarizuka/modeling_simulation/c20460bb0042bf167eb5de41ccb95af132ad317f/chap_3/score_nba.csv)
 
 # ## 確率分布のパラメータ推定
 # 
