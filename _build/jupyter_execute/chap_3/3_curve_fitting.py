@@ -370,28 +370,6 @@ R2
 # 1. 適当な非線形関数からデータを生成し，手順１〜５に従ってカーブフィッティングを実行せよ．
 # 2. 2017年度にサッカーのヨーロッパリーグに所属していた選手のデータ（[soccer_player_europe_2017.csv](https://drive.google.com/uc?export=download&id=13NU87F430KkYJGJZrY44aQECBLjSjKnf)）をPandasのDataFrameに読み込め．読み込んだデータから，体重（`weight`）が0の選手を削除せよ．体重（`weight`）と身長（`height`）の散布図を描き，単回帰モデルによるカーブフィッティングを実行せよ．
 
-# In[10]:
-
-
-data = pd.read_csv('./soccer_player_europe_2017.csv', header=0)
-data = data.loc[data['weight'] > 0]
-
-
-# In[11]:
-
-
-data
-
-
-# In[15]:
-
-
-# 散布図の描画
-fig, ax = plt.subplots()
-ax.plot(data['weight'], data['height'], '.')
-ax.set_xlabel('weight [kg]', fontsize=15); ax.set_ylabel('height [cm]', fontsize=15);
-
-
 # ## 確率分布のパラメータ推定
 # 
 
