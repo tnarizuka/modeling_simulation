@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-83848ca8-1aac-41d3-b708-4fc5c2643349">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-83848ca8-1aac-41d3-b708-4fc5c2643349" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4bf3e749-4d9f-4f90-9feb-751a85aefc4a">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-4bf3e749-4d9f-4f90-9feb-751a85aefc4a" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7df1687c-caca-4185-bfef-2eac4148ea1f">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-7df1687c-caca-4185-bfef-2eac4148ea1f" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2a8b9438-cbdb-4d2c-bd27-a3bf8bbf72e9">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-2a8b9438-cbdb-4d2c-bd27-a3bf8bbf72e9" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -997,7 +997,7 @@ title="Print to PDF"
 <ol>
 <li><p>適当な非線形関数からデータを生成し，手順１〜５に従ってカーブフィッティングを実行せよ．</p></li>
 <li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=13NU87F430KkYJGJZrY44aQECBLjSjKnf">soccer_player_europe_2017.csv</a>は2017シーズンにサッカーのヨーロッパ主要リーグに所属していた選手のデータである．これをPandasのDataFrameに読み込み，体重（<code class="docutils literal notranslate"><span class="pre">weight</span></code>）が0の選手を削除せよ．体重（<code class="docutils literal notranslate"><span class="pre">weight</span></code>）と身長（<code class="docutils literal notranslate"><span class="pre">height</span></code>）の散布図を描き，単回帰モデルによるカーブフィッティングを実行せよ．</p></li>
-<li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz">south_korea_covid.csv</a>は新型コロナウイルスの流行初期（2020年）における韓国の感染者数の推移データである．このデータを読み込み，横軸に経過日数，縦軸に感染者数を取った散布図を描け．また，散布図に対し，以下のシグモイド関数によるフィッティングを実行せよ．</p>
+<li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz">covid19_korea.csv</a>は，韓国における新型コロナウイルス感染者数の推移データである．このデータを読み込み，横軸に2020年1月22日を0日とした経過日数，縦軸に感染者数を取った散布図を描け．また，散布図に対し，以下のシグモイド関数によるフィッティングを実行せよ．</p>
 <div class="math notranslate nohighlight">
 \[
    f(t) = \frac{a}{1+b\mathrm{e}^{-ct}}
