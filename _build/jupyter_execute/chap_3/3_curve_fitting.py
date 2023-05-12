@@ -420,7 +420,7 @@ ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r--')
 
 # ### 最尤推定
 
-# 以下では，パラメータ $ \boldsymbol{\theta} $ を持つ１次元確率分布を $ f(x|\boldsymbol{\theta}) $ と表記する（これまでは $ f(x; \boldsymbol{\theta}) $ と表していたが，同じ意味である）．
+# パラメータ $ \boldsymbol{\theta} $ を持つ１次元確率分布を $ f(x|\boldsymbol{\theta}) $ と表記する（これまでは $ f(x; \boldsymbol{\theta}) $ と表していたが，同じ意味である）．
 # 例えば，正規分布は平均 $ \mu $ と標準偏差 $ \sigma $ をパラメータとして持つので $ \boldsymbol{\theta}=\{\mu, \sigma\} $ である．
 
 # いま，手元にある $ n $ 個のデータ $ (x_{1}, x_{2}, \ldots, x_{n}) $ が確率分布 $ f(x|\boldsymbol{\theta}) $ から独立に得られたとする．
@@ -436,7 +436,7 @@ ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r--')
 # これを**尤度関数**と呼び，
 # 
 # $$
-#     L(\boldsymbol{\theta}|x_{1},x_{2},\ldots) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
+#     L(\boldsymbol{\theta}|x_{1},\ldots, x_{n}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
 # $$
 # 
 # と表記する．
