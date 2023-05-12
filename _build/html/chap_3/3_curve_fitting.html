@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0a2d7d06-2de7-4051-91b8-92985e9915e7">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-0a2d7d06-2de7-4051-91b8-92985e9915e7" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f4bedb1a-5954-4b3d-8231-96596bb65c84">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-f4bedb1a-5954-4b3d-8231-96596bb65c84" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3a1d3aff-4c7b-4c61-b697-a4757ece04ca">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-3a1d3aff-4c7b-4c61-b697-a4757ece04ca" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-596db8ef-1bf3-4788-94d4-938cd56789d4">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-596db8ef-1bf3-4788-94d4-938cd56789d4" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1055,22 +1055,26 @@ title="Print to PDF"
 </section>
 <section id="id13">
 <h3><span class="section-number">3.3.2. </span>最尤推定<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">#</a></h3>
-<p>パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を持つ１次元確率分布を <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と表記する（これまでは <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> と表していたが，同じ意味である）．
-例えば，正規分布は平均 <span class="math notranslate nohighlight">\( \mu \)</span> と標準偏差 <span class="math notranslate nohighlight">\( \sigma \)</span> をパラメータとして持つので <span class="math notranslate nohighlight">\( \boldsymbol{\theta}=\{\mu, \sigma\} \)</span> である．</p>
+<p>これまで，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を持つ１次元確率分布を <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> と表記していたが，変数と定数の区別を強調するために，ここからは <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と表記する．
+例えば，<span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と書いたときは，<span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は与えられた定数で，<span class="math notranslate nohighlight">\( x \)</span> が変数を表すことになる．
+つまり，<span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> は <span class="math notranslate nohighlight">\( x \)</span> の関数である．</p>
 <p>いま，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> が確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> から独立に得られたとする．
-このとき，<span class="math notranslate nohighlight">\( x_{i} \)</span> というデータが得られる確率は <span class="math notranslate nohighlight">\( f(x_{i}|\boldsymbol{\theta}) \)</span>であるので，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる確率は</p>
+このとき，<span class="math notranslate nohighlight">\( x_{i} \)</span> というデータが得られる確率は <span class="math notranslate nohighlight">\( f(x_{i}|\boldsymbol{\theta}) \)</span> であるので，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる確率は</p>
 <div class="math notranslate nohighlight">
 \[
     f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
 \]</div>
-<p>と表される．</p>
-<p>確率 <span class="math notranslate nohighlight">\( f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) \)</span> はパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> によって変化するので，データ <span class="math notranslate nohighlight">\( x_{1},\ x_{2},\ \ldots, x_{n} \)</span> を固定して，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> の関数と見ることもできる．
-これを<strong>尤度関数</strong>と呼び，</p>
+<p>と表される．
+このように，確率を <span class="math notranslate nohighlight">\( f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) \)</span> と書いたときは，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> が固定されており，手元のデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> を変数と捉えている．
+これは，データの生成元から見た視点と考えることができる．</p>
+<p>一方，この状況をデータの観測者から見ると，手元のデータ <span class="math notranslate nohighlight">\( x_{1},\ x_{2},\ \ldots, x_{n} \)</span> に対して，このデータの生成元となった確率分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> はどのような値だったのだろうか？という見方ができる．
+このとき，手元のデータ <span class="math notranslate nohighlight">\( x_{1},\ x_{2},\ \ldots, x_{n} \)</span> が定数で，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は変数と捉えていることになる．
+そこで，確率 <span class="math notranslate nohighlight">\( f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) \)</span> について，<span class="math notranslate nohighlight">\( x_{1},\ x_{2},\ \ldots, x_{n} \)</span> を定数，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を変数と捉えた場合の関数を</p>
 <div class="math notranslate nohighlight">
 \[
     L(\boldsymbol{\theta}|x_{1},\ldots, x_{n}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
 \]</div>
-<p>と表記する．</p>
+<p>と表記して，これを<strong>尤度関数</strong>と呼ぶ．</p>
 <p>以上を踏まえ，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータを基に，生成元となった確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> の形を推定することを考える．
 ただし，<span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> には特定の確率分布（例えば，正規分布や指数分布など）を仮定した上で最も最適なパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を推定するものとする．</p>
 <p>最適なパラメータを選ぶ基準は色々と考えられるが，手元にあるデータが得られる確率が最大となるようなパラメータ <span class="math notranslate nohighlight">\(\boldsymbol{\theta} \)</span> を最適な（尤もらしい）パラメータとする手法が<strong>最尤法</strong>である．
