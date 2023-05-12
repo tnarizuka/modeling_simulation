@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-03536b6f-ad1f-4422-9630-f73294f6069d">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-03536b6f-ad1f-4422-9630-f73294f6069d" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ac9aecb0-7956-403f-a348-2ecb160b83b7">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-ac9aecb0-7956-403f-a348-2ecb160b83b7" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-43561b5a-ffa5-4d71-8135-899db8c786ff">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-43561b5a-ffa5-4d71-8135-899db8c786ff" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d1127a2b-ece2-400a-ba5d-671bb6783029">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-d1127a2b-ece2-400a-ba5d-671bb6783029" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1075,9 +1075,9 @@ title="Print to PDF"
     L(\boldsymbol{\theta}|x_{1},\ldots, x_{n}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
 \]</div>
 <p>と表記し，これを<strong>尤度関数</strong>と呼ぶことにする．</p>
-<p>以上を踏まえ，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータを基に，生成元となった確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> の形を推定することを考える．
-ただし，<span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> には特定の確率分布（例えば，正規分布や指数分布など）を仮定した上で最も最適なパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を推定するものとする．</p>
-<p>最適なパラメータを選ぶ基準は色々と考えられるが，手元にあるデータが得られる確率が最大となるようなパラメータ <span class="math notranslate nohighlight">\(\boldsymbol{\theta} \)</span> を最適な（尤もらしい）パラメータとする手法が<strong>最尤法</strong>である．
+<p>さて，以上を踏まえて，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータを基に，生成元となった確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> の形を推定することを考える．
+ただし，<span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> には特定の確率分布（例えば，正規分布や指数分布など）を仮定した上で最も最適なパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を推定するものとする．
+最適なパラメータを選ぶ基準は色々と考えられるが，手元にあるデータが得られる確率が最大となるようなパラメータ <span class="math notranslate nohighlight">\(\boldsymbol{\theta} \)</span> を最適な（尤もらしい）パラメータとする手法が<strong>最尤法</strong>である．
 これは，尤度関数 <span class="math notranslate nohighlight">\( L(\boldsymbol{\theta}|x_{1},x_{2},\ldots) \)</span> を最大化するようなパラメータを最適とする手法と言い換えることもできる．
 なお，尤度関数そのものを最大化しようとすると計算が複雑になるので，一般的には尤度関数の対数を取った対数尤度 <span class="math notranslate nohighlight">\( \log L(\boldsymbol{\theta}|x_{1},x_{2},\ldots) \)</span> を最大化することが多い．</p>
 <p>対数尤度関数を最大化するパラメータは以下の条件を満たす：</p>
