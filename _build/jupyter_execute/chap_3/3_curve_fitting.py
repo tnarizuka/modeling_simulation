@@ -3,7 +3,7 @@
 
 # # カーブフィッティング
 
-# In[2]:
+# In[20]:
 
 
 import numpy as np
@@ -295,7 +295,7 @@ r_xy**2
 
 # **1. フィッティングに用いる関数を定義する**
 
-# In[14]:
+# In[16]:
 
 
 def f_exp(x, a, b, c):
@@ -304,7 +304,7 @@ def f_exp(x, a, b, c):
 
 # **2. フィッティング対象となる実データを用意する**
 
-# In[16]:
+# In[17]:
 
 
 # データの作成
@@ -317,7 +317,7 @@ data = np.vstack([x_data, y_data]).T
 np.savetxt('./data_exp.csv', data, delimiter=',')
 
 
-# In[17]:
+# In[18]:
 
 
 # データをDataFrame形式で読み込む
@@ -325,51 +325,48 @@ data = pd.read_csv('./data_exp.csv', header=None, names=['x', 'y'])
 
 # 散布図の描画
 fig, ax = plt.subplots()
-ax.plot(x_data, y_data, 'x')
+ax.plot(data['x'], data['y'], 'x')
 ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 
 
 # **3. フィッティングを実行する**
 
-# In[18]:
+# In[21]:
 
 
 # フィッティングの実行
-p_opt = curve_fit(f_exp, x_data, y_data)[0]
+p_opt = curve_fit(f_exp, data['x'], data['y'])[0]
 print(p_opt)
 
 
 # **4. フィッティング結果を可視化する**
 
-# In[19]:
+# In[22]:
 
-
-x_data = np.linspace(0, 4, 50)
-y_data = f_exp(x_data, 2.5, 1.3, 0.5) + 0.2 * np.random.normal(size=len(x_data))
 
 fig, ax = plt.subplots()
-ax.plot(x_data, y_data, 'x')
-ax.plot(x_data, f_exp(x_data, p_opt[0], p_opt[1], p_opt[2]), 'r-', mfc='None')
+ax.plot(data['x'], data['y'], 'x')
+ax.plot(data['x'], f_exp(data['x'], p_opt[0], p_opt[1], p_opt[2]), 'r-', mfc='None')
 
 ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 
 
 # **5. 決定係数を求める**
 
-# In[20]:
+# In[23]:
 
 
 # 決定係数
-y_reg = f_exp(x_data, p_opt[0], p_opt[1], p_opt[2]) # 回帰直線の値
-R2 = 1 - np.var(y_data-y_reg) / np.var(y_data) # 決定係数
+y_reg = f_exp(data['x'], p_opt[0], p_opt[1], p_opt[2]) # 回帰直線の値
+R2 = 1 - np.var(data['y']-y_reg) / np.var(data['y']) # 決定係数
 R2
 
 
 # #### 演習問題
 # 
 # 1. 適当な非線形関数からデータを生成し，手順１〜５に従ってカーブフィッティングを実行せよ．
-# 2. [soccer_player_europe_2017.csv](https://drive.google.com/uc?export=download&id=13NU87F430KkYJGJZrY44aQECBLjSjKnf)は2017シーズンにサッカーのヨーロッパ主要リーグに所属していた選手のデータである．これをPandasのDataFrameに読み込み，体重（`weight`）が0の選手を削除せよ．体重（`weight`）と身長（`height`）の散布図を描き，単回帰モデルによるカーブフィッティングを実行せよ．
-# 3. [covid19_korea.csv](https://drive.google.com/uc?export=download&id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz)は，韓国における新型コロナウイルス感染者数の推移データである．このデータを読み込み，横軸に2020年1月22日を0日とした経過日数，縦軸に感染者数を取った散布図を描け．また，散布図に対し，以下のシグモイド関数によるフィッティングを実行せよ．
+# 2. [soccer_player_europe_2017.csv](https://drive.google.com/uc?export=download&id=13NU87F430KkYJGJZrY44aQECBLjSjKnf)は2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．これをPandasのDataFrameに読み込み，体重（`weight`）が0の選手を削除せよ．体重（`weight`）と身長（`height`）の散布図を描き，線形単回帰モデルによるカーブフィッティングを実行せよ．
+# 3. [covid19_korea.csv](https://drive.google.com/uc?export=download&id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz)は，韓国における新型コロナウイルス感染者数の推移データである．このデータを読み込み，横軸に2020年1月22日を0日とした経過日数，縦軸に感染者数を取った散布図を描け．50日目までと100日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行せよ．
 #    
 #    $$
 #    f(t) = \frac{a}{1+b\mathrm{e}^{-ct}}
