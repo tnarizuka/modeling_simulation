@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-86ae7dca-3cb8-4237-b17b-696302501fdc">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-86ae7dca-3cb8-4237-b17b-696302501fdc" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0a2d7d06-2de7-4051-91b8-92985e9915e7">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-0a2d7d06-2de7-4051-91b8-92985e9915e7" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9b663c8e-13b6-41bb-a7eb-6a65b424c444">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-9b663c8e-13b6-41bb-a7eb-6a65b424c444" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3a1d3aff-4c7b-4c61-b697-a4757ece04ca">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-3a1d3aff-4c7b-4c61-b697-a4757ece04ca" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1055,7 +1055,7 @@ title="Print to PDF"
 </section>
 <section id="id13">
 <h3><span class="section-number">3.3.2. </span>最尤推定<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">#</a></h3>
-<p>以下では，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を持つ１次元確率分布を <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と表記する（これまでは <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> と表していたが，同じ意味である）．
+<p>パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を持つ１次元確率分布を <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と表記する（これまでは <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> と表していたが，同じ意味である）．
 例えば，正規分布は平均 <span class="math notranslate nohighlight">\( \mu \)</span> と標準偏差 <span class="math notranslate nohighlight">\( \sigma \)</span> をパラメータとして持つので <span class="math notranslate nohighlight">\( \boldsymbol{\theta}=\{\mu, \sigma\} \)</span> である．</p>
 <p>いま，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> が確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> から独立に得られたとする．
 このとき，<span class="math notranslate nohighlight">\( x_{i} \)</span> というデータが得られる確率は <span class="math notranslate nohighlight">\( f(x_{i}|\boldsymbol{\theta}) \)</span>であるので，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる確率は</p>
@@ -1068,7 +1068,7 @@ title="Print to PDF"
 これを<strong>尤度関数</strong>と呼び，</p>
 <div class="math notranslate nohighlight">
 \[
-    L(\boldsymbol{\theta}|x_{1},x_{2},\ldots) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
+    L(\boldsymbol{\theta}|x_{1},\ldots, x_{n}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
 \]</div>
 <p>と表記する．</p>
 <p>以上を踏まえ，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータを基に，生成元となった確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> の形を推定することを考える．
