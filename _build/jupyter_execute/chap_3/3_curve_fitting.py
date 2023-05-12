@@ -399,7 +399,7 @@ from scipy.stats import bernoulli, norm, poisson, expon
 
 # また，与えられた観測データからヒストグラムを描画し，適当な確率分布をフィッティングするプログラムを作成しておく．
 
-# In[5]:
+# In[7]:
 
 
 # データの作成（正規分布に従う1000個のデータ）
@@ -413,18 +413,18 @@ ax.set_xlabel('$x$', fontsize=12)
 ax.set_ylabel('相対度数', fontsize=12)
 ax.set_xticks(np.arange(130, 210, 10));
 
-# フッティング
+# フィッティング
 x = np.arange(140, 200)
 ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r--')
 
 
 # ### 最尤推定
 
-# 以下では，パラメータ $ \boldsymbol{\theta} $ を持つ1次元確率分布を $ f(x|\boldsymbol{\theta}) $ と表記する（ $ f(x; \boldsymbol{\theta}) $ と表す場合もある）．
+# 以下では，パラメータ $ \boldsymbol{\theta} $ を持つ１次元確率分布を $ f(x|\boldsymbol{\theta}) $ と表記する（これまでは $ f(x; \boldsymbol{\theta}) $ と表していたが，同じ意味である）．
 # 例えば，正規分布は平均 $ \mu $ と標準偏差 $ \sigma $ をパラメータとして持つので $ \boldsymbol{\theta}=\{\mu, \sigma\} $ である．
 
 # いま，手元にある $ n $ 個のデータ $ (x_{1}, x_{2}, \ldots, x_{n}) $ が確率分布 $ f(x|\boldsymbol{\theta}) $ から独立に得られたとする．
-# すなわち，$ x_{i} $ というデータが得られる確率は $ f(x_{i}|\boldsymbol{\theta}) $，手元にある $ n $ 個のデータが得られる確率は
+# このとき，$ x_{i} $ というデータが得られる確率は $ f(x_{i}|\boldsymbol{\theta}) $であるので，手元にある $ n $ 個のデータが得られる確率は
 # 
 # $$
 #     f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})

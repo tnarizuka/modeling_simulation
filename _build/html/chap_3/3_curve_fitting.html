@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c2b25504-192c-4760-9663-41f76fec3966">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-c2b25504-192c-4760-9663-41f76fec3966" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-86ae7dca-3cb8-4237-b17b-696302501fdc">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-86ae7dca-3cb8-4237-b17b-696302501fdc" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4bcd6460-e98c-48c2-ad9c-03e6d8ea4850">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-4bcd6460-e98c-48c2-ad9c-03e6d8ea4850" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9b663c8e-13b6-41bb-a7eb-6a65b424c444">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-9b663c8e-13b6-41bb-a7eb-6a65b424c444" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1039,14 +1039,14 @@ title="Print to PDF"
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;相対度数&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">130</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
 
-<span class="c1"># フッティング</span>
+<span class="c1"># フィッティング</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">140</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">170</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1c3b59910&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1c3bcf3d0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/3_curve_fitting_51_1.png" src="../_images/3_curve_fitting_51_1.png" />
@@ -1055,10 +1055,10 @@ title="Print to PDF"
 </section>
 <section id="id13">
 <h3><span class="section-number">3.3.2. </span>最尤推定<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">#</a></h3>
-<p>以下では，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を持つ1次元確率分布を <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と表記する（ <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> と表す場合もある）．
+<p>以下では，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を持つ１次元確率分布を <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と表記する（これまでは <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> と表していたが，同じ意味である）．
 例えば，正規分布は平均 <span class="math notranslate nohighlight">\( \mu \)</span> と標準偏差 <span class="math notranslate nohighlight">\( \sigma \)</span> をパラメータとして持つので <span class="math notranslate nohighlight">\( \boldsymbol{\theta}=\{\mu, \sigma\} \)</span> である．</p>
 <p>いま，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> が確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> から独立に得られたとする．
-すなわち，<span class="math notranslate nohighlight">\( x_{i} \)</span> というデータが得られる確率は <span class="math notranslate nohighlight">\( f(x_{i}|\boldsymbol{\theta}) \)</span>，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる確率は</p>
+このとき，<span class="math notranslate nohighlight">\( x_{i} \)</span> というデータが得られる確率は <span class="math notranslate nohighlight">\( f(x_{i}|\boldsymbol{\theta}) \)</span>であるので，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる確率は</p>
 <div class="math notranslate nohighlight">
 \[
     f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
