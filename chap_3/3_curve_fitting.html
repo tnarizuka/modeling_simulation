@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8b80100d-2c34-4599-96e0-d4c3cbccbb5e">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-8b80100d-2c34-4599-96e0-d4c3cbccbb5e" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7cd9e931-816b-4d5c-929e-d7d31bc9e1d3">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-7cd9e931-816b-4d5c-929e-d7d31bc9e1d3" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c341835f-7f42-4217-a3d7-65822d4d9488">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-c341835f-7f42-4217-a3d7-65822d4d9488" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bb300736-85e1-400c-903f-37f165a48354">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-bb300736-85e1-400c-903f-37f165a48354" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1086,7 +1086,9 @@ title="Print to PDF"
 \]</div>
 <p>この条件式は<strong>対数尤度方程式</strong>と呼ばれている．
 このように対数尤度関数を考えると，尤度関数の積が和の形に分解できるので計算が簡単になるが，得られる解は尤度関数を偏微分した場合と変わらないので非常に便利である．
-なお，対数尤度関数が凸関数の場合には対数尤度方程式を解くことで最尤推定値が得られるが，非凸関数の場合には最適解が一意に決まらない．</p>
+なお，最尤推定値が求まるかどうかは対数尤度関数の形によって異なる．
+例えば，対数尤度関数が凸関数の場合には対数尤度方程式を解くことで大域解が求まるが，非凸関数の場合にはその限りではない．
+また，通常は対数尤度関数が非常に複雑な形をしているため，解析解を得ることは難しく，様々なアルゴリズム（例えばEMアルゴリズムなど）が考案されている．</p>
 </section>
 <section id="id14">
 <h3><span class="section-number">3.3.3. </span>ベルヌーイ分布<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">#</a></h3>
