@@ -3,7 +3,7 @@
 
 # # カーブフィッティング
 
-# In[20]:
+# In[1]:
 
 
 import numpy as np
@@ -389,26 +389,31 @@ R2
 
 # ### ヒストグラムの作成とフィッティング
 
-# 与えられた観測データからヒストグラムを作成し，適当な確率分布をフィッティングするプログラムを作成してみよう．
+# 準備として`scipy`から主要な確率分布をインポートしておく：
 
-# In[140]:
+# In[6]:
 
 
-'''ヒストグラムの描画'''
-# データの作成
+from scipy.stats import bernoulli, norm, poisson, expon
+
+
+# また，与えられた観測データからヒストグラムを描画し，適当な確率分布をフィッティングするプログラムを作成しておく．
+
+# In[5]:
+
+
+# データの作成（正規分布に従う1000個のデータ）
 np.random.seed(20)
-x_data = np.random.normal(loc=170, scale=10, size=1000)
+x_data = sp.stats.norm.rvs(loc=170, scale=10, size=1000)
 
 # ヒストグラムの描画
 fig, ax = plt.subplots()
-ret = ax.hist(x_data, bins=10, density=1, color='gray', edgecolor='k')
-
-# 軸のラベル
-ax.set_xlabel('$X$', fontsize=15)
-ax.set_ylabel('Frequency', fontsize=15)
+ret = ax.hist(x_data, bins=10, density=1, color='c', edgecolor='k')
+ax.set_xlabel('$x$', fontsize=12)
+ax.set_ylabel('相対度数', fontsize=12)
 ax.set_xticks(np.arange(130, 210, 10));
 
-'''フィッティング'''
+# フッティング
 x = np.arange(140, 200)
 ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r--')
 
