@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ac9aecb0-7956-403f-a348-2ecb160b83b7">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-ac9aecb0-7956-403f-a348-2ecb160b83b7" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8b80100d-2c34-4599-96e0-d4c3cbccbb5e">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-8b80100d-2c34-4599-96e0-d4c3cbccbb5e" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d1127a2b-ece2-400a-ba5d-671bb6783029">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-d1127a2b-ece2-400a-ba5d-671bb6783029" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c341835f-7f42-4217-a3d7-65822d4d9488">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-c341835f-7f42-4217-a3d7-65822d4d9488" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1075,18 +1075,18 @@ title="Print to PDF"
     L(\boldsymbol{\theta}|x_{1},\ldots, x_{n}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
 \]</div>
 <p>と表記し，これを<strong>尤度関数</strong>と呼ぶことにする．</p>
-<p>さて，以上を踏まえて，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータを基に，生成元となった確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> の形を推定することを考える．
-ただし，<span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> には特定の確率分布（例えば，正規分布や指数分布など）を仮定した上で最も最適なパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を推定するものとする．
-最適なパラメータを選ぶ基準は色々と考えられるが，手元にあるデータが得られる確率が最大となるようなパラメータ <span class="math notranslate nohighlight">\(\boldsymbol{\theta} \)</span> を最適な（尤もらしい）パラメータとする手法が<strong>最尤法</strong>である．
-これは，尤度関数 <span class="math notranslate nohighlight">\( L(\boldsymbol{\theta}|x_{1},x_{2},\ldots) \)</span> を最大化するようなパラメータを最適とする手法と言い換えることもできる．
-なお，尤度関数そのものを最大化しようとすると計算が複雑になるので，一般的には尤度関数の対数を取った対数尤度 <span class="math notranslate nohighlight">\( \log L(\boldsymbol{\theta}|x_{1},x_{2},\ldots) \)</span> を最大化することが多い．</p>
-<p>対数尤度関数を最大化するパラメータは以下の条件を満たす：</p>
+<p>さて，尤度関数というのは，手元のデータが得られる確率を，生成元となった確率分布のパラメータの関数と捉えたものである．
+そこで，手元に <span class="math notranslate nohighlight">\( n \)</span> 個のデータが与えられたとき，尤度関数<span class="math notranslate nohighlight">\( L(\boldsymbol{\theta}|x_{1}, x_{2},\ldots, x_{n}) \)</span> を最大にするように生成元の確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> のパラメータを決めることを考える．
+これは，確率分布のパラメータ推定の手法の一つであり，<strong>最尤推定法</strong>と呼ばれている．</p>
+<p>尤度関数を最大にするようなパラメータを求めるには，尤度関数を各パラメータで偏微分して0になるという条件を課せば良いが，尤度関数は確率<span class="math notranslate nohighlight">\( f(x_{i}|\theta) \)</span>の積として定義されるので，パラメータによる偏微分は面倒である．
+そこで，通常は尤度関数の対数を取った<strong>対数尤度関数</strong>を考え，これを最大化するパラメータを考える：</p>
 <div class="math notranslate nohighlight">
 \[
     \frac{\partial \log L}{\partial \theta_{1}} = 0, \quad \frac{\partial \log L}{\partial \theta_{2}} = 0, \quad \cdots, \quad \frac{\partial \log L}{\partial \theta_{n}} = 0
 \]</div>
-<p>これを<strong>対数尤度方程式</strong>と呼ぶ．
-対数尤度関数が凸関数の場合，対数尤度方程式を解けば最尤推定値が得られる．</p>
+<p>この条件式は<strong>対数尤度方程式</strong>と呼ばれている．
+このように対数尤度関数を考えると，尤度関数の積が和の形に分解できるので計算が簡単になるが，得られる解は尤度関数を偏微分した場合と変わらないので非常に便利である．
+なお，対数尤度関数が凸関数の場合には対数尤度方程式を解くことで最尤推定値が得られるが，非凸関数の場合には最適解が一意に決まらない．</p>
 </section>
 <section id="id14">
 <h3><span class="section-number">3.3.3. </span>ベルヌーイ分布<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">#</a></h3>
