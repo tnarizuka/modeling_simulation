@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-65a55ec5-7b17-41a4-b2cf-6efdcbcb458b">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-65a55ec5-7b17-41a4-b2cf-6efdcbcb458b" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-274c0647-0610-477c-bb05-ba462765ef34">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-274c0647-0610-477c-bb05-ba462765ef34" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3387e44e-49c0-4630-879f-bb97e7ed0fd9">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-3387e44e-49c0-4630-879f-bb97e7ed0fd9" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bce4e9a7-4257-4c79-b869-dd91d8ecee4b">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-bce4e9a7-4257-4c79-b869-dd91d8ecee4b" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -753,8 +753,8 @@ title="Print to PDF"
 <p>最小二乗法による線形単回帰分析の場合，決定係数は <span class="math notranslate nohighlight">\( X,\ Y \)</span> の相関係数の２乗に等しく，その定義域は <span class="math notranslate nohighlight">\( 0 \leq R^{2} \leq 1 \)</span> である．
 よって，以下が成り立つ</p>
 <ul class="simple">
-<li><p>残差変動 <span class="math notranslate nohighlight">\( S_{e}^{2} \)</span> が <span class="math notranslate nohighlight">\( S_{y}^{2} \)</span> に比べて小さくなると <span class="math notranslate nohighlight">\( R^{2} \)</span> は <span class="math notranslate nohighlight">\( 1 \)</span> に近づく（データへの当てはまりが良い）</p></li>
-<li><p>残差変動 <span class="math notranslate nohighlight">\( S_{e}^{2} \)</span> が <span class="math notranslate nohighlight">\( S_{y}^{2} \)</span> に比べて大きくなると <span class="math notranslate nohighlight">\( R^{2} \)</span> は <span class="math notranslate nohighlight">\( 0 \)</span> に近づく（データへの当てはまりが悪い）</p></li>
+<li><p>残差変動 <span class="math notranslate nohighlight">\( S_{e}^{2} \)</span> が全変動 <span class="math notranslate nohighlight">\( S_{y}^{2} \)</span> に比べて小さくなると <span class="math notranslate nohighlight">\( R^{2} \)</span> は <span class="math notranslate nohighlight">\( 1 \)</span> に近づく（データへの当てはまりが良い）</p></li>
+<li><p>残差変動 <span class="math notranslate nohighlight">\( S_{e}^{2} \)</span> が全変動 <span class="math notranslate nohighlight">\( S_{y}^{2} \)</span> に比べて大きくなると <span class="math notranslate nohighlight">\( R^{2} \)</span> は <span class="math notranslate nohighlight">\( 0 \)</span> に近づく（データへの当てはまりが悪い）</p></li>
 </ul>
 <p>※ 予測値 <span class="math notranslate nohighlight">\( \hat{y} \)</span> が最小二乗法以外の方法によって決められた場合，決定係数が負になることもあり，さらに相関係数の２乗にはならない．</p>
 </section>
