@@ -539,7 +539,7 @@ L = np.array(L)
 
 # 最後に，尤度関数を描画し，さらに尤度関数が最大となる $ p $ の値をグラフ中にプロットする．
 
-# In[7]:
+# In[8]:
 
 
 # 尤度関数の描画
@@ -550,7 +550,7 @@ print('最尤推定値：', P[np.argmax(L)])
 
 ax.set_xlabel('$p$', fontsize=12)
 ax.set_ylabel('尤度関数$L(p)$', fontsize=12)
-ax.set_xlim(0, 1); ax.set_ylim(ymin=0)
+ax.set_xlim(0, 1); ax.set_ylim(ymin=0);
 
 
 # 得られた最尤推定値は $ p=0.26 $ であるが，これは解析解である標本平均と一致している．
@@ -575,13 +575,13 @@ ax.set_xlim(0, 1); ax.set_ylim(ymin=0)
 #     = \frac{1}{(2\pi\sigma^2)^{n/2}} \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^{n}(x-\mu)^2\right]
 # $$
 # 
-# 対数尤度関数は
+# となるので，対数尤度関数は
 # 
 # $$
 #     \log L = -\frac{n}{2} \log(2\pi) -\frac{n}{2} \log(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_{i}-\mu)^2
 # $$
 # 
-# である．
+# と表される．
 
 # これより，対数尤度方程式は
 # 
@@ -599,11 +599,11 @@ ax.set_xlim(0, 1); ax.set_ylim(ymin=0)
 # \end{align*}
 # 
 # が得られる．
-# すなわち，$ \mu,\ \sigma^2 $ の最尤推定値はそれぞれ標本平均と標本分散である．
+# すなわち，$ \mu,\ \sigma^2 $ の最尤推定値はそれぞれ標本平均と標本分散であることが分かる．
 
 # #### Pythonによる実装
 
-# In[37]:
+# In[9]:
 
 
 # 1. 標準正規分布からサイズ100の標本を生成する
@@ -612,7 +612,7 @@ mu, sigma = 0, 1
 x = norm.rvs(loc=mu, scale=sigma, size=100)
 
 
-# In[115]:
+# In[10]:
 
 
 # 2. この標本を基に，正規分布の平均と標準偏差をx, y軸，尤度関数をz軸とするグラフを描画する
@@ -628,7 +628,7 @@ for m, s in zip(M.ravel(), S.ravel()):
 L = np.array(L).reshape(M.shape)
 
 
-# In[111]:
+# In[11]:
 
 
 fig, ax = plt.subplots(subplot_kw=dict(projection='3d'))
@@ -638,7 +638,7 @@ ax.set_ylabel('$\sigma$')
 ax.set_zlabel('Likelihood')
 
 
-# In[112]:
+# In[12]:
 
 
 # 3. 最尤推定値を計算する
@@ -649,13 +649,13 @@ print(f'MLE of mean: {mle_mean}')
 print(f'MLE of standard deviation: {mle_std_dev}')
 
 
-# In[113]:
+# In[13]:
 
 
 M[np.where(L==L.max())]
 
 
-# In[114]:
+# In[14]:
 
 
 S[np.where(L==L.max())]
@@ -663,12 +663,12 @@ S[np.where(L==L.max())]
 
 # **求めたパラメータでカーブフィッティング**
 
-# In[128]:
+# In[17]:
 
 
 # ヒストグラムの描画
 fig, ax = plt.subplots()
-ret = ax.hist(x, bins=15, density=1, color='gray', edgecolor='k')
+ret = ax.hist(x, bins=15, density=1, color='c', edgecolor='k')
 ax.plot(ret[1], norm.pdf(ret[1], loc=mle_mean, scale=mle_std_dev), 'r-')
 
 
