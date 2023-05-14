@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9d9548e0-b3e1-4e7c-b809-fcd82a5c2596">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-9d9548e0-b3e1-4e7c-b809-fcd82a5c2596" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8fb86bed-3fc6-4366-a545-fa42dbfab8d3">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-8fb86bed-3fc6-4366-a545-fa42dbfab8d3" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-380cc484-0a66-4f56-943c-7a3fac227550">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-380cc484-0a66-4f56-943c-7a3fac227550" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a0d99f92-3a9f-4489-80b0-5fab0c0777b6">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-a0d99f92-3a9f-4489-80b0-5fab0c0777b6" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1130,8 +1130,8 @@ title="Print to PDF"
 </section>
 <section id="id16">
 <h4>Pythonによる実装<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">#</a></h4>
-<p>ここでは，<span class="math notranslate nohighlight">\( p=0.3 \)</span> のベルヌーイ分布からサイズ100の標本を得る場合を考える．
-すなわち，<span class="math notranslate nohighlight">\( p=0.3 \)</span> がパラメータの真の値である．</p>
+<p>まずは，パラメータ <span class="math notranslate nohighlight">\( p \)</span> のベルヌーイ分布からサイズ100の標本を発生させる．
+例えば，以下では <span class="math notranslate nohighlight">\( p=0.3 \)</span> を真の値としている．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
