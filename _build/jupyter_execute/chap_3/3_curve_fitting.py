@@ -521,9 +521,9 @@ x = bernoulli.rvs(p, size=100)
 x
 
 
-# 次に，得られた標本（観測データ）から尤度関数を求める．
+# 次に，得られた標本（観測データ）から尤度関数を計算する．
 
-# In[3]:
+# In[4]:
 
 
 L = []
@@ -539,7 +539,7 @@ L = np.array(L)
 
 # 最後に，尤度関数を描画し，さらに尤度関数が最大となる $ p $ の値をグラフ中にプロットする．
 
-# In[4]:
+# In[7]:
 
 
 # 尤度関数の描画
@@ -547,6 +547,9 @@ fig, ax = plt.subplots()
 ax.plot(P, L)
 ax.vlines(P[np.argmax(L)], 0, np.max(L), color='r', linestyles='dashed')
 print('最尤推定値：', P[np.argmax(L)])
+
+ax.set_xlabel('$p$', fontsize=12)
+ax.set_ylabel('尤度関数$L(p)$', fontsize=12)
 ax.set_xlim(0, 1); ax.set_ylim(ymin=0)
 
 
@@ -554,14 +557,17 @@ ax.set_xlim(0, 1); ax.set_ylim(ymin=0)
 
 # ### 正規分布
 
-# #### 解析解
-
+# 次に，最尤推定値の解析解が求まるもう少し複雑な例として，生成元の確率分布が正規分布の場合を考える．
 # 正規分布の確率密度関数は以下で与えられる：
 # 
 # $$
 #     f(x|\mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}} \mathrm{e}^{-\frac{(x-\mu)^2}{2\sigma^2}}
 # $$
 # 
+# ここで，$ \mu, \sigma $ がパラメータでそれぞれ期待値と標準偏差に対応する．
+
+# #### 解析解
+
 # 観測データ $ x_{1}, \ldots, x_{n} $ に対する尤度関数は
 # 
 # $$

@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8fb86bed-3fc6-4366-a545-fa42dbfab8d3">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-8fb86bed-3fc6-4366-a545-fa42dbfab8d3" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9eb41150-1a50-4b13-a822-2709a81f4aad">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-9eb41150-1a50-4b13-a822-2709a81f4aad" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a0d99f92-3a9f-4489-80b0-5fab0c0777b6">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-a0d99f92-3a9f-4489-80b0-5fab0c0777b6" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-feaace25-d896-4260-abc0-9ffc57f78b04">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-feaace25-d896-4260-abc0-9ffc57f78b04" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1151,7 +1151,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>次に，得られた標本（観測データ）から尤度関数を求める．</p>
+<p>次に，得られた標本（観測データ）から尤度関数を計算する．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1175,6 +1175,9 @@ title="Print to PDF"
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">L</span><span class="p">)],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">L</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;最尤推定値：&#39;</span><span class="p">,</span> <span class="n">P</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">L</span><span class="p">)])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;尤度関数$L(p)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1194,13 +1197,15 @@ title="Print to PDF"
 </section>
 <section id="id17">
 <h3><span class="section-number">3.3.4. </span>正規分布<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">#</a></h3>
-<section id="id18">
-<h4>解析解<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">#</a></h4>
-<p>正規分布の確率密度関数は以下で与えられる：</p>
+<p>次に，最尤推定値の解析解が求まるもう少し複雑な例として，生成元の確率分布が正規分布の場合を考える．
+正規分布の確率密度関数は以下で与えられる：</p>
 <div class="math notranslate nohighlight">
 \[
     f(x|\mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}} \mathrm{e}^{-\frac{(x-\mu)^2}{2\sigma^2}}
 \]</div>
+<p>ここで，<span class="math notranslate nohighlight">\( \mu, \sigma \)</span> がパラメータでそれぞれ期待値と標準偏差に対応する．</p>
+<section id="id18">
+<h4>解析解<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>観測データ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する尤度関数は</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1272,7 +1277,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Likelihood&#39;)
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_76_1.png" src="../_images/3_curve_fitting_76_1.png" />
+<img alt="../_images/3_curve_fitting_77_1.png" src="../_images/3_curve_fitting_77_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1331,7 +1336,7 @@ MLE of standard deviation: 1.02857877771493
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1d69a4c40&gt;]
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_81_1.png" src="../_images/3_curve_fitting_81_1.png" />
+<img alt="../_images/3_curve_fitting_82_1.png" src="../_images/3_curve_fitting_82_1.png" />
 </div>
 </div>
 </section>
