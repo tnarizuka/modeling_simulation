@@ -408,7 +408,7 @@ x_data = sp.stats.norm.rvs(loc=170, scale=10, size=1000)
 
 # ヒストグラムの描画
 fig, ax = plt.subplots()
-ret = ax.hist(x_data, bins=10, density=1, color='c', edgecolor='k')
+ret = ax.hist(x_data, bins=10, density=1, color='c', edgecolor='w')
 ax.set_xlabel('$x$', fontsize=12)
 ax.set_ylabel('相対度数', fontsize=12)
 ax.set_xticks(np.arange(130, 210, 10));
@@ -457,7 +457,12 @@ ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r--')
 # $$
 # 
 # この条件式は**対数尤度方程式**と呼ばれている．
-# このように対数尤度関数を考えると，尤度関数の積が和の形に分解できるので計算が簡単になる一方で，得られる解は尤度関数を偏微分した場合と変わらないので計算上都合が良い．
+# このように対数尤度関数を考えると，得られる解は尤度関数を偏微分した場合と変わらないが，
+# 
+# - 尤度関数の積が和の形に分解できるので計算が簡単になる
+# - 確率の積が極端に小さい値になることを防ぐ
+# 
+# というメリットがある．
 # ただし，最尤推定値が実際に計算可能かどうかは対数尤度関数の形によって異なる．
 # 例えば，対数尤度関数が凸関数の場合には対数尤度方程式を解くことで大域解が求まるが，非凸関数の場合にはその限りではない．
 # また，対数尤度関数は非常に複雑な形をしていることが多いため，数値解を求めるための様々なアルゴリズム（例えばEMアルゴリズムなど）が考案されている．
@@ -663,12 +668,12 @@ S[np.where(L==L.max())]
 
 # **求めたパラメータでカーブフィッティング**
 
-# In[17]:
+# In[20]:
 
 
 # ヒストグラムの描画
 fig, ax = plt.subplots()
-ret = ax.hist(x, bins=15, density=1, color='c', edgecolor='k')
+ret = ax.hist(x, bins=15, density=1, color='c', edgecolor='w')
 ax.plot(ret[1], norm.pdf(ret[1], loc=mle_mean, scale=mle_std_dev), 'r-')
 
 
