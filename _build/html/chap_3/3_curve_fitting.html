@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8516dd99-3d2f-4c26-a37e-d0a5123c54d4">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-8516dd99-3d2f-4c26-a37e-d0a5123c54d4" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9d9548e0-b3e1-4e7c-b809-fcd82a5c2596">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-9d9548e0-b3e1-4e7c-b809-fcd82a5c2596" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-97c7e40f-c48e-4266-a6a4-6ce9cbb70f11">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-97c7e40f-c48e-4266-a6a4-6ce9cbb70f11" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-380cc484-0a66-4f56-943c-7a3fac227550">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-380cc484-0a66-4f56-943c-7a3fac227550" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1102,17 +1102,17 @@ title="Print to PDF"
 ベルヌーイ分布はコイン投げのように確率変数 <span class="math notranslate nohighlight">\( X \)</span> が2値を取るような試行（ベルヌーイ試行）を1回行ったときの確率分布であり，<span class="math notranslate nohighlight">\( p \)</span> は <span class="math notranslate nohighlight">\( x=1 \)</span> となる確率（表が出る確率）を表すパラメータである．</p>
 <section id="id15">
 <h4>解析解<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">#</a></h4>
-<p>観測データ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する尤度関数は</p>
+<p>観測データ <span class="math notranslate nohighlight">\( (x_{1}, \ldots, x_{n}) \)</span> に対する尤度関数は</p>
 <div class="math notranslate nohighlight">
 \[
-    L(p|x_{1}, \ldots, x_{n}) = p^{\sum_{i}x_{i}}(1-p)^{n-\sum_{i}x_{i}}
+    L(p|x_{1}, \ldots, x_{n}) = \prod_{i=1}^{n} p^{x_{i}}(1-p)^{1-x_{i}}=p^{\sum_{i}x_{i}}(1-p)^{n-\sum_{i}x_{i}}
 \]</div>
-<p>対数尤度関数は</p>
+<p>となるので，対数尤度関数は</p>
 <div class="math notranslate nohighlight">
 \[
     \log L(p|x_{1}, \ldots, x_{n}) = \left(\sum_{i} x_{i}\right) \log p + \left(n-\sum_{i}x_{i}\right)\log(1-p)
 \]</div>
-<p>となる．</p>
+<p>と表される．</p>
 <p>これより，対数尤度方程式は</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1124,7 +1124,9 @@ title="Print to PDF"
     p = \frac{1}{n} \sum_{i=1}^{n} x_{i}
 \]</div>
 <p>が得られる．
-すなわち，<span class="math notranslate nohighlight">\( p \)</span> の最尤推定値は観測データの標本平均である．</p>
+すなわち，<span class="math notranslate nohighlight">\( p \)</span> の最尤推定値は観測データの標本平均である．
+例えば，コインを5回投げて最初に表が連続して3回出たとすると，データは <span class="math notranslate nohighlight">\( (1,1,1,0,0) \)</span> である．
+よって，この場合の最尤推定値は <span class="math notranslate nohighlight">\( p=3/5 \)</span> となる．</p>
 </section>
 <section id="id16">
 <h4>Pythonによる実装<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">#</a></h4>
