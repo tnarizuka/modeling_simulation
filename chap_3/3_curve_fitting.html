@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c01ec444-4c36-4c96-940d-bdafd247e69b">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-c01ec444-4c36-4c96-940d-bdafd247e69b" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d7ecb249-c8dd-4c17-b0f8-0418383022e0">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-d7ecb249-c8dd-4c17-b0f8-0418383022e0" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-88d2658d-896a-4021-9ccd-cc547b7bf06e">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-88d2658d-896a-4021-9ccd-cc547b7bf06e" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-46524142-56aa-4002-82b2-b689e92dac11">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-46524142-56aa-4002-82b2-b689e92dac11" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1078,17 +1078,17 @@ title="Print to PDF"
 いま，手元にデータが与えられた状態で生成元の確率分布のパラメータがどのような値なら尤もらしいか？と考えると，尤度が小さくなるようなパラメータだとあり得ないことが起こっているので不適切である．
 そこで，手元に <span class="math notranslate nohighlight">\( n \)</span> 個のデータが与えられたとき，尤度関数 <span class="math notranslate nohighlight">\( L(\boldsymbol{\theta}|x_{1}, x_{2},\ldots, x_{n}) \)</span> を最大にするように生成元の確率分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を最も尤もらしいパラメータと考えることにする．
 これは，確率分布のパラメータ推定の手法の一つであり，<strong>最尤推定法</strong>と呼ばれている．</p>
-<p>尤度関数を最大にするようなパラメータを求めるには，尤度関数を各パラメータで偏微分して0になるという条件を課せば良いが，尤度関数は確率<span class="math notranslate nohighlight">\( f(x_{i}|\theta) \)</span>の積として定義されるので，パラメータによる偏微分は面倒である．
+<p>尤度関数を最大にするようなパラメータを求めるには，尤度関数を各パラメータで偏微分して0になるという条件を課せば良いが，尤度関数は確率 <span class="math notranslate nohighlight">\( f(x_{i}|\theta) \)</span> の積として定義されるので，パラメータによる偏微分は面倒である．
 そこで，通常は尤度関数の対数を取った<strong>対数尤度関数</strong>を考え，これを最大化するパラメータを考える：</p>
 <div class="math notranslate nohighlight">
 \[
     \frac{\partial \log L}{\partial \theta_{1}} = 0, \quad \frac{\partial \log L}{\partial \theta_{2}} = 0, \quad \cdots, \quad \frac{\partial \log L}{\partial \theta_{n}} = 0
 \]</div>
 <p>この条件式は<strong>対数尤度方程式</strong>と呼ばれている．
-このように対数尤度関数を考えると，尤度関数の積が和の形に分解できるので計算が簡単になるが，得られる解は尤度関数を偏微分した場合と変わらないので非常に便利である．
-なお，最尤推定値が求まるかどうかは対数尤度関数の形によって異なる．
+このように対数尤度関数を考えると，尤度関数の積が和の形に分解できるので計算が簡単になる一方で，得られる解は尤度関数を偏微分した場合と変わらないので計算上都合が良い．
+ただし，最尤推定値が実際に計算可能かどうかは対数尤度関数の形によって異なる．
 例えば，対数尤度関数が凸関数の場合には対数尤度方程式を解くことで大域解が求まるが，非凸関数の場合にはその限りではない．
-また，通常は対数尤度関数が非常に複雑な形をしているため，解析解を得ることは難しく，様々なアルゴリズム（例えばEMアルゴリズムなど）が考案されている．</p>
+また，対数尤度関数は非常に複雑な形をしていることが多いため，数値解を求めるための様々なアルゴリズム（例えばEMアルゴリズムなど）が考案されている．</p>
 </section>
 <section id="id14">
 <h3><span class="section-number">3.3.3. </span>ベルヌーイ分布<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">#</a></h3>
