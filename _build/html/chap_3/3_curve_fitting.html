@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-084d2b45-15bf-4fd3-8f8c-e8895045e0b5">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-084d2b45-15bf-4fd3-8f8c-e8895045e0b5" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3593a914-cc63-4a8c-9705-597662098e8f">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-3593a914-cc63-4a8c-9705-597662098e8f" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eced1231-921e-4862-a141-057de6fee8e6">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-eced1231-921e-4862-a141-057de6fee8e6" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5fc8616e-782b-4e93-9794-977ddfc88e8c">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-5fc8616e-782b-4e93-9794-977ddfc88e8c" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1056,8 +1056,7 @@ title="Print to PDF"
 <section id="id13">
 <h3><span class="section-number">3.3.2. </span>最尤推定<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p>これまで，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を持つ１次元確率分布を <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> と表記していたが，変数と定数の区別を強調するために，これ以降は <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と表記する．
-例えば，<span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と書いたときは，<span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は与えられた定数で，<span class="math notranslate nohighlight">\( x \)</span> は変数を表している．
-つまり，<span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> は <span class="math notranslate nohighlight">\( x \)</span> の関数である．</p>
+例えば，<span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と書いたときは，<span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は与えられた定数，<span class="math notranslate nohighlight">\( x \)</span> は変数を表しており，<span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> は <span class="math notranslate nohighlight">\( x \)</span> の関数であると解釈できる．</p>
 <p>いま，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> が確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> から独立に得られたとする．
 このとき，<span class="math notranslate nohighlight">\( x_{i} \)</span> というデータが得られる確率は <span class="math notranslate nohighlight">\( f(x_{i}|\boldsymbol{\theta}) \)</span> であるので，手元にある <span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる確率は</p>
 <div class="math notranslate nohighlight">

@@ -421,8 +421,7 @@ ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r--')
 # ### 最尤推定
 
 # これまで，パラメータ $ \boldsymbol{\theta} $ を持つ１次元確率分布を $ f(x; \boldsymbol{\theta}) $ と表記していたが，変数と定数の区別を強調するために，これ以降は $ f(x|\boldsymbol{\theta}) $ と表記する．
-# 例えば，$ f(x|\boldsymbol{\theta}) $ と書いたときは，$ \boldsymbol{\theta} $ は与えられた定数で，$ x $ は変数を表している．
-# つまり，$ f(x|\boldsymbol{\theta}) $ は $ x $ の関数である．
+# 例えば，$ f(x|\boldsymbol{\theta}) $ と書いたときは，$ \boldsymbol{\theta} $ は与えられた定数，$ x $ は変数を表しており，$ f(x|\boldsymbol{\theta}) $ は $ x $ の関数であると解釈できる．
 
 # いま，手元にある $ n $ 個のデータ $ (x_{1}, x_{2}, \ldots, x_{n}) $ が確率分布 $ f(x|\boldsymbol{\theta}) $ から独立に得られたとする．
 # このとき，$ x_{i} $ というデータが得られる確率は $ f(x_{i}|\boldsymbol{\theta}) $ であるので，手元にある $ n $ 個のデータが得られる確率は
