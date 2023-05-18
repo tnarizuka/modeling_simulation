@@ -391,7 +391,7 @@ R2
 
 # 準備として`scipy`から主要な確率分布をインポートしておく：
 
-# In[6]:
+# In[2]:
 
 
 from scipy.stats import bernoulli, norm, poisson, expon
@@ -399,7 +399,7 @@ from scipy.stats import bernoulli, norm, poisson, expon
 
 # また，与えられた観測データからヒストグラムを描画し，適当な確率分布をフィッティングするプログラムを作成しておく．
 
-# In[7]:
+# In[3]:
 
 
 # データの作成（正規分布に従う1000個のデータ）
@@ -514,51 +514,97 @@ ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r--')
 
 # #### Pythonによる実装
 
+# **1. データの生成**
+# 
 # まずは，パラメータ $ p $ のベルヌーイ分布からサイズ100の標本を発生させる．
 # 例えば，以下では $ p=0.3 $ を真の値としている．
 
-# In[2]:
+# In[33]:
 
 
-np.random.seed(seed=32)
-p = 0.3
-x = bernoulli.rvs(p, size=100)
+# データの作成
+np.random.seed(seed=35)
+x = bernoulli.rvs(p=0.3, size=100)
 x
 
 
+# **2. 尤度関数の計算**
+# 
 # 次に，得られた標本（観測データ）から尤度関数を計算する．
+# 以下では，0から1まで0.01刻みでパラメータpの値を発生させ，配列`P`に格納する．
+# また，同じサイズの配列`L`を作成し，配列`P`の各値に対応する尤度を求めて格納する．
+# 同様に，対数尤度を配列`log_L`に格納する．
 
-# In[4]:
+# In[34]:
 
 
-L = []
+L, log_L = [], []
 P = np.arange(0, 1, 0.01)
 
 # 様々なPについて尤度を計算する
 for p in P:
     l = np.prod(bernoulli.pmf(x, p))
+    log_l = np.sum(np.log(np.maximum(bernoulli.pmf(x, p), 1e-100)))
     L.append(l)
+    log_L.append(log_l)
 
 L = np.array(L)
+log_L = np.array(log_L)
 
 
+# **3. 最尤推定値を求める**
+# 
+# 以下のように，様々なパラメータ $ p $ の値に対して尤度 $ L $ と対数尤度 $ \log L $ が求まっている．
+
+# In[35]:
+
+
+np.vstack([P, L, log_L]).T[:10]
+
+
+# `np.argmax`関数を用いると，ある配列について最大値に対応するインデックスを取得できる．
+# これを用いれば，以下のようにして尤度および対数尤度が最大となるパラメータを取得できる．
+# いずれの場合も同じ最尤推定値が得られ，解析解（標本平均）と等しいことが分かる．
+
+# In[36]:
+
+
+# 尤度の最大値を与えるパラメータ
+p_mle_1 = P[np.argmax(L)]
+p_mle_1
+
+
+# In[37]:
+
+
+# 対数尤度の最大値を与えるパラメータ
+p_mle_2 = P[np.argmax(log_L)]
+p_mle_2
+
+
+# In[40]:
+
+
+# 最尤推定値の解析解（標本平均）
+np.mean(x)
+
+
+# **4. 尤度関数と最尤推定値を描画する**
+# 
 # 最後に，尤度関数を描画し，さらに尤度関数が最大となる $ p $ の値をグラフ中にプロットする．
 
-# In[8]:
+# In[38]:
 
 
 # 尤度関数の描画
 fig, ax = plt.subplots()
-ax.plot(P, L)
-ax.vlines(P[np.argmax(L)], 0, np.max(L), color='r', linestyles='dashed')
-print('最尤推定値：', P[np.argmax(L)])
+ax.plot(P, L, '-') # 尤度関数
+ax.vlines(p_mle_1, 0, np.max(L), color='r', linestyles='dashed') # Lの最大値を与えるパラメータを赤線で表示
 
 ax.set_xlabel('$p$', fontsize=12)
 ax.set_ylabel('尤度関数$L(p)$', fontsize=12)
 ax.set_xlim(0, 1); ax.set_ylim(ymin=0);
 
-
-# 得られた最尤推定値は $ p=0.26 $ であるが，これは解析解である標本平均と一致している．
 
 # ### 正規分布
 
@@ -608,19 +654,18 @@ ax.set_xlim(0, 1); ax.set_ylim(ymin=0);
 
 # #### Pythonによる実装
 
-# In[9]:
+# In[22]:
 
 
-# 1. 標準正規分布からサイズ100の標本を生成する
+# 標準正規分布からサイズ1000の標本を生成する
 np.random.seed(seed=32)
-mu, sigma = 0, 1
-x = norm.rvs(loc=mu, scale=sigma, size=100)
+x = norm.rvs(loc=0, scale=1, size=1000)
 
 
 # In[10]:
 
 
-# 2. この標本を基に，正規分布の平均と標準偏差をx, y軸，尤度関数をz軸とするグラフを描画する
+# 
 mean_range = np.linspace(-0.1, 0.1, 100)
 std_dev_range = np.linspace(0.9, 1.1, 100)
 M, S = np.meshgrid(mean_range, std_dev_range)
