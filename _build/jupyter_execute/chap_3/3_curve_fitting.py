@@ -654,33 +654,44 @@ ax.set_xlim(0, 1); ax.set_ylim(ymin=0);
 
 # #### Pythonによる実装
 
-# In[22]:
+# **1. データの生成**
+# 
+# 平均0，標準偏差1の正規分布（標準正規分布）からサイズ1000の標本を生成する．
+
+# In[72]:
 
 
 # 標準正規分布からサイズ1000の標本を生成する
 np.random.seed(seed=32)
-x = norm.rvs(loc=0, scale=1, size=1000)
+x = norm.rvs(loc=0, scale=1, size=100)
 
 
-# In[10]:
-
-
+# **2. 尤度関数を計算する**
 # 
+# 
+
+# In[73]:
+
+
 mean_range = np.linspace(-0.1, 0.1, 100)
 std_dev_range = np.linspace(0.9, 1.1, 100)
 M, S = np.meshgrid(mean_range, std_dev_range)
-L = []
+L, log_L = [], []
 
 for m, s in zip(M.ravel(), S.ravel()):
-    # L.append(np.log(np.prod(norm.pdf(x, loc=m, scale=s))))
-    L.append(np.prod(norm.pdf(x, loc=m, scale=s)))
+    L.append(np.prod(norm.pdf(x, loc=m, scale=s))) # 尤度の計算
+    log_L.append(np.sum(np.log(np.maximum(norm.pdf(x, loc=m, scale=s), 1e-100)))) # 対数尤度の計算
 
 L = np.array(L).reshape(M.shape)
+log_L = np.array(log_L).reshape(M.shape)
 
 
-# In[11]:
+# **4. 尤度関数を描画する**
+
+# In[ ]:
 
 
+# 尤度関数の描画
 fig, ax = plt.subplots(subplot_kw=dict(projection='3d'))
 ax.plot_wireframe(M, S, L)
 ax.set_xlabel('$\mu$')
@@ -688,38 +699,51 @@ ax.set_ylabel('$\sigma$')
 ax.set_zlabel('Likelihood')
 
 
-# In[12]:
+# In[ ]:
 
 
-# 3. 最尤推定値を計算する
-mle_mean = np.mean(x)
-mle_std_dev = np.std(x, ddof=0)
-
-print(f'MLE of mean: {mle_mean}')
-print(f'MLE of standard deviation: {mle_std_dev}')
-
-
-# In[13]:
+# 対数尤度関数の描画
+fig, ax = plt.subplots(subplot_kw=dict(projection='3d'))
+ax.plot_wireframe(M, S, log_L)
+ax.set_xlabel('$\mu$')
+ax.set_ylabel('$\sigma$')
+ax.set_zlabel('Log Likelihood')
 
 
-M[np.where(L==L.max())]
+# **3. 最尤推定値を求める**
+
+# In[82]:
 
 
-# In[14]:
+# 尤度関数の最大値を与えるパラメータ
+M[np.where(L==L.max())], S[np.where(L==L.max())]
 
 
-S[np.where(L==L.max())]
+# In[84]:
 
 
-# **求めたパラメータでカーブフィッティング**
+# 対数尤度関数の最大値を与えるパラメータ
+M[np.where(log_L==log_L.max())], S[np.where(log_L==log_L.max())]
 
-# In[20]:
+
+# In[85]:
+
+
+# 解析解
+np.mean(x), np.std(x, ddof=0)
+
+
+# **5. 最尤推定値でカーブフィッティング**
+
+# In[88]:
 
 
 # ヒストグラムの描画
 fig, ax = plt.subplots()
-ret = ax.hist(x, bins=15, density=1, color='c', edgecolor='w')
-ax.plot(ret[1], norm.pdf(ret[1], loc=mle_mean, scale=mle_std_dev), 'r-')
+ret = ax.hist(x, bins=10, density=1, color='c', edgecolor='w')
+
+x2 = np.linspace(-3, 3, 100)
+ax.plot(x2, norm.pdf(x2, loc=np.mean(x), scale=np.std(x)), 'r-')
 
 
 # ### 演習問題
