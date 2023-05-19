@@ -461,7 +461,7 @@ ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r--')
 # 尤度関数を最大にするようなパラメータを求めるには，尤度関数を各パラメータで偏微分して0になるという条件を課せば良いが，通常は尤度関数の対数を取った**対数尤度関数**に対して偏微分を実行する：
 # 
 # $$
-#     \frac{\partial \log L}{\partial \theta_{1}} = 0, \quad \frac{\partial \log L}{\partial \theta_{2}} = 0, \quad \cdots, \quad \frac{\partial \log L}{\partial \theta_{n}} = 0
+#     \frac{\partial \log L}{\partial \theta_{1}} = 0, \quad \frac{\partial \log L}{\partial \theta_{2}} = 0, \quad \cdots
 # $$
 # 
 # この条件式は**対数尤度方程式**と呼ばれている．
