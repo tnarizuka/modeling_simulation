@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8cbc0556-b0d1-4e4e-9542-2d45b11e16f6">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-8cbc0556-b0d1-4e4e-9542-2d45b11e16f6" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-13f11c19-5a42-4b1c-9095-8bced165cd4d">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-13f11c19-5a42-4b1c-9095-8bced165cd4d" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1675aa49-2709-4677-85bc-8b0d52c86dcb">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-1675aa49-2709-4677-85bc-8b0d52c86dcb" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-77c7b69f-4d7c-45d0-876e-c8c601c69bb5">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-77c7b69f-4d7c-45d0-876e-c8c601c69bb5" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1076,9 +1076,10 @@ title="Print to PDF"
 \]</div>
 <p>と表記し，これを<strong>尤度関数</strong>と呼ぶことにする．</p>
 <p>さて，尤度関数というのは，手元のデータが得られる確率を，生成元となった確率分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> の関数と捉えたものである．
-いま，手元にデータが与えられた状態で生成元の確率分布のパラメータがどのような値なら尤もらしいか？と考えると，尤度が小さくなるようなパラメータだとあり得ないことが起こっているので不適切である．
+いま，手元にデータが与えられた状態で生成元の確率分布のパラメータがどのような値なら尤もらしいか？と考えてみる．
+すると，尤度が小さくなるようなパラメータだと，生起確率が小さいあり得ないことが起こっていることになるので不適切と考えられる．
 そこで，手元に <span class="math notranslate nohighlight">\( n \)</span> 個のデータが与えられたとき，尤度関数 <span class="math notranslate nohighlight">\( L(\boldsymbol{\theta}|x_{1}, x_{2},\ldots, x_{n}) \)</span> を最大にするように生成元の確率分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を最も尤もらしいパラメータと考えることにする．
-これは，確率分布のパラメータ推定の手法の一つであり，<strong>最尤推定法</strong>と呼ばれている．</p>
+これは，確率分布のパラメータ推定手法の一つであり，<strong>最尤推定法</strong>と呼ばれている．</p>
 <p>尤度関数を最大にするようなパラメータを求めるには，尤度関数を各パラメータで偏微分して0になるという条件を課せば良いが，尤度関数は確率 <span class="math notranslate nohighlight">\( f(x_{i}|\theta) \)</span> の積として定義されるので，パラメータによる偏微分は面倒である．
 そこで，通常は尤度関数の対数を取った<strong>対数尤度関数</strong>を考え，これを最大化するパラメータを考える：</p>
 <div class="math notranslate nohighlight">
