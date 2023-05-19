@@ -430,7 +430,7 @@ ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r--')
 #     f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
 # $$
 # 
-# と表される．
+# と表される（独立なので，同時確率が個々の確率の積で書ける）．
 # このように，確率を $ f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) $ と書いたときは，パラメータ $ \boldsymbol{\theta} $ が固定されており，手元のデータ $ (x_{1}, x_{2}, \ldots, x_{n}) $ を変数と捉えている．
 # これは，データの生成元から見た視点と考えることができる．
 
