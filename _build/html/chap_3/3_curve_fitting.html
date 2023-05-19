@@ -683,8 +683,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-105646c2-6962-4de5-bcb9-88f49fcd1daa">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-105646c2-6962-4de5-bcb9-88f49fcd1daa" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d2cc8ce9-06f3-4849-891c-c3aa2c3e789c">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-d2cc8ce9-06f3-4849-891c-c3aa2c3e789c" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +701,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-723da235-633e-450c-a924-6d51d2fa4b57">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-723da235-633e-450c-a924-6d51d2fa4b57" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-57723b43-8463-46f3-89a8-674b828adcad">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-57723b43-8463-46f3-89a8-674b828adcad" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1066,7 +1066,7 @@ title="Print to PDF"
     f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
 \]</div>
 <p>と表される（独立なので，同時確率が個々の確率の積で書ける）．
-このように，データの生成元から見た場合，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> が固定されており，生成されるデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> を変数と捉えているので，同時確率は <span class="math notranslate nohighlight">\( f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) \)</span> と書ける．</p>
+このように，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> が固定されており，生成されるデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> を変数と捉えた場合は，<span class="math notranslate nohighlight">\( f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) \)</span> という表記になる．</p>
 <p>一方，この状況をデータの観測者から見ると，手元のデータ <span class="math notranslate nohighlight">\( (x_{1},\ x_{2},\ \ldots, x_{n}) \)</span> に対して，このデータの生成元となった確率分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> はどのような値だったのだろうか？という見方ができる．
 このような捉え方をすると，手元のデータ <span class="math notranslate nohighlight">\( (x_{1},\ x_{2},\ \ldots, x_{n}) \)</span> は定数で，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は変数と考えていることになる．
 そこで，確率 <span class="math notranslate nohighlight">\( f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) \)</span> について，<span class="math notranslate nohighlight">\( (x_{1},\ x_{2},\ \ldots, x_{n}) \)</span> を定数，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を変数と捉えた場合の関数を</p>
