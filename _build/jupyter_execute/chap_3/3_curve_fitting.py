@@ -421,7 +421,7 @@ ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r--')
 # ### 最尤推定
 
 # これまで，パラメータ $ \boldsymbol{\theta} $ を持つ１次元確率分布を $ f(x; \boldsymbol{\theta}) $ と表記していたが，変数と定数の区別を強調するために，これ以降は $ f(x|\boldsymbol{\theta}) $ と表記する．
-# 例えば，$ f(x|\boldsymbol{\theta}) $ と書いたときは，$ \boldsymbol{\theta} $ は与えられた定数，$ x $ は変数を表しており，$ f(x|\boldsymbol{\theta}) $ は $ x $ の関数であると解釈できる．
+# 例えば，$ f(x|\boldsymbol{\theta}) $ と書いたときは，$ \boldsymbol{\theta} $ は与えられた定数（前提条件），$ x $ は変数を表しており，$ f(x|\boldsymbol{\theta}) $ は $ x $ の関数であると解釈できる．
 
 # 以上を踏まえ，ある確率分布 $ f(x|\boldsymbol{\theta}) $ に従う母集団から $ n $ 個のデータ $ (x_{1}, x_{2}, \ldots, x_{n}) $ を独立に生成することを考える．
 # このようなデータの生成は，データの生成元から見た場合とデータの観測者から見た場合の２通りの視点が考えられる．
@@ -436,9 +436,9 @@ ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r--')
 # と表される（独立なので，同時確率が個々の確率の積で書ける）．
 # このように，パラメータ $ \boldsymbol{\theta} $ が固定されており，生成されるデータ $ (x_{1}, x_{2}, \ldots, x_{n}) $ を変数と捉えた場合は，$ f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) $ という表記になる．
 
-# 一方，この状況をデータの観測者から見ると，手元のデータ $ (x_{1},\ x_{2},\ \ldots, x_{n}) $ に対して，このデータの生成元となった確率分布のパラメータ $ \boldsymbol{\theta} $ はどのような値だったのだろうか？という見方ができる．
-# このような捉え方をすると，手元のデータ $ (x_{1},\ x_{2},\ \ldots, x_{n}) $ は定数で，パラメータ $ \boldsymbol{\theta} $ は変数と考えていることになる．
-# そこで，確率 $ f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) $ について，$ (x_{1},\ x_{2},\ \ldots, x_{n}) $ を定数，パラメータ $ \boldsymbol{\theta} $ を変数と捉えた場合の関数を
+# 一方，この状況をデータの観測者から見ると，手元のデータ $ (x_{1},\ x_{2},\ \ldots, x_{n}) $ に対して，このデータの生成元となった確率分布のパラメータ $ \boldsymbol{\theta} $ はどのような値だったのだろうか？という見方になる（母集団分布の関数は既知とする）．
+# この場合，手元のデータ $ (x_{1},\ x_{2},\ \ldots, x_{n}) $ は定数で，パラメータ $ \boldsymbol{\theta} $ は変数と考えていることになる．
+# そこで，同時確率 $ f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) $ について，$ (x_{1},\ x_{2},\ \ldots, x_{n}) $ を定数，パラメータ $ \boldsymbol{\theta} $ を変数と捉えた場合には
 # 
 # $$
 #     L(\boldsymbol{\theta}|x_{1},\ldots, x_{n}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
