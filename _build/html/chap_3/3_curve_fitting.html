@@ -412,27 +412,27 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#id13">
      3.3.2. 最尤推定
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id14">
-     3.3.3. ベルヌーイ分布
-    </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       尤度関数
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id15">
-       解析解
+       最尤推定法
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id16">
-       Pythonによる実装
+       対数尤度方程式
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id17">
-     3.3.4. 正規分布
+     3.3.3. ベルヌーイ分布の最尤推定
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -449,6 +449,23 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id20">
+     3.3.4. 正規分布の最尤推定
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       解析解
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       Pythonによる実装
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
      3.3.5. 演習問題
     </a>
    </li>
@@ -543,27 +560,27 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#id13">
      3.3.2. 最尤推定
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id14">
-     3.3.3. ベルヌーイ分布
-    </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       尤度関数
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id15">
-       解析解
+       最尤推定法
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id16">
-       Pythonによる実装
+       対数尤度方程式
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id17">
-     3.3.4. 正規分布
+     3.3.3. ベルヌーイ分布の最尤推定
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -580,6 +597,23 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id20">
+     3.3.4. 正規分布の最尤推定
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       解析解
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       Pythonによる実装
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
      3.3.5. 演習問題
     </a>
    </li>
@@ -683,8 +717,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-13f11c19-5a42-4b1c-9095-8bced165cd4d">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-13f11c19-5a42-4b1c-9095-8bced165cd4d" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bf03a0f1-7b4c-4544-84eb-af067d20d59f">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-bf03a0f1-7b4c-4544-84eb-af067d20d59f" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -701,8 +735,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-77c7b69f-4d7c-45d0-876e-c8c601c69bb5">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-77c7b69f-4d7c-45d0-876e-c8c601c69bb5" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6da03c2e-5bc8-4caa-960d-5d660569fb24">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-6da03c2e-5bc8-4caa-960d-5d660569fb24" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1057,6 +1091,8 @@ title="Print to PDF"
 <h3><span class="section-number">3.3.2. </span>最尤推定<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p>これまで，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を持つ１次元確率分布を <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> と表記していたが，変数と定数の区別を強調するために，これ以降は <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と表記する．
 例えば，<span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と書いたときは，<span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は与えられた定数（前提条件），<span class="math notranslate nohighlight">\( x \)</span> は変数を表しており，<span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> は <span class="math notranslate nohighlight">\( x \)</span> の関数であると解釈できる．</p>
+<section id="id14">
+<h4>尤度関数<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>以上を踏まえ，ある確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> に従う母集団から <span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> を独立に生成することを考える．
 このようなデータの生成は，データの生成元から見た場合とデータの観測者から見た場合の２通りの視点が考えられる．</p>
 <p>まず，データの生成元から見た場合，確率分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は分かっており，毎回確率的にデータ <span class="math notranslate nohighlight">\( x_{i} \)</span> が生成される．
@@ -1075,11 +1111,17 @@ title="Print to PDF"
     L(\boldsymbol{\theta}|x_{1},\ldots, x_{n}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
 \]</div>
 <p>と表記し，これを<strong>尤度関数</strong>と呼ぶことにする．</p>
+</section>
+<section id="id15">
+<h4>最尤推定法<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>さて，尤度関数というのは，手元のデータが得られる確率を，生成元となった確率分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> の関数と捉えたものである．
 いま，手元にデータが与えられた状態で生成元の確率分布のパラメータがどのような値なら尤もらしいか？と考えてみる．
 すると，尤度が小さくなるようなパラメータだと，生起確率が小さいあり得ないことが起こっていることになるので不適切と考えられる．
 そこで，手元に <span class="math notranslate nohighlight">\( n \)</span> 個のデータが与えられたとき，尤度関数 <span class="math notranslate nohighlight">\( L(\boldsymbol{\theta}|x_{1}, x_{2},\ldots, x_{n}) \)</span> を最大にするように生成元の確率分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を最も尤もらしいパラメータと考えることにする．
 これは，確率分布のパラメータ推定手法の一つであり，<strong>最尤推定法</strong>と呼ばれている．</p>
+</section>
+<section id="id16">
+<h4>対数尤度方程式<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>尤度関数を最大にするようなパラメータを求めるには，尤度関数を各パラメータで偏微分して0になるという条件を課せば良いが，尤度関数は確率 <span class="math notranslate nohighlight">\( f(x_{i}|\theta) \)</span> の積として定義されるので，パラメータによる偏微分は面倒である．
 そこで，通常は尤度関数の対数を取った<strong>対数尤度関数</strong>を考え，これを最大化するパラメータを考える：</p>
 <div class="math notranslate nohighlight">
@@ -1097,8 +1139,9 @@ title="Print to PDF"
 例えば，対数尤度関数が凸関数の場合には対数尤度方程式を解くことで大域解が求まるが，非凸関数の場合にはその限りではない．
 また，対数尤度関数は非常に複雑な形をしていることが多いため，数値解を求めるための様々なアルゴリズム（例えばEMアルゴリズムなど）が考案されている．</p>
 </section>
-<section id="id14">
-<h3><span class="section-number">3.3.3. </span>ベルヌーイ分布<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">#</a></h3>
+</section>
+<section id="id17">
+<h3><span class="section-number">3.3.3. </span>ベルヌーイ分布の最尤推定<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p>最尤推定の具体例として，まずはデータ生成元の確率分布がベルヌーイ分布の場合を考える．
 ベルヌーイ分布とは，以下の式で与えられる離散型確率分布である：</p>
 <div class="math notranslate nohighlight">
@@ -1107,8 +1150,8 @@ title="Print to PDF"
 \]</div>
 <p>ここで，<span class="math notranslate nohighlight">\( x \)</span> の取りうる値は <span class="math notranslate nohighlight">\( 0, 1 \)</span> の2値である．
 ベルヌーイ分布はコイン投げのように確率変数 <span class="math notranslate nohighlight">\( X \)</span> が2値を取るような試行（ベルヌーイ試行）を1回行ったときの確率分布であり，<span class="math notranslate nohighlight">\( p \)</span> は <span class="math notranslate nohighlight">\( x=1 \)</span> となる確率（表が出る確率）を表すパラメータである．</p>
-<section id="id15">
-<h4>解析解<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">#</a></h4>
+<section id="id18">
+<h4>解析解<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>観測データ <span class="math notranslate nohighlight">\( (x_{1}, \ldots, x_{n}) \)</span> に対する尤度関数は</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1135,8 +1178,8 @@ title="Print to PDF"
 例えば，コインを5回投げて最初に表が連続して3回出たとすると，データは <span class="math notranslate nohighlight">\( (1,1,1,0,0) \)</span> である．
 よって，この場合の最尤推定値は <span class="math notranslate nohighlight">\( p=3/5 \)</span> となる．</p>
 </section>
-<section id="id16">
-<h4>Pythonによる実装<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">#</a></h4>
+<section id="id19">
+<h4>Pythonによる実装<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p><strong>1. データの生成</strong></p>
 <p>まずは，パラメータ <span class="math notranslate nohighlight">\( p \)</span> のベルヌーイ分布からサイズ100の標本を発生させる．
 例えば，以下では <span class="math notranslate nohighlight">\( p=0.3 \)</span> を真の値としている．</p>
@@ -1270,8 +1313,8 @@ title="Print to PDF"
 </div>
 </section>
 </section>
-<section id="id17">
-<h3><span class="section-number">3.3.4. </span>正規分布<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">#</a></h3>
+<section id="id20">
+<h3><span class="section-number">3.3.4. </span>正規分布の最尤推定<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p>次に，最尤推定値の解析解が求まるもう少し複雑な例として，生成元の確率分布が正規分布の場合を考える．
 正規分布の確率密度関数は以下で与えられる：</p>
 <div class="math notranslate nohighlight">
@@ -1279,8 +1322,8 @@ title="Print to PDF"
     f(x|\mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}} \mathrm{e}^{-\frac{(x-\mu)^2}{2\sigma^2}}
 \]</div>
 <p>ここで，<span class="math notranslate nohighlight">\( \mu, \sigma \)</span> がパラメータでそれぞれ期待値と標準偏差に対応する．</p>
-<section id="id18">
-<h4>解析解<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">#</a></h4>
+<section id="id21">
+<h4>解析解<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>観測データ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する尤度関数は</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1309,8 +1352,8 @@ title="Print to PDF"
 <p>が得られる．
 すなわち，<span class="math notranslate nohighlight">\( \mu,\ \sigma^2 \)</span> の最尤推定値はそれぞれ標本平均と標本分散であることが分かる．</p>
 </section>
-<section id="id19">
-<h4>Pythonによる実装<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">#</a></h4>
+<section id="id22">
+<h4>Pythonによる実装<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p><strong>1. データの生成</strong></p>
 <p>平均0，標準偏差1の正規分布（標準正規分布）からサイズ1000の標本を生成する．</p>
 <div class="cell docutils container">
@@ -1438,8 +1481,8 @@ title="Print to PDF"
 </div>
 </section>
 </section>
-<section id="id20">
-<h3><span class="section-number">3.3.5. </span>演習問題<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">#</a></h3>
+<section id="id23">
+<h3><span class="section-number">3.3.5. </span>演習問題<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p><strong>指数分布の最尤推定</strong></p>
 <p>指数分布</p>
 <div class="math notranslate nohighlight">
