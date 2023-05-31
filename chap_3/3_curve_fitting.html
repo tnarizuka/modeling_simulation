@@ -717,8 +717,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-47dce29e-0742-4f16-8ab0-7d068e66c60d">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-47dce29e-0742-4f16-8ab0-7d068e66c60d" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2cbb3c61-d8dd-4fa6-841d-9100782b7c4a">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-2cbb3c61-d8dd-4fa6-841d-9100782b7c4a" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -735,8 +735,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-216a8069-2b90-4ff8-adde-e01f60a88f96">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-216a8069-2b90-4ff8-adde-e01f60a88f96" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4e3049f1-c730-4671-981a-b138868e6abb">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-4e3049f1-c730-4671-981a-b138868e6abb" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1554,22 +1554,26 @@ title="Print to PDF"
 </section>
 <section id="id23">
 <h3><span class="section-number">3.3.5. </span>演習問題<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">#</a></h3>
-<p><strong>指数分布の最尤推定</strong></p>
-<p>指数分布</p>
+<p><strong>1. 指数分布の最尤推定</strong></p>
+<p>指数分布は以下で与えられる：</p>
 <div class="math notranslate nohighlight">
 \[
     f(x|\lambda) = \frac{1}{\lambda}\mathrm{e}^{-\frac{x}{\lambda}}
 \]</div>
-<p>について，最尤推定値の解析解を計算せよ．
-また，適当な <span class="math notranslate nohighlight">\( \lambda \)</span> の値について最尤推定値を求めるPythonプログラムを作成せよ．</p>
-<p><strong>ポアソン分布の最尤推定</strong></p>
-<p>ポアソン分布</p>
+<ul class="simple">
+<li><p>最尤推定値の解析解を計算せよ．</p></li>
+<li><p>ベルヌーイ分布の場合を参考に，指数分布の最尤推定をPythonで実装せよ．</p></li>
+</ul>
+<p><strong>2. ポアソン分布の最尤推定</strong></p>
+<p>ポアソン分布は以下で与えられる：</p>
 <div class="math notranslate nohighlight">
 \[
     f(x|\lambda) = \frac{\lambda^{x}\mathrm{e}^{-\lambda}}{k!}
 \]</div>
-<p>について，最尤推定値の解析解を計算せよ．
-また，適当な <span class="math notranslate nohighlight">\( \lambda \)</span> の値について最尤推定値を求めるPythonプログラムを作成せよ．</p>
+<ul class="simple">
+<li><p>最尤推定値の解析解を計算せよ．</p></li>
+<li><p>ベルヌーイ分布の場合を参考に，ポアソン分布の最尤推定をPythonで実装せよ．</p></li>
+</ul>
 </section>
 </section>
 </section>
