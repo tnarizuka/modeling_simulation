@@ -713,8 +713,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-550b73c5-288e-48f9-9c93-5a35406ca20e">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-550b73c5-288e-48f9-9c93-5a35406ca20e" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4cb9e2e1-b5ad-49ab-8db2-cfe02b458437">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-4cb9e2e1-b5ad-49ab-8db2-cfe02b458437" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -731,8 +731,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e094103-95a5-4a5f-92d8-b64b7e116625">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-7e094103-95a5-4a5f-92d8-b64b7e116625" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9386e3c2-5f8a-4e1a-bf9f-aaa8ea7e8ee7">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-9386e3c2-5f8a-4e1a-bf9f-aaa8ea7e8ee7" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1387,9 +1387,9 @@ title="Print to PDF"
 <p>これより，対数尤度方程式は</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    \frac{\partial \log L}{\partial \mu} &amp;= -\frac{1}{2\sigma^2} \sum_{i}^{n}2(x_{i}-\mu)\times (-1)
+    \frac{\partial \log L}{\partial \mu} &amp;= -\frac{1}{2\sigma^2} \sum_{i=1}^{n}2(x_{i}-\mu)\times (-1)
     = \frac{1}{\sigma^2}\sum_{i}^{n}(x_{i}-\mu) = 0 \\
-    \frac{\partial \log L}{\partial \sigma^2} &amp;= -\frac{n}{2\sigma^2} - \frac{1}{2\sigma^4} \sum_{i=1}^{n} (x_{i} - \mu)^2 = 0
+    \frac{\partial \log L}{\partial \sigma^2} &amp;= -\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^{n} (x_{i} - \mu)^2 = 0
 \end{align*}\]</div>
 <p>となり，これらを解けば，</p>
 <div class="amsmath math notranslate nohighlight">
