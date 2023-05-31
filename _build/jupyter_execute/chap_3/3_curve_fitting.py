@@ -527,7 +527,7 @@ ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r--')
 # まずは，パラメータ $ p $ のベルヌーイ分布からサイズ100の標本を発生させる．
 # 例えば，以下では $ p=0.3 $ を真の値としている．
 
-# In[33]:
+# In[3]:
 
 
 # データの作成
@@ -543,13 +543,13 @@ x
 # また，同じサイズの配列`L`を作成し，配列`P`の各値に対応する尤度を求めて格納する．
 # 同様に，対数尤度を配列`log_L`に格納する．
 
-# In[34]:
+# In[4]:
 
 
 L, log_L = [], []
 P = np.arange(0, 1, 0.01)
 
-# 様々なPについて尤度を計算する
+# 様々なPについて尤度と対数尤度を計算する
 for p in P:
     l = np.prod(bernoulli.pmf(x, p))
     log_l = np.sum(np.log(np.maximum(bernoulli.pmf(x, p), 1e-100)))
@@ -562,19 +562,19 @@ log_L = np.array(log_L)
 
 # **3. 最尤推定値を求める**
 # 
-# 以下のように，様々なパラメータ $ p $ の値に対して尤度 $ L $ と対数尤度 $ \log L $ が求まっている．
+# 2.の時点で様々なパラメータ $ p $ の値に対して尤度 $ L $ と対数尤度 $ \log L $ が求まっている．
 
-# In[35]:
+# In[7]:
 
 
-np.vstack([P, L, log_L]).T[:10]
+pd.DataFrame({'P': P, 'L': L, 'log_L': log_L})
 
 
 # `np.argmax`関数を用いると，ある配列について最大値に対応するインデックスを取得できる．
-# これを用いれば，以下のようにして尤度および対数尤度が最大となるパラメータを取得できる．
+# これを用いれば，尤度および対数尤度が最大となるパラメータを取得できる．
 # いずれの場合も同じ最尤推定値が得られ，解析解（標本平均）と等しいことが分かる．
 
-# In[36]:
+# In[8]:
 
 
 # 尤度の最大値を与えるパラメータ
@@ -582,7 +582,7 @@ p_mle_1 = P[np.argmax(L)]
 p_mle_1
 
 
-# In[37]:
+# In[9]:
 
 
 # 対数尤度の最大値を与えるパラメータ
@@ -590,7 +590,7 @@ p_mle_2 = P[np.argmax(log_L)]
 p_mle_2
 
 
-# In[40]:
+# In[10]:
 
 
 # 最尤推定値の解析解（標本平均）
@@ -601,17 +601,24 @@ np.mean(x)
 # 
 # 最後に，尤度関数を描画し，さらに尤度関数が最大となる $ p $ の値をグラフ中にプロットする．
 
-# In[38]:
+# In[35]:
 
+
+fig, ax = plt.subplots(figsize=(5, 4))
 
 # 尤度関数の描画
-fig, ax = plt.subplots()
 ax.plot(P, L, '-') # 尤度関数
 ax.vlines(p_mle_1, 0, np.max(L), color='r', linestyles='dashed') # Lの最大値を与えるパラメータを赤線で表示
-
 ax.set_xlabel('$p$', fontsize=12)
-ax.set_ylabel('尤度関数$L(p)$', fontsize=12)
+ax.set_ylabel('尤度$L(p)$', fontsize=12)
 ax.set_xlim(0, 1); ax.set_ylim(ymin=0);
+
+# 対数尤度関数の描画
+ax2 = ax.twinx() # 新しいy軸を作成
+ax2.plot(P, log_L, 'b-') # 対数尤度関数
+ax2.set_xlabel('$p$', fontsize=12)
+ax2.set_ylabel('対数尤度 $\log L(p) $', fontsize=12)
+ax2.set_xlim(0, 1); ax2.set_ylim(-200, 0);
 
 
 # ### 正規分布の最尤推定
