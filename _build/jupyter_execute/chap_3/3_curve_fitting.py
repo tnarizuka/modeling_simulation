@@ -668,8 +668,6 @@ ax2.set_xlim(0, 1); ax2.set_ylim(-200, 0);
 # 
 # が得られる．
 # すなわち，$ \mu,\ \sigma^2 $ の最尤推定値はそれぞれ標本平均と標本分散であることが分かる．
-# 
-# ※ なお，正規分布の場合には，最小二乗法による$ \mu, \sigma^2 $ の推定値も標本平均と標本分散になることが知られている．
 
 # #### Pythonによる実装
 
@@ -772,7 +770,7 @@ ax.set_zlabel('Log Likelihood')
 # 最後に最尤推定したパラメータを用いて，正規分布の確率密度関数を描画する．
 # 実データのヒストグラムと重ねて描画すると，上手くフィッティングできていることが分かる．
 
-# In[49]:
+# In[74]:
 
 
 # ヒストグラムの描画
@@ -780,7 +778,7 @@ fig, ax = plt.subplots()
 ret = ax.hist(x, bins=10, density=1, color='c', edgecolor='w')
 
 x2 = np.linspace(-3, 3, 100)
-ax.plot(x2, norm.pdf(x2, loc=np.mean(x), scale=np.std(x)), 'r-')
+ax.plot(x2, norm.pdf(x2, loc=np.mean(x), scale=np.std(x)), 'r-');
 
 
 # ### 演習問題
