@@ -362,7 +362,7 @@ R2 = 1 - np.var(data['y']-y_reg) / np.var(data['y']) # 決定係数
 R2
 
 
-# #### 演習問題
+# ### 演習問題
 # 
 # 1. 適当な非線形関数からデータを生成し，手順１〜５に従ってカーブフィッティングを実行せよ．
 # 2. [soccer_player_europe_2017.csv](https://drive.google.com/uc?export=download&id=13NU87F430KkYJGJZrY44aQECBLjSjKnf)は2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．これをPandasのDataFrameに読み込み，体重（`weight`）が0の選手を削除せよ．体重（`weight`）と身長（`height`）の散布図を描き，線形単回帰モデルによるカーブフィッティングを実行せよ．

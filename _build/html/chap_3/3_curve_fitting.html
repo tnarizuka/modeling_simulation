@@ -388,13 +388,11 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#id9">
      3.2.4. 非線形単回帰モデル
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id10">
-       演習問題
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     3.2.5. 演習問題
+    </a>
    </li>
   </ul>
  </li>
@@ -536,13 +534,11 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#id9">
      3.2.4. 非線形単回帰モデル
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id10">
-       演習問題
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     3.2.5. 演習問題
+    </a>
    </li>
   </ul>
  </li>
@@ -717,8 +713,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2cbb3c61-d8dd-4fa6-841d-9100782b7c4a">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-2cbb3c61-d8dd-4fa6-841d-9100782b7c4a" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0a274f0a-13f9-4286-8763-8e92bfffa453">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-0a274f0a-13f9-4286-8763-8e92bfffa453" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -735,8 +731,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4e3049f1-c730-4671-981a-b138868e6abb">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-4e3049f1-c730-4671-981a-b138868e6abb" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e21f08fa-b9cc-4d03-8bd5-43af63993490">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-e21f08fa-b9cc-4d03-8bd5-43af63993490" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1023,8 +1019,9 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+</section>
 <section id="id10">
-<h4>演習問題<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h3><span class="section-number">3.2.5. </span>演習問題<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">#</a></h3>
 <ol>
 <li><p>適当な非線形関数からデータを生成し，手順１〜５に従ってカーブフィッティングを実行せよ．</p></li>
 <li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=13NU87F430KkYJGJZrY44aQECBLjSjKnf">soccer_player_europe_2017.csv</a>は2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．これをPandasのDataFrameに読み込み，体重（<code class="docutils literal notranslate"><span class="pre">weight</span></code>）が0の選手を削除せよ．体重（<code class="docutils literal notranslate"><span class="pre">weight</span></code>）と身長（<code class="docutils literal notranslate"><span class="pre">height</span></code>）の散布図を描き，線形単回帰モデルによるカーブフィッティングを実行せよ．</p></li>
@@ -1036,7 +1033,6 @@ title="Print to PDF"
 <p>※ 本データの出典：<a class="reference external" href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series">John Hopkins CSSE</a></p>
 </li>
 </ol>
-</section>
 </section>
 </section>
 <section id="id11">
