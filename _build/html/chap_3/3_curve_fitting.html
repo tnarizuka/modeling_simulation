@@ -717,8 +717,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ec6c56d1-c4ff-4e32-a5fd-fd40b04f34af">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-ec6c56d1-c4ff-4e32-a5fd-fd40b04f34af" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-cb6d8563-fd20-416e-8444-97b13adfe16e">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-cb6d8563-fd20-416e-8444-97b13adfe16e" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -735,8 +735,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-77eec3ab-5aa6-4868-978c-ecc46b7cc589">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-77eec3ab-5aa6-4868-978c-ecc46b7cc589" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3759b4aa-fe13-42a2-b295-79cb3f1dcc0b">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-3759b4aa-fe13-42a2-b295-79cb3f1dcc0b" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1225,10 +1225,12 @@ title="Print to PDF"
 </div>
 </div>
 <p><strong>3. 最尤推定値を求める</strong></p>
-<p>2.の時点で様々なパラメータ <span class="math notranslate nohighlight">\( p \)</span> の値に対して尤度 <span class="math notranslate nohighlight">\( L \)</span> と対数尤度 <span class="math notranslate nohighlight">\( \log L \)</span> が求まっている．</p>
+<p>2.の時点で様々なパラメータ <span class="math notranslate nohighlight">\( p \)</span> の値に対して尤度 <span class="math notranslate nohighlight">\( L \)</span> と対数尤度 <span class="math notranslate nohighlight">\( \log L \)</span> が求まっている．
+このうち，尤度の値はサンプルサイズが100程度でも非常に小さい値になっていることに注意する．
+サンプルサイズをこれ以上増やすと尤度の値はさらに小さくなるため，数値計算の際には対数尤度を用いた方が良い．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="n">P</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="n">L</span><span class="p">,</span> <span class="s1">&#39;log_L&#39;</span><span class="p">:</span> <span class="n">log_L</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="n">P</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="n">L</span><span class="p">,</span> <span class="s1">&#39;log_L&#39;</span><span class="p">:</span> <span class="n">log_L</span><span class="p">})</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1287,45 +1289,8 @@ title="Print to PDF"
       <td>9.149972e-40</td>
       <td>-89.889653</td>
     </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>95</th>
-      <td>0.95</td>
-      <td>2.650621e-96</td>
-      <td>-220.073375</td>
-    </tr>
-    <tr>
-      <th>96</th>
-      <td>0.96</td>
-      <td>2.962802e-103</td>
-      <td>-236.080129</td>
-    </tr>
-    <tr>
-      <th>97</th>
-      <td>0.97</td>
-      <td>2.969535e-112</td>
-      <td>-256.801125</td>
-    </tr>
-    <tr>
-      <th>98</th>
-      <td>0.98</td>
-      <td>5.473861e-125</td>
-      <td>-286.123152</td>
-    </tr>
-    <tr>
-      <th>99</th>
-      <td>0.99</td>
-      <td>7.623427e-147</td>
-      <td>-336.448783</td>
-    </tr>
   </tbody>
 </table>
-<p>100 rows × 3 columns</p>
 </div></div></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">np.argmax</span></code>関数を用いると，ある配列について最大値に対応するインデックスを取得できる．
@@ -1438,11 +1403,12 @@ title="Print to PDF"
 \end{align*}\]</div>
 <p>が得られる．
 すなわち，<span class="math notranslate nohighlight">\( \mu,\ \sigma^2 \)</span> の最尤推定値はそれぞれ標本平均と標本分散であることが分かる．</p>
+<p>※ なお，正規分布の場合には，最小二乗法による<span class="math notranslate nohighlight">\( \mu, \sigma^2 \)</span> の推定値も標本平均と標本分散になることが知られている．</p>
 </section>
 <section id="id22">
 <h4>Pythonによる実装<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p><strong>1. データの生成</strong></p>
-<p>平均0，標準偏差1の正規分布（標準正規分布）からサイズ1000の標本を生成する．</p>
+<p>平均0，標準偏差1の正規分布（標準正規分布）からサイズ100の標本を生成する．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 標準正規分布からサイズ1000の標本を生成する</span>
@@ -1560,7 +1526,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1d11d4370&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1c2ceea30&gt;]
 </pre></div>
 </div>
 <img alt="../_images/3_curve_fitting_93_1.png" src="../_images/3_curve_fitting_93_1.png" />
