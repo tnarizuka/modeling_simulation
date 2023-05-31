@@ -717,8 +717,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cb6d8563-fd20-416e-8444-97b13adfe16e">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-cb6d8563-fd20-416e-8444-97b13adfe16e" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4d8adaf8-42da-41b4-a177-b3dd26212315">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-4d8adaf8-42da-41b4-a177-b3dd26212315" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -735,8 +735,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3759b4aa-fe13-42a2-b295-79cb3f1dcc0b">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-3759b4aa-fe13-42a2-b295-79cb3f1dcc0b" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b7d2cbcf-452e-4744-a849-df24a2917fe6">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-b7d2cbcf-452e-4744-a849-df24a2917fe6" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1408,7 +1408,7 @@ title="Print to PDF"
 <section id="id22">
 <h4>Pythonによる実装<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p><strong>1. データの生成</strong></p>
-<p>平均0，標準偏差1の正規分布（標準正規分布）からサイズ100の標本を生成する．</p>
+<p>まずは平均0，標準偏差1の正規分布（標準正規分布）からサイズ100の標本を生成する．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 標準正規分布からサイズ1000の標本を生成する</span>
@@ -1419,6 +1419,9 @@ title="Print to PDF"
 </div>
 </div>
 <p><strong>2. 尤度関数を計算する</strong></p>
+<p>次の，得られた標本（観測データ）から尤度関数を計算する．
+以下では，<span class="math notranslate nohighlight">\( \mu \)</span> の値を-0.1から0.1の範囲，標準偏差 <span class="math notranslate nohighlight">\( \sigma \)</span> の値を0.9から1.1の範囲でそれぞれ100個発生させ，<span class="math notranslate nohighlight">\( \mu \)</span> と <span class="math notranslate nohighlight">\( \sigma \)</span> のパラメータの組を作る．
+その上で，すべてのパラメータの組について尤度と対数尤度を計算し，それぞれ配列 <code class="docutils literal notranslate"><span class="pre">L</span></code> と <code class="docutils literal notranslate"><span class="pre">log_L</span></code> に格納する．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -1436,48 +1439,27 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p><strong>4. 尤度関数を描画する</strong></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 尤度関数の描画</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Likelihood&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Likelihood&#39;)
-</pre></div>
-</div>
-<img alt="../_images/3_curve_fitting_86_1.png" src="../_images/3_curve_fitting_86_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 対数尤度関数の描画</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">log_L</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Log Likelihood&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Log Likelihood&#39;)
-</pre></div>
-</div>
-<img alt="../_images/3_curve_fitting_87_1.png" src="../_images/3_curve_fitting_87_1.png" />
-</div>
-</div>
 <p><strong>3. 最尤推定値を求める</strong></p>
+<p>今回は <code class="docutils literal notranslate"><span class="pre">L</span></code> および <code class="docutils literal notranslate"><span class="pre">log_L</span></code> の最大値に対応する行番号と列番号を取得する必要があるので，<code class="docutils literal notranslate"><span class="pre">np.argmax</span></code>関数ではなく<code class="docutils literal notranslate"><span class="pre">np.where</span></code>関数を用いる．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 尤度関数の最大値を与えるパラメータ</span>
-<span class="n">M</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">L</span><span class="o">==</span><span class="n">L</span><span class="o">.</span><span class="n">max</span><span class="p">())],</span> <span class="n">S</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">L</span><span class="o">==</span><span class="n">L</span><span class="o">.</span><span class="n">max</span><span class="p">())]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lとlog_Lの最大値に対応するインデックス（行番号，列番号）を取得</span>
+<span class="n">ind_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">L</span><span class="o">==</span><span class="n">L</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">ind_max2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">log_L</span><span class="o">==</span><span class="n">log_L</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">ind_max</span><span class="p">,</span> <span class="n">ind_max</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((array([64]), array([81])), (array([64]), array([81])))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 尤度の最大値を与えるパラメータ</span>
+<span class="n">M</span><span class="p">[</span><span class="n">ind_max</span><span class="p">],</span> <span class="n">S</span><span class="p">[</span><span class="n">ind_max</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1489,8 +1471,8 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 対数尤度関数の最大値を与えるパラメータ</span>
-<span class="n">M</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">log_L</span><span class="o">==</span><span class="n">log_L</span><span class="o">.</span><span class="n">max</span><span class="p">())],</span> <span class="n">S</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">log_L</span><span class="o">==</span><span class="n">log_L</span><span class="o">.</span><span class="n">max</span><span class="p">())]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 対数尤度の最大値を与えるパラメータ</span>
+<span class="n">M</span><span class="p">[</span><span class="n">ind_max2</span><span class="p">],</span> <span class="n">S</span><span class="p">[</span><span class="n">ind_max2</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1513,7 +1495,47 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p><strong>4. 尤度関数を描画する</strong></p>
+<p>今回はパラメータが2つあるので，尤度関数と対数尤度をそれぞれお3次元プロットする必要がある．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 尤度関数の描画</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Likelihood&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Likelihood&#39;)
+</pre></div>
+</div>
+<img alt="../_images/3_curve_fitting_91_1.png" src="../_images/3_curve_fitting_91_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 対数尤度関数の描画</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">log_L</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Log Likelihood&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Log Likelihood&#39;)
+</pre></div>
+</div>
+<img alt="../_images/3_curve_fitting_92_1.png" src="../_images/3_curve_fitting_92_1.png" />
+</div>
+</div>
 <p><strong>5. 最尤推定値でカーブフィッティング</strong></p>
+<p>最後に最尤推定したパラメータを用いて，正規分布の確率密度関数を描画する．
+実データのヒストグラムと重ねて描画すると，上手くフィッティングできていることが分かる．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ヒストグラムの描画</span>
@@ -1529,7 +1551,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1c2ceea30&gt;]
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_93_1.png" src="../_images/3_curve_fitting_93_1.png" />
+<img alt="../_images/3_curve_fitting_94_1.png" src="../_images/3_curve_fitting_94_1.png" />
 </div>
 </div>
 </section>
