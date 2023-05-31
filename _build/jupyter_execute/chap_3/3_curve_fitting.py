@@ -654,9 +654,9 @@ ax2.set_xlim(0, 1); ax2.set_ylim(-200, 0);
 # これより，対数尤度方程式は
 # 
 # \begin{align*}
-#     \frac{\partial L}{\partial \mu} &= -\frac{1}{2\sigma^2} \sum_{i}^{n}2(x_{i}-\mu)\times (-1)
+#     \frac{\partial \log L}{\partial \mu} &= -\frac{1}{2\sigma^2} \sum_{i}^{n}2(x_{i}-\mu)\times (-1)
 #     = \frac{1}{\sigma^2}\sum_{i}^{n}(x_{i}-\mu) = 0 \\
-#     \frac{\partial L}{\partial \sigma^2} &= -\frac{n}{2\sigma^2} - \frac{1}{2\sigma^4} \sum_{i=1}^{n} (x_{i} - \mu)^2 = 0
+#     \frac{\partial \log L}{\partial \sigma^2} &= -\frac{n}{2\sigma^2} - \frac{1}{2\sigma^4} \sum_{i=1}^{n} (x_{i} - \mu)^2 = 0
 # \end{align*}
 # 
 # となり，これらを解けば，
