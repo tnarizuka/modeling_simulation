@@ -804,3 +804,9 @@ ax.plot(x2, norm.pdf(x2, loc=np.mean(x), scale=np.std(x)), 'r-');
 # 
 # - 最尤推定値の解析解を計算せよ．
 # - ベルヌーイ分布の場合を参考に，ポアソン分布の最尤推定をPythonで実装せよ．
+# 
+# 
+# **3. Scipyによる最尤推定の実装**
+# 
+# - `scipy.optimize.minimize`関数を用いて，任意の確率分布の最尤推定を行うプログラムを作成せよ．
+# - ChatGPTなどを駆使して良い
