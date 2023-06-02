@@ -11,6 +11,7 @@ parts:
   - file: chap_1/1_introduction.md
   - file: chap_2/2_environment.ipynb
   - file: chap_3/3_curve_fitting.ipynb
+  # - file: chap_4/4_stochastic_model.ipynb
 
 - caption:
   numbered: False
