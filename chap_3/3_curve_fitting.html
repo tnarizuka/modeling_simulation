@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="付録" href="../appendix/appendix.html" />
+    <link rel="next" title="4. 確率モデル" href="../chap_4/4_stochastic_model.html" />
     <link rel="prev" title="2. 準備" href="../chap_2/2_environment.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="ja">
@@ -122,6 +122,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    3. カーブフィッティング
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chap_4/4_stochastic_model.html">
+   4. 確率モデル
   </a>
  </li>
 </ul>
@@ -713,8 +718,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-79b65bb1-c62f-4074-a2a9-c4453c88ec21">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-79b65bb1-c62f-4074-a2a9-c4453c88ec21" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d7763328-59eb-4d08-bad5-c0fa02b409f9">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-d7763328-59eb-4d08-bad5-c0fa02b409f9" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -731,8 +736,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5f9d6fd9-1124-4fee-abbb-b69aae7e973a">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-5f9d6fd9-1124-4fee-abbb-b69aae7e973a" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0f9f29ce-c8e8-421a-b628-6fde296f3233">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-0f9f29ce-c8e8-421a-b628-6fde296f3233" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -1613,10 +1618,10 @@ title="Print to PDF"
             <p class="prev-next-title"><span class="section-number">2. </span>準備</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../appendix/appendix.html" title="次へ ページ">
+    <a class='right-next' id="next-link" href="../chap_4/4_stochastic_model.html" title="次へ ページ">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">次へ</p>
-        <p class="prev-next-title">付録</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>確率モデル</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
