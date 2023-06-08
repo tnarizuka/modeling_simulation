@@ -76,7 +76,7 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 
 # まず，アルゴリズムに従って素朴に実装すると以下のようになる．
 
-# In[41]:
+# In[73]:
 
 
 a, b, M = 1664525, 1013904223, 2**32
@@ -84,7 +84,7 @@ a, b, M = 1664525, 1013904223, 2**32
 X = np.array([0])
 for i in range(10):
     X = np.append(X, (a*X[i] + b) % M)
-X
+print(X)
 
 
 # 次に，$ x_{min} $ 以上 $ x_{max} $ 以下の一様乱数を生成する汎用的な関数を作成する．
