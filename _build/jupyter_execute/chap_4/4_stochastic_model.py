@@ -3,7 +3,7 @@
 
 # # 確率モデル
 
-# In[1]:
+# In[13]:
 
 
 import numpy as np
@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
 import scipy as sp
-from scipy.stats import bernoulli, norm, poisson, expon
+from scipy.stats import uniform, bernoulli, norm, poisson, expon
 
 # 日本語フォントの設定（Mac:'Hiragino Sans', Windows:'MS Gothic'）
 plt.rcParams['font.family'] = 'Hiragino Sans'
@@ -122,10 +122,25 @@ ax.scatter(U2[:, 0], U2[:, 1], s=10);
 
 # #### より精度の高い一様乱数生成アルゴリズム
 # 
-# Pythonでは，高速で長い周期を持つ一様乱数を生成するために，[メルセンヌ・ツイスタ](http://www.math.sci.hiroshima-u.ac.jp/m-mat/TEACH/ichimura-sho-koen.pdf)と呼ばれるアルゴリズムが採用されている．
-# 特に，Numpyなどで用いられているのは周期が $ 2^{19937}-1 $ であるMT19937というアルゴリズムである．
+# 線形合同法は，周期性の問題などがあるため，実用的にはより制度の高いアルゴリズムが用いられる．
+# 例えば，NumpyやSciPyでは，高速で長い周期を持つ一様乱数を生成するために，[メルセンヌ・ツイスタ](http://www.math.sci.hiroshima-u.ac.jp/m-mat/TEACH/ichimura-sho-koen.pdf)やPCG64などのアルゴリズムを選ぶことができる．
 # 
-# ※ Pythonで採用されるアルゴリズムはライブラリのバージョンアップによって変わる可能性がある．
+# ※ ライブラリのバージョンアップによって変わる可能性がある．
+
+# In[17]:
+
+
+# Scipyを用いて[0, 1)の一様乱数を生成する
+sp.stats.uniform.rvs(size=10)
+
+
+# In[24]:
+
+
+# Numpyを用いて[0, 1)の一様乱数を生成する
+rng = np.random.default_rng(123) # シードを123に設定
+rng.random(10) 
+
 
 # ### 任意の確率分布に従う乱数
 

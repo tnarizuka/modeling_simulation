@@ -477,7 +477,7 @@ title="Print to PDF"
 <span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">bernoulli</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">poisson</span><span class="p">,</span> <span class="n">expon</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">uniform</span><span class="p">,</span> <span class="n">bernoulli</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">poisson</span><span class="p">,</span> <span class="n">expon</span>
 
 <span class="c1"># 日本語フォントの設定（Mac:&#39;Hiragino Sans&#39;, Windows:&#39;MS Gothic&#39;）</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Hiragino Sans&#39;</span>
@@ -593,9 +593,38 @@ title="Print to PDF"
 </section>
 <section id="id7">
 <h4>より精度の高い一様乱数生成アルゴリズム<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
-<p>Pythonでは，高速で長い周期を持つ一様乱数を生成するために，<a class="reference external" href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/TEACH/ichimura-sho-koen.pdf">メルセンヌ・ツイスタ</a>と呼ばれるアルゴリズムが採用されている．
-特に，Numpyなどで用いられているのは周期が <span class="math notranslate nohighlight">\( 2^{19937}-1 \)</span> であるMT19937というアルゴリズムである．</p>
-<p>※ Pythonで採用されるアルゴリズムはライブラリのバージョンアップによって変わる可能性がある．</p>
+<p>線形合同法は，周期性の問題などがあるため，実用的にはより制度の高いアルゴリズムが用いられる．
+例えば，NumpyやSciPyでは，高速で長い周期を持つ一様乱数を生成するために，<a class="reference external" href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/TEACH/ichimura-sho-koen.pdf">メルセンヌ・ツイスタ</a>やPCG64などのアルゴリズムを選ぶことができる．</p>
+<p>※ ライブラリのバージョンアップによって変わる可能性がある．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scipyを用いて[0, 1)の一様乱数を生成する</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.63527495, 0.78701413, 0.06537002, 0.84649609, 0.79522151,
+       0.47753628, 0.01734134, 0.79167788, 0.02783389, 0.84118514])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numpyを用いて[0, 1)の一様乱数を生成する</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span> <span class="c1"># シードを123に設定</span>
+<span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.68235186, 0.05382102, 0.22035987, 0.18437181, 0.1759059 ,
+       0.81209451, 0.923345  , 0.2765744 , 0.81975456, 0.88989269])
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="id8">
@@ -674,7 +703,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_stochastic_model_24_0.png" src="../_images/4_stochastic_model_24_0.png" />
+<img alt="../_images/4_stochastic_model_26_0.png" src="../_images/4_stochastic_model_26_0.png" />
 </div>
 </div>
 </section>
@@ -722,7 +751,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_stochastic_model_27_0.png" src="../_images/4_stochastic_model_27_0.png" />
+<img alt="../_images/4_stochastic_model_29_0.png" src="../_images/4_stochastic_model_29_0.png" />
 </div>
 </div>
 </section>
