@@ -380,12 +380,12 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id10">
-       ボックスミュラー法（正規分布）
+      <a class="reference internal nav-link" href="#box-muller">
+       Box-Muller法（正規分布）
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id11">
+      <a class="reference internal nav-link" href="#id10">
        複雑な確率分布の場合
       </a>
      </li>
@@ -445,12 +445,12 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id10">
-       ボックスミュラー法（正規分布）
+      <a class="reference internal nav-link" href="#box-muller">
+       Box-Muller法（正規分布）
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id11">
+      <a class="reference internal nav-link" href="#id10">
        複雑な確率分布の場合
       </a>
      </li>
@@ -677,8 +677,8 @@ title="Print to PDF"
 </div>
 </div>
 </section>
-<section id="id10">
-<h4>ボックスミュラー法（正規分布）<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">#</a></h4>
+<section id="box-muller">
+<h4>Box-Muller法（正規分布）<a class="headerlink" href="#box-muller" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>正規分布の場合は，中心極限定理（後述）を用いた方法やボックス・ミュラー法が知られている．
 ボックスミュラー法は，<span class="math notranslate nohighlight">\( [0, 1) \)</span> の一様乱数 <span class="math notranslate nohighlight">\( U_{1},\ U_{2} \)</span> から標準正規分布に従う正規乱数 <span class="math notranslate nohighlight">\( Z_{1},\ Z_{2} \)</span> を生成することができる．</p>
 <div class="admonition- admonition">
@@ -696,9 +696,11 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U1</span> <span class="o">=</span> <span class="n">lcg</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">umin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">umax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 線形合同法で[0, 1)の一様乱数を生成する</span>
+<span class="n">U1</span> <span class="o">=</span> <span class="n">lcg</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">umin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">umax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">U2</span> <span class="o">=</span> <span class="n">lcg</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">umin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">umax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
+<span class="c1"># Box-Muller法で正規乱数に変換する</span>
 <span class="n">Z1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">U1</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">U2</span><span class="p">)</span>
 <span class="n">Z2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">U1</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">U2</span><span class="p">)</span>
 </pre></div>
@@ -709,7 +711,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
-<span class="c1"># ヒストグラムの描画</span>
+<span class="c1"># 生成した乱数によるヒストグラムの描画</span>
 <span class="n">ret1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">Z1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
 
 <span class="c1"># 標準正規分布の描画</span>
@@ -723,8 +725,8 @@ title="Print to PDF"
 </div>
 </div>
 </section>
-<section id="id11">
-<h4>複雑な確率分布の場合<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">#</a></h4>
+<section id="id10">
+<h4>複雑な確率分布の場合<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>逆関数法は累積分布関数の逆関数が求まる場合にしか適用できなかったが，どんな確率分布にも適用できる方法として，<a class="reference external" href="https://en.wikipedia.org/wiki/Rejection_sampling">棄却法</a>がある．
 また，マルコフ連鎖に基づいて任意の確率分布に従う乱数を生成するマルコフ連鎖モンテカルロ法（MCMC）は，主にベイズ推定を始めとして様々な分野で用いられている．</p>
 <!-- ## 大数の法則と中心極限定理
