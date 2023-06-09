@@ -3,7 +3,7 @@
 
 # # 確率モデル
 
-# In[4]:
+# In[1]:
 
 
 import numpy as np
@@ -78,7 +78,7 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 
 # まず，アルゴリズムに従って素朴に実装すると以下のようになる．
 
-# In[75]:
+# In[2]:
 
 
 a, b, M = 1664525, 1013904223, 2**32
@@ -91,7 +91,7 @@ print(U)
 
 # 次に，$ x_{\mathrm{min}} $ 以上 $ x_{\mathrm{max}} $ 以下の一様乱数を生成する汎用的な関数を作成する．
 
-# In[76]:
+# In[3]:
 
 
 # 線形合同法により[0, 1)の一様乱数を生成する
@@ -105,13 +105,13 @@ def lcg(seed=0, size=100, umin=0, umax=1):
     return umin + (umax - umin) * U / M
 
 
-# In[78]:
+# In[4]:
 
 
 U = lcg(seed=10, size=1000, umin=0, umax=100)
 
 
-# In[79]:
+# In[5]:
 
 
 # 乱数列の相関を調べる
@@ -189,7 +189,7 @@ ax.scatter(U2[:, 0], U2[:, 1], s=10);
 
 # 以下は，線形合同法を用いて生成した一様乱数から指数乱数を生成する例である．
 
-# In[80]:
+# In[6]:
 
 
 # 線形合同法で[0, 1)の一様乱数を生成する
@@ -200,7 +200,7 @@ lmd = 1
 R_exp = -lmd*np.log(1-U)
 
 
-# In[81]:
+# In[7]:
 
 
 # ヒストグラムの描画
@@ -212,7 +212,7 @@ x = np.linspace(0, 10, 100)
 ax.plot(x, expon.pdf(x, scale=lmd), 'r-');
 
 
-# #### ボックスミュラー法（正規分布）
+# #### Box-Muller法（正規分布）
 # 
 # 正規分布の場合は，中心極限定理（後述）を用いた方法やボックス・ミュラー法が知られている．
 # ボックスミュラー法は，$ [0, 1) $ の一様乱数 $ U_{1},\ U_{2} $ から標準正規分布に従う正規乱数 $ Z_{1},\ Z_{2} $ を生成することができる．
@@ -228,22 +228,24 @@ ax.plot(x, expon.pdf(x, scale=lmd), 'r-');
 # 
 # ```
 
-# In[90]:
+# In[10]:
 
 
+# 線形合同法で[0, 1)の一様乱数を生成する
 U1 = lcg(seed=10, size=10000, umin=0, umax=1)
 U2 = lcg(seed=20, size=10000, umin=0, umax=1)
 
+# Box-Muller法で正規乱数に変換する
 Z1 = np.sqrt(-2*np.log(U1))*np.cos(2*np.pi*U2)
 Z2 = np.sqrt(-2*np.log(U1))*np.sin(2*np.pi*U2)
 
 
-# In[91]:
+# In[11]:
 
 
 fig, ax = plt.subplots(figsize=(4, 3))
 
-# ヒストグラムの描画
+# 生成した乱数によるヒストグラムの描画
 ret1 = ax.hist(Z1, bins=50, density=1, color='c', edgecolor='w')
 
 # 標準正規分布の描画
