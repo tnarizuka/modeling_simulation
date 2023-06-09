@@ -92,11 +92,11 @@ print(U)
 
 # 次に，$ x_{\mathrm{min}} $ 以上 $ x_{\mathrm{max}} $ 以下の一様乱数を生成する汎用的な関数を作成する．
 
-# In[3]:
+# In[25]:
 
 
 # 線形合同法により[0, 1)の一様乱数を生成する
-def lcg(seed=0, size=100, umin=0, umax=1):
+def lcg(seed=1, size=100, umin=0, umax=1):
     a, b, M = 1664525, 1013904223, 2**32
 
     U = np.array([seed])
@@ -106,7 +106,7 @@ def lcg(seed=0, size=100, umin=0, umax=1):
     return umin + (umax - umin) * U / M
 
 
-# In[4]:
+# In[26]:
 
 
 U = lcg(seed=10, size=1000, umin=0, umax=100)
@@ -186,7 +186,7 @@ rng.random(10)
 
 # **例）指数分布**
 # 
-# 指数分布は，確率密度関数以下のように与えられる：
+# 指数分布の確率密度関数は以下のように与えられる：
 # 
 # $$
 #     f(x) = \frac{1}{\lambda} e^{-\frac{x}{\lambda}}
@@ -195,7 +195,7 @@ rng.random(10)
 # よって，その累積分布関数は
 # 
 # $$
-#     F(x) = \int_{0}^{x}\frac{1}{\lambda} e^{-\frac{x}{\lambda}} dx = 1 - e^{-\frac{x}{\lambda}}
+#     F(x) =  1 - e^{-\frac{x}{\lambda}}
 # $$
 # 
 # となり，その逆関数は $ F(x)=u $ と置くと，
@@ -209,7 +209,7 @@ rng.random(10)
 
 # 以下は，線形合同法を用いて生成した一様乱数から指数乱数を生成する例である．
 
-# In[6]:
+# In[27]:
 
 
 # 線形合同法で[0, 1)の一様乱数を生成する
@@ -220,7 +220,7 @@ lmd = 1
 R_exp = -lmd*np.log(1-U)
 
 
-# In[7]:
+# In[28]:
 
 
 # ヒストグラムの描画
