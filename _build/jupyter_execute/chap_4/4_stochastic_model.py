@@ -78,46 +78,46 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 
 # まず，アルゴリズムに従って素朴に実装すると以下のようになる．
 
-# In[73]:
+# In[75]:
 
 
 a, b, M = 1664525, 1013904223, 2**32
 
-X = np.array([0])
+U = np.array([0])
 for i in range(10):
-    X = np.append(X, (a*X[i] + b) % M)
-print(X)
+    U = np.append(U, (a*U[i] + b) % M)
+print(U)
 
 
 # 次に，$ x_{\mathrm{min}} $ 以上 $ x_{\mathrm{max}} $ 以下の一様乱数を生成する汎用的な関数を作成する．
 
-# In[56]:
+# In[76]:
 
 
 # 線形合同法により[0, 1)の一様乱数を生成する
-def lcg(seed=0, size=100, xmin=0, xmax=1):
+def lcg(seed=0, size=100, umin=0, umax=1):
     a, b, M = 1664525, 1013904223, 2**32
 
-    X = np.array([seed])
+    U = np.array([seed])
     for i in range(size-1):
-        X = np.append(X, (a*X[i] + b) % M)
+        U = np.append(U, (a*U[i] + b) % M)
 
-    return xmin + (xmax - xmin) * X / M
-
-
-# In[66]:
+    return umin + (umax - umin) * U / M
 
 
-R = lcg(seed=10, size=1000, xmin=0, xmax=100)
+# In[78]:
 
 
-# In[70]:
+U = lcg(seed=10, size=1000, umin=0, umax=100)
+
+
+# In[79]:
 
 
 # 乱数列の相関を調べる
-R2 = R.reshape(-1, 2)
+U2 = U.reshape(-1, 2)
 fig, ax = plt.subplots(figsize=(3, 3))
-ax.scatter(R2[:, 0], R2[:, 1], s=10);
+ax.scatter(U2[:, 0], U2[:, 1], s=10);
 
 
 # #### より精度の高い一様乱数生成アルゴリズム
@@ -189,18 +189,18 @@ ax.scatter(R2[:, 0], R2[:, 1], s=10);
 
 # 以下は，線形合同法を用いて生成した一様乱数から指数乱数を生成する例である．
 
-# In[71]:
+# In[80]:
 
 
 # 線形合同法で[0, 1)の一様乱数を生成する
-R_u = lcg(seed=10, size=1000, xmin=0, xmax=1)
+U = lcg(seed=10, size=1000, umin=0, umax=1)
 
 # 逆関数法で指数乱数に変換する
 lmd = 1
-R_exp = -lmd*np.log(1-R_u)
+R_exp = -lmd*np.log(1-U)
 
 
-# In[72]:
+# In[81]:
 
 
 # ヒストグラムの描画
@@ -227,6 +227,29 @@ ax.plot(x, expon.pdf(x, scale=lmd), 'r-');
 #     \end{align*}
 # 
 # ```
+
+# In[90]:
+
+
+U1 = lcg(seed=10, size=10000, umin=0, umax=1)
+U2 = lcg(seed=20, size=10000, umin=0, umax=1)
+
+Z1 = np.sqrt(-2*np.log(U1))*np.cos(2*np.pi*U2)
+Z2 = np.sqrt(-2*np.log(U1))*np.sin(2*np.pi*U2)
+
+
+# In[91]:
+
+
+fig, ax = plt.subplots(figsize=(4, 3))
+
+# ヒストグラムの描画
+ret1 = ax.hist(Z1, bins=50, density=1, color='c', edgecolor='w')
+
+# 標準正規分布の描画
+x = np.linspace(-5, 5, 100)
+ax.plot(x, norm.pdf(x), 'r-');
+
 
 # #### 複雑な確率分布の場合
 # 
