@@ -558,7 +558,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 線形合同法により[0, 1)の一様乱数を生成する</span>
-<span class="k">def</span> <span class="nf">lcg</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">umin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">umax</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">lcg</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">umin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">umax</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">1664525</span><span class="p">,</span> <span class="mi">1013904223</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">32</span>
 
     <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
@@ -665,7 +665,7 @@ title="Print to PDF"
 以上より，一様乱数 <span class="math notranslate nohighlight">\( U \)</span> に対して，新たな確率変数を <span class="math notranslate nohighlight">\( X=F^{-1}(U) \)</span> と定義すると，<span class="math notranslate nohighlight">\( X \)</span> は求めたい確率分布 <span class="math notranslate nohighlight">\( F(x) \)</span> に従う．</p>
 </div>
 <p><strong>例）指数分布</strong></p>
-<p>指数分布は，確率密度関数以下のように与えられる：</p>
+<p>指数分布の確率密度関数は以下のように与えられる：</p>
 <div class="math notranslate nohighlight">
 \[
     f(x) = \frac{1}{\lambda} e^{-\frac{x}{\lambda}}
@@ -673,7 +673,7 @@ title="Print to PDF"
 <p>よって，その累積分布関数は</p>
 <div class="math notranslate nohighlight">
 \[
-    F(x) = \int_{0}^{x}\frac{1}{\lambda} e^{-\frac{x}{\lambda}} dx = 1 - e^{-\frac{x}{\lambda}}
+    F(x) =  1 - e^{-\frac{x}{\lambda}}
 \]</div>
 <p>となり，その逆関数は <span class="math notranslate nohighlight">\( F(x)=u \)</span> と置くと，</p>
 <div class="math notranslate nohighlight">
