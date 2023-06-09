@@ -632,10 +632,15 @@ title="Print to PDF"
 <section id="id9">
 <h4>逆関数法<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>ある確率分布に従う乱数を生成したいとする．
-いま，求めたい確率分布の累積分布関数を <span class="math notranslate nohighlight">\( F(x) \)</span> とし，その逆関数逆関数 <span class="math notranslate nohighlight">\( F^{-1} \)</span> が計算できるとする．
-このとき，<span class="math notranslate nohighlight">\( [0, 1) \)</span> の一様乱数 <span class="math notranslate nohighlight">\( U \)</span> に対し， <span class="math notranslate nohighlight">\( F^{-1}(U) \)</span> を計算すれば，これが求めたい確率分布に従う乱数となる．</p>
-<p>以上の手続きを<strong>逆関数法</strong>と呼ぶ．
-逆関数法は，累積分布関数の逆関数が求まるような確率分布であれば，どのような確率分布にも適用することができる．</p>
+もし，求めたい確率分布について，その累積分布関数の逆関数が求まるならば，以下の<strong>逆関数法</strong>が適用できる．</p>
+<div class="admonition- admonition">
+<p class="admonition-title">逆関数法のアルゴリズム</p>
+<ol class="simple">
+<li><p>求めたい確率分布の累積分布関数 <span class="math notranslate nohighlight">\( F(x) \)</span> を求める．</p></li>
+<li><p><span class="math notranslate nohighlight">\( F(x) \)</span> の逆関数 <span class="math notranslate nohighlight">\( F^{-1} \)</span> を計算する．</p></li>
+<li><p><span class="math notranslate nohighlight">\( [0, 1) \)</span> の一様乱数 <span class="math notranslate nohighlight">\( U \)</span> に対し， <span class="math notranslate nohighlight">\( F^{-1}(U) \)</span> を計算する．</p></li>
+</ol>
+</div>
 <div class="dropdown admonition">
 <p class="admonition-title">逆関数法の証明</p>
 <p><span class="math notranslate nohighlight">\( [0, 1] \)</span> の範囲の一様乱数を <span class="math notranslate nohighlight">\( U \)</span> とすると，累積分布関数は</p>
