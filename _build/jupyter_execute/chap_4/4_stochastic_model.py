@@ -3,7 +3,7 @@
 
 # # 確率モデル
 
-# In[13]:
+# In[1]:
 
 
 import numpy as np
@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
 import scipy as sp
-from scipy.stats import uniform, bernoulli, norm, poisson, expon
+from scipy.stats import uniform, bernoulli, binom, norm, poisson, expon
 
 # 日本語フォントの設定（Mac:'Hiragino Sans', Windows:'MS Gothic'）
 plt.rcParams['font.family'] = 'Hiragino Sans'
@@ -278,14 +278,141 @@ ax.plot(x, norm.pdf(x), 'r-');
 # 逆関数法は累積分布関数の逆関数が求まる場合にしか適用できなかったが，どんな確率分布にも適用できる方法として，[棄却法](https://en.wikipedia.org/wiki/Rejection_sampling)がある．
 # また，マルコフ連鎖に基づいて任意の確率分布に従う乱数を生成するマルコフ連鎖モンテカルロ法（MCMC）は，主にベイズ推定を始めとして様々な分野で用いられている．
 
-# <!-- ## 大数の法則と中心極限定理
+# ## ベルヌーイ過程
+
+# 以下のような試行を**ベルヌーイ試行**と呼ぶ：
 # 
-# ### ベルヌーイ試行
+# - 1回の試行において，起こりうる事象が2種類しかない
+# - 各事象が起こる確率は一定である
+# - 各試行は独立である
 # 
+# 
+# 通常は，2種類の事象をそれぞれ成功（1），失敗（0）に対応付けた確率変数 $ U $ を考え，成功確率を $ p $，失敗確率を $ 1-p $ とする．
+# このとき，確率変数 $ U $ の従う確率分布は
+# 
+# $$
+# 	P(U=u) = p^{u}(1-p)^{1-u} 
+# $$
+# 
+# となり，これを**ベルヌーイ分布**と呼ぶ．
+# 例えば，コイン投げは典型的なベルヌーイ試行である．
+# 
+# ベルヌーイ試行を繰り返すとき，これを**ベルヌーイ過程**と呼ぶ．
+# 多くの基本的な確率分布はベルヌーイ過程を基に導くことができる．
+# 以下にいくつかの例を示す．
+# 
+# - **二項分布**：ベルヌーイ過程において，成功回数が従う確率分布．
+# - **正規分布**：ベルヌーイ過程において，試行回数が十分大きい場合の成功回数の分布．
+# - **幾何分布**：ベルヌーイ過程において，初めて成功するまでの失敗回数が従う確率分布．
+# - **負の二項分布**：ベルヌーイ過程において， $ r $ 回目の成功が起こるまでの失敗回数が従う確率分布．
+# - **ポアソン分布**：ベルヌーイ過程において，成功確率 $ p $ が小さく，試行回数 $ n $ が大きいときに $ np=一定 $ の条件の下で成功回数が従う確率分布．
+
 # ### 二項分布
 # 
-# ### 大数の法則
+# ベルヌーイ試行を $ n $ 回繰り返すとき，成功回数 $ X=\displaystyle\sum_{i=1}^{n} U_{i} $ を新たな確率変数とする．
+# このとき，成功が $ x $ 回，失敗が $ n-x $ 回生じたとすると，その確率分布は**二項分布**
 # 
-# ### 中心極限定理
+# $$
+# 	f(x) = \binom{n}{x}p^{x}(1-p)^{n-x}
+# $$
 # 
-# ## ランダムウォーク -->
+# で与えられる．
+# この式において，$ p^{x}(1-p)^{n-x} $ は成功が $ x $ 回，失敗が $ n-x $ 回生じる確率を意味する．
+# また，$ \binom{n}{x} $ は $ n $ 個から $ x $ を取り出す組み合わせの数 $ _{n}C_{x} $ を表し，$ n $ 回の中で何回目に成功するかの場合の数に対応する．
+# なお，$ n=1 $ の場合はベルヌーイ分布に対応する．
+# 
+# 二項分布は試行回数 $ n $ と成功確率 $ p $ がパラメータであり，これらによって分布の形が決まる．
+
+# In[13]:
+
+
+# 試行回数nを変化させた場合の二項分布の変化
+fig, ax = plt.subplots()
+k = np.arange(0, 20, 1)
+for n in [5, 10, 30, 50]:
+    ax.plot(k, binom.pmf(k, n=n, p=0.2), '-o', mfc='w', ms=5, label='$n=%s, p=0.2$' % n)
+
+ax.set_xlim(0, 20); ax.set_ylim(0, 0.5)
+ax.set_xlabel('$x$', fontsize=15)
+ax.set_ylabel('$f(x)$', fontsize=15)
+ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
+
+
+# In[14]:
+
+
+# 成功確率pを変化させた場合の二項分布の変化
+fig, ax = plt.subplots()
+k = np.arange(0, 20, 1)
+for p in [0.1, 0.2, 0.3, 0.5]:
+    ax.plot(k, binom.pmf(k, n=10, p=p), '-o', mfc='w', ms=5, label='$n=10, p=%s$' % p)
+
+ax.set_xlim(0, 10); ax.set_ylim(0, 0.5)
+ax.set_xlabel('$x$', fontsize=15)
+ax.set_ylabel('$f(x)$', fontsize=15)
+ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
+
+
+# #### 演習問題
+# 
+# - 確率変数 $ X $ が二項分布に従うとき，その期待値と分散が $ E(X) = np $，分散が $ V(X) = np(1-p) $ となることを示せ．
+
+# ### ポアソン分布
+# 
+# ベルヌーイ試行を独立に $ n $ 回繰り返すとき，成功確率 $ p $ が小さく，かつ試行回数 $ n $ が大きい場合を考える．
+# ただし，極限を取る際に平均値が一定値 $ np=\lambda $ になるようにする．
+# このような条件で成功回数 $ X $ が従う分布は，二項分布の式に $ np=\lambda $ を代入し，極限 $ p\to 0,\ n\to \infty $ を取ることで
+# 
+# $$
+# 	f(x) = \frac{\lambda^{x}}{x!} \mathrm{e}^{-\lambda}
+# $$
+# 
+# と求まる．
+# これを**ポアソン分布**と呼ぶ．
+# ポアソン分布は1つのパラメータ $ \lambda $ だけで特徴づけられ，期待値と分散はともに $ \lambda $ となる．
+# 
+# ポアソン分布は，一定の期間内（例えば１時間や１日）に，稀な現象（$ p\to 0 $）を多数回試行（$ n\to \infty $）した場合にその発生回数が従う分布である．
+# ポアソン分布が現れる例は無数にあり，「1日の交通事故件数」，「1分間の放射性元素の崩壊数」，「1ヶ月の有感地震の回数」，「サッカーの試合における90分間の得点数」などは典型例である．
+
+# 以下は $ np=5 $ に保って $ n $ を大きく，$ p $ を小さくしたときの二項分布（実線）と $ \lambda=5 $ のポアソン分布（o）の比較である．
+# $ n=80,\ p=1/16 $ になると，二項分布とポアソン分布はほとんど一致していることが分かる．
+
+# In[73]:
+
+
+fig, ax = plt.subplots(figsize=(5, 3))
+x = np.arange(0, 15, 1)
+ax.plot(k, poisson.pmf(x, mu=5), 'o', mfc='w', ms=5, label='$\lambda=5$')
+for i in np.arange(4):
+    p, n = 1/2**(i+1), 10*2**i
+    ax.plot(k, binom.pmf(x, n=n, p=p), '-', mfc='w', ms=5, label='$n=%s, p=1/%s$' % (n, 2**(i+1)))
+
+ax.legend(numpoints=1, fontsize=10, loc='upper left', frameon=True, bbox_to_anchor=(1, 1))
+ax.set_xlim(0, 15); ax.set_ylim(0, 0.25)
+ax.set_xlabel('$x$', fontsize=15)
+ax.set_ylabel('$f(x)$', fontsize=15);
+
+
+# **$ \lambda $が大きいとき**
+# 
+# ポアソン分布は $ \lambda \to \infty $ において正規分布に近づくことが知られている．
+# 以下は $ \lambda $ を変化させた場合の分布の変化である．
+# $ \lambda $ が小さいときには左右非対称な分布となるが，$ \lambda $ が大きくなると左右対称な分布に近づくことが分かる．
+
+# In[11]:
+
+
+fig, ax = plt.subplots()
+k = np.arange(0, 25, 1)
+for lmd in [1, 4, 8, 12]:
+    ax.plot(k, poisson.pmf(k, lmd, 1), '-o', mfc='w', ms=5, label='$\lambda=%s$'% lmd)
+
+ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$f(x)$', fontsize=15)
+ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
+
+
+# #### 演習問題
+# 1. ポアソン分布の期待値と分散が共に $ \lambda $ であることを示せ．
+# 2. [score_germany.csv](https://drive.google.com/file/d/13mj2GFFNrj8F75K6FW9SPxfTTSGCXlh8/view?usp=sharing)は，ブンデスリーガの2017-2018シーズンにおける一方のチームの１試合の得点数データである．このデータからヒストグラムを作成し，ポアソン分布によってカーブフィッティングせよ（最小二乗法を用いること）．
+# 3. [score_nba.csv](https://drive.google.com/uc?export=download&id=18qfHa2OIjSmRqxFaAsFvn3O706-676Vs)は，NBAの2015-16シーズンにおける一方のチームの１試合の得点数データである．このデータからヒストグラムを作成し，ポアソン分布によってカーブフィッティングせよ（最小二乗法を用いること）．
+# 4. 2.と3.の結果を比較し，ポアソン分布の特徴を考察せよ．
