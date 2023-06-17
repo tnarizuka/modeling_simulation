@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
     <link rel="next" title="3. カーブフィッティング" href="../chap_3/3_curve_fitting.html" />
@@ -1025,8 +1027,8 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 <li><p>第１引数には数値データを与える．</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bins</span></code>引数には，以下を指定できる：</p>
 <ul>
-<li><p>ヒストグラムの階級数：<code class="docutils literal notranslate"><span class="pre">bins=n</span></code>とした場合，１つの階級の大きさは<code class="docutils literal notranslate"><span class="pre">(最大値-最小値)</span> <span class="pre">/</span> <span class="pre">n</span></code>となる．</p></li>
-<li><p>各階級の左端の値：<code class="docutils literal notranslate"><span class="pre">bins=[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code>とした場合，階級の境界は<code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1),</span> <span class="pre">[1,</span> <span class="pre">2),</span> <span class="pre">[2,</span> <span class="pre">3]</span></code>となる（最後だけ右端を含むことに注意）．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bins=n</span></code>とした場合，<span class="math notranslate nohighlight">\( n \)</span> 個の等間隔の階級に分ける．１つの階級の大きさは<code class="docutils literal notranslate"><span class="pre">(最大値-最小値)</span> <span class="pre">/</span> <span class="pre">n</span></code>となる．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bins=[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code>とした場合，階級の境界は<code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1),</span> <span class="pre">[1,</span> <span class="pre">2),</span> <span class="pre">[2,</span> <span class="pre">3]</span></code>となる（最後だけ右端を含むことに注意）．</p></li>
 </ul>
 </li>
 </ul>
