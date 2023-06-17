@@ -424,6 +424,35 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   4.3. 大数の法則と中心極限定理
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     4.3.1. 大数の法則
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       ベルヌーイ過程の場合
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id19">
+       一般の確率分布の場合
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     4.3.2. 中心極限定理
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </nav>
@@ -517,6 +546,35 @@ title="Print to PDF"
       </a>
      </li>
     </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   4.3. 大数の法則と中心極限定理
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     4.3.1. 大数の法則
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       ベルヌーイ過程の場合
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id19">
+       一般の確率分布の場合
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     4.3.2. 中心極限定理
+    </a>
    </li>
   </ul>
  </li>
@@ -979,6 +1037,127 @@ title="Print to PDF"
 </ol>
 </section>
 </section>
+</section>
+<section id="id16">
+<h2><span class="section-number">4.3. </span>大数の法則と中心極限定理<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">#</a></h2>
+<!-- 
+### ベルヌーイ試行
+
+### 二項分布
+
+### 大数の法則
+
+### 中心極限定理
+
+## ランダムウォーク --><section id="id17">
+<h3><span class="section-number">4.3.1. </span>大数の法則<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">#</a></h3>
+<section id="id18">
+<h4>ベルヌーイ過程の場合<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>既にベルヌーイ過程における成功回数 <span class="math notranslate nohighlight">\( X=\displaystyle\sum_{i=1}^{n} U_{i} \)</span> が二項分布に従うことを見たが，ここでは <span class="math notranslate nohighlight">\( X \)</span> を <span class="math notranslate nohighlight">\( n \)</span> で割った標本平均（成功割合）</p>
+<div class="math notranslate nohighlight">
+\[
+	T = \frac{X}{n} = \frac{1}{n}\displaystyle\sum_{i=1}^{n} U_{i}
+\]</div>
+<p>を新しい確率変数とする．
+このとき， <span class="math notranslate nohighlight">\( T \)</span> の確率分布を <span class="math notranslate nohighlight">\( g(t) \)</span> とすると，<span class="math notranslate nohighlight">\( g(t) \)</span> も二項分布に従い，<span class="math notranslate nohighlight">\( g(t)=nf(nt) \)</span> の関係にある．</p>
+<p>以下は成功確率 <span class="math notranslate nohighlight">\( p \)</span> を一定値 <span class="math notranslate nohighlight">\( p=0.2 \)</span> に固定して，試行回数 <span class="math notranslate nohighlight">\( n \)</span> を大きくしたときの標本平均 <span class="math notranslate nohighlight">\( T \)</span> の確率分布である．
+この図を見ると，<span class="math notranslate nohighlight">\( n \)</span> の増加に伴って <span class="math notranslate nohighlight">\( t=0.2 \)</span> の周りに分布が集中するとともに，高さが大きくなる様子が分かる．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="o">/</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">*</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.2</span><span class="p">),</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$n=</span><span class="si">%s</span><span class="s1">, p=0.2$&#39;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;標本平均 $t$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$g(t)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">numpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4_stochastic_model_47_0.png" src="../_images/4_stochastic_model_47_0.png" />
+</div>
+</div>
+<p>以上のような図の変化を数式で確認する．
+まず，成功回数 <span class="math notranslate nohighlight">\( X \)</span> の期待値と分散はそれぞれ <span class="math notranslate nohighlight">\( E(X)=np,\ V(X)=np(1-p) \)</span> であるから，成功割合 <span class="math notranslate nohighlight">\( T=X/n \)</span> の期待値と分散はそれぞれ <span class="math notranslate nohighlight">\( E(T)=p,\ V(T)=p(1-p)/n \)</span> となる．
+これより，成功割合 <span class="math notranslate nohighlight">\( T=X/n \)</span> の期待値は <span class="math notranslate nohighlight">\( n \)</span> に依らず一定 <span class="math notranslate nohighlight">\( p \)</span> で，分散は <span class="math notranslate nohighlight">\( n \)</span> とともに0に近づくことが分かる．
+これが，成功割合 <span class="math notranslate nohighlight">\( T=X/n \)</span> の分布が試行回数 <span class="math notranslate nohighlight">\( n \)</span> の増加とともに <span class="math notranslate nohighlight">\( p \)</span> の近くに集中する理由である．</p>
+<p>以上のように，ベルヌーイ過程においては，試行回数 <span class="math notranslate nohighlight">\( n\to \infty \)</span> の極限で成功割合 <span class="math notranslate nohighlight">\( T=X/n \)</span> が理論値 <span class="math notranslate nohighlight">\( p \)</span> に一致する．
+このように，確率変数の標本平均が理論値に一致する性質は<strong>大数の法則</strong>と呼ばれている．</p>
+</section>
+<section id="id19">
+<h4>一般の確率分布の場合<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>大数の法則は，一般の確率分布に従う確率変数列について成り立つ一般的な法則であり，以下のように表される．</p>
+<div class="admonition- admonition">
+<p class="admonition-title">大数の法則</p>
+<p>独立同分布に従う <span class="math notranslate nohighlight">\( n \)</span> 個の確率変数 <span class="math notranslate nohighlight">\( U_{1}, U_{2},\ldots, U_{n} \)</span> に対し，それぞれの期待値を <span class="math notranslate nohighlight">\( E[U_{i}]=\mu \)</span> とする．
+このとき，確率変数列の標本平均 <span class="math notranslate nohighlight">\( \displaystyle\frac{1}{n}\sum_{i=1}^{n}U_{i} \)</span> は <span class="math notranslate nohighlight">\( n\to\infty \)</span> で <span class="math notranslate nohighlight">\( \mu \)</span> に一致する．</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nsample</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">uniform</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">nsample</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">nsample</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">nsample</span><span class="p">)</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">nsample</span><span class="p">)</span>
+<span class="n">X_u</span><span class="p">,</span> <span class="n">X_n</span><span class="p">,</span> <span class="n">X_b</span><span class="p">,</span> <span class="n">X_p</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nsample</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">T</span><span class="p">:</span>
+    <span class="n">X_u</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">U</span><span class="p">[:</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+    <span class="n">X_n</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">N</span><span class="p">[:</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+    <span class="n">X_b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">B</span><span class="p">[:</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+    <span class="n">X_p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">P</span><span class="p">[:</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_u</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_n</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_b</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_p</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nsample</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;試行回数 $n$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;標本平均&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4_stochastic_model_51_0.png" src="../_images/4_stochastic_model_51_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id20">
+<h3><span class="section-number">4.3.2. </span>中心極限定理<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>前節では，成功割合 <span class="math notranslate nohighlight">\( T=X/n \)</span> の分布が <span class="math notranslate nohighlight">\( n \)</span> を大きくしたときに理論値 <span class="math notranslate nohighlight">\( p \)</span> の周りに集中し，大数の法則が成り立つことを見た．
+また，<span class="math notranslate nohighlight">\( n \)</span> を大きくしていくとき，成功回数 <span class="math notranslate nohighlight">\( X \)</span> や成功割合 <span class="math notranslate nohighlight">\( T \)</span> の分布（いずれも二項分布）が左右非対称から左右対称な形へと変化することも見た．
+実は，<span class="math notranslate nohighlight">\( n \)</span> を十分大きくしたときに出現する左右対称で滑らかな分布は<strong>正規分布</strong>であり，これは以下の中心極限定理による帰結である：</p>
+<div class="admonition- admonition">
+<p class="admonition-title">中心極限定理</p>
+<p>「同じ確率分布に従う <span class="math notranslate nohighlight">\( n \)</span> 個の確率変数の和の分布が <span class="math notranslate nohighlight">\( n \)</span> を大きくしたときに正規分布に近づく」</p>
+</div>
+<p>今の場合，成功回数を表す確率変数 <span class="math notranslate nohighlight">\( X \)</span> は，成功を1，失敗を0とした確率変数 <span class="math notranslate nohighlight">\( U_{i} \)</span> の和 <span class="math notranslate nohighlight">\( \displaystyle X = \sum_{i=1}^{n} U_{i} \)</span> となっているので，「ベルヌーイ分布に従う <span class="math notranslate nohighlight">\( n \)</span> 個の確率変数の和 <span class="math notranslate nohighlight">\( \displaystyle X = \sum_{i=1}^{n} U_{i} \)</span> の分布が <span class="math notranslate nohighlight">\( n \)</span> を大きくしたときに正規分布に近づく」ということになる．</p>
+<!-- 
+一般に，正規分布は連続型確率変数$ X $の従う確率分布で，確率密度関数は
+
+$$
+	f(x) = \frac{1}{\sqrt{2\pi} \sigma} \exp \left[ - \frac{(x-\mu)^{2}}{2\sigma^{2}} \right]
+$$
+
+で与えられる．
+ここで，$ \mu $と$ \sigma^{2} $は正規分布の期待値と分散に対応する：
+
+\begin{align*}
+	E[X] &= \int_{-\infty}^{\infty} xf(x) dx = \mu \\
+	V[X] &= \int_{-\infty}^{\infty} (x-\mu)^{2}f(x) dx = \sigma^{2}
+\end{align*}
+
+以下では，この形の正規分布を$ N(\mu,\sigma^{2}) $と表す．
+正規分布$ N(\mu, \sigma^{2}) $は平均$ \mu $と分散$ \sigma^{2} $によって形状が図\ref{fig:normal}のように変わる．
+特に，平均$ \mu $は分布のピークの位置に対応し，分散$ \sigma^{2} $は分布の広がりを決める．
+正規分布は中心極限定理が背景にある多くの自然現象や社会現象において観られるので，統計学の理論上最も重要な分布である． --></section>
 </section>
 </section>
 
