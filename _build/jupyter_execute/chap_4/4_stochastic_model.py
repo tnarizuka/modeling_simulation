@@ -416,3 +416,122 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 2. [score_germany.csv](https://drive.google.com/uc?export=download&id=13mj2GFFNrj8F75K6FW9SPxfTTSGCXlh8)は，ブンデスリーガの2017-2018シーズンにおける一方のチームの１試合の得点数データである．このデータからヒストグラムを作成し，ポアソン分布によってカーブフィッティングせよ（最小二乗法を用いること）．
 # 3. [score_nba.csv](https://drive.google.com/uc?export=download&id=1kVrg4GjjcE_DC-78U0BArBAglJeiwQgr)は，NBAの2015-16シーズンにおける一方のチームの１試合の得点数データである．このデータからヒストグラムを作成し，ポアソン分布によってカーブフィッティングせよ（最小二乗法を用いること）．
 # 4. 2.と3.の結果を比較し，ポアソン分布の特徴を考察せよ．
+
+# ## 大数の法則と中心極限定理
+# <!-- 
+# ### ベルヌーイ試行
+# 
+# ### 二項分布
+# 
+# ### 大数の法則
+# 
+# ### 中心極限定理
+# 
+# ## ランダムウォーク -->
+
+# ### 大数の法則
+
+# #### ベルヌーイ過程の場合
+# 
+# 既にベルヌーイ過程における成功回数 $ X=\displaystyle\sum_{i=1}^{n} U_{i} $ が二項分布に従うことを見たが，ここでは $ X $ を $ n $ で割った標本平均（成功割合）
+# 
+# $$
+# 	T = \frac{X}{n} = \frac{1}{n}\displaystyle\sum_{i=1}^{n} U_{i}
+# $$
+# 
+# を新しい確率変数とする．
+# このとき， $ T $ の確率分布を $ g(t) $ とすると，$ g(t) $ も二項分布に従い，$ g(t)=nf(nt) $ の関係にある．
+
+# 以下は成功確率 $ p $ を一定値 $ p=0.2 $ に固定して，試行回数 $ n $ を大きくしたときの標本平均 $ T $ の確率分布である．
+# この図を見ると，$ n $ の増加に伴って $ t=0.2 $ の周りに分布が集中するとともに，高さが大きくなる様子が分かる．
+
+# In[ ]:
+
+
+fig, ax = plt.subplots()
+k = np.arange(0, 20, 1)
+
+for n in [5, 10, 30, 50]:
+    ax.plot(k/n, n*binom.pmf(k, n=n, p=0.2), '-o', mfc='w', ms=5, label='$n=%s, p=0.2$' % n)
+
+ax.set_xlim(0, 1); ax.set_ylim(0, 8)
+ax.set_xlabel('標本平均 $t$', fontsize=12)
+ax.set_ylabel('$g(t)$', fontsize=15)
+ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
+
+
+# 以上のような図の変化を数式で確認する．
+# まず，成功回数 $ X $ の期待値と分散はそれぞれ $ E(X)=np,\ V(X)=np(1-p) $ であるから，成功割合 $ T=X/n $ の期待値と分散はそれぞれ $ E(T)=p,\ V(T)=p(1-p)/n $ となる．
+# これより，成功割合 $ T=X/n $ の期待値は $ n $ に依らず一定 $ p $ で，分散は $ n $ とともに0に近づくことが分かる．
+# これが，成功割合 $ T=X/n $ の分布が試行回数 $ n $ の増加とともに $ p $ の近くに集中する理由である．
+# 
+# 以上のように，ベルヌーイ過程においては，試行回数 $ n\to \infty $ の極限で成功割合 $ T=X/n $ が理論値 $ p $ に一致する．
+# このように，確率変数の標本平均が理論値に一致する性質は**大数の法則**と呼ばれている．
+
+# #### 一般の確率分布の場合
+
+# 大数の法則は，一般の確率分布に従う確率変数列について成り立つ一般的な法則であり，以下のように表される．
+# 
+# ```{admonition} 大数の法則
+# 独立同分布に従う $ n $ 個の確率変数 $ U_{1}, U_{2},\ldots, U_{n} $ に対し，それぞれの期待値を $ E[U_{i}]=\mu $ とする．
+# このとき，確率変数列の標本平均 $ \displaystyle\frac{1}{n}\sum_{i=1}^{n}U_{i} $ は $ n\to\infty $ で $ \mu $ に一致する．
+# ```
+
+# In[ ]:
+
+
+nsample=100
+U = uniform.rvs(loc=0, scale=2, size=nsample)
+N = norm.rvs(loc=2, scale=1, size=nsample)
+B = binom.rvs(n=10, p=0.3, size=nsample)
+P = poisson.rvs(mu=4, size=nsample)
+X_u, X_n, X_b, X_p = [], [], [], []
+T = np.arange(1, nsample)
+for t in T:
+    X_u.append(U[:t].mean())
+    X_n.append(N[:t].mean())
+    X_b.append(B[:t].mean())
+    X_p.append(P[:t].mean())
+
+fig, ax = plt.subplots()
+ax.plot(T, np.array(X_u), '-')
+ax.plot(T, np.array(X_n), '-')
+ax.plot(T, np.array(X_b), '-')
+ax.plot(T, np.array(X_p), '-')
+
+ax.set_xlim(0, nsample); ax.set_ylim(0, 6)
+ax.set_xlabel('試行回数 $n$', fontsize=12)
+ax.set_ylabel('標本平均', fontsize=12);
+
+
+# ### 中心極限定理
+# 
+# 前節では，成功割合 $ T=X/n $ の分布が $ n $ を大きくしたときに理論値 $ p $ の周りに集中し，大数の法則が成り立つことを見た．
+# また，$ n $ を大きくしていくとき，成功回数 $ X $ や成功割合 $ T $ の分布（いずれも二項分布）が左右非対称から左右対称な形へと変化することも見た．
+# 実は，$ n $ を十分大きくしたときに出現する左右対称で滑らかな分布は**正規分布**であり，これは以下の中心極限定理による帰結である：
+# 
+# ```{admonition} 中心極限定理
+# 「同じ確率分布に従う $ n $ 個の確率変数の和の分布が $ n $ を大きくしたときに正規分布に近づく」
+# ```
+# 
+# 今の場合，成功回数を表す確率変数 $ X $ は，成功を1，失敗を0とした確率変数 $ U_{i} $ の和 $ \displaystyle X = \sum_{i=1}^{n} U_{i} $ となっているので，「ベルヌーイ分布に従う $ n $ 個の確率変数の和 $ \displaystyle X = \sum_{i=1}^{n} U_{i} $ の分布が $ n $ を大きくしたときに正規分布に近づく」ということになる．
+
+# <!-- 
+# 一般に，正規分布は連続型確率変数$ X $の従う確率分布で，確率密度関数は
+# 
+# $$
+# 	f(x) = \frac{1}{\sqrt{2\pi} \sigma} \exp \left[ - \frac{(x-\mu)^{2}}{2\sigma^{2}} \right]
+# $$
+# 
+# で与えられる．
+# ここで，$ \mu $と$ \sigma^{2} $は正規分布の期待値と分散に対応する：
+# 
+# \begin{align*}
+# 	E[X] &= \int_{-\infty}^{\infty} xf(x) dx = \mu \\
+# 	V[X] &= \int_{-\infty}^{\infty} (x-\mu)^{2}f(x) dx = \sigma^{2}
+# \end{align*}
+# 
+# 以下では，この形の正規分布を$ N(\mu,\sigma^{2}) $と表す．
+# 正規分布$ N(\mu, \sigma^{2}) $は平均$ \mu $と分散$ \sigma^{2} $によって形状が図\ref{fig:normal}のように変わる．
+# 特に，平均$ \mu $は分布のピークの位置に対応し，分散$ \sigma^{2} $は分布の広がりを決める．
+# 正規分布は中心極限定理が背景にある多くの自然現象や社会現象において観られるので，統計学の理論上最も重要な分布である． -->

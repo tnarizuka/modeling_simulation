@@ -1023,8 +1023,12 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </div>
 <ul class="simple">
 <li><p>第１引数には数値データを与える．</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">bins</span></code>引数には，ヒストグラムの階級数（または各階級の左端の値）を指定する．</p></li>
-<li><p>例えば，<code class="docutils literal notranslate"><span class="pre">bins=n</span></code>とした場合，１つの階級の大きさは<code class="docutils literal notranslate"><span class="pre">(最大値-最小値)</span> <span class="pre">/</span> <span class="pre">n</span></code>となる．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bins</span></code>引数には，ヒストグラムの階級数（または各階級の左端の値）を指定する．</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">bins=n</span></code>とした場合，１つの階級の大きさは<code class="docutils literal notranslate"><span class="pre">(最大値-最小値)</span> <span class="pre">/</span> <span class="pre">n</span></code>となる．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bins=[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code>とした場合，階級の境界は<code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1),</span> <span class="pre">[1,</span> <span class="pre">2),</span> <span class="pre">[2,</span> <span class="pre">3]</span></code>となる（最後だけ右端を含むことに注意）．</p></li>
+</ul>
+</li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1347,7 +1351,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ポアソン分布に従うサイズ100の標本を生成</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1355,7 +1359,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ヒストグラムの階級の左端の値</span>
-<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># ヒストグラムを描画する</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>

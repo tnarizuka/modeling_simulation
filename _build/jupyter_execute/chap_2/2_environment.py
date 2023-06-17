@@ -3,7 +3,7 @@
 
 # # 準備
 
-# In[1]:
+# In[2]:
 
 
 import numpy as np
@@ -357,7 +357,8 @@ fig.savefig('./multi_sin.pdf', bbox_inches="tight", pad_inches=0.2, transparent=
 # ```
 # - 第１引数には数値データを与える．
 # - `bins`引数には，ヒストグラムの階級数（または各階級の左端の値）を指定する．
-# - 例えば，`bins=n`とした場合，１つの階級の大きさは`(最大値-最小値) / n`となる．
+#   - `bins=n`とした場合，１つの階級の大きさは`(最大値-最小値) / n`となる．
+#   - `bins=[0, 1, 2, 3]`とした場合，階級の境界は`[0, 1), [1, 2), [2, 3]`となる（最後だけ右端を含むことに注意）．
 
 # In[17]:
 
@@ -481,18 +482,18 @@ sp.stats.norm.rvs(loc=0, scale=1, size=10)
 
 # #### 例：ポアソン分布
 
-# In[70]:
+# In[17]:
 
 
 # ポアソン分布に従うサイズ100の標本を生成
-data = sp.stats.poisson.rvs(mu=3, size=100)
+data = sp.stats.poisson.rvs(mu=3, size=1000)
 
 
-# In[71]:
+# In[18]:
 
 
 # ヒストグラムの階級の左端の値
-k = np.arange(data.max()+1)
+k = np.arange(data.max()+2)
 
 # ヒストグラムを描画する
 fig, ax = plt.subplots()
