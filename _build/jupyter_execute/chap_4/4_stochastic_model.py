@@ -470,7 +470,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 # #### 一般の確率分布の場合
 
-# 大数の法則は，一般の確率分布に従う確率変数列について成り立つ一般的な法則であり，以下のように表される．
+# 大数の法則は，一般の確率分布に従う確率変数列について成り立つ法則であり，以下のように表される．
 # 
 # ```{admonition} 大数の法則
 # 独立同分布に従う $ n $ 個の確率変数 $ U_{1}, U_{2},\ldots, U_{n} $ に対し，それぞれの期待値を $ E[U_{i}]=\mu $ とする．
@@ -552,7 +552,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ がパラメータ $ \lambda $ のポアソン分布に従うとき，期待値と分散は共に $ \lambda $である．
 # よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(\lambda, \lambda/n) $ に近づく．
 
-# In[99]:
+# In[103]:
 
 
 fig, ax = plt.subplots(figsize=(5, 4))
@@ -569,7 +569,7 @@ for n in [10, 50, 100, 500]:
     ax.hist(T, bins=10, density=1, edgecolor='w', alpha=0.5, label='$n=%s$' % n); 
 
 # 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画
-t = np.arange(0, 4, 0.01)
+t = np.arange(0.5, 3.5, 0.01)
 gt = sp.stats.norm.pdf(t, loc=lmd, scale=np.sqrt(lmd/n))
 ax.plot(t, gt, 'r-', label='$N(\lambda, \lambda/n)$')
 
