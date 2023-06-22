@@ -3,7 +3,7 @@
 
 # # 確率モデル
 
-# In[2]:
+# In[70]:
 
 
 import numpy as np
@@ -518,34 +518,42 @@ ax.set_ylabel('標本平均', fontsize=12);
 
 # #### ベルヌーイ過程の場合
 
-# In[33]:
+# ベルヌーイ分布
+
+# In[86]:
 
 
-fig, ax = plt.subplots()
-
+fig, ax = plt.subplots(figsize=(5, 4))
+p=0.2
 # 様々な標本サイズnに対して標本平均のヒストグラムを描画
-for n in [1, 2, 10, 100]:
+for n in [10, 50, 100, 500]:
 
     # 標本平均を1000回計算してヒストグラムを描画
     T = []
     for j in range(1000):
-        U = sp.stats.uniform.rvs(scale=100, size=n) # [0, 100]の一様分布からサイズnの標本を生成
+        U = sp.stats.bernoulli.rvs(p, size=n) # 確率pのベルヌーイ分布からサイズnの標本を生成
         T.append(U.mean())
-    ax.hist(T, bins=10, density=1, edgecolor='w', alpha=0.5); 
+    ax.hist(T, bins=10, density=1, edgecolor='w', alpha=0.5, label='$n=%s$' % n); 
 
 # 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画
-x = np.arange(0, 100, 0.1)
-ax.plot(x, sp.stats.norm.pdf(x, loc=50, scale=(100/np.sqrt(12))/np.sqrt(n)), 'r-')  
+x = np.arange(0, 1, 0.001)
+ax.plot(x, sp.stats.norm.pdf(x, loc=p, scale=np.sqrt(p*(1-p))/np.sqrt(n)), 'r-', label='$N(\mu, \sigma^{2}/n)$')
 
-
-# In[20]:
-
-
-
+ax.set_xlabel('標本平均 $t$', fontsize=12)
+ax.set_ylabel('$g(t)$', fontsize=15)
+ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 
 # #### 演習問題
 # 
-# 以下の確率分布について，中心極限定理が成り立つことを確認せよ．
+# 確率変数列 $ U_{i} $ が以下の確率分布に従う場合について上と同様のシミュレーションを行い，中心極限定理が成り立つことを確認せよ．
 # 
-# 1. 
+# 1. 正規分布
+# 
+# $$
+#     f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+# $$
+# 
+# - 
+# 
+# 2. 指数分布
