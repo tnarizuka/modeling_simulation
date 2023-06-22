@@ -477,6 +477,8 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # このとき，確率変数列の標本平均 $ \displaystyle\frac{1}{n}\sum_{i=1}^{n}U_{i} $ は $ n\to\infty $ で $ \mu $ に一致する．
 # ```
 
+# 以下は，様々な確率分布に対する大数の法則のシミュレーションである．
+
 # In[133]:
 
 
