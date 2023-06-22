@@ -547,6 +547,8 @@ ax.set_ylabel('$g(t)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 
+# #### ポアソン分布の場合
+# 
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ がパラメータ $ \lambda $ のポアソン分布に従うとき，期待値と分散は共に $ \lambda $である．
 # よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(\lambda, \lambda/n) $ に近づく．
 
