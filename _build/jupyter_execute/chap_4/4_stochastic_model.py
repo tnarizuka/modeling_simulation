@@ -477,30 +477,37 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # このとき，確率変数列の標本平均 $ \displaystyle\frac{1}{n}\sum_{i=1}^{n}U_{i} $ は $ n\to\infty $ で $ \mu $ に一致する．
 # ```
 
-# In[ ]:
+# In[133]:
 
 
-nsample=100
-U = uniform.rvs(loc=0, scale=2, size=nsample)
-N = norm.rvs(loc=2, scale=1, size=nsample)
-B = binom.rvs(n=10, p=0.3, size=nsample)
-P = poisson.rvs(mu=4, size=nsample)
-X_u, X_n, X_b, X_p = [], [], [], []
-T = np.arange(1, nsample)
-for t in T:
-    X_u.append(U[:t].mean())
-    X_n.append(N[:t].mean())
-    X_b.append(B[:t].mean())
-    X_p.append(P[:t].mean())
+N = np.arange(1, 500)
 
+# 様々な確率分布からサイズnの標本を生成する
+U_uni = uniform.rvs(loc=0, scale=2, size=len(N)) # 一様分布（平均1）
+U_norm = norm.rvs(loc=2, scale=1, size=len(N))   # 正規分布（平均2）
+U_binom = binom.rvs(n=10, p=0.3, size=len(N))    # 二項分布（平均3）
+U_poisson = poisson.rvs(mu=4, size=len(N))       # ポアソン分布（平均4）
+U_expon = expon.rvs(scale=5, size=len(N))        # 指数分布（平均5）
+
+# 様々な標本サイズnに対して標本平均を計算
+T_uni, T_norm, T_binom, T_poisson, T_expon = [], [], [], [], []
+for n in N:
+    T_uni.append(U_uni[:n].mean())
+    T_norm.append(U_norm[:n].mean())
+    T_binom.append(U_binom[:n].mean())
+    T_poisson.append(U_poisson[:n].mean())
+    T_expon.append(U_expon[:n].mean())
+
+# 標本平均の変化をプロット
 fig, ax = plt.subplots()
-ax.plot(T, np.array(X_u), '-')
-ax.plot(T, np.array(X_n), '-')
-ax.plot(T, np.array(X_b), '-')
-ax.plot(T, np.array(X_p), '-')
+ax.plot(N, np.array(T_uni), '-')
+ax.plot(N, np.array(T_norm), '-')
+ax.plot(N, np.array(T_binom), '-')
+ax.plot(N, np.array(T_poisson), '-')
+ax.plot(N, np.array(T_expon), '-')
 
-ax.set_xlim(0, nsample); ax.set_ylim(0, 6)
-ax.set_xlabel('試行回数 $n$', fontsize=12)
+ax.set_xlim(0, len(N)); ax.set_ylim(0, 7)
+ax.set_xlabel('標本サイズ $n$', fontsize=12)
 ax.set_ylabel('標本平均', fontsize=12);
 
 
