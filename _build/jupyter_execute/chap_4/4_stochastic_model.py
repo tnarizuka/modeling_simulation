@@ -521,7 +521,7 @@ ax.set_ylabel('標本平均', fontsize=12);
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ が成功確率 $ p $ のベルヌーイ分布に従うとき，期待値は $ p $，分散は $ p(1-p) $である．
 # よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(p, p(1-p)/n) $ に近づく．
 
-# In[91]:
+# In[97]:
 
 
 fig, ax = plt.subplots(figsize=(5, 4))
@@ -540,7 +540,7 @@ for n in [10, 50, 100, 500]:
 # 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画
 t = np.arange(0, 1, 0.001)
 gt = sp.stats.norm.pdf(x, loc=p, scale=np.sqrt(p*(1-p)/n))
-ax.plot(t, gt, 'r-', label='$N(\mu, \sigma^{2}/n)$')
+ax.plot(t, gt, 'r-', label='$N(\lambda, \lambda/n)$')
 
 ax.set_xlabel('標本平均 $t$', fontsize=12)
 ax.set_ylabel('$g(t)$', fontsize=15)
