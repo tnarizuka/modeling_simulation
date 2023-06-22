@@ -450,6 +450,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#id20">
      4.3.2. 中心極限定理
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       演習問題
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -575,6 +582,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#id20">
      4.3.2. 中心極限定理
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       演習問題
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -1131,14 +1145,14 @@ title="Print to PDF"
 </section>
 <section id="id20">
 <h3><span class="section-number">4.3.2. </span>中心極限定理<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">#</a></h3>
-<p>前節では，成功割合 <span class="math notranslate nohighlight">\( T=X/n \)</span> の分布が <span class="math notranslate nohighlight">\( n \)</span> を大きくしたときに理論値 <span class="math notranslate nohighlight">\( p \)</span> の周りに集中し，大数の法則が成り立つことを見た．
-また，<span class="math notranslate nohighlight">\( n \)</span> を大きくしていくとき，成功回数 <span class="math notranslate nohighlight">\( X \)</span> や成功割合 <span class="math notranslate nohighlight">\( T \)</span> の分布（いずれも二項分布）が左右非対称から左右対称な形へと変化することも見た．
-実は，<span class="math notranslate nohighlight">\( n \)</span> を十分大きくしたときに出現する左右対称で滑らかな分布は<strong>正規分布</strong>であり，これは以下の中心極限定理による帰結である：</p>
+<p>ベルヌーイ過程において，標本平均 <span class="math notranslate nohighlight">\( T=X/n \)</span> の分布が <span class="math notranslate nohighlight">\( n \)</span> を大きくしたときに理論値 <span class="math notranslate nohighlight">\( p \)</span> の周りに集中し，大数の法則が成り立つことを見た．
+また，<span class="math notranslate nohighlight">\( n \)</span> を大きくしていくとき，標本平均 <span class="math notranslate nohighlight">\( T \)</span> の分布（二項分布）が左右非対称から左右対称な形へと変化することも見た．
+実は，<span class="math notranslate nohighlight">\( n \)</span> を十分大きくしたときに出現する左右対称で滑らかな分布は<strong>正規分布</strong>であり，これはベルヌーイ過程に限らず，一般の確率分布に従う確率変数列についても成り立つ．
+この性質は<strong>中心極限定理</strong>と呼ばれており，以下のように表される．</p>
 <div class="admonition- admonition">
 <p class="admonition-title">中心極限定理</p>
-<p>「同じ確率分布に従う <span class="math notranslate nohighlight">\( n \)</span> 個の確率変数の和の分布が <span class="math notranslate nohighlight">\( n \)</span> を大きくしたときに正規分布に近づく」</p>
+<p>「独立同分布に従う <span class="math notranslate nohighlight">\( n \)</span> 個の確率変数 <span class="math notranslate nohighlight">\( U_{1}, U_{2},\ldots, U_{n} \)</span> に対し，それぞれの期待値を <span class="math notranslate nohighlight">\( \mu \)</span>，分散を <span class="math notranslate nohighlight">\( \sigma^2 \)</span> とする．このとき，確率変数列の標本平均 <span class="math notranslate nohighlight">\( \displaystyle T=\frac{1}{n}\sum_{i=1}^{n}U_{i} \)</span> の分布 <span class="math notranslate nohighlight">\( g(t) \)</span> が <span class="math notranslate nohighlight">\( n \)</span> を大きくしたときに正規分布 <span class="math notranslate nohighlight">\( N(\mu, \sima^{2}/n) \)</span> に近づく」</p>
 </div>
-<p>今の場合，成功回数を表す確率変数 <span class="math notranslate nohighlight">\( X \)</span> は，成功を1，失敗を0とした確率変数 <span class="math notranslate nohighlight">\( U_{i} \)</span> の和 <span class="math notranslate nohighlight">\( \displaystyle X = \sum_{i=1}^{n} U_{i} \)</span> となっているので，「ベルヌーイ分布に従う <span class="math notranslate nohighlight">\( n \)</span> 個の確率変数の和 <span class="math notranslate nohighlight">\( \displaystyle X = \sum_{i=1}^{n} U_{i} \)</span> の分布が <span class="math notranslate nohighlight">\( n \)</span> を大きくしたときに正規分布に近づく」ということになる．</p>
 <!-- 
 一般に，正規分布は連続型確率変数$ X $の従う確率分布で，確率密度関数は
 
@@ -1157,7 +1171,14 @@ $$
 以下では，この形の正規分布を$ N(\mu,\sigma^{2}) $と表す．
 正規分布$ N(\mu, \sigma^{2}) $は平均$ \mu $と分散$ \sigma^{2} $によって形状が図\ref{fig:normal}のように変わる．
 特に，平均$ \mu $は分布のピークの位置に対応し，分散$ \sigma^{2} $は分布の広がりを決める．
-正規分布は中心極限定理が背景にある多くの自然現象や社会現象において観られるので，統計学の理論上最も重要な分布である． --></section>
+正規分布は中心極限定理が背景にある多くの自然現象や社会現象において観られるので，統計学の理論上最も重要な分布である． --><section id="id21">
+<h4>演習問題<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>以下の確率分布について，中心極限定理が成り立つことを確認せよ．</p>
+<ol class="simple">
+<li></li>
+</ol>
+</section>
+</section>
 </section>
 </section>
 
