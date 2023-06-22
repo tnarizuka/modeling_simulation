@@ -473,7 +473,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 大数の法則は，一般の確率分布に従う確率変数列について成り立つ法則であり，以下のように表される．
 # 
 # ```{admonition} 大数の法則
-# 独立同分布に従う $ n $ 個の確率変数 $ U_{1}, U_{2},\ldots, U_{n} $ に対し，それぞれの期待値を $ E[U_{i}]=\mu $ とする．
+# 独立同分布に従う $ n $ 個の確率変数 $ U_{1}, U_{2},\ldots, U_{n} $ に対し，それぞれの期待値を $ \mu $ とする．
 # このとき，確率変数列の標本平均 $ \displaystyle\frac{1}{n}\sum_{i=1}^{n}U_{i} $ は $ n\to\infty $ で $ \mu $ に一致する．
 # ```
 
