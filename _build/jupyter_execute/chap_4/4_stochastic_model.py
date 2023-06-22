@@ -551,12 +551,6 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ が以下の確率分布に従うとき，上と同様のシミュレーションを行い，中心極限定理が成り立つことを確認せよ．
 # 
-# 1. 平均 $ \mu $，分散 $ \sigma^2 $ の正規分布
-# 
-# $$
-#     f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
-# $$
-# 
-# - 
-# 
+# 1. 正規分布
 # 2. 指数分布
+# 3. ポアソン分布
