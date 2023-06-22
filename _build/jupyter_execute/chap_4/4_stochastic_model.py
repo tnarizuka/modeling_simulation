@@ -479,10 +479,10 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 # 以下は，様々な確率分布に対する大数の法則のシミュレーションである．
 
-# In[133]:
+# In[149]:
 
 
-N = np.arange(1, 500)
+N = np.arange(1, 1000)
 
 # 様々な確率分布からサイズnの標本を生成する
 U_uni = uniform.rvs(loc=0, scale=2, size=len(N)) # 一様分布（平均1）
@@ -501,16 +501,17 @@ for n in N:
     T_expon.append(U_expon[:n].mean())
 
 # 標本平均の変化をプロット
-fig, ax = plt.subplots()
-ax.plot(N, np.array(T_uni), '-')
-ax.plot(N, np.array(T_norm), '-')
-ax.plot(N, np.array(T_binom), '-')
-ax.plot(N, np.array(T_poisson), '-')
-ax.plot(N, np.array(T_expon), '-')
+fig, ax = plt.subplots(figsize=(7, 3))
+ax.plot(N, np.array(T_uni), '-', label='一様分布（平均1）')
+ax.plot(N, np.array(T_norm), '-', label='正規分布（平均2）')
+ax.plot(N, np.array(T_binom), '-', label='二項分布（平均3）')
+ax.plot(N, np.array(T_poisson), '-', label='ポアソン分布（平均4）')
+ax.plot(N, np.array(T_expon), '-', label='指数分布（平均5）')
 
-ax.set_xlim(0, len(N)); ax.set_ylim(0, 7)
+ax.set_xlim(0, len(N)); ax.set_ylim(0, 6)
 ax.set_xlabel('標本サイズ $n$', fontsize=12)
-ax.set_ylabel('標本平均', fontsize=12);
+ax.set_ylabel('標本平均', fontsize=12)
+ax.legend(numpoints=1, fontsize=10, loc='upper left', frameon=True, bbox_to_anchor=(1, 1));
 
 
 # ### 中心極限定理
