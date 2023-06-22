@@ -3,7 +3,7 @@
 
 # # 確率モデル
 
-# In[1]:
+# In[2]:
 
 
 import numpy as np
@@ -516,25 +516,33 @@ ax.set_ylabel('標本平均', fontsize=12);
 # 「独立同分布に従う $ n $ 個の確率変数 $ U_{1}, U_{2},\ldots, U_{n} $ に対し，それぞれの期待値を $ \mu $，分散を $ \sigma^2 $ とする．このとき，確率変数列の標本平均 $ \displaystyle T=\frac{1}{n}\sum_{i=1}^{n}U_{i} $ の分布 $ g(t) $ が $ n $ を大きくしたときに正規分布 $ N(\mu, \sigma^{2}/n) $ に近づく」
 # ```
 
-# <!-- 
-# 一般に，正規分布は連続型確率変数$ X $の従う確率分布で，確率密度関数は
-# 
-# $$
-# 	f(x) = \frac{1}{\sqrt{2\pi} \sigma} \exp \left[ - \frac{(x-\mu)^{2}}{2\sigma^{2}} \right]
-# $$
-# 
-# で与えられる．
-# ここで，$ \mu $と$ \sigma^{2} $は正規分布の期待値と分散に対応する：
-# 
-# \begin{align*}
-# 	E[X] &= \int_{-\infty}^{\infty} xf(x) dx = \mu \\
-# 	V[X] &= \int_{-\infty}^{\infty} (x-\mu)^{2}f(x) dx = \sigma^{2}
-# \end{align*}
-# 
-# 以下では，この形の正規分布を$ N(\mu,\sigma^{2}) $と表す．
-# 正規分布$ N(\mu, \sigma^{2}) $は平均$ \mu $と分散$ \sigma^{2} $によって形状が図\ref{fig:normal}のように変わる．
-# 特に，平均$ \mu $は分布のピークの位置に対応し，分散$ \sigma^{2} $は分布の広がりを決める．
-# 正規分布は中心極限定理が背景にある多くの自然現象や社会現象において観られるので，統計学の理論上最も重要な分布である． -->
+# #### ベルヌーイ過程の場合
+
+# In[33]:
+
+
+fig, ax = plt.subplots()
+
+# 様々な標本サイズnに対して標本平均のヒストグラムを描画
+for n in [1, 2, 10, 100]:
+
+    # 標本平均を1000回計算してヒストグラムを描画
+    T = []
+    for j in range(1000):
+        U = sp.stats.uniform.rvs(scale=100, size=n) # [0, 100]の一様分布からサイズnの標本を生成
+        T.append(U.mean())
+    ax.hist(T, bins=10, density=1, edgecolor='w', alpha=0.5); 
+
+# 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画
+x = np.arange(0, 100, 0.1)
+ax.plot(x, sp.stats.norm.pdf(x, loc=50, scale=(100/np.sqrt(12))/np.sqrt(n)), 'r-')  
+
+
+# In[20]:
+
+
+
+
 
 # #### 演習問題
 # 
