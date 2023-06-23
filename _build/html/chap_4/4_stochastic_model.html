@@ -1128,7 +1128,7 @@ title="Print to PDF"
 <div class="admonition- admonition">
 <p class="admonition-title">大数の法則</p>
 <p>独立同分布に従う <span class="math notranslate nohighlight">\( n \)</span> 個の確率変数 <span class="math notranslate nohighlight">\( U_{1}, U_{2},\ldots, U_{n} \)</span> に対し，それぞれの期待値（母平均）を <span class="math notranslate nohighlight">\( \mu \)</span> とする．
-このとき，確率変数列の標本平均 <span class="math notranslate nohighlight">\( \displaystyle\frac{1}{n}\sum_{i=1}^{n}U_{i} \)</span> は <span class="math notranslate nohighlight">\( n\to\infty \)</span> で <span class="math notranslate nohighlight">\( \mu \)</span> に一致する．</p>
+このとき，確率変数列の標本平均 <span class="math notranslate nohighlight">\( \displaystyle T=\frac{1}{n}\sum_{i=1}^{n}U_{i} \)</span> は <span class="math notranslate nohighlight">\( n\to\infty \)</span> で <span class="math notranslate nohighlight">\( \mu \)</span> に一致する．</p>
 </div>
 <p>以下は，様々な確率分布に対する大数の法則のシミュレーションである．</p>
 <div class="cell docutils container">
@@ -1174,10 +1174,11 @@ title="Print to PDF"
 </section>
 <section id="id20">
 <h3><span class="section-number">4.3.2. </span>中心極限定理<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">#</a></h3>
-<p>ベルヌーイ過程において，標本平均 <span class="math notranslate nohighlight">\( T=X/n \)</span> の分布が <span class="math notranslate nohighlight">\( n \)</span> を大きくしたときに理論値 <span class="math notranslate nohighlight">\( p \)</span> の周りに集中し，大数の法則が成り立つことを見た．
-また，<span class="math notranslate nohighlight">\( n \)</span> を大きくしていくとき，標本平均 <span class="math notranslate nohighlight">\( T \)</span> の分布（二項分布）が左右非対称から左右対称な形へと変化することも見た．</p>
-<p>実は，<span class="math notranslate nohighlight">\( n \)</span> を十分大きくしたときに出現する左右対称で滑らかな分布は<strong>正規分布</strong>であり，これはベルヌーイ過程に限らず，一般の確率分布に従う確率変数列についても成り立つ．
-この性質は<strong>中心極限定理</strong>と呼ばれており，以下のように表される．</p>
+<p>ベルヌーイ過程において，<span class="math notranslate nohighlight">\( n \)</span> 回のベルヌーイ試行を１セットとして，成功回数 <span class="math notranslate nohighlight">\( X \)</span> や成功割合（標本平均） <span class="math notranslate nohighlight">\( T \)</span> を求める．
+これを何セットも繰り返すと，<span class="math notranslate nohighlight">\( X \)</span> や <span class="math notranslate nohighlight">\( T \)</span> の分布が得られ，いずれも二項分布に従うが，<span class="math notranslate nohighlight">\( n \)</span> を大きくしていくと左右非対称な分布から左右対称な分布へと変化する．
+この <span class="math notranslate nohighlight">\( n \)</span> を十分大きくしたときに出現する左右対称で滑らかな分布は<strong>正規分布</strong>であることが知られている．</p>
+<p>以上はベルヌーイ過程の場合であるが，実は一般の確率分布に従う確率変数列についても，<span class="math notranslate nohighlight">\( n \)</span>が十分大きいとき，確率変数列の和や標本平均は正規分布に近づく．
+この性質は<strong>中心極限定理</strong>と呼ばれており，より具体的には以下のように表される．</p>
 <div class="admonition- admonition">
 <p class="admonition-title">中心極限定理</p>
 <p>独立同分布に従う <span class="math notranslate nohighlight">\( n \)</span> 個の確率変数 <span class="math notranslate nohighlight">\( U_{1}, U_{2},\ldots, U_{n} \)</span> に対し，それぞれの母平均を <span class="math notranslate nohighlight">\( \mu \)</span>，母分散を <span class="math notranslate nohighlight">\( \sigma^2 \)</span> とする．このとき，確率変数列の標本平均 <span class="math notranslate nohighlight">\( \displaystyle T=\frac{1}{n}\sum_{i=1}^{n}U_{i} \)</span> の分布 <span class="math notranslate nohighlight">\( g(t) \)</span> が <span class="math notranslate nohighlight">\( n \)</span> を大きくしたときに正規分布 <span class="math notranslate nohighlight">\( N(\mu, \sigma^{2}/n) \)</span> に近づく</p>
