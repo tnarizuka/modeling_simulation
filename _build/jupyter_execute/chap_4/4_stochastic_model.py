@@ -649,7 +649,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # #### 状態ベクトル
 # 
 # 時刻 $ k $ に状態 $ i $ を取る確率を $ w_{k,i} $ とし，全状態を並べたベクトル $ \boldsymbol{w}_{k} $ を**状態ベクトル**と呼ぶ．
-# 例えば，3状態の場合は $ \boldsymbol{w}_{k} = (w_{k,0}, w_{k,1}, w_{k,2}) $ と表される．
+# 例えば，3状態の場合は $ \boldsymbol{w}_{k} = (w^{0}_{k}, w^{1}_{k}, w^{2}_{k}) $ と表される．
 # 時刻 $ k+1 $ の状態ベクトル $ \boldsymbol{w}_{k+1} $ は，時刻 $ k $ の状態ベクトル $ \boldsymbol{w}_{k} $ と遷移確率行列 $ P $ を用いて
 # 
 # $$
