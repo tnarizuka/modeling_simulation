@@ -667,6 +667,8 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 
 # と表される．
 # 
+# #### マルコフ連鎖の定常状態
+# 
 # もし，遷移を繰り返した結果，状態ベクトルがそれ以上変化しなくなった場合，これを**定常状態**と呼ぶ．
 # 定常状態の状態ベクトルを $ \boldsymbol{w}_{\infty} $ と表すと，
 # 
