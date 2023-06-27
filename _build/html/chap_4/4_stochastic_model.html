@@ -477,34 +477,41 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id25">
-     4.4.1. マルコフ連鎖の定義
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id26">
-     4.4.2. マルコフ連鎖の定式化
+     4.4.1. マルコフ連鎖の定式化
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id27">
+      <a class="reference internal nav-link" href="#id26">
        遷移確率
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id28">
+      <a class="reference internal nav-link" href="#id27">
        状態ベクトル
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id29">
-     4.4.3. マルコフ連鎖の応用例
+    <a class="reference internal nav-link" href="#id28">
+     4.4.2. マルコフ連鎖の例
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id29">
+       マルコフ連鎖の応用例
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id30">
+       マルコフ連鎖の具体例
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#python">
-     4.4.4. Pythonによる実装
+     4.4.3. Pythonによる実装
     </a>
    </li>
   </ul>
@@ -658,34 +665,41 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id25">
-     4.4.1. マルコフ連鎖の定義
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id26">
-     4.4.2. マルコフ連鎖の定式化
+     4.4.1. マルコフ連鎖の定式化
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id27">
+      <a class="reference internal nav-link" href="#id26">
        遷移確率
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id28">
+      <a class="reference internal nav-link" href="#id27">
        状態ベクトル
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id29">
-     4.4.3. マルコフ連鎖の応用例
+    <a class="reference internal nav-link" href="#id28">
+     4.4.2. マルコフ連鎖の例
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id29">
+       マルコフ連鎖の応用例
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id30">
+       マルコフ連鎖の具体例
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#python">
-     4.4.4. Pythonによる実装
+     4.4.3. Pythonによる実装
     </a>
    </li>
   </ul>
@@ -1340,18 +1354,15 @@ title="Print to PDF"
 <section id="id24">
 <h2><span class="section-number">4.4. </span>マルコフ連鎖<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">#</a></h2>
 <section id="id25">
-<h3><span class="section-number">4.4.1. </span>マルコフ連鎖の定義<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">4.4.1. </span>マルコフ連鎖の定式化<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p>ベルヌーイ過程は，１回の試行で取りうる状態が2つ（成功／失敗）だけで，それぞれの出現確率が一定値（ <span class="math notranslate nohighlight">\( p,\ 1-p \)</span> ）であったが，これを拡張して以下のような条件を加える：</p>
 <ol class="simple">
 <li><p>各時刻で取りうる状態が2つ以上</p></li>
-<li><p>時刻 <span class="math notranslate nohighlight">\( t+1 \)</span> に取りうる状態が時刻 <span class="math notranslate nohighlight">\( t \)</span> （現在）の状態だけに依存して決まる（<strong>マルコフ性</strong>）</p></li>
+<li><p>時刻 <span class="math notranslate nohighlight">\( k+1 \)</span> に取りうる状態が時刻 <span class="math notranslate nohighlight">\( k \)</span> （現在）の状態だけに依存して決まる（<strong>マルコフ性</strong>）</p></li>
 </ol>
 <p>このように，状態の数が2つ以上でマルコフ性を持つ確率過程を<strong>マルコフ連鎖</strong>と呼ぶ．</p>
-</section>
 <section id="id26">
-<h3><span class="section-number">4.4.2. </span>マルコフ連鎖の定式化<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">#</a></h3>
-<section id="id27">
-<h4>遷移確率<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>遷移確率<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>これ以降，試行回数を離散的な時刻 <span class="math notranslate nohighlight">\( k \)</span> に読み替え，時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態を確率変数 <span class="math notranslate nohighlight">\( U_{k} \)</span> によって表す．
 <span class="math notranslate nohighlight">\( U_{k} \)</span> は2つ以上の離散的な状態 <span class="math notranslate nohighlight">\( \{0, 1, 2, \ldots\} \)</span> を取るものとする（取りうる状態の集合を<strong>状態空間</strong>と呼ぶ）．
 このとき，マルコフ性は以下のように表される：</p>
@@ -1366,11 +1377,12 @@ title="Print to PDF"
     P(U_{k+1}=j|U_{k}=i) = p_{ij} 
 \]</div>
 <p>と表し，これを状態 <span class="math notranslate nohighlight">\( i \)</span> から <span class="math notranslate nohighlight">\( j \)</span> への<strong>遷移確率</strong>と呼ぶ．
+また，遷移確率 <span class="math notranslate nohighlight">\( p_{ij} \)</span> を <span class="math notranslate nohighlight">\( (i,j) \)</span> 成分とする行列を<strong>遷移確率行列</strong>と呼び，<span class="math notranslate nohighlight">\( P \)</span> と表す．
 なお，遷移確率は時刻 <span class="math notranslate nohighlight">\( k \)</span> に依らず一定であるとする（これを時間的に一様なマルコフ連鎖と呼ぶ）．
-マルコフ連鎖の具体例として，状態空間が <span class="math notranslate nohighlight">\( S=\{0, 1, 2\} \)</span> の場合を考える．
+マルコフ連鎖は，各状態間を遷移確率に従って次々に移動するようなイメージを持つと理解しやすい．</p>
+<p>マルコフ連鎖の具体例として，状態空間が <span class="math notranslate nohighlight">\( S=\{0, 1, 2\} \)</span> の場合を考える．
 図{numref}``は，この場合の状態間の遷移確率を可視化したもので，<strong>状態遷移図</strong>と呼ばれる．
-全ての状態間の遷移確率をまとめて表すには，遷移確率 <span class="math notranslate nohighlight">\( p_{ij} \)</span> を <span class="math notranslate nohighlight">\( (i,j) \)</span> 成分とする行列を考えると便利である．
-例えば，以下は状態空間が <span class="math notranslate nohighlight">\( S=\{0, 1, 2\} \)</span> の場合の遷移確率行列である：</p>
+この場合の遷移確率行列は次のように与えられる：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     P = \begin{pmatrix}
@@ -1387,35 +1399,150 @@ title="Print to PDF"
 <p>この例からも分かるように，遷移確率行列は各行の和が必ず1になる．
 これは，次の時刻で必ずいずれかの状態に遷移することを意味している．</p>
 </section>
-<section id="id28">
-<h4>状態ベクトル<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">#</a></h4>
-<p>時刻 <span class="math notranslate nohighlight">\( k \)</span> に各状態を取る確率をベクトル <span class="math notranslate nohighlight">\( \boldsymbol{u}_{k} \)</span> で表し，これを<strong>状態ベクトル</strong>と呼ぶ．
-時刻 <span class="math notranslate nohighlight">\( k+1 \)</span> の状態ベクトルは，時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{u}_{k} \)</span> と遷移確率行列 <span class="math notranslate nohighlight">\( P \)</span> を用いて</p>
+<section id="id27">
+<h4>状態ベクトル<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>時刻 <span class="math notranslate nohighlight">\( k \)</span> に状態 <span class="math notranslate nohighlight">\( i \)</span> を取る確率を <span class="math notranslate nohighlight">\( w_{k,i} \)</span> とし，全状態を並べたベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k} \)</span> を<strong>状態ベクトル</strong>と呼ぶ．
+例えば，3状態の場合は <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k} = (w_{k,0}, w_{k,1}, w_{k,2}) \)</span> と表される．
+時刻 <span class="math notranslate nohighlight">\( k+1 \)</span> の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k+1} \)</span> は，時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k} \)</span> と遷移確率行列 <span class="math notranslate nohighlight">\( P \)</span> を用いて</p>
 <div class="math notranslate nohighlight">
 \[
-    \boldsymbol{u}_{k+1} = \boldsymbol{u}_{k}P  
+    \boldsymbol{w}_{k+1} = \boldsymbol{w}_{k}P  
 \]</div>
 <p>と表すことができる．
+すなわち，状態ベクトルは遷移確率行列をかけることで次の時刻の状態ベクトルに変化する．
 これより，初期状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{u}_{0} \)</span> が与えられたとき，時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態ベクトルは</p>
 <div class="math notranslate nohighlight">
 \[
-    \boldsymbol{u}_{k} = \boldsymbol{u}_{0}P^{k}
+    \boldsymbol{w}_{k} = \boldsymbol{w}_{0}P^{k}
     
 \]</div>
 <p>と表される．</p>
-<p>もし，状態ベクトルがそれ以上変化しなくなったとき，これを<strong>定常状態</strong>と呼ぶ．</p>
+<p>もし，状態ベクトルがそれ以上変化しなくなったとき，これを<strong>定常状態</strong>と呼ぶ．
+定常状態の状態ベクトルを <span class="math notranslate nohighlight">\( \boldsymbol{w}_{\infty} \)</span> と表すと，</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol{w}_{\infty} = \boldsymbol{w}_{\infty}P
+\]</div>
+<p>が成り立つ．
+この式から，固有値1に対応する固有ベクトルが定常状態を表すことが分かる．</p>
 </section>
 </section>
+<section id="id28">
+<h3><span class="section-number">4.4.2. </span>マルコフ連鎖の例<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">#</a></h3>
 <section id="id29">
-<h3><span class="section-number">4.4.3. </span>マルコフ連鎖の応用例<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h4>マルコフ連鎖の応用例<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">#</a></h4>
 <ul class="simple">
 <li><p>球技におけるパス回しの数理モデル</p></li>
 <li><p>GoogleのPageRank</p></li>
 <li><p>マルコフ連鎖モンテカルロ法</p></li>
 </ul>
 </section>
+<section id="id30">
+<h4>マルコフ連鎖の具体例<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">#</a></h4>
+</section>
+</section>
 <section id="python">
-<h3><span class="section-number">4.4.4. </span>Pythonによる実装<a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">4.4.3. </span>Pythonによる実装<a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>以下のデータは，ある都市の30日間の天気を0（＝晴れ），1（＝曇），2（＝雨）の3つの状態で表したものである．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k+1&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>k</th>
+      <th>k+1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 遷移確率行列の推定</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;k+1&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">j</span><span class="p">)])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span> <span class="c1"># 初期状態分布</span>
+<span class="n">W_all</span> <span class="o">=</span> <span class="n">w0</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">)</span> <span class="c1"># 状態分布の更新</span>
+    <span class="n">W_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">W_all</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">W_all</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$w_0$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">W_all</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$w_1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">W_all</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$w_2$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;時刻 $k$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;状態確率&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;状態確率&#39;)
+</pre></div>
+</div>
+<img alt="../_images/4_stochastic_model_71_1.png" src="../_images/4_stochastic_model_71_1.png" />
+</div>
+</div>
 </section>
 </section>
 </section>
