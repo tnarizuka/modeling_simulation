@@ -514,6 +514,11 @@ title="Print to PDF"
      4.4.3. Pythonによる実装
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id31">
+     4.4.4. 演習問題
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -700,6 +705,11 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#python">
      4.4.3. Pythonによる実装
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id31">
+     4.4.4. 演習問題
     </a>
    </li>
   </ul>
@@ -1460,7 +1470,8 @@ title="Print to PDF"
 <p>ここで，<span class="math notranslate nohighlight">\( N_{ij} \)</span> は状態 <span class="math notranslate nohighlight">\( i \)</span> から <span class="math notranslate nohighlight">\( j \)</span> への遷移回数，<span class="math notranslate nohighlight">\( N_{i} \)</span> は状態 <span class="math notranslate nohighlight">\( i \)</span> の出現回数である．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k+1&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 時刻kとk+1のデータをデータフレームに格納</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k+1&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]})</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1539,11 +1550,21 @@ NumPy配列の行列積は <code class="docutils literal notranslate"><span clas
 今回の遷移確率行列の場合は，どんな初期状態ベクトルに対しても，最終的には同じ定常状態に収束することが確認できる．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span> <span class="c1"># 初期状態分布</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 初期状態分布</span>
+<span class="n">w0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">w0</span> <span class="o">=</span> <span class="n">w0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># 正規化</span>
+
+<span class="c1"># マルコフ連鎖の計算</span>
 <span class="n">W_all</span> <span class="o">=</span> <span class="n">w0</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
-    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span> <span class="c1"># 状態分布の更新</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
     <span class="n">W_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">W_all</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span>
+<span class="n">w</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.58064516, 0.27598566, 0.14336918])
 </pre></div>
 </div>
 </div>
@@ -1568,6 +1589,12 @@ NumPy配列の行列積は <code class="docutils literal notranslate"><span clas
 <img alt="../_images/4_stochastic_model_74_1.png" src="../_images/4_stochastic_model_74_1.png" />
 </div>
 </div>
+</section>
+<section id="id31">
+<h3><span class="section-number">4.4.4. </span>演習問題<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">#</a></h3>
+<ol class="simple">
+<li></li>
+</ol>
 </section>
 </section>
 </section>
