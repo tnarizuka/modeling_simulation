@@ -1339,7 +1339,6 @@ title="Print to PDF"
 </section>
 <section id="id24">
 <h2><span class="section-number">4.4. </span>マルコフ連鎖<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">#</a></h2>
-<p>これまで，試行回数を <span class="math notranslate nohighlight">\( i \)</span> で表していたが，これ以降は離散的な時刻 <span class="math notranslate nohighlight">\( t \)</span> によって表す．</p>
 <section id="id25">
 <h3><span class="section-number">4.4.1. </span>マルコフ連鎖の定義<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p>ベルヌーイ過程は，１回の試行で取りうる状態が2つ（成功／失敗）だけで，それぞれの出現確率が一定値（ <span class="math notranslate nohighlight">\( p,\ 1-p \)</span> ）であったが，これを拡張して以下のような条件を加える：</p>
@@ -1353,20 +1352,21 @@ title="Print to PDF"
 <h3><span class="section-number">4.4.2. </span>マルコフ連鎖の定式化<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">#</a></h3>
 <section id="id27">
 <h4>遷移確率<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">#</a></h4>
-<p>時刻 <span class="math notranslate nohighlight">\( t \)</span> の状態を確率変数 <span class="math notranslate nohighlight">\( U_{t} \)</span> によって表し，<span class="math notranslate nohighlight">\( U_{t} \)</span> は2つ以上の離散的な状態 <span class="math notranslate nohighlight">\( \{0, 1, 2, \ldots\} \)</span> を取るものとする（取りうる状態の集合を<strong>状態空間</strong>と呼ぶ）．
+<p>これ以降，試行回数を離散的な時刻 <span class="math notranslate nohighlight">\( k \)</span> に読み替え，時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態を確率変数 <span class="math notranslate nohighlight">\( U_{k} \)</span> によって表す．
+<span class="math notranslate nohighlight">\( U_{k} \)</span> は2つ以上の離散的な状態 <span class="math notranslate nohighlight">\( \{0, 1, 2, \ldots\} \)</span> を取るものとする（取りうる状態の集合を<strong>状態空間</strong>と呼ぶ）．
 このとき，マルコフ性は以下のように表される：</p>
 <div class="math notranslate nohighlight">
 \[
-    P(U_{t+1}=j|U_{t}=i) = P(U_{t+1}=j|U_{t}=i, U_{t-1}, \ldots, U_{0})
+    P(U_{k+1}=j|U_{k}=i) = P(U_{k+1}=j|U_{k}=i, U_{k-1}, \ldots, U_{0})
 \]</div>
-<p>これは，時刻 <span class="math notranslate nohighlight">\( t+1 \)</span> に状態 <span class="math notranslate nohighlight">\( j \)</span> を取る確率が，時刻 <span class="math notranslate nohighlight">\( t \)</span> の状態だけで決まることを表している．
+<p>これは，時刻 <span class="math notranslate nohighlight">\( k+1 \)</span> に状態 <span class="math notranslate nohighlight">\( j \)</span> を取る確率が，時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態だけで決まることを表している．
 以下では</p>
 <div class="math notranslate nohighlight">
 \[ 
-    P(U_{t+1}=j|U_{t}=i) = p_{ij} 
+    P(U_{k+1}=j|U_{k}=i) = p_{ij} 
 \]</div>
 <p>と表し，これを状態 <span class="math notranslate nohighlight">\( i \)</span> から <span class="math notranslate nohighlight">\( j \)</span> への<strong>遷移確率</strong>と呼ぶ．
-なお，遷移確率は時刻 <span class="math notranslate nohighlight">\( t \)</span> に依らず一定であるとする（これを時間的に一様なマルコフ連鎖と呼ぶ）．
+なお，遷移確率は時刻 <span class="math notranslate nohighlight">\( k \)</span> に依らず一定であるとする（これを時間的に一様なマルコフ連鎖と呼ぶ）．
 マルコフ連鎖の具体例として，状態空間が <span class="math notranslate nohighlight">\( S=\{0, 1, 2\} \)</span> の場合を考える．
 図{numref}``は，この場合の状態間の遷移確率を可視化したもので，<strong>状態遷移図</strong>と呼ばれる．
 全ての状態間の遷移確率をまとめて表すには，遷移確率 <span class="math notranslate nohighlight">\( p_{ij} \)</span> を <span class="math notranslate nohighlight">\( (i,j) \)</span> 成分とする行列を考えると便利である．
@@ -1389,17 +1389,17 @@ title="Print to PDF"
 </section>
 <section id="id28">
 <h4>状態ベクトル<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">#</a></h4>
-<p>時刻 <span class="math notranslate nohighlight">\( t \)</span> に各状態を取る確率をベクトル <span class="math notranslate nohighlight">\( \boldsymbol{u}_{t} \)</span> で表し，これを<strong>状態ベクトル</strong>と呼ぶ．
-時刻 <span class="math notranslate nohighlight">\( t+1 \)</span> の状態ベクトルは，時刻 <span class="math notranslate nohighlight">\( t \)</span> の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{u}_{t} \)</span> と遷移確率行列 <span class="math notranslate nohighlight">\( P \)</span> を用いて</p>
+<p>時刻 <span class="math notranslate nohighlight">\( k \)</span> に各状態を取る確率をベクトル <span class="math notranslate nohighlight">\( \boldsymbol{u}_{k} \)</span> で表し，これを<strong>状態ベクトル</strong>と呼ぶ．
+時刻 <span class="math notranslate nohighlight">\( k+1 \)</span> の状態ベクトルは，時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{u}_{k} \)</span> と遷移確率行列 <span class="math notranslate nohighlight">\( P \)</span> を用いて</p>
 <div class="math notranslate nohighlight">
 \[
-    \boldsymbol{u}_{t+1} = \boldsymbol{u}_{t}P  
+    \boldsymbol{u}_{k+1} = \boldsymbol{u}_{k}P  
 \]</div>
 <p>と表すことができる．
-これより，初期状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{u}_{0} \)</span> が与えられたとき，時刻 <span class="math notranslate nohighlight">\( t \)</span> の状態ベクトルは</p>
+これより，初期状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{u}_{0} \)</span> が与えられたとき，時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態ベクトルは</p>
 <div class="math notranslate nohighlight">
 \[
-    \boldsymbol{u}_{t} = \boldsymbol{u}_{0}P^{t}
+    \boldsymbol{u}_{k} = \boldsymbol{u}_{0}P^{k}
     
 \]</div>
 <p>と表される．</p>
