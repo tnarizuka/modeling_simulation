@@ -499,8 +499,20 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id29">
-     4.4.2. マルコフ連鎖の応用例
+     4.4.2. マルコフ連鎖の例
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id30">
+       具体例
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id31">
+       応用例
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#python">
@@ -508,7 +520,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id30">
+    <a class="reference internal nav-link" href="#id32">
      4.4.4. 演習問題
     </a>
    </li>
@@ -685,8 +697,20 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id29">
-     4.4.2. マルコフ連鎖の応用例
+     4.4.2. マルコフ連鎖の例
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id30">
+       具体例
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id31">
+       応用例
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#python">
@@ -694,7 +718,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id30">
+    <a class="reference internal nav-link" href="#id32">
      4.4.4. 演習問題
     </a>
    </li>
@@ -1432,7 +1456,70 @@ title="Print to PDF"
 </section>
 </section>
 <section id="id29">
-<h3><span class="section-number">4.4.2. </span>マルコフ連鎖の応用例<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">4.4.2. </span>マルコフ連鎖の例<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">#</a></h3>
+<section id="id30">
+<h4>具体例<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>図のような状態遷移図を持つマルコフ連鎖を考える．
+この場合の遷移確率行列は次のように与えられる：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    P = \begin{pmatrix}
+        0.8 &amp; 0.2 \\
+        0.3 &amp; 0.7 
+    \end{pmatrix}
+\end{split}\]</div>
+<p>定常分布は<span class="math notranslate nohighlight">\( P^{\top} \)</span> の固有値1に対応する固有ベクトルとなるが，
+まずは，<span class="math notranslate nohighlight">\( P^{\top} \)</span> が固有値1を持つことを確かめるため，固有値方程式</p>
+<div class="math notranslate nohighlight">
+\[
+    |P^{\top}-\lambda I| = 0
+\]</div>
+<p>を解いてみる（<span class="math notranslate nohighlight">\( I \)</span> は単位行列である）．
+この固有値方程式は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{vmatrix}
+        0.8-\lambda &amp; 0.3 \\
+        0.2 &amp; 0.7-\lambda
+    \end{vmatrix}
+    = 0
+\end{split}\]</div>
+<p>となる．
+よって，これを解くと，<span class="math notranslate nohighlight">\( \lambda_{1}=1 \)</span> と <span class="math notranslate nohighlight">\( \lambda_{2}=0.5 \)</span> が得られ，確かに固有値1を持つことが分かる．</p>
+<p>次に，固有値1に対する固有ベクトルを求める．
+関係式</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{pmatrix}
+        0.8 &amp; 0.3 \\
+        0.2 &amp; 0.7 
+    \end{pmatrix}
+    \begin{pmatrix}
+        w_{0} \\
+        w_{1}
+    \end{pmatrix}
+    = \begin{pmatrix}
+        w_{0} \\
+        w_{1}
+    \end{pmatrix}
+\end{split}\]</div>
+<p>を用いると，</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{pmatrix}
+    w_{0}\\
+    w_{1}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    0.6\\
+    0.4
+    \end{pmatrix}
+\end{split}\]</div>
+<p>となる．</p>
+</section>
+<section id="id31">
+<h4>応用例<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>マルコフ連鎖は自然現象から社会現象に至るまで，様々な現象をモデル化するために用いられる．</p>
 <ul class="simple">
 <li><p>球技におけるパス回しの数理モデル</p></li>
@@ -1442,6 +1529,7 @@ title="Print to PDF"
 <li><p>GoogleのPageRank</p></li>
 <li><p>マルコフ連鎖モンテカルロ法</p></li>
 </ul>
+</section>
 </section>
 <section id="python">
 <h3><span class="section-number">4.4.3. </span>Pythonによる実装<a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">#</a></h3>
@@ -1578,12 +1666,12 @@ NumPy配列の行列積は <code class="docutils literal notranslate"><span clas
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.0)
 </pre></div>
 </div>
-<img alt="../_images/4_stochastic_model_74_1.png" src="../_images/4_stochastic_model_74_1.png" />
+<img alt="../_images/4_stochastic_model_75_1.png" src="../_images/4_stochastic_model_75_1.png" />
 </div>
 </div>
 </section>
-<section id="id30">
-<h3><span class="section-number">4.4.4. </span>演習問題<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">#</a></h3>
+<section id="id32">
+<h3><span class="section-number">4.4.4. </span>演習問題<a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">#</a></h3>
 <ol class="simple">
 <li><p>あるスポーツでは，Aチームが連続して得点する確率が0.7，Bチームが連続して得点する確率が0.4である．</p>
 <ul class="simple">
