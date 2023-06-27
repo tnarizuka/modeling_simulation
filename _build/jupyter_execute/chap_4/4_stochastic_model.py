@@ -658,7 +658,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 
 # と表すことができる．
 # すなわち，状態ベクトルは遷移確率行列をかけることで次の時刻の状態ベクトルに変化する．
-# これより，初期状態ベクトル $ \boldsymbol{u}_{0} $ が与えられたとき，時刻 $ k $ の状態ベクトルは
+# これより，初期状態ベクトル $ \boldsymbol{w}_{0} $ が与えられたとき，時刻 $ k $ の状態ベクトルは
 # 
 # $$
 #     \boldsymbol{w}_{k} = \boldsymbol{w}_{0}P^{k}
