@@ -671,11 +671,17 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 定常状態の状態ベクトルを $ \boldsymbol{w}_{\infty} $ と表すと，
 # 
 # $$
-#     \boldsymbol{w}_{\infty} = \boldsymbol{w}_{\infty}P
+#      \boldsymbol{w}_{\infty}P = \boldsymbol{w}_{\infty}
 # $$
 # 
 # が成り立つ．
-# この式から，$ \boldsymbol{w}_{\infty} $ は固有値1に対応する固有ベクトルであることが分かる．
+# この式の両辺の転置を取ると，
+# 
+# $$
+#     P^{T}\boldsymbol{w}_{\infty}^{T} = \boldsymbol{w}_{\infty}^{T}
+# $$
+# 
+# となることから，$ \boldsymbol{w}_{\infty} $ は行列$ P^{top} $の固有値1に対応する固有ベクトルであることが分かる．
 
 # ### マルコフ連鎖の応用例
 # 
@@ -769,4 +775,6 @@ ax.set_xlim(0, 30); ax.set_ylim(0, 1)
 
 # ### 演習問題
 # 
-# 1. 
+# 1. あるスポーツでは，Aチームが連続して得点する確率が0.7，Bチームが連続して得点する確率が0.4である．
+#    - これをマルコフ連鎖としてモデル化し，状態遷移図と遷移確率行列を求めよ．
+#    - 最初にAチームが得点してから
