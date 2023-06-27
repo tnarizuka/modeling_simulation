@@ -681,7 +681,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 #     P^{\top}\boldsymbol{w}_{\infty}^{\top} = \boldsymbol{w}_{\infty}^{\top}
 # $$
 # 
-# となることから，$ \boldsymbol{w}_{\infty} $ は行列$ P^{\top} $の固有値1に対応する固有ベクトルであることが分かる．
+# となることから，$ \boldsymbol{w}_{\infty}^{\top} $ は行列$ P^{\top} $の固有値1に対応する固有ベクトルであることが分かる．
 
 # ### マルコフ連鎖の応用例
 # 
