@@ -678,7 +678,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # この式の両辺の転置を取ると，
 # 
 # $$
-#     P^{T}\boldsymbol{w}_{\infty}^{T} = \boldsymbol{w}_{\infty}^{T}
+#     P^{T}\boldsymbol{w}_{\infty}^{\top} = \boldsymbol{w}_{\infty}^{\top}
 # $$
 # 
 # となることから，$ \boldsymbol{w}_{\infty} $ は行列$ P^{\top} $の固有値1に対応する固有ベクトルであることが分かる．
