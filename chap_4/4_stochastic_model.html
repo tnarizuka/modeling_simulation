@@ -494,20 +494,8 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id28">
-     4.4.2. マルコフ連鎖の例
+     4.4.2. マルコフ連鎖の応用例
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id29">
-       マルコフ連鎖の応用例
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id30">
-       マルコフ連鎖の具体例
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#python">
@@ -515,7 +503,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id31">
+    <a class="reference internal nav-link" href="#id29">
      4.4.4. 演習問題
     </a>
    </li>
@@ -687,20 +675,8 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id28">
-     4.4.2. マルコフ連鎖の例
+     4.4.2. マルコフ連鎖の応用例
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id29">
-       マルコフ連鎖の応用例
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id30">
-       マルコフ連鎖の具体例
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#python">
@@ -708,7 +684,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id31">
+    <a class="reference internal nav-link" href="#id29">
      4.4.4. 演習問題
     </a>
    </li>
@@ -1411,7 +1387,7 @@ title="Print to PDF"
 </section>
 <section id="id27">
 <h4>状態ベクトル<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">#</a></h4>
-<p>時刻 <span class="math notranslate nohighlight">\( k \)</span> に状態 <span class="math notranslate nohighlight">\( i \)</span> を取る確率を <span class="math notranslate nohighlight">\( w_{k,i} \)</span> とし，全状態を並べたベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k} \)</span> を<strong>状態ベクトル</strong>と呼ぶ．
+<p>時刻 <span class="math notranslate nohighlight">\( k \)</span> に状態 <span class="math notranslate nohighlight">\( i \)</span> を取る確率を <span class="math notranslate nohighlight">\( w^{(k)}_{i} \)</span> とし，全状態を並べたベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k} \)</span> を<strong>状態ベクトル</strong>と呼ぶ．
 例えば，3状態の場合は <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k} = [w^{(k)}_{0}, w^{(k)}_{1}, w^{(k)}_{2}] \)</span> と表される．
 時刻 <span class="math notranslate nohighlight">\( k+1 \)</span> の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k+1} \)</span> は，時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k} \)</span> と遷移確率行列 <span class="math notranslate nohighlight">\( P \)</span> を用いて</p>
 <div class="math notranslate nohighlight">
@@ -1438,18 +1414,16 @@ title="Print to PDF"
 </section>
 </section>
 <section id="id28">
-<h3><span class="section-number">4.4.2. </span>マルコフ連鎖の例<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">#</a></h3>
-<section id="id29">
-<h4>マルコフ連鎖の応用例<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h3><span class="section-number">4.4.2. </span>マルコフ連鎖の応用例<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>マルコフ連鎖は自然現象から社会現象に至るまで，様々な現象をモデル化するために用いられる．</p>
 <ul class="simple">
 <li><p>球技におけるパス回しの数理モデル</p></li>
+</ul>
+<p>また，具体的な現象のモデル以外にも多くの応用例がある．</p>
+<ul class="simple">
 <li><p>GoogleのPageRank</p></li>
 <li><p>マルコフ連鎖モンテカルロ法</p></li>
 </ul>
-</section>
-<section id="id30">
-<h4>マルコフ連鎖の具体例<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">#</a></h4>
-</section>
 </section>
 <section id="python">
 <h3><span class="section-number">4.4.3. </span>Pythonによる実装<a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">#</a></h3>
@@ -1590,8 +1564,8 @@ NumPy配列の行列積は <code class="docutils literal notranslate"><span clas
 </div>
 </div>
 </section>
-<section id="id31">
-<h3><span class="section-number">4.4.4. </span>演習問題<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">#</a></h3>
+<section id="id29">
+<h3><span class="section-number">4.4.4. </span>演習問題<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">#</a></h3>
 <ol class="simple">
 <li></li>
 </ol>
