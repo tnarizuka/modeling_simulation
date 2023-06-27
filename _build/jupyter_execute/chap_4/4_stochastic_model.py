@@ -667,7 +667,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 
 # と表される．
 # 
-# もし，状態ベクトルがそれ以上変化しなくなったとき，これを**定常状態**と呼ぶ．
+# もし，遷移を繰り返した結果，状態ベクトルがそれ以上変化しなくなった場合，これを**定常状態**と呼ぶ．
 # 定常状態の状態ベクトルを $ \boldsymbol{w}_{\infty} $ と表すと，
 # 
 # $$
@@ -675,7 +675,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # $$
 # 
 # が成り立つ．
-# この式から，固有値1に対応する固有ベクトルが定常状態を表すことが分かる．
+# この式から，$ \boldsymbol{w}_{\infty} $ は固有値1に対応する固有ベクトルであることが分かる．
 
 # ### マルコフ連鎖の例
 # 
@@ -691,11 +691,21 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 # 以下のデータは，ある都市の30日間の天気を0（＝晴れ），1（＝曇），2（＝雨）の3つの状態で表したものである．
 
-# In[1]:
+# In[41]:
 
 
 data = [0,0,2,1,0,0,0,0,1,0,0,1,2,2,2,0,1,1,0,1,0,0,0,0,0,0,0,0,1,1]
 
+
+# **遷移確率行列の推定**
+# 
+# まず，遷移確率 $ p_{ij} $ を以下の式で推定する：
+# 
+# $$
+#     p_{ij} = \frac{N_{ij}}{N_{i}}
+# $$
+# 
+# ここで，$ N_{ij} $ は状態 $ i $ から $ j $ への遷移回数，$ N_{i} $ は状態 $ i $ の出現回数である．
 
 # In[5]:
 
@@ -714,25 +724,37 @@ for i in range(3):
         P[i, j] = len(df.loc[(df['k']==i) & (df['k+1']==j)])/len(df.loc[df['k']==i])
 
 
-# In[39]:
+# In[42]:
 
 
-w = np.array([0.2, 0.1, 0.7]) # 初期状態分布
+P
+
+
+# **マルコフ連鎖の計算**
+# 
+# 遷移確率行列 $ P $ が求まったら，任意の初期状態ベクトル $ \boldsymbol{w}_{0} $ と $ P $ との行列積を繰り返し計算すれば良い．
+# NumPy配列の行列積は `np.dot()` で計算できる．
+# 今回の遷移確率行列の場合は，どんな初期状態ベクトルに対しても，最終的には同じ定常状態に収束することが確認できる．
+
+# In[58]:
+
+
+w0 = np.array([0.7, 0.5, 0.1]) # 初期状態分布
 W_all = w0
 for k in range(len(data)):
-    w = w.dot(P) # 状態分布の更新
+    w = np.dot(w, P) # 状態分布の更新
     W_all = np.vstack([W_all, w])
 
 
-# In[40]:
+# In[64]:
 
 
 fig, ax = plt.subplots(figsize=(7, 3))
-ax.plot(W_all[:, 0], label='$w_0$')
-ax.plot(W_all[:, 1], label='$w_1$')
-ax.plot(W_all[:, 2], label='$w_2$')
+for i in range(3):
+    ax.plot(W_all[:, i], label='$w_%s$' % i)
 
 ax.legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize=10, frameon=True)
 ax.set_xlabel('時刻 $k$', fontsize=12)
 ax.set_ylabel('状態確率', fontsize=12)
+ax.set_xlim(0, 30); ax.set_ylim(0, 1)
 

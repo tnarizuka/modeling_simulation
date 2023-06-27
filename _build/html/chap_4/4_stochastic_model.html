@@ -1417,14 +1417,14 @@ title="Print to PDF"
     
 \]</div>
 <p>と表される．</p>
-<p>もし，状態ベクトルがそれ以上変化しなくなったとき，これを<strong>定常状態</strong>と呼ぶ．
+<p>もし，遷移を繰り返した結果，状態ベクトルがそれ以上変化しなくなった場合，これを<strong>定常状態</strong>と呼ぶ．
 定常状態の状態ベクトルを <span class="math notranslate nohighlight">\( \boldsymbol{w}_{\infty} \)</span> と表すと，</p>
 <div class="math notranslate nohighlight">
 \[
     \boldsymbol{w}_{\infty} = \boldsymbol{w}_{\infty}P
 \]</div>
 <p>が成り立つ．
-この式から，固有値1に対応する固有ベクトルが定常状態を表すことが分かる．</p>
+この式から，<span class="math notranslate nohighlight">\( \boldsymbol{w}_{\infty} \)</span> は固有値1に対応する固有ベクトルであることが分かる．</p>
 </section>
 </section>
 <section id="id28">
@@ -1451,6 +1451,13 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p><strong>遷移確率行列の推定</strong></p>
+<p>まず，遷移確率 <span class="math notranslate nohighlight">\( p_{ij} \)</span> を以下の式で推定する：</p>
+<div class="math notranslate nohighlight">
+\[
+    p_{ij} = \frac{N_{ij}}{N_{i}}
+\]</div>
+<p>ここで，<span class="math notranslate nohighlight">\( N_{ij} \)</span> は状態 <span class="math notranslate nohighlight">\( i \)</span> から <span class="math notranslate nohighlight">\( j \)</span> への遷移回数，<span class="math notranslate nohighlight">\( N_{i} \)</span> は状態 <span class="math notranslate nohighlight">\( i \)</span> の出現回数である．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k+1&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]})</span>
@@ -1514,10 +1521,28 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span> <span class="c1"># 初期状態分布</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.66666667, 0.27777778, 0.05555556],
+       [0.57142857, 0.28571429, 0.14285714],
+       [0.25      , 0.25      , 0.5       ]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>マルコフ連鎖の計算</strong></p>
+<p>遷移確率行列 <span class="math notranslate nohighlight">\( P \)</span> が求まったら，任意の初期状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{0} \)</span> と <span class="math notranslate nohighlight">\( P \)</span> との行列積を繰り返し計算すれば良い．
+NumPy配列の行列積は <code class="docutils literal notranslate"><span class="pre">np.dot()</span></code> で計算できる．
+今回の遷移確率行列の場合は，どんな初期状態ベクトルに対しても，最終的には同じ定常状態に収束することが確認できる．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span> <span class="c1"># 初期状態分布</span>
 <span class="n">W_all</span> <span class="o">=</span> <span class="n">w0</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
-    <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">)</span> <span class="c1"># 状態分布の更新</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span> <span class="c1"># 状態分布の更新</span>
     <span class="n">W_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">W_all</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1526,21 +1551,21 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">W_all</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$w_0$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">W_all</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$w_1$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">W_all</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$w_2$&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">W_all</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$w_</span><span class="si">%s</span><span class="s1">$&#39;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;時刻 $k$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;状態確率&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;状態確率&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.0)
 </pre></div>
 </div>
-<img alt="../_images/4_stochastic_model_71_1.png" src="../_images/4_stochastic_model_71_1.png" />
+<img alt="../_images/4_stochastic_model_74_1.png" src="../_images/4_stochastic_model_74_1.png" />
 </div>
 </div>
 </section>
