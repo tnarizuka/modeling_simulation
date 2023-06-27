@@ -470,6 +470,45 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id24">
+   4.4. マルコフ連鎖
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id25">
+     4.4.1. マルコフ連鎖の定義
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id26">
+     4.4.2. マルコフ連鎖の定式化
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id27">
+       遷移確率
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id28">
+       状態ベクトル
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id29">
+     4.4.3. マルコフ連鎖の応用例
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     4.4.4. Pythonによる実装
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </nav>
@@ -609,6 +648,45 @@ title="Print to PDF"
       </a>
      </li>
     </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id24">
+   4.4. マルコフ連鎖
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id25">
+     4.4.1. マルコフ連鎖の定義
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id26">
+     4.4.2. マルコフ連鎖の定式化
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id27">
+       遷移確率
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id28">
+       状態ベクトル
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id29">
+     4.4.3. マルコフ連鎖の応用例
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     4.4.4. Pythonによる実装
+    </a>
    </li>
   </ul>
  </li>
@@ -1204,7 +1282,7 @@ title="Print to PDF"
 
 <span class="c1"># 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
-<span class="n">gt</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">))</span>
+<span class="n">gt</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$N(p, p(1-p)/n)$&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;標本平均 $t$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
@@ -1257,6 +1335,87 @@ title="Print to PDF"
 <h4>演習問題<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>確率変数列 <span class="math notranslate nohighlight">\( U_{1}, U_{2},\ldots, U_{n} \)</span> がその他の確率分布に従う場合について上と同様のシミュレーションを行い，中心極限定理が成り立つことを確認せよ．</p>
 </section>
+</section>
+</section>
+<section id="id24">
+<h2><span class="section-number">4.4. </span>マルコフ連鎖<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">#</a></h2>
+<p>これまで，試行回数を <span class="math notranslate nohighlight">\( i \)</span> で表していたが，これ以降は離散的な時刻 <span class="math notranslate nohighlight">\( t \)</span> によって表す．</p>
+<section id="id25">
+<h3><span class="section-number">4.4.1. </span>マルコフ連鎖の定義<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>ベルヌーイ過程は，１回の試行で取りうる状態が2つ（成功／失敗）だけで，それぞれの出現確率が一定値（ <span class="math notranslate nohighlight">\( p,\ 1-p \)</span> ）であったが，これを拡張して以下のような条件を加える：</p>
+<ol class="simple">
+<li><p>各時刻で取りうる状態が2つ以上</p></li>
+<li><p>時刻 <span class="math notranslate nohighlight">\( t+1 \)</span> に取りうる状態が時刻 <span class="math notranslate nohighlight">\( t \)</span> （現在）の状態だけに依存して決まる（<strong>マルコフ性</strong>）</p></li>
+</ol>
+<p>このように，状態の数が2つ以上でマルコフ性を持つ確率過程を<strong>マルコフ連鎖</strong>と呼ぶ．</p>
+</section>
+<section id="id26">
+<h3><span class="section-number">4.4.2. </span>マルコフ連鎖の定式化<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">#</a></h3>
+<section id="id27">
+<h4>遷移確率<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>時刻 <span class="math notranslate nohighlight">\( t \)</span> の状態を確率変数 <span class="math notranslate nohighlight">\( U_{t} \)</span> によって表し，<span class="math notranslate nohighlight">\( U_{t} \)</span> は2つ以上の離散的な状態 <span class="math notranslate nohighlight">\( \{0, 1, 2, \ldots\} \)</span> を取るものとする（取りうる状態の集合を<strong>状態空間</strong>と呼ぶ）．
+このとき，マルコフ性は以下のように表される：</p>
+<div class="math notranslate nohighlight">
+\[
+    P(U_{t+1}=j|U_{t}=i) = P(U_{t+1}=j|U_{t}=i, U_{t-1}, \ldots, U_{0})
+\]</div>
+<p>これは，時刻 <span class="math notranslate nohighlight">\( t+1 \)</span> に状態 <span class="math notranslate nohighlight">\( j \)</span> を取る確率が，時刻 <span class="math notranslate nohighlight">\( t \)</span> の状態だけで決まることを表している．
+以下では</p>
+<div class="math notranslate nohighlight">
+\[ 
+    P(U_{t+1}=j|U_{t}=i) = p_{ij} 
+\]</div>
+<p>と表し，これを状態 <span class="math notranslate nohighlight">\( i \)</span> から <span class="math notranslate nohighlight">\( j \)</span> への<strong>遷移確率</strong>と呼ぶ．
+なお，遷移確率は時刻 <span class="math notranslate nohighlight">\( t \)</span> に依らず一定であるとする（これを時間的に一様なマルコフ連鎖と呼ぶ）．
+マルコフ連鎖の具体例として，状態空間が <span class="math notranslate nohighlight">\( S=\{0, 1, 2\} \)</span> の場合を考える．
+図{numref}``は，この場合の状態間の遷移確率を可視化したもので，<strong>状態遷移図</strong>と呼ばれる．
+全ての状態間の遷移確率をまとめて表すには，遷移確率 <span class="math notranslate nohighlight">\( p_{ij} \)</span> を <span class="math notranslate nohighlight">\( (i,j) \)</span> 成分とする行列を考えると便利である．
+例えば，以下は状態空間が <span class="math notranslate nohighlight">\( S=\{0, 1, 2\} \)</span> の場合の遷移確率行列である：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    P = \begin{pmatrix}
+        p_{00} &amp; p_{01} &amp; p_{02} \\
+        p_{10} &amp; p_{11} &amp; p_{12} \\
+        p_{20} &amp; p_{21} &amp; p_{22}
+    \end{pmatrix}
+    = \begin{pmatrix}
+        0.5 &amp; 0.3 &amp; 0.2 \\
+        0.2 &amp; 0.5 &amp; 0.3 \\
+        0.3 &amp; 0.2 &amp; 0.5
+    \end{pmatrix}
+\end{split}\]</div>
+<p>この例からも分かるように，遷移確率行列は各行の和が必ず1になる．
+これは，次の時刻で必ずいずれかの状態に遷移することを意味している．</p>
+</section>
+<section id="id28">
+<h4>状態ベクトル<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>時刻 <span class="math notranslate nohighlight">\( t \)</span> に各状態を取る確率をベクトル <span class="math notranslate nohighlight">\( \boldsymbol{u}_{t} \)</span> で表し，これを<strong>状態ベクトル</strong>と呼ぶ．
+時刻 <span class="math notranslate nohighlight">\( t+1 \)</span> の状態ベクトルは，時刻 <span class="math notranslate nohighlight">\( t \)</span> の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{u}_{t} \)</span> と遷移確率行列 <span class="math notranslate nohighlight">\( P \)</span> を用いて</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol{u}_{t+1} = \boldsymbol{u}_{t}P  
+\]</div>
+<p>と表すことができる．
+これより，初期状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{u}_{0} \)</span> が与えられたとき，時刻 <span class="math notranslate nohighlight">\( t \)</span> の状態ベクトルは</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol{u}_{t} = \boldsymbol{u}_{0}P^{t}
+    
+\]</div>
+<p>と表される．</p>
+<p>もし，状態ベクトルがそれ以上変化しなくなったとき，これを<strong>定常状態</strong>と呼ぶ．</p>
+</section>
+</section>
+<section id="id29">
+<h3><span class="section-number">4.4.3. </span>マルコフ連鎖の応用例<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">#</a></h3>
+<ul class="simple">
+<li><p>球技におけるパス回しの数理モデル</p></li>
+<li><p>GoogleのPageRank</p></li>
+<li><p>マルコフ連鎖モンテカルロ法</p></li>
+</ul>
+</section>
+<section id="python">
+<h3><span class="section-number">4.4.4. </span>Pythonによる実装<a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">#</a></h3>
 </section>
 </section>
 </section>
