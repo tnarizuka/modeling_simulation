@@ -3,7 +3,7 @@
 
 # # 確率モデル
 
-# In[1]:
+# In[70]:
 
 
 import numpy as np
@@ -707,14 +707,15 @@ data = [0,0,2,1,0,0,0,0,1,0,0,1,2,2,2,0,1,1,0,1,0,0,0,0,0,0,0,0,1,1]
 # 
 # ここで，$ N_{ij} $ は状態 $ i $ から $ j $ への遷移回数，$ N_{i} $ は状態 $ i $ の出現回数である．
 
-# In[5]:
+# In[66]:
 
 
+# 時刻kとk+1のデータをデータフレームに格納
 df = pd.DataFrame({'k': data[:-1], 'k+1': data[1:]})
 df.head(3)
 
 
-# In[18]:
+# In[67]:
 
 
 # 遷移確率行列の推定
@@ -736,17 +737,22 @@ P
 # NumPy配列の行列積は `np.dot()` で計算できる．
 # 今回の遷移確率行列の場合は，どんな初期状態ベクトルに対しても，最終的には同じ定常状態に収束することが確認できる．
 
-# In[58]:
+# In[81]:
 
 
-w0 = np.array([0.7, 0.5, 0.1]) # 初期状態分布
+# 初期状態分布
+w0 = np.array([2, 5, 3])
+w0 = w0/np.sqrt(np.sum(w0**2)) # 正規化
+
+# マルコフ連鎖の計算
 W_all = w0
 for k in range(len(data)):
-    w = np.dot(w, P) # 状態分布の更新
+    w = np.dot(w, P)
     W_all = np.vstack([W_all, w])
+w
 
 
-# In[64]:
+# In[82]:
 
 
 fig, ax = plt.subplots(figsize=(7, 3))
@@ -758,3 +764,7 @@ ax.set_xlabel('時刻 $k$', fontsize=12)
 ax.set_ylabel('状態確率', fontsize=12)
 ax.set_xlim(0, 30); ax.set_ylim(0, 1)
 
+
+# ### 演習問題
+# 
+# 1. 
