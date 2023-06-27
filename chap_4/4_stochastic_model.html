@@ -1458,7 +1458,16 @@ title="Print to PDF"
         0.3 &amp; 0.7 
     \end{pmatrix}
 \end{split}\]</div>
-<p>定常分布は<span class="math notranslate nohighlight">\( P^{\top} \)</span> の固有値1に対応する固有ベクトルとなるが，
+<p>この遷移確率行列から，例えば，最初（時刻0）にAチームが得点した場合の時刻<span class="math notranslate nohighlight">\( 2 \)</span>における状態ベクトルは</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \boldsymbol{w}_{2} = \boldsymbol{w}_{0}P^{2} = [1, 0] \begin{pmatrix}
+        0.8 &amp; 0.2 \\
+        0.3 &amp; 0.7 
+    \end{pmatrix}^{2} = [0.68, 0.32]
+\end{split}\]</div>
+<p>となる．</p>
+<p>定常分布は <span class="math notranslate nohighlight">\( P^{\top} \)</span> の固有値1に対応する固有ベクトルとなるが，
 まずは，<span class="math notranslate nohighlight">\( P^{\top} \)</span> が固有値1を持つことを確かめるため，固有値方程式</p>
 <div class="math notranslate nohighlight">
 \[
