@@ -737,7 +737,8 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 #     \end{pmatrix}
 # $$
 # 
-# を用いると，
+# を用いると，$ w_{1} = \frac{2}{3}w_{0} $　が得られる．
+# よって，規格化条件 $ w_{0}+w_{1}=1 $ を満たすような固有ベクトルは
 # 
 # $$
 #     \begin{pmatrix}
