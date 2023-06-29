@@ -708,7 +708,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # #### 具体例
 # 
 # あるスポーツでは，Aチームが連続して得点する確率が0.8，Bチームが連続して得点する確率が0.7である．
-# これをマルコフ連鎖で表すと，図のような状態遷移図が得られ，遷移確率行列は次のように与えられる：
+# これをマルコフ連鎖で表すと，{numref}`fig:markov_chain_2` のような状態遷移図が得られ，遷移確率行列は次のように与えられる：
 # 
 # $$
 #     P = \begin{pmatrix}
@@ -782,6 +782,14 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # $$
 # 
 # となる．
+
+# ```{figure} ../figure/markov_chain_2.png
+# ---
+# height: 250px
+# name: fig:markov_chain_2
+# ---
+# 
+# ```
 
 # #### 応用例
 # 
