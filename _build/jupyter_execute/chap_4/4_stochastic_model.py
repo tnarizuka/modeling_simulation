@@ -749,7 +749,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # となるのでこれを解くと，$ \lambda_{1}=1 $ と $ \lambda_{2}=0.5 $ が得られ，確かに固有値1を持つことが分かる．
 # 
 # 次に，固有値1に対する固有ベクトルを求める．
-# 関係式 $ P^{\top}\boldsymbol{w}^{\top}={w}^{\top} $ は
+# 関係式 $ P^{\top}\boldsymbol{w}^{\top}=\boldsymbol{w}^{\top} $ は
 # 
 # $$
 #     \begin{pmatrix}
