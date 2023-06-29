@@ -1446,18 +1446,18 @@ title="Print to PDF"
 <section id="id28">
 <h4>マルコフ連鎖の定常状態<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>状態ベクトルは遷移を繰り返すことによって変化していくが，もしそれ以上変化しなくなった場合，これを<strong>定常状態</strong>と呼ぶ．
-定常状態の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{\infty} \)</span> は遷移確率行列 <span class="math notranslate nohighlight">\( P \)</span> をかけても変化しないので，</p>
+定常状態の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w} \)</span> は遷移確率行列 <span class="math notranslate nohighlight">\( P \)</span> をかけても変化しないので，</p>
 <div class="math notranslate nohighlight">
 \[
-     \boldsymbol{w}_{\infty}P = \boldsymbol{w}_{\infty}
+     \boldsymbol{w}P = \boldsymbol{w}
 \]</div>
 <p>という式を満たす．
 ここで，この式の両辺の転置を取ると，</p>
 <div class="math notranslate nohighlight">
 \[
-    P^{\top}\boldsymbol{w}_{\infty}^{\top} = \boldsymbol{w}_{\infty}^{\top}
+    P^{\top}\boldsymbol{w}^{\top} = \boldsymbol{w}^{\top}
 \]</div>
-<p>となることから，<span class="math notranslate nohighlight">\( \boldsymbol{w}_{\infty}^{\top} \)</span> は行列<span class="math notranslate nohighlight">\( P^{\top} \)</span>の固有値1に対応する固有ベクトルであることが分かる．</p>
+<p>となることから，<span class="math notranslate nohighlight">\( \boldsymbol{w}^{\top} \)</span> は行列<span class="math notranslate nohighlight">\( P^{\top} \)</span>の固有値1に対応する固有ベクトルであることが分かる．</p>
 </section>
 </section>
 <section id="id29">
@@ -1500,7 +1500,7 @@ title="Print to PDF"
 \end{split}\]</div>
 <p>となるのでこれを解くと，<span class="math notranslate nohighlight">\( \lambda_{1}=1 \)</span> と <span class="math notranslate nohighlight">\( \lambda_{2}=0.5 \)</span> が得られ，確かに固有値1を持つことが分かる．</p>
 <p>次に，固有値1に対する固有ベクトルを求める．
-関係式 <span class="math notranslate nohighlight">\( P^{\top}\boldsymbol{w}_{\infty}^{\top}={w}_{\infty}^{\top} \)</span> は</p>
+関係式 <span class="math notranslate nohighlight">\( P^{\top}\boldsymbol{w}^{\top}={w}^{\top} \)</span> は</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{pmatrix}
