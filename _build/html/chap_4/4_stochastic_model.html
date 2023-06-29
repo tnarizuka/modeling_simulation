@@ -1482,13 +1482,13 @@ title="Print to PDF"
     \end{pmatrix}^{2} = [0.68, 0.32]
 \end{split}\]</div>
 <p>となる．</p>
-<p>定常分布は <span class="math notranslate nohighlight">\( P^{\top} \)</span> の固有値1に対応する固有ベクトルとなるが，
+<p>定常分布は転置行列 <span class="math notranslate nohighlight">\( P^{\top} \)</span> の固有値1に対応する固有ベクトルとして求まる．
 まずは，<span class="math notranslate nohighlight">\( P^{\top} \)</span> が固有値1を持つことを確かめるため，固有値方程式</p>
 <div class="math notranslate nohighlight">
 \[
     |P^{\top}-\lambda I| = 0
 \]</div>
-<p>を解いてみる（<span class="math notranslate nohighlight">\( I \)</span> は単位行列である）．
+<p>を解いてみる（<span class="math notranslate nohighlight">\( I \)</span> は単位行列）．
 この固有値方程式は</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1500,7 +1500,7 @@ title="Print to PDF"
 \end{split}\]</div>
 <p>となるのでこれを解くと，<span class="math notranslate nohighlight">\( \lambda_{1}=1 \)</span> と <span class="math notranslate nohighlight">\( \lambda_{2}=0.5 \)</span> が得られ，確かに固有値1を持つことが分かる．</p>
 <p>次に，固有値1に対する固有ベクトルを求める．
-関係式</p>
+関係式 <span class="math notranslate nohighlight">\( P^{\top}\boldsymbol{w}_{\infty}^{\top}={w}_{\infty}^{\top} \)</span> は</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{pmatrix}
@@ -1516,8 +1516,8 @@ title="Print to PDF"
         w_{1}
     \end{pmatrix}
 \end{split}\]</div>
-<p>を用いると，<span class="math notranslate nohighlight">\( w_{1} = \frac{2}{3}w_{0} \)</span>　が得られる．
-よって，規格化条件 <span class="math notranslate nohighlight">\( w_{0}+w_{1}=1 \)</span> を満たすような固有ベクトルは</p>
+<p>と書けるので，これより <span class="math notranslate nohighlight">\( w_{1} = \frac{2}{3}w_{0} \)</span>　が得られる．
+よって，確率の条件 <span class="math notranslate nohighlight">\( w_{0}+w_{1}=1 \)</span> を満たすような固有ベクトルは</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{pmatrix}
@@ -1530,7 +1530,7 @@ title="Print to PDF"
     0.4
     \end{pmatrix}
 \end{split}\]</div>
-<p>となる．</p>
+<p>と求まる．</p>
 <figure class="align-default" id="fig-markov-chain-2">
 <a class="reference internal image-reference" href="../_images/markov_chain_2.png"><img alt="../_images/markov_chain_2.png" src="../_images/markov_chain_2.png" style="height: 80px;" /></a>
 <figcaption>

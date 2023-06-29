@@ -728,14 +728,14 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 
 # となる．
 # 
-# 定常分布は $ P^{\top} $ の固有値1に対応する固有ベクトルとなるが，
+# 定常分布は転置行列 $ P^{\top} $ の固有値1に対応する固有ベクトルとして求まる．
 # まずは，$ P^{\top} $ が固有値1を持つことを確かめるため，固有値方程式
 # 
 # $$
 #     |P^{\top}-\lambda I| = 0
 # $$
 # 
-# を解いてみる（$ I $ は単位行列である）．
+# を解いてみる（$ I $ は単位行列）．
 # この固有値方程式は
 # 
 # $$
@@ -749,7 +749,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # となるのでこれを解くと，$ \lambda_{1}=1 $ と $ \lambda_{2}=0.5 $ が得られ，確かに固有値1を持つことが分かる．
 # 
 # 次に，固有値1に対する固有ベクトルを求める．
-# 関係式
+# 関係式 $ P^{\top}\boldsymbol{w}_{\infty}^{\top}={w}_{\infty}^{\top} $ は
 # 
 # $$
 #     \begin{pmatrix}
@@ -766,8 +766,8 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 #     \end{pmatrix}
 # $$
 # 
-# を用いると，$ w_{1} = \frac{2}{3}w_{0} $　が得られる．
-# よって，規格化条件 $ w_{0}+w_{1}=1 $ を満たすような固有ベクトルは
+# と書けるので，これより $ w_{1} = \frac{2}{3}w_{0} $　が得られる．
+# よって，確率の条件 $ w_{0}+w_{1}=1 $ を満たすような固有ベクトルは
 # 
 # $$
 #     \begin{pmatrix}
@@ -781,7 +781,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 #     \end{pmatrix}
 # $$
 # 
-# となる．
+# と求まる．
 
 # ```{figure} ../figure/markov_chain_2.png
 # ---
