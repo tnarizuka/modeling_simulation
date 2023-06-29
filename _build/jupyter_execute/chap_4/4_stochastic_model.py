@@ -688,20 +688,20 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # #### マルコフ連鎖の定常状態
 # 
 # 状態ベクトルは遷移を繰り返すことによって変化していくが，もしそれ以上変化しなくなった場合，これを**定常状態**と呼ぶ．
-# 定常状態の状態ベクトル $ \boldsymbol{w}_{\infty} $ は遷移確率行列 $ P $ をかけても変化しないので，
+# 定常状態の状態ベクトル $ \boldsymbol{w} $ は遷移確率行列 $ P $ をかけても変化しないので，
 # 
 # $$
-#      \boldsymbol{w}_{\infty}P = \boldsymbol{w}_{\infty}
+#      \boldsymbol{w}P = \boldsymbol{w}
 # $$
 # 
 # という式を満たす．
 # ここで，この式の両辺の転置を取ると，
 # 
 # $$
-#     P^{\top}\boldsymbol{w}_{\infty}^{\top} = \boldsymbol{w}_{\infty}^{\top}
+#     P^{\top}\boldsymbol{w}^{\top} = \boldsymbol{w}^{\top}
 # $$
 # 
-# となることから，$ \boldsymbol{w}_{\infty}^{\top} $ は行列$ P^{\top} $の固有値1に対応する固有ベクトルであることが分かる．
+# となることから，$ \boldsymbol{w}^{\top} $ は行列$ P^{\top} $の固有値1に対応する固有ベクトルであることが分かる．
 
 # ### マルコフ連鎖の例
 # 
@@ -749,7 +749,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # となるのでこれを解くと，$ \lambda_{1}=1 $ と $ \lambda_{2}=0.5 $ が得られ，確かに固有値1を持つことが分かる．
 # 
 # 次に，固有値1に対する固有ベクトルを求める．
-# 関係式 $ P^{\top}\boldsymbol{w}_{\infty}^{\top}={w}_{\infty}^{\top} $ は
+# 関係式 $ P^{\top}\boldsymbol{w}^{\top}={w}^{\top} $ は
 # 
 # $$
 #     \begin{pmatrix}
