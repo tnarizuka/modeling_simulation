@@ -1391,7 +1391,7 @@ title="Print to PDF"
 なお，遷移確率は時刻 <span class="math notranslate nohighlight">\( k \)</span> に依らず一定であるとする（これを時間的に一様なマルコフ連鎖と呼ぶ）．
 マルコフ連鎖は，各状態間を遷移確率に従って次々に移動するようなイメージを持つと理解しやすい．</p>
 <p>マルコフ連鎖の具体例として，状態空間が <span class="math notranslate nohighlight">\( S=\{0, 1, 2\} \)</span> の場合を考える．
-<a class="reference internal" href="#fig-markov-chain"><span class="std std-numref">図 4.1</span></a>は，この場合の状態間の遷移確率を可視化したもので，<strong>状態遷移図</strong>と呼ばれる．
+<a class="reference internal" href="#fig-markov-chain"><span class="std std-numref">図 4.1</span></a>は，状態間の遷移確率を可視化したもので，<strong>状態遷移図</strong>と呼ばれる．
 この場合の遷移確率行列は次のように与えられる：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1433,6 +1433,15 @@ title="Print to PDF"
     
 \]</div>
 <p>と表される．</p>
+<p>例えば，<a class="reference internal" href="#fig-markov-chain"><span class="std std-numref">図 4.1</span></a>の場合について，初期状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{0} = [1, 0, 0] \)</span> が与えられたとき，時刻 <span class="math notranslate nohighlight">\( 1 \)</span> の状態ベクトルは次のようになる：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \boldsymbol{w}_{1} = \boldsymbol{w}_{0}P = [1, 0, 0] \begin{pmatrix}
+        0.5 &amp; 0.3 &amp; 0.2 \\
+        0.2 &amp; 0.5 &amp; 0.3 \\
+        0.3 &amp; 0.2 &amp; 0.5
+    \end{pmatrix} = [0.5, 0.3, 0.2]
+\end{split}\]</div>
 </section>
 <section id="id28">
 <h4>マルコフ連鎖の定常状態<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">#</a></h4>
@@ -1671,7 +1680,7 @@ NumPy配列の行列積は <code class="docutils literal notranslate"><span clas
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.0)
 </pre></div>
 </div>
-<img alt="../_images/4_stochastic_model_76_1.png" src="../_images/4_stochastic_model_76_1.png" />
+<img alt="../_images/4_stochastic_model_77_1.png" src="../_images/4_stochastic_model_77_1.png" />
 </div>
 </div>
 </section>
