@@ -883,3 +883,7 @@ ax.set_xlabel('時刻 $k$', fontsize=12)
 ax.set_ylabel('状態確率', fontsize=12)
 ax.set_xlim(0, 30); ax.set_ylim(0, 1)
 
+
+# ### 演習問題
+# 
+# - 上の具体例で扱った2状態マルコフ連鎖について，定常状態の状態ベクトルを数値的に求めよ．
