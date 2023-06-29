@@ -1373,8 +1373,8 @@ title="Print to PDF"
 <p>以上のような確率過程を<strong>マルコフ連鎖</strong>と呼ぶ．</p>
 <section id="id26">
 <h4>遷移確率<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">#</a></h4>
-<p>これ以降，これまでの試行回数を離散的な時刻 <span class="math notranslate nohighlight">\( k \)</span> に読み替え，時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態を確率変数 <span class="math notranslate nohighlight">\( U_{k} \)</span> によって表す．
-<span class="math notranslate nohighlight">\( U_{k} \)</span> は2つ以上から成る離散的な状態 <span class="math notranslate nohighlight">\( \{0, 1, 2, \ldots\} \)</span> を取るものとする（取りうる状態の集合を<strong>状態空間</strong>と呼ぶ）．
+<p>時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態を確率変数 <span class="math notranslate nohighlight">\( U_{k} \)</span> によって表す．
+<span class="math notranslate nohighlight">\( U_{k} \)</span> は離散的な状態 <span class="math notranslate nohighlight">\( \{0, 1, 2, \ldots\} \)</span> を取るものとする（取りうる状態の集合を<strong>状態空間</strong>と呼ぶ）．
 このとき，マルコフ性は以下のように表される：</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1391,7 +1391,7 @@ title="Print to PDF"
 なお，遷移確率は時刻 <span class="math notranslate nohighlight">\( k \)</span> に依らず一定であるとする（これを時間的に一様なマルコフ連鎖と呼ぶ）．
 マルコフ連鎖は，各状態間を遷移確率に従って次々に移動するようなイメージを持つと理解しやすい．</p>
 <p>マルコフ連鎖の具体例として，状態空間が <span class="math notranslate nohighlight">\( S=\{0, 1, 2\} \)</span> の場合を考える．
-図{numref}``は，この場合の状態間の遷移確率を可視化したもので，<strong>状態遷移図</strong>と呼ばれる．
+図<a class="reference internal" href="#fig-markov-chain"><span class="std std-numref">図 4.1</span></a>は，この場合の状態間の遷移確率を可視化したもので，<strong>状態遷移図</strong>と呼ばれる．
 この場合の遷移確率行列は次のように与えられる：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1408,6 +1408,12 @@ title="Print to PDF"
 \end{split}\]</div>
 <p>ここで，遷移確率行列は各行の和が必ず1になることに注意する．
 これは，次の時刻で必ずいずれかの状態に遷移することを意味している．</p>
+<figure class="align-default" id="fig-markov-chain">
+<a class="reference internal image-reference" href="../_images/markov_chain.png"><img alt="../_images/markov_chain.png" src="../_images/markov_chain.png" style="height: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">図 4.1 </span><span class="caption-text">マルコフ連鎖の状態遷移図</span><a class="headerlink" href="#fig-markov-chain" title="この画像へのパーマリンク">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="id27">
 <h4>状態ベクトル<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">#</a></h4>
@@ -1665,7 +1671,7 @@ NumPy配列の行列積は <code class="docutils literal notranslate"><span clas
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.0)
 </pre></div>
 </div>
-<img alt="../_images/4_stochastic_model_75_1.png" src="../_images/4_stochastic_model_75_1.png" />
+<img alt="../_images/4_stochastic_model_76_1.png" src="../_images/4_stochastic_model_76_1.png" />
 </div>
 </div>
 </section>
