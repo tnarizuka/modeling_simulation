@@ -785,7 +785,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 # ```{figure} ../figure/markov_chain_2.png
 # ---
-# height: 100px
+# height: 80px
 # name: fig:markov_chain_2
 # ---
 # 
