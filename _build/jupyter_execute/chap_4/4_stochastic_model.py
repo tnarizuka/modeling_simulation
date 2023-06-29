@@ -788,6 +788,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # height: 80px
 # name: fig:markov_chain_2
 # ---
+# ２状態マルコフ連鎖の状態遷移図
 # 
 # ```
 
