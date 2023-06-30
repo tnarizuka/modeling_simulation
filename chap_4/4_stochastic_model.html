@@ -1480,7 +1480,7 @@ title="Print to PDF"
 <section id="id30">
 <h4>具体例<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>あるスポーツでは，Aチームが連続して得点する確率が0.8，Bチームが連続して得点する確率が0.7である．
-これをマルコフ連鎖で表すと，<a class="reference internal" href="#fig-markov-chain-2"><span class="std std-numref">図 4.2</span></a> のような状態遷移図が得られ，遷移確率行列は次のように与えられる：</p>
+Aチームの得点を状態0，Bチームの得点を状態1とすると，<a class="reference internal" href="#fig-markov-chain-2"><span class="std std-numref">図 4.2</span></a> のような状態遷移図が得られ，遷移確率行列は次のように与えられる：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     P = \begin{pmatrix}
@@ -1667,18 +1667,6 @@ NumPy配列の行列積は <code class="docutils literal notranslate"><span clas
 今回の遷移確率行列の場合は，どんな初期状態ベクトルに対しても，最終的には同じ定常状態に収束することが確認できる．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w0</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.32444284, 0.81110711, 0.48666426])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 初期状態分布</span>
 <span class="n">w0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
 <span class="n">w0</span> <span class="o">=</span> <span class="n">w0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w0</span><span class="p">)</span> <span class="c1"># 規格化</span>
@@ -1715,7 +1703,7 @@ NumPy配列の行列積は <code class="docutils literal notranslate"><span clas
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.0)
 </pre></div>
 </div>
-<img alt="../_images/4_stochastic_model_79_1.png" src="../_images/4_stochastic_model_79_1.png" />
+<img alt="../_images/4_stochastic_model_78_1.png" src="../_images/4_stochastic_model_78_1.png" />
 </div>
 </div>
 </section>
