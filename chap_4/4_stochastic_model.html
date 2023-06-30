@@ -1383,22 +1383,22 @@ title="Print to PDF"
 <p>以上のような確率過程を<strong>マルコフ連鎖</strong>と呼ぶ．</p>
 <section id="id26">
 <h4>遷移確率<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">#</a></h4>
-<p>時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態を確率変数 <span class="math notranslate nohighlight">\( U_{k} \)</span> によって表す．
-<span class="math notranslate nohighlight">\( U_{k} \)</span> は離散的な状態 <span class="math notranslate nohighlight">\( \{0, 1, 2, \ldots\} \)</span> を取るものとする（取りうる状態の集合を<strong>状態空間</strong>と呼ぶ）．
+<p>時刻 <span class="math notranslate nohighlight">\( t \)</span> の状態を確率変数 <span class="math notranslate nohighlight">\( U_{t} \)</span> によって表す．
+<span class="math notranslate nohighlight">\( U_{t} \)</span> は離散的な状態 <span class="math notranslate nohighlight">\( \{0, 1, 2, \ldots\} \)</span> を取るものとする（取りうる状態の集合を<strong>状態空間</strong>と呼ぶ）．
 このとき，マルコフ性は以下のように表される：</p>
 <div class="math notranslate nohighlight">
 \[
-     P(U_{k+1}=j|U_{k}=i, U_{k-1}, \ldots, U_{0}) = P(U_{k+1}=j|U_{k}=i)
+     P(U_{t+1}=j|U_{t}=i, U_{t-1}, \ldots, U_{0}) = P(U_{t+1}=j|U_{t}=i)
 \]</div>
-<p>これは，時刻 <span class="math notranslate nohighlight">\( k+1 \)</span> に状態 <span class="math notranslate nohighlight">\( j \)</span> を取る確率が，時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態だけで決まることを表している．
+<p>これは，時刻 <span class="math notranslate nohighlight">\( t+1 \)</span> に状態 <span class="math notranslate nohighlight">\( j \)</span> を取る確率が，時刻 <span class="math notranslate nohighlight">\( t \)</span> の状態だけで決まることを表している．
 以下ではこの確率を</p>
 <div class="math notranslate nohighlight">
 \[ 
-    P(U_{k+1}=j|U_{k}=i) = p_{ij} 
+    P(U_{t+1}=j|U_{t}=i) = p_{ij} 
 \]</div>
 <p>と表し，これを状態 <span class="math notranslate nohighlight">\( i \)</span> から <span class="math notranslate nohighlight">\( j \)</span> への<strong>遷移確率</strong>と呼ぶ．
 また，遷移確率 <span class="math notranslate nohighlight">\( p_{ij} \)</span> を <span class="math notranslate nohighlight">\( (i,j) \)</span> 成分とする行列を<strong>遷移確率行列</strong>と呼び，<span class="math notranslate nohighlight">\( P \)</span> と表す．
-なお，遷移確率は時刻 <span class="math notranslate nohighlight">\( k \)</span> に依らず一定であるとする（これを時間的に一様なマルコフ連鎖と呼ぶ）．
+なお，遷移確率は時刻 <span class="math notranslate nohighlight">\( t \)</span> に依らず一定であるとする（これを時間的に一様なマルコフ連鎖と呼ぶ）．
 マルコフ連鎖は，各状態間を遷移確率に従って次々に移動するようなイメージを持つと理解しやすい．</p>
 <p>マルコフ連鎖の具体例として，状態空間が <span class="math notranslate nohighlight">\( S=\{0, 1, 2\} \)</span> の場合を考える．
 <a class="reference internal" href="#fig-markov-chain"><span class="std std-numref">図 4.1</span></a>は，状態間の遷移確率を可視化したもので，<strong>状態遷移図</strong>と呼ばれる．
@@ -1427,26 +1427,25 @@ title="Print to PDF"
 </section>
 <section id="id27">
 <h4>状態ベクトル<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">#</a></h4>
-<p>時刻 <span class="math notranslate nohighlight">\( k \)</span> に状態 <span class="math notranslate nohighlight">\( i \)</span> を取る確率を</p>
+<p>時刻 <span class="math notranslate nohighlight">\( t \)</span> に状態 <span class="math notranslate nohighlight">\( i \)</span> を取る確率を</p>
 <div class="math notranslate nohighlight">
 \[ 
-    P(U_{k}=i)=w^{(k)}_{i} 
+    P(U_{t}=i)=w^{(t)}_{i} 
 \]</div>
-<p>と表し，全状態を並べたベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k} \)</span> を<strong>状態ベクトル</strong>と呼ぶ．
-状態ベクトルは確率分布を表し，3状態の場合は <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k} = [w^{(k)}_{0}, w^{(k)}_{1}, w^{(k)}_{2}] \)</span> と表される．
+<p>と表し，全状態を並べたベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{t} \)</span> を<strong>状態ベクトル</strong>と呼ぶ．
+状態ベクトルは確率分布を表し，3状態の場合は <span class="math notranslate nohighlight">\( \boldsymbol{w}_{t} = [w^{(t)}_{0}, w^{(t)}_{1}, w^{(t)}_{2}] \)</span> と表される．
 （※ ベルヌーイ過程の場合，状態ベクトルはベルヌーイ分布を意味する．）</p>
-<p>時刻 <span class="math notranslate nohighlight">\( k+1 \)</span> の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k+1} \)</span> は，時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k} \)</span> と遷移確率行列 <span class="math notranslate nohighlight">\( P \)</span> を用いて</p>
+<p>時刻 <span class="math notranslate nohighlight">\( t+1 \)</span> の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{t+1} \)</span> は，時刻 <span class="math notranslate nohighlight">\( t \)</span> の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{t} \)</span> と遷移確率行列 <span class="math notranslate nohighlight">\( P \)</span> を用いて</p>
 <div class="math notranslate nohighlight">
 \[
-    \boldsymbol{w}_{k+1} = \boldsymbol{w}_{k}P  
+    \boldsymbol{w}_{t+1} = \boldsymbol{w}_{t}P  
 \]</div>
 <p>と表すことができる．
 すなわち，状態ベクトルは遷移確率行列をかけることで次の時刻の状態ベクトルに変化する．
-これより，初期状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{0} \)</span> が与えられたとき，時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態ベクトルは</p>
+これより，初期状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{0} \)</span> が与えられたとき，時刻 <span class="math notranslate nohighlight">\( t \)</span> の状態ベクトルは</p>
 <div class="math notranslate nohighlight">
 \[
-    \boldsymbol{w}_{k} = \boldsymbol{w}_{0}P^{k}
-    
+    \boldsymbol{w}_{t} = \boldsymbol{w}_{0}P^{t}
 \]</div>
 <p>と表される．</p>
 <p>例えば，<a class="reference internal" href="#fig-markov-chain"><span class="std std-numref">図 4.1</span></a>の場合について，初期状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{0} = [1, 0, 0] \)</span> が与えられたとき，時刻 <span class="math notranslate nohighlight">\( 1 \)</span> の状態ベクトルは次のようになる：</p>
@@ -1589,7 +1588,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 時刻kとk+1のデータをデータフレームに格納</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k+1&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]})</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;t+1&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]})</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1613,8 +1612,8 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>k</th>
-      <th>k+1</th>
+      <th>t</th>
+      <th>t+1</th>
     </tr>
   </thead>
   <tbody>
@@ -1643,7 +1642,7 @@ title="Print to PDF"
 <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-        <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;k+1&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">j</span><span class="p">)])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;t+1&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">j</span><span class="p">)])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">i</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1668,13 +1667,25 @@ NumPy配列の行列積は <code class="docutils literal notranslate"><span clas
 今回の遷移確率行列の場合は，どんな初期状態ベクトルに対しても，最終的には同じ定常状態に収束することが確認できる．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.32444284, 0.81110711, 0.48666426])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 初期状態分布</span>
-<span class="n">w0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="n">w0</span> <span class="o">=</span> <span class="n">w0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># 正規化</span>
+<span class="n">w0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
+<span class="n">w0</span> <span class="o">=</span> <span class="n">w0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w0</span><span class="p">)</span> <span class="c1"># 規格化</span>
 
 <span class="c1"># マルコフ連鎖の計算</span>
-<span class="n">W_all</span> <span class="o">=</span> <span class="n">w0</span>
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+<span class="n">W_all</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">w0</span><span class="p">,</span> <span class="n">w0</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
     <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
     <span class="n">W_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">W_all</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span>
 <span class="n">w</span>
@@ -1704,7 +1715,7 @@ NumPy配列の行列積は <code class="docutils literal notranslate"><span clas
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.0)
 </pre></div>
 </div>
-<img alt="../_images/4_stochastic_model_78_1.png" src="../_images/4_stochastic_model_78_1.png" />
+<img alt="../_images/4_stochastic_model_79_1.png" src="../_images/4_stochastic_model_79_1.png" />
 </div>
 </div>
 </section>
