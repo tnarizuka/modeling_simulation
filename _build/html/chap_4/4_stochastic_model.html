@@ -1377,7 +1377,7 @@ title="Print to PDF"
 <h3><span class="section-number">4.4.1. </span>マルコフ連鎖の定式化<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p>ベルヌーイ過程は，１回の試行で取りうる状態が2つ（成功／失敗）だけで，それぞれの出現確率が一定値（<span class="math notranslate nohighlight">\( p,\ 1-p \)</span>）であったが，これを次のように拡張する：</p>
 <ol class="simple">
-<li><p>各時刻で取りうる状態が離散的</p></li>
+<li><p>各時刻で取りうる状態が離散的で2つ以上</p></li>
 <li><p>次の時刻に取りうる状態が現在の状態だけに依存して決まる（<strong>マルコフ性</strong>）</p></li>
 </ol>
 <p>以上のような確率過程を<strong>マルコフ連鎖</strong>と呼ぶ．</p>
@@ -1427,7 +1427,7 @@ title="Print to PDF"
 </section>
 <section id="id27">
 <h4>状態ベクトル<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">#</a></h4>
-<p>時刻 <span class="math notranslate nohighlight">\( k \)</span> に状態 <span class="math notranslate nohighlight">\( i \)</span> を取る確率を <span class="math notranslate nohighlight">\( w^{(k)}_{i} \)</span> とし，全状態を並べたベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k} \)</span> を<strong>状態ベクトル</strong>と呼ぶ．
+<p>時刻 <span class="math notranslate nohighlight">\( k \)</span> に状態 <span class="math notranslate nohighlight">\( i \)</span> を取る確率を <span class="math notranslate nohighlight">\( P(U_{k}=i)=w^{(k)}_{i} \)</span> とし，全状態を並べたベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k} \)</span> を<strong>状態ベクトル</strong>と呼ぶ．
 例えば，3状態の場合は <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k} = [w^{(k)}_{0}, w^{(k)}_{1}, w^{(k)}_{2}] \)</span> と表される．
 時刻 <span class="math notranslate nohighlight">\( k+1 \)</span> の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k+1} \)</span> は，時刻 <span class="math notranslate nohighlight">\( k \)</span> の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}_{k} \)</span> と遷移確率行列 <span class="math notranslate nohighlight">\( P \)</span> を用いて</p>
 <div class="math notranslate nohighlight">
