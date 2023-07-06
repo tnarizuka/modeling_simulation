@@ -528,16 +528,17 @@ title="Print to PDF"
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     \frac{dx}{dt} &amp;= 2t \\[10pt]
-    \frac{d^2x}{dt^2} &amp;= -x \\
+    m\frac{d^2x}{dt^2} &amp;= -mg-k\left(\frac{dx}{dt}\right)^2 \\
 \end{align*}\]</div>
-<p>微分方程式には，独立変数が1つのものと複数のものがあり，前者を<strong>常微分方程式</strong>，後者を<strong>偏微分方程式</strong>と呼ぶ．
-また，微分方程式に含まれる最も高次の微分の次数を<strong>微分方程式の階数</strong>と呼ぶ．
-例えば，上の式は，それぞれ1階微分方程式と2階微分方程式である．</p>
+<p>微分方程式には高階の微分を含んでもよく，最も高次の微分の次数は<strong>微分方程式の階数</strong>と呼ぶ．
+また，<span class="math notranslate nohighlight">\( x \)</span> と <span class="math notranslate nohighlight">\( x \)</span> の微分が全て1次式である場合を<strong>線形微分方程式</strong>，それ以外を<strong>非線形微分方程式</strong>と呼ぶ．
+例えば，上の式は，それぞれ線形の1階微分方程式と非線形の2階微分方程式である．
+なお，微分方程式には，独立変数が1つである<strong>常微分方程式</strong>と独立変数が複数ある<strong>偏微分方程式</strong>があるが，本章では常微分方程式のみを扱う．</p>
 <p>微分方程式は１次方程式や連立方程式のように解を求めることができる．
-微分方程式において解を求めるとは，与えられた微分方程式を満たすような <span class="math notranslate nohighlight">\( x \)</span> と <span class="math notranslate nohighlight">\( t \)</span> の関係式を求めることを指し，これを<strong>微分方程式を解く</strong>という．</p>
-<p>微分方程式が与えられたときにその解を求める方法は２種類存在する．
+微分方程式において解を求めるとは，与えられた微分方程式を満たすような関数 <span class="math notranslate nohighlight">\( x(t) \)</span> を求めることを指し，これを<strong>微分方程式を解く</strong>という．</p>
+<p>微分方程式が与えられたときにその解を求める方法は主に２種類存在する．
 １つ目は式変形を行って解く方法で，これを<strong>解析的に解く</strong>という．
-一般に，微分方程式を解析的に求めることは困難であり，特に高階の微分方程式や偏微分方程式の場合が難しい．
+一般に，微分方程式が与えられたときにそれを解析的に解くのは困難であることが多く，特に非線形の微分方程式や偏微分方程式の場合は特に難しい．
 そこで，このような場合には２つ目の方法として，数値計算によって解を求める方法がある．
 これを<strong>数値的に解く</strong>という．</p>
 <p>以下では常微分方程式を例に解ける微分方程式の例をいくつか紹介する．
@@ -711,8 +712,8 @@ title="Print to PDF"
 \]</div>
 <p>が成り立つ．</p>
 <p>以上をまとめると，SIモデルは次のような連立微分方程式として記述される：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ca0770c-abe8-46e8-a79f-44bd421e40a2">
-<span class="eqno">(5.1)<a class="headerlink" href="#equation-0ca0770c-abe8-46e8-a79f-44bd421e40a2" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0ad09524-c5fa-4e33-a754-4a0c576dffa7">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-0ad09524-c5fa-4e33-a754-4a0c576dffa7" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	\left \{
 	\begin{aligned}
 		\frac{dS}{dt} &amp;= -\gamma S(t)I(t) \\[10pt]
@@ -739,8 +740,8 @@ title="Print to PDF"
 <p>SIモデルは一度感染したらずっと感染したままという非現実的なモデルであった．
 しかし，多くの感染症では感染状態（<span class="math notranslate nohighlight">\( I \)</span>）になってから時間が経つと，免疫を獲得してそれ以上感染せず，かつ他者に移す可能性もない状態（<span class="math notranslate nohighlight">\( R \)</span>）になることが多い．
 そこで，<span class="math notranslate nohighlight">\( S(t),\ I(t) \)</span> に加えて新たな変数 <span class="math notranslate nohighlight">\( R(t) \)</span> も加えた以下のモデルを考える：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-de4de4a7-380a-4ea4-8f4b-ce8fad2cd6bd">
-<span class="eqno">(5.2)<a class="headerlink" href="#equation-de4de4a7-380a-4ea4-8f4b-ce8fad2cd6bd" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a81c4341-e3cb-4187-b7b2-7fa38c74667d">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-a81c4341-e3cb-4187-b7b2-7fa38c74667d" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	\left\{
 	\begin{aligned}
 		\frac{dS}{dt} &amp;= - \gamma S(t)I(t) \\[10pt]
