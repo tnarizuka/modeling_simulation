@@ -1,0 +1,851 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>5. 微分方程式モデル &#8212; Mathematical Modeling and Simulation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="付録" href="../appendix/appendix.html" />
+    <link rel="prev" title="4. 確率モデル" href="../chap_4/4_stochastic_model.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="ja">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematical Modeling and Simulation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chap_1/1_introduction.html">
+   1. イントロダクション
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chap_2/2_environment.html">
+   2. 準備
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chap_3/3_curve_fitting.html">
+   3. カーブフィッティング
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chap_4/4_stochastic_model.html">
+   4. 確率モデル
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   5. 微分方程式モデル
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/appendix.html">
+   付録
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reference.html">
+   参考文献リスト
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/tnarizuka/modeling_simulation/main?urlpath=tree/docs/chap_5/5_diff_eq.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/tnarizuka/modeling_simulation"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/tnarizuka/modeling_simulation/issues/new?title=Issue%20on%20page%20%2Fchap_5/5_diff_eq.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chap_5/5_diff_eq.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   5.1. 微分方程式とは？
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     5.1.1. 簡単な微分方程式
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   5.2. 人口の増加
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     5.2.1. マルサスモデル
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     5.2.2. ロジスティックモデル
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     5.2.3. オイラー法による数値解法
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   5.3. 感染症の流行
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     5.3.1. 感染症のモデル化
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#si">
+     5.3.2. SIモデル
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sir">
+     5.3.3. SIRモデル
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     5.3.4. Pythonによるシミュレーション
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>微分方程式モデル</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   5.1. 微分方程式とは？
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     5.1.1. 簡単な微分方程式
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   5.2. 人口の増加
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     5.2.1. マルサスモデル
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     5.2.2. ロジスティックモデル
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     5.2.3. オイラー法による数値解法
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   5.3. 感染症の流行
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     5.3.1. 感染症のモデル化
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#si">
+     5.3.2. SIモデル
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sir">
+     5.3.3. SIRモデル
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     5.3.4. Pythonによるシミュレーション
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">5. </span>微分方程式モデル<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">odeint</span><span class="p">,</span> <span class="n">solve_ivp</span>
+
+<span class="c1"># 日本語フォントの設定（Mac:&#39;Hiragino Sans&#39;, Windows:&#39;MS Gothic&#39;）</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Hiragino Sans&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>本章の内容は，文献<span id="id2">[<a class="reference internal" href="../reference.html#id3" title="橋本洋志・牧野浩二. Pythonコンピュータシミュレーション入門. オーム社, 2021.">1</a>, <a class="reference internal" href="../reference.html#id6" title="小高知宏. Pythonによる数値計算とシミュレーション. オーム社, 2018.">4</a>, <a class="reference internal" href="../reference.html#id8" title="河村哲也・桑名杏奈. Pythonによる数値計算入門. 朝倉書店, 2021.">6</a>, <a class="reference internal" href="../reference.html#id9" title="遠藤雅守・北林照幸. 微分方程式と数理モデル. 裳華房, 2017.">7</a>]</span> を主に参考にしている．</p>
+<section id="id3">
+<h2><span class="section-number">5.1. </span>微分方程式とは？<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">#</a></h2>
+<p>独立変数を <span class="math notranslate nohighlight">\( t \)</span>，<span class="math notranslate nohighlight">\( t \)</span>に伴って決まる従属変数を <span class="math notranslate nohighlight">\( x(t) \)</span> とする．
+このとき，<span class="math notranslate nohighlight">\( x \)</span> の <span class="math notranslate nohighlight">\( t \)</span> による微分を含む方程式を<strong>微分方程式</strong>と呼ぶ．
+例えば，以下は微分方程式の例である：</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \frac{dx}{dt} &amp;= 2t \\[10pt]
+    \frac{d^2x}{dt^2} &amp;= -x \\
+\end{align*}\]</div>
+<p>微分方程式には，独立変数が1つのものと複数のものがあり，前者を<strong>常微分方程式</strong>，後者を<strong>偏微分方程式</strong>と呼ぶ．
+また，微分方程式に含まれる最も高次の微分の次数を<strong>微分方程式の階数</strong>と呼ぶ．
+例えば，上の式は，それぞれ1階微分方程式と2階微分方程式である．</p>
+<p>微分方程式は１次方程式や連立方程式のように解を求めることができる．
+微分方程式において解を求めるとは，与えられた微分方程式を満たすような <span class="math notranslate nohighlight">\( x \)</span> と <span class="math notranslate nohighlight">\( t \)</span> の関係式を求めることを指し，これを<strong>微分方程式を解く</strong>という．</p>
+<p>微分方程式が与えられたときにその解を求める方法は２種類存在する．
+１つ目は式変形を行って解く方法で，これを<strong>解析的に解く</strong>という．
+一般に，微分方程式を解析的に求めることは困難であり，特に高階の微分方程式や偏微分方程式の場合が難しい．
+そこで，このような場合には２つ目の方法として，数値計算によって解を求める方法がある．
+これを<strong>数値的に解く</strong>という．</p>
+<p>以下では常微分方程式を例に解ける微分方程式の例をいくつか紹介する．
+また，Pythonを使って微分方程式を数値的に解く方法についても紹介する．</p>
+<section id="id4">
+<h3><span class="section-number">5.1.1. </span>簡単な微分方程式<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p><span class="math notranslate nohighlight">\( t \)</span> が時刻，<span class="math notranslate nohighlight">\( x \)</span> が物体の位置を表すとすると，物体の速度 <span class="math notranslate nohighlight">\( v \)</span> は <span class="math notranslate nohighlight">\( v = \frac{dx}{dt} \)</span> で与えられる．
+いま，速度が一定値 <span class="math notranslate nohighlight">\( v_{0} \)</span> であると仮定すると，</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{dx}{dt} = v_{0} 
+\]</div>
+<p>が成り立つ．
+これは，物体の運動を表す最も簡単な微分方程式である．
+この微分方程式の解を求めるには，両辺を <span class="math notranslate nohighlight">\( t \)</span> で積分すれば良い：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \int \frac{dx}{dt} dt = \int v_{0} dt \\[10pt]
+    x(t) = v_{0} t + C
+\end{split}\]</div>
+<p>ここで，<span class="math notranslate nohighlight">\( C \)</span> は積分定数であるが，<span class="math notranslate nohighlight">\( t=0 \)</span> の位置を <span class="math notranslate nohighlight">\( x(0)=x_{0} \)</span> とすると，<span class="math notranslate nohighlight">\( C=x_{0} \)</span> となる．
+よって，微分方程式の解は，</p>
+<div class="math notranslate nohighlight">
+\[
+    x(t) = v_{0} t + x_{0}
+\]</div>
+<p>と表され，物体は等速直線運動することが分かる．
+以上のように，時間 <span class="math notranslate nohighlight">\( t \)</span> を独立変数とする微分方程式に対し，<span class="math notranslate nohighlight">\( t=0 \)</span> のときの条件（<strong>初期条件</strong>）を用いて解を求めることを<strong>初期値問題</strong>と呼ぶ．</p>
+</section>
+</section>
+<section id="id5">
+<h2><span class="section-number">5.2. </span>人口の増加<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">#</a></h2>
+<p>個体数の増減という問題は，実社会から自然界まで幅広く存在する．
+例えば，実社会において，今後数十年で人口がどのように増減するかを予測することは，国家レベルで議論するべき大問題である．
+また，自然界においても，様々な生物種の個体数がどのように増減するかは食物連鎖のダイナミクスを理解する上で重要であるし，より身近な例では，ある動物の個体数を把握することは獣害対策などで役立つ．
+こうした個体数の増減は，微分方程式で記述される現象の典型例である．
+以下では，個体数の増減に関する微分方程式のうち，いくつかの基本的な例を紹介する．</p>
+<section id="id6">
+<h3><span class="section-number">5.2.1. </span>マルサスモデル<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>時刻 <span class="math notranslate nohighlight">\( t \)</span> におけるある国の総人口を <span class="math notranslate nohighlight">\( N(t) \)</span> とすると，人口の増加率は <span class="math notranslate nohighlight">\( dN(t)/dt \)</span> と表される．
+経済学者のマルサス（Thomas Robert Malthus）は，人口の増加率がそのときの人口に比例すると考え，以下のようなモデルを提案した：</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{dN}{dt} = aN(t)
+\]</div>
+<p>この式は1階微分方程式であり，<strong>マルサスモデル</strong>と呼ばれる．</p>
+<p>マルサスモデルは変数分離型なので簡単に解くことができる．
+まず，以下のように変形する：</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{1}{N} dN = \alpha dt
+\]</div>
+<p>次に，両辺を不定積分すると，</p>
+<div class="math notranslate nohighlight">
+\[
+	\ln N = \alpha t + C
+\]</div>
+<p>より</p>
+<div class="math notranslate nohighlight">
+\[
+	N(t) = \mathrm{e}^{\alpha t + C}
+\]</div>
+<p>ここで，<span class="math notranslate nohighlight">\( N(t) \)</span> の初期条件を <span class="math notranslate nohighlight">\( t=0 \)</span> で <span class="math notranslate nohighlight">\( N(0)=N_{0} \)</span> とすると</p>
+<div class="math notranslate nohighlight">
+\[
+	N(0) = \mathrm{e}^{C} = N_{0}
+\]</div>
+<p>となるので，一般解は</p>
+<div class="math notranslate nohighlight">
+\[
+	N(t) = N_{0} \mathrm{e}^{\alpha t}
+\]</div>
+<p>となる．</p>
+<p>マルサスモデルの解は <span class="math notranslate nohighlight">\( N(t) \)</span> が <span class="math notranslate nohighlight">\( t \)</span> の関数として表されているので，初期時刻での人口 <span class="math notranslate nohighlight">\( N_{0} \)</span> を与えれば，その後の任意の時刻において人口を予測できる．
+特に，人口が指数関数的に際限なく増加するというのがマルサスモデルの特徴である．</p>
+</section>
+<section id="id7">
+<h3><span class="section-number">5.2.2. </span>ロジスティックモデル<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>マルサスモデルでは，指数関数的な増加がいつまでも続くが，実際には人口に上限が存在するのが自然である．
+実際，人口が増えすぎると食料資源の不足や環境的要因などによって人口の増加を抑制する効果がはたらくと考えられる．</p>
+<p>このような考察から，より現実に即したモデルとしてVerhulstによって導入されたのが以下の微分方程式である：</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{dN}{dt} = \gamma \left(1 - \frac{N}{N_{\infty}}\right)N
+\]</div>
+<p>これは<strong>ロジスティックモデル</strong>と呼ばれる．</p>
+<p>ロジスティックモデルは右辺が非線形な関数となっているが，マルサスモデルと同じように解くことができる．
+まず，式を以下のように変形する：</p>
+<div class="math notranslate nohighlight">
+\[
+	\int \frac{dN}{N(1 - N/N_{\infty})} = \int \gamma dt
+\]</div>
+<p>ここで，左辺の被積分変数を部分分数分解すると，</p>
+<div class="math notranslate nohighlight">
+\[
+	\int \left[\frac{1}{N} - \frac{1/N_{\infty}}{(1-N/N_{\infty})}\right]dN = \int \gamma dt
+\]</div>
+<p>となる．
+これより，両辺を不定積分することができて，</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+	\ln \left(\frac{N}{1-N/N_{\infty}}\right) &amp;= \gamma t + C
+\end{align*}\]</div>
+<p>となる．
+さらに，初期条件として　<span class="math notranslate nohighlight">\( t=0 \)</span>　で　<span class="math notranslate nohighlight">\( N(0)=N_{0} \)</span>　とすれば，最終的に</p>
+<div class="math notranslate nohighlight">
+\[
+	N(t) = \frac{N_{\infty}}{1+[(N_{\infty}/N_{0})-1]\mathrm{e}^{-\gamma t}}
+\]</div>
+<p>という一般解を得る．</p>
+<p>得られた一般解は<strong>シグモイド関数</strong>と呼ばれ，下図のような時間変化となる．
+初期の個体数が <span class="math notranslate nohighlight">\( N_{0} &lt; N_{\infty} \)</span> を満たす場合には，最初は指数関数的な増加を示すが，次第に増加率が小さくなっていき，最終的には <span class="math notranslate nohighlight">\( N_{\infty} \)</span> に収束する．
+この意味で，<span class="math notranslate nohighlight">\( N_{\infty} \)</span> は人口の上限を表す定数であることが分かる．</p>
+<!-- 一方，$ N_{0} > N_{\infty} $ の場合には指数関数的な減少を示すが，この場合にも最終的には $ N_{\infty} $ へと収束する． -->
+<p>なお，実社会における人口の増加はマルサスモデルよりもロジスティックモデルに近いふるまいをするが，それでも完璧に記述できるわけではない．
+生物集団の中でも微生物などの場合には，環境をコントロールした実験によって，その増殖の仕方がロジスティックモデルによく従うことが分かっている．
+生物集団の個体数のモデルをより現実に近づけるためには，多数の生物種の間の捕食・被食関係を考慮する方法が考えられる．
+このようなモデルの中で単純なものとして，2種の生物間の相互作用を考慮した<strong>ロトカ・ヴォルテラモデル</strong>が知られている．</p>
+</section>
+<section id="id8">
+<h3><span class="section-number">5.2.3. </span>オイラー法による数値解法<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">#</a></h3>
+</section>
+</section>
+<section id="id9">
+<h2><span class="section-number">5.3. </span>感染症の流行<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">#</a></h2>
+<section id="id10">
+<h3><span class="section-number">5.3.1. </span>感染症のモデル化<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>これまでの歴史において，人類は天然痘，ペスト，結核，コレラ，エイズ，エボラ出血熱，といった様々な感染症の流行を経験し，現在もなお新型コロナウイルスとの闘いが続いている．
+感染症の流行は複雑な現象であるが，そのエッセンスは細菌やウイルスが人から人へ伝播するということである．
+そこで，感染症を伝播現象と捉えてそのプロセスを単純化すれば，感染者数の大まかな増減を比較的単純な微分方程式で記述することができる．</p>
+<p>通常，感染症の数理モデルでは，以下のように複数の状態を考える（これらの他にも，自身が感染しているが他者に移す可能性がない潜伏期の状態（状態 <span class="math notranslate nohighlight">\( E \)</span> ）など，様々な状態を考えることができる．）：</p>
+<ul class="simple">
+<li><p>状態<span class="math notranslate nohighlight">\( S \)</span>：自身が感染する可能性のある状態（Susceptible or Suspicious）</p></li>
+</ul>
+<!-- - 状態$ E $：自身が感染しているが，他者に移す可能性がない状態（Exposed） -->
+<ul class="simple">
+<li><p>状態<span class="math notranslate nohighlight">\( I \)</span>：自身が感染していて，他者に移す可能性がある状態（Infected）</p></li>
+<li><p>状態<span class="math notranslate nohighlight">\( R \)</span>：感染から回復し，他者に移す可能性がない状態（Recovered）</p></li>
+</ul>
+<p>その上で，時刻 <span class="math notranslate nohighlight">\( t \)</span> においてそれぞれの状態にいる人口の割合を <span class="math notranslate nohighlight">\( S(t),\ I(t),\ R(t) \)</span> とし，これらの変数が従う微分方程式を定める．
+ただし，常にこれら全ての状態を考慮するわけではなく，例えば最も簡単なモデルでは状態 <span class="math notranslate nohighlight">\( S \)</span> と状態 <span class="math notranslate nohighlight">\( I \)</span> だけを取り入れる．
+以上により，微分方程式を解けば，それぞれの状態にいる人口がどのように時間変化するかが分かるので，感染症の流行を記述することができる．</p>
+<p>なお，通常は微分方程式に加え，全ての変数の和が1（例えば，<span class="math notranslate nohighlight">\( S(t)+I(t)+R(t)=1 \)</span>）という関係が成り立つと仮定する．
+この関係式は，総人口を <span class="math notranslate nohighlight">\( M \)</span> としたときに <span class="math notranslate nohighlight">\( MS(t)+MI(t)+MR(t)=M \)</span> と書けるので，人口が常に一定であるという条件を表す．
+これは，考えるシステムにおいて，感染症以外の理由による人口変動が無視できることを案に仮定している．</p>
+<p>以下では，感染症の数理モデルの中でも単純でよく知られた３つのモデルを紹介する．</p>
+</section>
+<section id="si">
+<h3><span class="section-number">5.3.2. </span>SIモデル<a class="headerlink" href="#si" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>まず，未感染者（状態 <span class="math notranslate nohighlight">\( S \)</span>）が感染者（状態 <span class="math notranslate nohighlight">\( I \)</span>）と接触すると，一定の確率で感染者（状態 <span class="math notranslate nohighlight">\( I \)</span>）に変わるというモデルを考える．
+ただし，一度感染した者はずっと感染したままとする（つまり，最終的に全員が状態 <span class="math notranslate nohighlight">\( I \)</span> になる）．
+このようなモデルは感染症モデルの中で最も単純なモデルであり，<strong>SIモデル</strong>と呼ばれる．</p>
+<p>SIモデルのダイナミクスは，<span class="math notranslate nohighlight">\( S(t) \)</span> が一定確率で <span class="math notranslate nohighlight">\( I(t) \)</span> に変わるというものであり，短い時間間隔 <span class="math notranslate nohighlight">\( \Delta t \)</span> における <span class="math notranslate nohighlight">\( S(t) \)</span> の変化は以下の式で与えられる：</p>
+<div class="math notranslate nohighlight">
+\[
+	S(t+\Delta t) = S(t) - \gamma S(t)I(t)\Delta t
+\]</div>
+<p>ここで，右辺第２項は <span class="math notranslate nohighlight">\( S(t) \)</span> の減少分であり，<span class="math notranslate nohighlight">\( S(t)I(t) \)</span> は未感染者と感染者の接触率，<span class="math notranslate nohighlight">\( \gamma \)</span> は感染確率を表す．
+すなわち，未感染者（状態 <span class="math notranslate nohighlight">\( S \)</span>）と感染者（状態 <span class="math notranslate nohighlight">\( I \)</span>）が接触すると確率 <span class="math notranslate nohighlight">\( \gamma \)</span> で未感染者の割合が減ることを意味する．
+この式の両辺を <span class="math notranslate nohighlight">\( \Delta t \)</span> で割って <span class="math notranslate nohighlight">\( \Delta t\to 0 \)</span> の極限を取ると，</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{dS}{dt} = -\gamma S(t)I(t)
+\]</div>
+<p>が得られる．
+これが未感染者の割合 <span class="math notranslate nohighlight">\( S(t) \)</span> の変化を記述する微分方程式である．</p>
+<p>一方，感染者の割合 <span class="math notranslate nohighlight">\( I(t) \)</span> については，<span class="math notranslate nohighlight">\( S(t) \)</span> の減少分がそのまま増えるので，</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{dI}{dt} = \gamma S(t)I(t)
+\]</div>
+<p>が成り立つ．</p>
+<p>以上をまとめると，SIモデルは次のような連立微分方程式として記述される：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0ca0770c-abe8-46e8-a79f-44bd421e40a2">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-0ca0770c-abe8-46e8-a79f-44bd421e40a2" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+	\left \{
+	\begin{aligned}
+		\frac{dS}{dt} &amp;= -\gamma S(t)I(t) \\[10pt]
+		\frac{dI}{dt} &amp;= \gamma S(t)I(t)
+	\end{aligned}
+	\right.
+\end{align}\]</div>
+<p>ただし，<span class="math notranslate nohighlight">\( S(t)+I(t)=1 \)</span>　という関係式が成り立っていることを考慮すると，２つの微分方程式から　<span class="math notranslate nohighlight">\( S(t) \)</span>　を消去することができ，<span class="math notranslate nohighlight">\( I(t) \)</span>　だけから成る以下の微分方程式に変形できる：</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{dI(t)}{dt} = \gamma (1-I(t))I(t)
+\]</div>
+<p>さらに，この式の両辺に総人口 <span class="math notranslate nohighlight">\( M \)</span> を掛けると</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{dMI(t)}{dt} = \gamma \left(1-\frac{MI(t)}{M}\right)MI(t)
+\]</div>
+<p>となる．
+これは，感染者数 <span class="math notranslate nohighlight">\( MI(t) \)</span> に対する微分方程式であるが，ロジスティックモデルと全く同じ形をしている．
+よって，感染者数は最終的に総人口 <span class="math notranslate nohighlight">\( M \)</span> に収束するが，その増え方は指数関数的な急増から徐々に緩やかなる．</p>
+</section>
+<section id="sir">
+<h3><span class="section-number">5.3.3. </span>SIRモデル<a class="headerlink" href="#sir" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>SIモデルは一度感染したらずっと感染したままという非現実的なモデルであった．
+しかし，多くの感染症では感染状態（<span class="math notranslate nohighlight">\( I \)</span>）になってから時間が経つと，免疫を獲得してそれ以上感染せず，かつ他者に移す可能性もない状態（<span class="math notranslate nohighlight">\( R \)</span>）になることが多い．
+そこで，<span class="math notranslate nohighlight">\( S(t),\ I(t) \)</span> に加えて新たな変数 <span class="math notranslate nohighlight">\( R(t) \)</span> も加えた以下のモデルを考える：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-de4de4a7-380a-4ea4-8f4b-ce8fad2cd6bd">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-de4de4a7-380a-4ea4-8f4b-ce8fad2cd6bd" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+	\left\{
+	\begin{aligned}
+		\frac{dS}{dt} &amp;= - \gamma S(t)I(t) \\[10pt]
+		\frac{dI}{dt} &amp;= \gamma S(t)I(t) - \lambda I(t) \\[10pt]
+		\frac{dR}{dt} &amp;= \lambda I(t)
+	\end{aligned}
+	\right .
+\end{align}\]</div>
+<p>このモデルは<strong>SIRモデル</strong>と呼ばれ，KermackとMcKendrickによって1927年に提案された．
+SIRモデルは感染症の標準的な数理モデルとしてよく用いられている．</p>
+<p>SIRモデルにおいて，第１式はSIモデルと全く同じである．
+一方，感染者の割合 <span class="math notranslate nohighlight">\( I(t) \)</span> に対する式（第２式）には新たに第２項 <span class="math notranslate nohighlight">\( -\lambda I(t) \)</span> が加わっている．
+これは，感染者（状態<span class="math notranslate nohighlight">\( I \)</span>）が一定の確率 <span class="math notranslate nohighlight">\( \lambda \)</span> で免疫獲得者（状態<span class="math notranslate nohighlight">\( R \)</span>）に変化して <span class="math notranslate nohighlight">\( I(t) \)</span> が減少することを表している．
+また，免疫獲得者の割合 <span class="math notranslate nohighlight">\( R(t) \)</span> は <span class="math notranslate nohighlight">\( I(t) \)</span> の減少分だけ増えるので，これを表したのが第３式である．
+なお，これまでと同様に <span class="math notranslate nohighlight">\( S(t)+I(t)+R(t)=1 \)</span> も成り立っている．</p>
+<p>SIRモデルは3変数の連立微分方程式であり，これを一般的に解くのは難しいので通常はコンピュータによる数値計算を行う．
+一方，感染症が拡大するかどうか（つまり <span class="math notranslate nohighlight">\( I(t) \)</span> が増えるかどうか）は微分方程式を解かずに評価することができる．
+まず，感染者の割合 <span class="math notranslate nohighlight">\( I(t) \)</span> の時間変化を記述する第２式だけを取り出す：</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{dI}{dt} = \gamma S(t)I(t) - \lambda I(t)
+\]</div>
+<p>この式は <span class="math notranslate nohighlight">\( I(t) \)</span> の増加速度 <span class="math notranslate nohighlight">\( dI(t)/dt \)</span> を表す式なので，右辺が正であれば <span class="math notranslate nohighlight">\( I(t) \)</span> は増加，負であれば減少する．
+これは，<span class="math notranslate nohighlight">\( S(t)\gamma /\lambda \)</span> が1より大きければ増加，小さければ減少と言い換えることもでき，このときに現れる量</p>
+<div class="math notranslate nohighlight">
+\[
+	R_{t} = S(t)\frac{\gamma}{\lambda}
+\]</div>
+<p>は<strong>実効再生産数</strong>と呼ばれている．
+実効再生産数 <span class="math notranslate nohighlight">\( R_{t} \)</span> は「感染者（<span class="math notranslate nohighlight">\( I \)</span>状態）が回復するまで（<span class="math notranslate nohighlight">\( R \)</span>状態になるまで）に平均的に感染させる数」という意味を持つことが示されている．</p>
+<p><span class="math notranslate nohighlight">\( R_{t} \)</span> を実際の感染者数のデータから見積もる方法はいくつか提案されており，実際の感染症対策の現場でも，<span class="math notranslate nohighlight">\( R_{t} \)</span> の値が感染症の流行の評価指標となっている．</p>
+<p>なお，感染初期にはほぼ全員が非感染者（状態<span class="math notranslate nohighlight">\( S \)</span>）なので，<span class="math notranslate nohighlight">\( S(t)\approx 1 \)</span> と近似できる．
+この場合に得られる <span class="math notranslate nohighlight">\( R_{0}=\gamma/\lambda \)</span> は<strong>基本再生産数</strong>と呼ばれ，病原菌あるいはウイルスそのものの感染力の強さを意味する．</p>
+</section>
+<section id="python">
+<h3><span class="section-number">5.3.4. </span>Pythonによるシミュレーション<a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">#</a></h3>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chap_5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../chap_4/4_stochastic_model.html" title="前へ ページ">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">前へ</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>確率モデル</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../appendix/appendix.html" title="次へ ページ">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">次へ</p>
+        <p class="prev-next-title">付録</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    <div class="extra_footer">
+      © Copyright 2023-present by 成塚拓真 (Takuma Narizuka). この講義ノートは<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja">CC BY-NC-ND 4.0</a>の下に提供する．</a>ただし，コード部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供する．
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
