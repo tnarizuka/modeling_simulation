@@ -541,7 +541,7 @@ title="Print to PDF"
 一般に，微分方程式が与えられたときにそれを解析的に解くのは困難であることが多く，特に非線形の微分方程式や偏微分方程式の場合は特に難しい．
 そこで，このような場合には２つ目の方法として，数値計算によって解を求める方法がある．
 これを<strong>数値的に解く</strong>という．</p>
-<p>以下では常微分方程式を例に解ける微分方程式の例をいくつか紹介する．
+<p>以下では解析的に解ける微分方程式の例をいくつか紹介する．
 また，Pythonを使って微分方程式を数値的に解く方法についても紹介する．</p>
 <section id="id4">
 <h3><span class="section-number">5.1.1. </span>簡単な微分方程式<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">#</a></h3>
@@ -712,8 +712,8 @@ title="Print to PDF"
 \]</div>
 <p>が成り立つ．</p>
 <p>以上をまとめると，SIモデルは次のような連立微分方程式として記述される：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5d09f413-9f2b-4960-9bb8-6705d9e187fb">
-<span class="eqno">(5.1)<a class="headerlink" href="#equation-5d09f413-9f2b-4960-9bb8-6705d9e187fb" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-587fa060-9bd7-4b61-8c04-935d528d5e46">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-587fa060-9bd7-4b61-8c04-935d528d5e46" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	\left \{
 	\begin{aligned}
 		\frac{dS}{dt} &amp;= -\gamma S(t)I(t) \\[10pt]
@@ -740,8 +740,8 @@ title="Print to PDF"
 <p>SIモデルは一度感染したらずっと感染したままという非現実的なモデルであった．
 しかし，多くの感染症では感染状態（<span class="math notranslate nohighlight">\( I \)</span>）になってから時間が経つと，免疫を獲得してそれ以上感染せず，かつ他者に移す可能性もない状態（<span class="math notranslate nohighlight">\( R \)</span>）になることが多い．
 そこで，<span class="math notranslate nohighlight">\( S(t),\ I(t) \)</span> に加えて新たな変数 <span class="math notranslate nohighlight">\( R(t) \)</span> も加えた以下のモデルを考える：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f741d7f7-b70d-4254-b15f-4267f46b52d3">
-<span class="eqno">(5.2)<a class="headerlink" href="#equation-f741d7f7-b70d-4254-b15f-4267f46b52d3" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-14978f91-84ad-4464-a5b8-6a0c3bbc93f2">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-14978f91-84ad-4464-a5b8-6a0c3bbc93f2" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	\left\{
 	\begin{aligned}
 		\frac{dS}{dt} &amp;= - \gamma S(t)I(t) \\[10pt]
