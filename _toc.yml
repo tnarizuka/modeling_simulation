@@ -12,6 +12,7 @@ parts:
   - file: chap_2/2_environment.ipynb
   - file: chap_3/3_curve_fitting.ipynb
   - file: chap_4/4_stochastic_model.ipynb
+  - file: chap_5/5_diff_eq.ipynb
 
 - caption:
   numbered: False
