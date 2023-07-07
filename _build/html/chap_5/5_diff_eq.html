@@ -546,11 +546,11 @@ title="Print to PDF"
 また，<span class="math notranslate nohighlight">\( x \)</span> と <span class="math notranslate nohighlight">\( x \)</span> の微分が全て1次式である場合を<strong>線形微分方程式</strong>，それ以外を<strong>非線形微分方程式</strong>と呼ぶ．
 例えば，上の式は，線形の1階微分方程式と非線形の2階微分方程式である．
 なお，微分方程式には，独立変数が1つである<strong>常微分方程式</strong>と独立変数が複数ある<strong>偏微分方程式</strong>があるが，本章では常微分方程式のみを扱う．</p>
-<p>微分方程式は１次方程式や連立方程式のように解を求めることができる．
+<p>微分方程式は2次方程式や連立方程式のように解を求めることができる．
 微分方程式において解を求めるとは，与えられた微分方程式を満たすような関数 <span class="math notranslate nohighlight">\( x(t) \)</span> を求めることを指し，これを<strong>微分方程式を解く</strong>という．</p>
 <p>微分方程式が与えられたときにその解を求める方法は主に２種類存在する．
 １つ目は式変形を行って解く方法で，これを<strong>解析的に解く</strong>という．
-一般に，微分方程式が与えられたときにそれを解析的に解くのは困難であることが多く，特に非線形の微分方程式や偏微分方程式の場合は特に難しい．
+一般に，微分方程式が与えられたときにそれを解析的に解くのは困難であることが多く，非線形の微分方程式や偏微分方程式の場合は特に難しい．
 そこで，このような場合には２つ目の方法として，数値計算によって解を求める方法がある．
 これを<strong>数値的に解く</strong>という．</p>
 <p>以下では解析的に解ける微分方程式の例をいくつか紹介する．
@@ -725,8 +725,8 @@ title="Print to PDF"
 \]</div>
 <p>が成り立つ．</p>
 <p>以上をまとめると，SIモデルは次のような連立微分方程式として記述される：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f799fae2-cb88-4c0c-bacb-475ccdf1f379">
-<span class="eqno">(5.1)<a class="headerlink" href="#equation-f799fae2-cb88-4c0c-bacb-475ccdf1f379" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2ce1ffe3-7978-426f-be74-6f8a704b36de">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-2ce1ffe3-7978-426f-be74-6f8a704b36de" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	\left \{
 	\begin{aligned}
 		\frac{dS}{dt} &amp;= -\gamma S(t)I(t) \\[10pt]
@@ -753,8 +753,8 @@ title="Print to PDF"
 <p>SIモデルは一度感染したらずっと感染したままという非現実的なモデルであった．
 しかし，多くの感染症では感染状態（<span class="math notranslate nohighlight">\( I \)</span>）になってから時間が経つと，免疫を獲得してそれ以上感染せず，かつ他者に移す可能性もない状態（<span class="math notranslate nohighlight">\( R \)</span>）になることが多い．
 そこで，<span class="math notranslate nohighlight">\( S(t),\ I(t) \)</span> に加えて新たな変数 <span class="math notranslate nohighlight">\( R(t) \)</span> も加えた以下のモデルを考える：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a518966e-748c-4f08-ab1f-c131c9dee945">
-<span class="eqno">(5.2)<a class="headerlink" href="#equation-a518966e-748c-4f08-ab1f-c131c9dee945" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ed8343f9-4878-4829-8bda-a57c140c9beb">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-ed8343f9-4878-4829-8bda-a57c140c9beb" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	\left\{
 	\begin{aligned}
 		\frac{dS}{dt} &amp;= - \gamma S(t)I(t) \\[10pt]
