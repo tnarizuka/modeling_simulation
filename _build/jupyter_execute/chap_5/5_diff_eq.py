@@ -197,12 +197,12 @@ ax.set_xlabel('$t$', fontsize=15)
 ax.set_ylabel('$N(t)$', fontsize=15);
 
 
-# ## 数値解法
+# ## 微分方程式の数値計算
 
-# ### オイラー法
+# ### オイラー法による数値計算
 
 # 
 
-# ### Scipy.integrate.solve_ivp
+# ### Scipy.integrate.solve_ivpによる数値計算
 
 # 
