@@ -203,6 +203,6 @@ ax.set_ylabel('$N(t)$', fontsize=15);
 
 # 
 
-# ### その他のアルゴリズム
+# ### Scipy.integrate.solve_ivp
 
 # 
