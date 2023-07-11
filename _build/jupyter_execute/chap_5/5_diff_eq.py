@@ -247,10 +247,25 @@ ax.set_ylabel('$N(t)$', fontsize=15);
 #     u_{n+1} &= u_{n} + \Delta t f(t_{n}, u_{n})
 # \end{align*}
 
-# In[ ]:
+# In[28]:
 
 
+def f(i, u_i):
+    return 2*u_i
 
+Dt = 0.01
+U = [1]
+for i in range(1000):
+    U.append(U[i]+Dt*f(i, U[i]))
+
+
+# In[31]:
+
+
+fig, ax = plt.subplots()
+t = np.arange(len(U))*Dt
+ax.plot(t, U)
+ax.plot(t, np.exp(2*t), 'r-')
 
 
 # ### Scipy.integrate.solve_ivpによる数値計算
