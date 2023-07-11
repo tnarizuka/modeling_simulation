@@ -238,7 +238,20 @@ ax.set_ylabel('$N(t)$', fontsize=15);
 # \end{align*}
 # 
 # 例えば，マルサスモデルの場合は $ f(t, u(t)) = \alpha u(t) $ である．
-# オイラー法をPythonで実装する準備として，この形の微分方程式に対して式を整理しておこう．
+# <!-- オイラー法をPythonで実装する準備として，この形の微分方程式に対して式を整理しておこう． -->
+# $ \Delta t $ の間隔に離散化した時刻を $ t_{n} = n\Delta t $ とし，$ u(t_{n}) = u_{n} $ と表記する．
+# このとき，上の微分方程式は以下のように離散化することができる：
+# 
+# \begin{align*}
+#     \frac{u(t_{n}+\Delta t) - u(t_{n})}{\Delta t} &= f(t_{n}, u(t_{n})) \\[10pt]
+#     u_{n+1} &= u_{n} + \Delta t f(t_{n}, u_{n})
+# \end{align*}
+
+# In[ ]:
+
+
+
+
 
 # ### Scipy.integrate.solve_ivpによる数値計算
 
