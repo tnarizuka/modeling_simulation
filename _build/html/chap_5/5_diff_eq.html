@@ -569,7 +569,7 @@ title="Print to PDF"
 経済学者のマルサス（Thomas Robert Malthus）は，人口の増加率がそのときの人口に比例すると考え，以下のようなモデルを提案した：</p>
 <div class="math notranslate nohighlight">
 \[
-	\frac{dN}{dt} = aN(t)
+	\frac{dN}{dt} = \alpha N(t)
 \]</div>
 <p>この式は1階微分方程式であり，<strong>マルサスモデル</strong>と呼ばれる．</p>
 <p>マルサスモデルは，以下のように独立変数 <span class="math notranslate nohighlight">\( t \)</span> と従属変数 <span class="math notranslate nohighlight">\( N(t) \)</span> を左辺と右辺に分離することができる：</p>
@@ -669,6 +669,34 @@ title="Print to PDF"
 <h2><span class="section-number">5.3. </span>微分方程式の数値計算<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">#</a></h2>
 <section id="id10">
 <h3><span class="section-number">5.3.1. </span>オイラー法による数値計算<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>マルサスモデル</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{dN}{dt} = \alpha N
+\]</div>
+<p>は解析的に解くことができた．
+ここでは，この微分方程式をコンピュータで数値的に解く方法を考えてみよう．</p>
+<p>まず，微分方程式をコンピュータで扱う際には微分の計算</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{dN}{dt} = \lim_{\Delta t \to 0} \frac{N(t+\Delta t) - N(t)}{\Delta t}
+\]</div>
+<p>を行う必要があるが，コンピュータ上で <span class="math notranslate nohighlight">\( \Delta t \)</span> を厳密に0にすることはできない．
+しかし，<span class="math notranslate nohighlight">\( \Delta t \)</span> を十分に小さくとれば，微分の近似値として十分に精度の高い値を得ることができるだろう．
+そこで，マルサスモデルを以下のように変形する：</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \frac{N(t+\Delta t) - N(t)}{\Delta t} &amp;= \alpha N(t) \\[10pt]
+    N(t+\Delta t) &amp;=  (1 + \alpha \Delta t)N(t)
+\end{align*}\]</div>
+<p>この式は，時刻<span class="math notranslate nohighlight">\( t \)</span> における <span class="math notranslate nohighlight">\( N(t) \)</span> から，次の時刻の <span class="math notranslate nohighlight">\( N(t+\Delta t) \)</span> を求める漸化式と見なすことができる．
+よって，初期条件 <span class="math notranslate nohighlight">\( N(0) \)</span> から <span class="math notranslate nohighlight">\( N(1) \)</span> を求め，さらに <span class="math notranslate nohighlight">\( N(1) \)</span> から <span class="math notranslate nohighlight">\( N(2) \)</span> を求めていけば，任意の時刻 <span class="math notranslate nohighlight">\( t \)</span> における <span class="math notranslate nohighlight">\( N(t) \)</span> を求めることができる．</p>
+<p>以下のような１階微分方程式を考える：</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \frac{du}{dt} &amp;= f(t, u) \\
+    u(t_{0}) &amp;= u_{0}
+\end{align*}\]</div>
 </section>
 <section id="scipy-integrate-solve-ivp">
 <h3><span class="section-number">5.3.2. </span>Scipy.integrate.solve_ivpによる数値計算<a class="headerlink" href="#scipy-integrate-solve-ivp" title="このヘッドラインへのパーマリンク">#</a></h3>
