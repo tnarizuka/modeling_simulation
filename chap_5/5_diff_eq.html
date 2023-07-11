@@ -695,8 +695,15 @@ title="Print to PDF"
     \frac{du}{dt} &amp;= f(t, u(t)) \\[10pt]
     u(0) &amp;= u_{0}
 \end{align*}\]</div>
-<p>例えば，マルサスモデルの場合は <span class="math notranslate nohighlight">\( f(t, u(t)) = \alpha u(t) \)</span> である．
-オイラー法をPythonで実装する準備として，この形の微分方程式に対して式を整理しておこう．</p>
+<p>例えば，マルサスモデルの場合は <span class="math notranslate nohighlight">\( f(t, u(t)) = \alpha u(t) \)</span> である．</p>
+<!-- オイラー法をPythonで実装する準備として，この形の微分方程式に対して式を整理しておこう． -->
+<p><span class="math notranslate nohighlight">\( \Delta t \)</span> の間隔に離散化した時刻を <span class="math notranslate nohighlight">\( t_{n} = n\Delta t \)</span> とし，<span class="math notranslate nohighlight">\( u(t_{n}) = u_{n} \)</span> と表記する．
+このとき，上の微分方程式は以下のように離散化することができる：</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \frac{u(t_{n}+\Delta t) - u(t_{n})}{\Delta t} &amp;= f(t_{n}, u(t_{n})) \\[10pt]
+    u_{n+1} &amp;= u_{n} + \Delta t f(t_{n}, u_{n})
+\end{align*}\]</div>
 </section>
 <section id="scipy-integrate-solve-ivp">
 <h3><span class="section-number">5.3.2. </span>Scipy.integrate.solve_ivpによる数値計算<a class="headerlink" href="#scipy-integrate-solve-ivp" title="このヘッドラインへのパーマリンク">#</a></h3>
