@@ -3,7 +3,7 @@
 
 # # 微分方程式モデル
 
-# In[1]:
+# In[16]:
 
 
 import numpy as np
@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import scipy as sp
 from scipy.integrate import odeint, solve_ivp
+from scipy.optimize import curve_fit
 
 # 日本語フォントの設定（Mac:'Hiragino Sans', Windows:'MS Gothic'）
 plt.rcParams['font.family'] = 'Hiragino Sans'
@@ -212,6 +213,41 @@ ax.plot(t, f_logistic(t, 1500, 1000, 0.05), 'b-')
 ax.set_xlim(0, 200), ax.set_ylim(0, 1500); 
 ax.set_xlabel('$t$', fontsize=15)
 ax.set_ylabel('$N(t)$', fontsize=15);
+
+
+# 改めて，韓国における新型コロナウイルス感染者数の推移データ（[covid19_korea.csv](https://drive.google.com/uc?export=download&id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz)）を調べてみよう．
+# このデータを読み込み，横軸に2020年1月22日を0日とした経過日数，縦軸に感染者数を取った散布図を50日目までと100日目までに分けて描くと，いずれもシグモイド関数のような変化となる．
+# そこで，$ N_{0},\ N_{\infty}, \gamma $ をフィッティングパラメータとして最小二乗法でフィッティングを行うと，以下のような結果が得られる．
+# 50日目まではほぼシグモイド関数に従っているが，50日目以降で増加の仕方に変化があり，シグモイド関数からのズレが見られることが分かる．
+# 
+# ※ 本データの出典：[John Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series)
+
+# In[65]:
+
+
+# シグモイド関数の定義
+def f_logistic(t, N0, N_inf, gamma): 
+    return N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
+
+
+# In[67]:
+
+
+# データの読み込み
+data = pd.read_csv('./covid19_korea.csv', header=0)
+
+fig, ax = plt.subplots(figsize=(5, 4))
+ax.plot(data.index[:100], data['num'][:100], 'x', ms=4)
+
+for tmax in [50, 100]:
+    t, Nt = data.index[:tmax], data['num'][:tmax] 
+    p_opt = curve_fit(f_logistic, t, Nt)[0]
+    print(p_opt)
+    ax.plot(t, f_logistic(t, p_opt[0], p_opt[1], p_opt[2]), '-', lw=2, label='%s日まで' % tmax)
+
+ax.set_xlim(0, 100), ax.set_ylim(0, 11000)
+ax.set_xlabel('time (day)', fontsize=15); ax.set_ylabel('Number of infected', fontsize=15)
+ax.legend(loc='upper left', fontsize=12);
 
 
 # ## 微分方程式の数値計算
