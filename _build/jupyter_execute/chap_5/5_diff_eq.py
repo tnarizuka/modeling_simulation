@@ -145,10 +145,16 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # このような考察から，より現実に即したモデルとしてVerhulstによって導入されたのが以下の微分方程式である：
 # 
 # $$
-# 	\frac{dN}{dt} = \gamma \left(1 - \frac{N}{N_{\infty}}\right)N
+# 	\frac{dN}{dt} = \gamma \left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)
 # $$
 # 
 # これは**ロジスティックモデル**と呼ばれる．
+# ここで，$ \gamma,\ N_{\infty} $ は定数である．
+# ロジスティックモデルは，マルサスモデルの $ \alpha $ を以下のように置き換えた形になっている：
+# 
+# $$
+# 	\alpha \rightarrow \gamma \left(1 - \frac{N(t)}{N_{\infty}}\right)
+# $$
 # 
 # ロジスティックモデルは右辺が非線形な関数となっているが，これも変数分離形なのでマルサスモデルと同じように解くことができる．
 # まず，式を以下のように変形する：
