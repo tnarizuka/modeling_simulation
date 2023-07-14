@@ -230,14 +230,14 @@ def f_logistic(t, N0, N_inf, gamma):
     return N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
 
 
-# In[67]:
+# In[70]:
 
 
 # データの読み込み
 data = pd.read_csv('./covid19_korea.csv', header=0)
 
 fig, ax = plt.subplots(figsize=(5, 4))
-ax.plot(data.index[:100], data['num'][:100], 'x', ms=4)
+ax.plot(data.index[:100], data['num'][:100], 'x', ms=6)
 
 for tmax in [50, 100]:
     t, Nt = data.index[:tmax], data['num'][:tmax] 
