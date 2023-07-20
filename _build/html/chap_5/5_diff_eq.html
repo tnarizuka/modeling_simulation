@@ -743,10 +743,10 @@ title="Print to PDF"
     u(t+\Delta t) &amp;= u(t) + \Delta t g(t, u(t))
 \end{align*}\]</div>
 <p>すると，この式は <span class="math notranslate nohighlight">\( u(t) \)</span> から次の時刻の <span class="math notranslate nohighlight">\( u(t+\Delta t) \)</span> を求める漸化式と見なすことができる．
-よって，初期条件 <span class="math notranslate nohighlight">\( u(0) \)</span> から <span class="math notranslate nohighlight">\( u(1) \)</span> を求め，さらに <span class="math notranslate nohighlight">\( u(1) \)</span> から <span class="math notranslate nohighlight">\( u(2) \)</span> を求めていけば，任意の時刻における <span class="math notranslate nohighlight">\( u(t) \)</span> を求めることができる．</p>
-<p>以上の方法は<strong>オイラー法</strong>と呼ばれる．
+よって，初期条件 <span class="math notranslate nohighlight">\( u(0) \)</span> から <span class="math notranslate nohighlight">\( u(\Delta t) \)</span> を求め，さらに <span class="math notranslate nohighlight">\( u(2\Delta t) \)</span> を求めていけば，任意の時刻における <span class="math notranslate nohighlight">\( u(t) \)</span> を求めることができる．</p>
+<p>以上の方法は<strong>オイラー法</strong>と呼ばれ，微分方程式の数値解法の中で最も基本的なアルゴリズムである．
 オイラー法は <span class="math notranslate nohighlight">\( \Delta t \)</span> を小さくとると精度が向上するが，その分計算量が増えてしまうという欠点がある．
-しかし，この方法は直感的にも分かりやすく，また，微分方程式の数値計算の基礎となる方法でもある．</p>
+そこで，ホイン法やルンゲクッタ法などより精度の高い方法が数多く提案されている．</p>
 <p>オイラー法をPythonで実装するために，式の整理をしておこう．
 まず，<span class="math notranslate nohighlight">\( 0\sim t \)</span> の時刻を <span class="math notranslate nohighlight">\( \Delta t \)</span> の間隔で <span class="math notranslate nohighlight">\( n \)</span> 個に分割すると，時刻は <span class="math notranslate nohighlight">\( t_{n} = n\Delta t \)</span> と離散化される．
 また，離散化した従属変数についても， <span class="math notranslate nohighlight">\( u(t_{n}) = u_{n} \)</span> と表記することにする．
@@ -785,7 +785,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1cc1dfd60&gt;]
 </pre></div>
 </div>
-<img alt="../_images/5_diff_eq_21_1.png" src="../_images/5_diff_eq_21_1.png" />
+<img alt="../_images/5_diff_eq_22_1.png" src="../_images/5_diff_eq_22_1.png" />
 </div>
 </div>
 <p><strong>ロジスティックモデル</strong></p>
@@ -819,7 +819,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1cc578700&gt;]
 </pre></div>
 </div>
-<img alt="../_images/5_diff_eq_24_1.png" src="../_images/5_diff_eq_24_1.png" />
+<img alt="../_images/5_diff_eq_25_1.png" src="../_images/5_diff_eq_25_1.png" />
 </div>
 </div>
 </section>
