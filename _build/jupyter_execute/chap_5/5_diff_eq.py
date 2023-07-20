@@ -199,7 +199,7 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # 生物集団における個体数変化のモデルをより現実に近づけるためには，多数の生物種の間の捕食・被食関係を考慮する方法が考えられる．
 # このようなモデルの中で単純なものとして，2種の生物間の相互作用を考慮した**ロトカ・ヴォルテラモデル**が知られている．
 
-# In[124]:
+# In[29]:
 
 
 # シグモイド関数の定義
@@ -301,33 +301,37 @@ ax.legend(loc='upper left', fontsize=12);
 
 # **マルサスモデル**
 
-# In[268]:
+# In[1]:
 
 
 a = 2
-def g_malthus(n, u):
-    return a*u
+def g_malthus(t_n, u_n):
+    return a*u_n
 
 
-# In[278]:
+# In[37]:
 
 
-T, dt = 1, 0.1
+T, dt = 1, 0.05
+
+# 離散化した独立変数と従属変数
 t = np.arange(0, T, dt) 
 u = np.zeros(len(t))
 
+# 数値計算
 u[0] = 1 # 初期値
 for n in range(len(t)-1):
-    u[n+1] = u[n] + dt * g_malthus(n, u[n])
+    u[n+1] = u[n] + dt * g_malthus(t[n], u[n])
 
+# グラフの描画
 fig, ax = plt.subplots()
-ax.plot(t, u)
-ax.plot(t, np.exp(a*t), 'r-')
+ax.plot(t, u, 'o') # 数値解
+ax.plot(t, np.exp(a*t), 'r-') # 厳密解
 
 
 # **ロジスティックモデル**
 
-# In[279]:
+# In[38]:
 
 
 gamma, N_inf = 1, 1000
@@ -335,22 +339,42 @@ def g_logistic(n, u):
     return gamma*(1-u/N_inf)*u
 
 
-# In[288]:
+# In[90]:
 
 
-T, dt = 100, 3.
+T, dt = 100, 0.1
+
+# 離散化した独立変数と従属変数
 t = np.arange(0, T, dt) 
 u = np.zeros(len(t))
 
-u[0] = 0.1  # 初期値
+# 数値計算
+u[0] = 0.5  # 初期値
 for n in range(len(t)-1):
     u[n+1] = u[n] + dt * g_logistic(n, u[n])
 
-fig, ax = plt.subplots()
-ax.plot(t, u, '-x', ms=3)
+# グラフの描画
+fig, ax = plt.subplots(figsize=(7, 5))
+ax.plot(t, u, '-x', ms=3) # 数値解
+
+# 厳密解（シグモイド関数）の描画
+f_logistic = lambda t, N0, N_inf, gamma: N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
 t2 = np.arange(0, T, 0.01)
 ax.plot(t2, f_logistic(t2, u[0], N_inf, gamma), 'r-')
 
+ax.set_xlim(0, T)
+
+
+# ### 演習問題
+# 
+# - $ N_{\infty}=1000,\ \gamma=1 $ のロジスティックモデルについて，$ \Delta t $ を以下の値に設定して数値計算せよ．初期値は何でも良い．
+#   - $ 0 < \Delta t \le 1 $
+#   - $ 1 < \Delta t \le 2 $
+#   - $ 2 < \Delta t \le 2.4494879 $
+#   - $ 2.4494897 < \Delta t \le 2.5699456 $
+#   - $ 2.5699456 < \Delta t < 3 $
+#   - $ 3 < \Delta t $
+# - 同様に，$ \Delta t = 3 $ の場合に様々な初期条件で数値計算せよ．
 
 # ### Scipy.integrate.solve_ivpによる数値計算
 
