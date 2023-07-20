@@ -3,7 +3,7 @@
 
 # # 微分方程式モデル
 
-# In[16]:
+# In[75]:
 
 
 import numpy as np
@@ -199,11 +199,16 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # 生物集団における個体数変化のモデルをより現実に近づけるためには，多数の生物種の間の捕食・被食関係を考慮する方法が考えられる．
 # このようなモデルの中で単純なものとして，2種の生物間の相互作用を考慮した**ロトカ・ヴォルテラモデル**が知られている．
 
-# In[9]:
+# In[124]:
 
 
-def f_logistic(t, N0, N_max, gamma):
-    return N_max*(1+(N_max/N0 - 1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
+# シグモイド関数の定義
+def f_logistic(t, N0, N_inf, gamma): 
+    return N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
+
+
+# In[81]:
+
 
 fig, ax = plt.subplots(figsize=(4, 3))
 t = np.arange(200)
@@ -222,15 +227,7 @@ ax.set_ylabel('$N(t)$', fontsize=15);
 # 
 # ※ 本データの出典：[John Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series)
 
-# In[65]:
-
-
-# シグモイド関数の定義
-def f_logistic(t, N0, N_inf, gamma): 
-    return N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
-
-
-# In[70]:
+# In[82]:
 
 
 # データの読み込み
@@ -253,6 +250,101 @@ ax.legend(loc='upper left', fontsize=12);
 # ## 微分方程式の数値計算
 
 # ### オイラー法による数値計算
+
+# マルサスモデルとロジスティックモデルのように解析的に解けるような微分方程式は一般的には多くない．
+# そこで，微分方程式を解くもう一つの方法である数値解法について考えてみよう．
+# 数値解法は，非線形項を含む微分方程式や偏微分方程式などに対しても解を求めることができるが，ここでは次のような１階微分方程式を対象とする：
+# 
+# \begin{align*}
+#     \frac{du}{dt} &= g(t, u(t)) \\[10pt]
+#     u(0) &= u_{0}
+# \end{align*}
+# 
+# ここで，$ g(t, u(t)) $ は独立変数 $ t $ と従属変数 $ u(t) $ の任意関数であり，マルサスモデルやロジスティックモデルはこの形に帰着できる．
+# 
+# さて，この微分方程式をコンピュータで数値的に扱うには微分の計算
+# 
+# $$
+#     \frac{du}{dt} = \lim_{\Delta t \to 0} \frac{u(t+\Delta t) - u(t)}{\Delta t}
+# $$
+# 
+# を行う必要があるが，コンピュータ上で $ \Delta t $ を厳密に0にすることはできない．
+# しかし，$ \Delta t $ を十分に小さくとれば，微分の近似値として十分に精度の高い値を得ることができるだろう．
+# そこで，元の微分方程式を以下のように置き換えてみる：
+# 
+# \begin{align*}
+#     \frac{u(t+\Delta t) - u(t)}{\Delta t} &= g(t, u(t)) \\[10pt]
+#     u(t+\Delta t) &= u(t) + \Delta t g(t, u(t))
+# \end{align*}
+# 
+# すると，この式は $ u(t) $ から次の時刻の $ u(t+\Delta t) $ を求める漸化式と見なすことができる．
+# よって，初期条件 $ u(0) $ から $ u(1) $ を求め，さらに $ u(1) $ から $ u(2) $ を求めていけば，任意の時刻における $ u(t) $ を求めることができる．
+# 
+# 以上の方法は**オイラー法**と呼ばれる．
+# オイラー法は $ \Delta t $ を小さくとると精度が向上するが，その分計算量が増えてしまうという欠点がある．
+# しかし，この方法は直感的にも分かりやすく，また，微分方程式の数値計算の基礎となる方法でもある．
+
+# オイラー法をPythonで実装するために，式の整理をしておこう．
+# まず，$ 0\sim t $ の時刻を $ \Delta t $ の間隔で $ n $ 個に分割すると，時刻は $ t_{n} = n\Delta t $ と離散化される．
+# また，離散化した従属変数についても， $ u(t_{n}) = u_{n} $ と表記することにする．
+# このとき，離散化した微分方程式は以下のように表すことができる：
+# 
+# \begin{align*}
+#     u_{n+1} &= u_{n} + \Delta t g(t_{n}, u_{n})
+# \end{align*}
+
+# **マルサスモデル**
+
+# In[268]:
+
+
+a = 2
+def g_malthus(n, u):
+    return a*u
+
+
+# In[278]:
+
+
+T, dt = 1, 0.1
+t = np.arange(0, T, dt) 
+u = np.zeros(len(t))
+
+u[0] = 1 # 初期値
+for n in range(len(t)-1):
+    u[n+1] = u[n] + dt * g_malthus(n, u[n])
+
+fig, ax = plt.subplots()
+ax.plot(t, u)
+ax.plot(t, np.exp(a*t), 'r-')
+
+
+# **ロジスティックモデル**
+
+# In[279]:
+
+
+gamma, N_inf = 1, 1000
+def g_logistic(n, u):
+    return gamma*(1-u/N_inf)*u
+
+
+# In[288]:
+
+
+T, dt = 100, 3.
+t = np.arange(0, T, dt) 
+u = np.zeros(len(t))
+
+u[0] = 0.1  # 初期値
+for n in range(len(t)-1):
+    u[n+1] = u[n] + dt * g_logistic(n, u[n])
+
+fig, ax = plt.subplots()
+ax.plot(t, u, '-x', ms=3)
+t2 = np.arange(0, T, 0.01)
+ax.plot(t2, f_logistic(t2, u[0], N_inf, gamma), 'r-')
+
 
 # ### Scipy.integrate.solve_ivpによる数値計算
 
