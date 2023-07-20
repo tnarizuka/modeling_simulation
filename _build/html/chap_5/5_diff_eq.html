@@ -771,6 +771,7 @@ title="Print to PDF"
     u_{n+1} &amp;= u_{n} + \Delta t g(t_{n}, u_{n})
 \end{align*}\]</div>
 <p><strong>マルサスモデル</strong></p>
+<p>マルサスモデルの場合，時間刻み <span class="math notranslate nohighlight">\( \Delta t \)</span> を小さくするほど厳密解に近づくことが分かる．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
@@ -808,6 +809,11 @@ title="Print to PDF"
 </div>
 </div>
 <p><strong>ロジスティックモデル</strong></p>
+<p>ロジスティックモデルの場合も時間刻み <span class="math notranslate nohighlight">\( \Delta t \)</span> を小さくすると数値解と厳密解がよく一致することが分かる．
+一方，<span class="math notranslate nohighlight">\( \Delta t \)</span> を大きくしていくと，マルサスモデルとは異なった振る舞いが見られる．
+詳しくは，演習問題を解くと分かるが，オイラー法が全く役に立たないことが実感できるだろう．
+実は，ロジスティック方程式をオイラー法で離散化した方程式は<strong>ロジスティック写像</strong>と呼ばれており，<strong>周期倍分岐</strong>と呼ばれる特異な振る舞いをすることが知られている．
+特に，あるパラメータの値を超えると，<strong>カオス</strong>と呼ばれる非常に複雑な振る舞いをすることが知られている．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma</span><span class="p">,</span> <span class="n">N_inf</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span>
