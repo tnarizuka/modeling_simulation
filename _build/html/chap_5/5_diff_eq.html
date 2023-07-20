@@ -748,9 +748,14 @@ title="Print to PDF"
 オイラー法は <span class="math notranslate nohighlight">\( \Delta t \)</span> を小さくとると精度が向上するが，その分計算量が増えてしまうという欠点がある．
 そこで，ホイン法やルンゲクッタ法などより精度の高い方法が数多く提案されている．</p>
 <p>オイラー法をPythonで実装するために，式の整理をしておこう．
-まず，<span class="math notranslate nohighlight">\( 0\sim t \)</span> の時刻を <span class="math notranslate nohighlight">\( \Delta t \)</span> の間隔で <span class="math notranslate nohighlight">\( n \)</span> 個に分割すると，時刻は <span class="math notranslate nohighlight">\( t_{n} = n\Delta t \)</span> と離散化される．
-また，離散化した従属変数についても， <span class="math notranslate nohighlight">\( u(t_{n}) = u_{n} \)</span> と表記することにする．
-このとき，離散化した微分方程式は以下のように表すことができる：</p>
+まず，<span class="math notranslate nohighlight">\( 0\sim t \)</span> の時刻を <span class="math notranslate nohighlight">\( \Delta t \)</span> の間隔で <span class="math notranslate nohighlight">\( n \)</span> 個に分割すると，</p>
+<div class="math notranslate nohighlight">
+\[
+    0, \Delta t, 2\Delta t, \cdots, (n-1)\Delta t, n\Delta t
+\]</div>
+<p>となる．
+そこで，離散化した時刻を順に <span class="math notranslate nohighlight">\( t_{0},\ t_{1},\ \cdots, t_{n} \)</span> とすれば， <span class="math notranslate nohighlight">\( t_{n} = n\Delta t \)</span> が成り立つ．
+このとき，離散化した従属変数を <span class="math notranslate nohighlight">\( u(t_{n}) = u_{n} \)</span> と表記すれば，微分方程式は以下のように表すことができる：</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     u_{n+1} &amp;= u_{n} + \Delta t g(t_{n}, u_{n})
