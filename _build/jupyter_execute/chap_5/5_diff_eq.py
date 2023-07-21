@@ -317,7 +317,7 @@ def g_malthus(t_n, u_n):
     return a*u_n
 
 
-# In[37]:
+# In[94]:
 
 
 T, dt = 1, 0.05
@@ -334,7 +334,7 @@ for n in range(len(t)-1):
 # グラフの描画
 fig, ax = plt.subplots()
 ax.plot(t, u, 'o') # 数値解
-ax.plot(t, np.exp(a*t), 'r-') # 厳密解
+ax.plot(t, np.exp(a*t), 'r-'); # 厳密解
 
 
 # **ロジスティックモデル**
@@ -360,7 +360,7 @@ def g_logistic(t_n, u_n):
     return gamma*(1-u_n/N_inf)*u_n
 
 
-# In[93]:
+# In[95]:
 
 
 T, dt = 100, 0.1
@@ -383,7 +383,7 @@ f_logistic = lambda t, N0, N_inf, gamma: N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip
 t2 = np.arange(0, T, 0.01)
 ax.plot(t2, f_logistic(t2, u[0], N_inf, gamma), 'r-')
 
-ax.set_xlim(0, T)
+ax.set_xlim(0, T);
 
 
 # ### 演習問題
