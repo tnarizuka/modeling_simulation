@@ -403,7 +403,7 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#scipy-integrate-solve-ivp">
-     5.3.3. Scipy.integrate.solve_ivpによる数値計算
+     5.3.3. scipy.integrate.solve_ivpによる数値計算
     </a>
    </li>
   </ul>
@@ -478,7 +478,7 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#scipy-integrate-solve-ivp">
-     5.3.3. Scipy.integrate.solve_ivpによる数値計算
+     5.3.3. scipy.integrate.solve_ivpによる数値計算
     </a>
    </li>
   </ul>
@@ -833,7 +833,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">3</span>
 
 <span class="c1"># 離散化した独立変数と従属変数</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span> 
@@ -879,7 +879,10 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="scipy-integrate-solve-ivp">
-<h3><span class="section-number">5.3.3. </span>Scipy.integrate.solve_ivpによる数値計算<a class="headerlink" href="#scipy-integrate-solve-ivp" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">5.3.3. </span>scipy.integrate.solve_ivpによる数値計算<a class="headerlink" href="#scipy-integrate-solve-ivp" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>現在，非常に精度が良く高速なアルゴリズムが数多く開発されているが，これらを実装するのは容易ではない．
+そこで，通常は数値計算用のライブラリを用いるのが一般的である．
+ここでは，<code class="docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp</span></code>を用いて，様々な常微分方程式を解く方法を紹介する．</p>
 </section>
 </section>
 </section>
