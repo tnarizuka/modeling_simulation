@@ -1107,8 +1107,9 @@ title="Print to PDF"
 	\frac{d^{2}\phi}{dt^2} = -\frac{g}{l}\sin\phi
 \end{align*}\]</div>
 <p>この微分方程式は，<span class="math notranslate nohighlight">\( \sin\phi \)</span> という非線形関数を含むため，解析的に解くことができない（楕円関数を使えば解ける）．
-そこで，<code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> を使って数値的に解いてみる．</p>
-<p>まずは，以下のように2階微分方程式を1階微分方程式に変換しておく：</p>
+通常は角度が小さい場合を仮定して <span class="math notranslate nohighlight">\( \sin\phi \approx \phi \)</span> と近似し，線形化した微分方程式を解く．</p>
+<p>ここでは，<code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> を使って数値的に解いてみる．
+数値解を求めるにあたり，2階微分方程式を1階微分方程式に変換しておく：</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 	\frac{d\phi}{dt} &amp;= v_{\phi} \\[10pt]
