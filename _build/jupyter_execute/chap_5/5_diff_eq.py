@@ -425,13 +425,13 @@ from scipy.integrate import solve_ivp
 # 
 # `solve_ivp`は以下のように実行する：
 # ```python
-#     solve_ivp(func, t_span, y0, method='RK45', t_eval=None, args=None)
+#     solve_ivp(func, t_span, y0, method, t_eval, args)
 # ```
 # それぞれの引数の意味は以下の通りである：
 # 
 # | 引数 | 意味 | 例 |
 # |:---|:---| :---|
-# | `func` | 微分方程式の右辺を定義した関数 | func(t, x, y, ...) |
+# | `func` | 微分方程式の右辺を定義した関数 | func(t, x, y, ..., params) |
 # | `t_span` | 数値解を求める時間範囲 | `[t_min, t_max]` |
 # | `y0` | 初期値 | `[1, 0]` |
 # | `method` | 数値解を求めるためのアルゴリズム | `'RK45'`, `'RK23'`, `'DOP853'`, `'Radau'`, `'BDF'` |
@@ -440,48 +440,52 @@ from scipy.integrate import solve_ivp
 
 # **マルサスモデル**
 
-# In[50]:
+# In[156]:
 
 
 def ode_malthus(t, N, a):
-    dN_dt = a*N
+    dNdt = a*N
 
-    return [dN_dt]
-
-
-# In[52]:
+    return [dNdt]
 
 
-# 数値計算
+# In[157]:
+
+
+# パラメータと初期条件
 a = 2   # パラメータ
 N0 = [1]  # 初期値
-T = np.arange(0, 1, 0.05)
-sol = solve_ivp(ode_malthus, [T[0], T[-1]], N0, args=[a], method='RK45', t_eval=T)
+
+# 数値計算
+t = np.arange(0, 1, 0.05)
+sol = solve_ivp(ode_malthus, [t[0], t[-1]], N0, method='RK45', t_eval=t, args=[a])
 
 # グラフの描画
 fig, ax = plt.subplots(figsize=(5, 4))
-ax.plot(T, sol.y[0], 'x') # 数値解
-ax.plot(T, N0*np.exp(a*T), lw=2) # 解析解
+ax.plot(t, sol.y[0], 'x') # 数値解
+ax.plot(t, N0*np.exp(a*t), lw=2) # 解析解
 
 
 # **ロジスティックモデル**
 
-# In[26]:
+# In[158]:
 
 
 def ode_logistic(t, N, N_inf, gamma):
-    dN_dt = gamma * (1 - N / N_inf) * N
+    dNdt = gamma * (1 - N / N_inf) * N
 
-    return [dN_dt]
-
-
-# In[54]:
+    return [dNdt]
 
 
-# 数値計算
+# In[162]:
+
+
+# パラメータと初期条件
 gamma, N_inf = 1, 1000  # パラメータ
 N0 = [1]  # 初期値
-t = np.arange(0, 100, 1)
+
+# 数値計算
+t = np.arange(0, 100, 0.1)
 sol = solve_ivp(ode_logistic, [t[0], t[-1]], N0, args=[N_inf, gamma], method='RK45', t_eval=t)
 
 # グラフの描画
@@ -505,15 +509,15 @@ ax.set_xlim(0, t[-1]);
 #     m\frac{d^{2}y}{dt^2} &= -mg -k\frac{dy}{dt}
 # \end{align*}
 # 
-# この微分方程式は解析解を求めることができ，以下のように表される：
+# この微分方程式は解析的に解くことができ，以下のように表される：
 # 
 # \begin{align*}
 #     x(t) &= x_{0} + \frac{m}{k}v_{0}\cos\theta \left(1 - \mathrm{e}^{-\frac{k}{m}t}\right) \\[10pt]
 #     y(t) &= y_{0} -\frac{mg}{k}t + \frac{m}{k} \left(v_{0}\sin\theta + \frac{mg}{k}\right) \left(1 - \mathrm{e}^{-\frac{k}{m}t}\right)
 # \end{align*}
 
-# この微分方程式は，これまでと異なり2階微分方程式なので，このままだと数値的に解くことができない．
-# しかし，$ \frac{dx}{dt}=v_{x},\ \frac{dy}{dt}=v_{y} $ であることに注意すると，以下のように2つの1階微分方程式に変換することができる：
+# この微分方程式は2階微分方程式なので，このままだと数値的に解くことができない．
+# しかし，$ \frac{dx}{dt}=v_{x},\ \frac{dy}{dt}=v_{y} $ と置くと，以下のように連立1階微分方程式に変換することができる：
 # 
 # \begin{align*}
 #     \frac{dx}{dt} &= v_{x} \\[10pt]
@@ -523,15 +527,16 @@ ax.set_xlim(0, t[-1]);
 # \end{align*}
 # 
 # これより，元の微分方程式を4変数の連立微分方程式と見なせば，`solve_ivp`を用いて解くことができる．
-# 以下では，matplotlibの`FuncAnimation`関数を使ってアニメーションを作成する例を示す．
+# 
+# 以下では，matplotlibの`FuncAnimation`関数を使って数値解をアニメーションで表示してみよう．
 
-# In[115]:
+# In[163]:
 
 
 from matplotlib.animation import FuncAnimation
 
 
-# In[118]:
+# In[164]:
 
 
 # 描画結果の出力先を別ウインドウとする
@@ -539,7 +544,7 @@ from matplotlib.animation import FuncAnimation
 get_ipython().run_line_magic('matplotlib', 'tk')
 
 
-# In[119]:
+# In[165]:
 
 
 def ode_projectile(t, var, g, m_k):
@@ -557,7 +562,7 @@ def ode_projectile(t, var, g, m_k):
     return [dxdt, dydt, dvxdt, dvydt]
 
 
-# In[148]:
+# In[166]:
 
 
 # パラメータ
@@ -573,7 +578,7 @@ t = np.arange(0, 10, 0.1)
 sol = solve_ivp(ode_projectile, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[g, m_k])
 
 
-# In[149]:
+# In[167]:
 
 
 # アニメーションの設定
@@ -600,7 +605,8 @@ anim = FuncAnimation(fig, update, fargs=[sol.y[0], sol.y[1]],\
 # **単振り子**
 # 
 # 最後に，解析的に解けない微分方程式の例として，単振り子を取り上げる．
-# 天井から長さ $ l $ の糸で吊るされた質量 $ m $ の物体が，糸の垂直線から角度 $ \phi $ だけずれた位置にあるとする．
+# 天井から長さ $ l $ の糸で質量 $ m $ の物体を吊るしたときの静止位置を原点に取る．
+# 糸の垂直線からの角度を $ \phi $ とする．
 # 物体に重力と糸の張力がはたらくとすると，角度 $ \phi $ は次のような微分方程式で記述される：
 # 
 # \begin{align*}
@@ -608,9 +614,9 @@ anim = FuncAnimation(fig, update, fargs=[sol.y[0], sol.y[1]],\
 # \end{align*}
 # 
 # この微分方程式は，$ \sin\phi $ という非線形関数を含むため，解析的に解くことができない（楕円関数を使えば解ける）．
-# 通常は角度が小さい場合を仮定して $ \sin\phi \approx \phi $ と近似し，線形化した微分方程式を解く．
+# よって，通常は角度が小さい場合を仮定して， $ \sin\phi \approx \phi $ と近似して得られる単振動の微分方程式を解く．
 # 
-# ここでは，`solve_ivp` を使って数値的に解いてみる．
+# ここでは，`solve_ivp` を使ってこの微分方程式を数値的に解いてみよう．
 # 数値解を求めるにあたり，2階微分方程式を1階微分方程式に変換しておく：
 # 
 # \begin{align*}
@@ -618,7 +624,13 @@ anim = FuncAnimation(fig, update, fargs=[sol.y[0], sol.y[1]],\
 # 	\frac{dv_{\phi}}{dt} &= -\frac{g}{l}\sin\phi
 # \end{align*}
 
-# In[138]:
+# In[168]:
+
+
+get_ipython().run_line_magic('matplotlib', 'tk')
+
+
+# In[169]:
 
 
 def ode_simple_pendulum(t, var, g, l):
@@ -632,7 +644,7 @@ def ode_simple_pendulum(t, var, g, l):
     return [dagdt, dvdt]
 
 
-# In[151]:
+# In[175]:
 
 
 # パラメータ
@@ -649,7 +661,7 @@ x = l*np.sin(sol.y[0])   # x座標
 y = l-l*np.cos(sol.y[0]) # y座標
 
 
-# In[152]:
+# In[177]:
 
 
 # アニメーションの設定
