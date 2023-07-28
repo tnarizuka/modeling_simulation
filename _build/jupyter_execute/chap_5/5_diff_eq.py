@@ -421,7 +421,7 @@ from scipy.integrate import solve_ivp
 # \end{align*}
 # 
 # ただし，初期条件を $ x(t_0) = x_0,\ y(t_0) = y_0, \ldots $ とする．
-
+# 
 # `solve_ivp`は以下のように実行する：
 # ```python
 #     solve_ivp(func, t_span, y0, method='RK45', t_eval=None, args=None)
@@ -430,36 +430,138 @@ from scipy.integrate import solve_ivp
 # 
 # | 引数 | 意味 | 例 |
 # |:---|:---| :---|
-# | `func` | 微分方程式の右辺を定義した関数 |  |
-# | `t_span` | 数値解を求める時間範囲 | `[0, 10]` |
+# | `func` | 微分方程式の右辺を定義した関数 | func(t, x, y, ...) |
+# | `t_span` | 数値解を求める時間範囲 | `[t_min, t_max]` |
 # | `y0` | 初期値 | `[1, 0]` |
-# | `method` | 数値解を求めるためのアルゴリズム | `RK45`, `RK23`, `DOP853`, `Radau`, `BDF` |
-# | `t_eval` | 数値解を求める時間の配列 | np.arange(0, 100, 0.1) |
+# | `method` | 数値解を求めるためのアルゴリズム | `'RK45'`, `'RK23'`, `'DOP853'`, `'Radau'`, `'BDF'` |
+# | `t_eval` | 数値解を求める時間 | np.arange(t_min, t_max, dt) |
 # | `args` | `func`に渡す引数 |  |
 
-# In[2]:
+# **マルサスモデル**
+
+# In[50]:
 
 
 def ode_malthus(t, N, a):
     dN_dt = a*N
 
-    return dN_dt
+    return [dN_dt]
 
 
-# In[18]:
+# In[52]:
 
 
-a = 0.1
-N0 = [2]
-T = np.arange(0, 100, 0.1)
-
+# 数値計算
+a = 2   # パラメータ
+N0 = [1]  # 初期値
+T = np.arange(0, 1, 0.05)
 sol = solve_ivp(ode_malthus, [T[0], T[-1]], N0, args=[a], method='RK45', t_eval=T)
 
+# グラフの描画
+fig, ax = plt.subplots(figsize=(5, 4))
+ax.plot(T, sol.y[0], 'x') # 数値解
+ax.plot(T, N0*np.exp(a*T), lw=2) # 解析解
 
-# In[19]:
+
+# **ロジスティックモデル**
+
+# In[26]:
+
+
+def ode_logistic(t, N, N_inf, gamma):
+    dN_dt = gamma * (1 - N / N_inf) * N
+
+    return [dN_dt]
+
+
+# In[54]:
+
+
+# 数値計算
+gamma, N_inf = 1, 1000  # パラメータ
+N0 = [1]  # 初期値
+t = np.arange(0, 100, 1)
+sol = solve_ivp(ode_logistic, [t[0], t[-1]], N0, args=[N_inf, gamma], method='RK45', t_eval=t)
+
+# グラフの描画
+fig, ax = plt.subplots(figsize=(5, 4))
+ax.plot(t, sol.y[0], '-x', ms=3) # 数値解
+
+# 解析解
+f_logistic = lambda t, N0, N_inf, gamma: N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
+ax.plot(t, f_logistic(t, N0[0], N_inf, gamma), 'r-')
+ax.set_xlim(0, t[-1]);
+
+
+# **斜方投射**
+
+# 位置 $ (x_{0}, y_{0}) $ から角度 $ \theta $ の方向に初速 $ v_{0} $ で質量 $ m $ の物体を投げたときの物体の運動を考える．
+# これを斜方投射と呼ぶ．
+# 物体には重力と速度に比例した空気抵抗がはたらくとすると，物体の運動は以下の微分方程式（運動方程式）で表される
+# 
+# \begin{align*}
+#     m\frac{d^{2}x}{dt^2} &= -k\frac{dx}{dt} \\[10pt]
+#     m\frac{d^{2}y}{dt^2} &= -mg -k\frac{dy}{dt}
+# \end{align*}
+# 
+# この微分方程式は解析解を求めることができ，以下のように表される：
+# 
+# \begin{align*}
+#     x(t) &= x_{0} + \frac{m}{k}v_{0}\cos\theta \left(1 - \mathrm{e}^{-\frac{k}{m}t}\right) \\[10pt]
+#     y(t) &= y_{0} -\frac{mg}{k}t + \frac{m}{k} \left(v_{0}\sin\theta + \frac{mg}{k}\right) \left(1 - \mathrm{e}^{-\frac{k}{m}t}\right)
+# \end{align*}
+
+# この微分方程式は，これまでと異なり2階微分方程式なので，このままだと数値的に解くことができない．
+# しかし，$ \frac{dx}{dt}=v_{x},\ \frac{dy}{dt}=v_{y} $ であることに注意すると，以下のように2つの1階微分方程式に変換することができる：
+# 
+# \begin{align*}
+#     \frac{dx}{dt} &= v_{x} \\[10pt]
+#     \frac{dy}{dt} &= v_{y} \\[10pt]
+#     m\frac{dv_{x}}{dt} &= -kv_{x} \\[10pt]
+#     m\frac{dv_{y}}{dt} &= -mg -kv_{y}
+# \end{align*}
+# 
+# これより，元の微分方程式を4変数の連立微分方程式と見なせば，`solve_ivp`を用いて解くことができる．
+
+# In[74]:
+
+
+def ode_projectile(t, var, m_k):
+    '''
+    斜方投射（空気抵抗あり）の運動方程式
+    ---
+    m_k: m/k
+    '''
+    x, y, vx, vy = var
+    dxdt = vx
+    dydt = vy
+    dvxdt = -vx/m_k
+    dvydt = -g - vy/m_k
+    
+    return [dxdt, dydt, dvxdt, dvydt]
+
+
+# In[91]:
+
+
+# 数値計算
+x0, y0, v0, ag0 = 0, 0, 30, np.radians(30) # 初期位置 [m], 初速 [m/s]，投射角 [rad]
+g = 9.8 # 重力加速度 [m/s^2]
+m_k = 3 # 質量と抵抗係数の比（m/k） [s]
+t = np.arange(0, 6, 0.1)
+
+var0 = [x0, y0, v0*np.cos(ag0), v0*np.sin(ag0)] # [x0, y0, vx, vz]
+sol = solve_ivp(ode_projectile, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[m_k])
+
+
+# In[92]:
 
 
 fig, ax = plt.subplots(figsize=(8, 4))
-ax.plot(T, sol.y[0], 'x')
-ax.plot(T, N0*np.exp(a*T), lw=2)
+ax.plot(sol.y[0], sol.y[1], 'b', lw=2)
+
+ax.set_aspect('equal')
+ax.set_xlim(0, 100); ax.set_ylim(0, 50)
+ax.set_xlabel('$x$ [m]', fontsize=15)
+ax.set_ylabel('$y$ [m]', fontsize=15)
 
