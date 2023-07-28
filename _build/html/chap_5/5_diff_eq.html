@@ -1058,14 +1058,16 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># パラメータと初期条件</span>
-<span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">ag0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="c1"># 初期位置 [m], 初速 [m/s]，投射角 [rad]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># パラメータ</span>
 <span class="n">g</span> <span class="o">=</span> <span class="mf">9.8</span> <span class="c1"># 重力加速度 [m/s^2]</span>
 <span class="n">m_k</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># 質量と抵抗係数の比（m/k） [s]</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># 初期条件</span>
+<span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">ag0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="c1"># 初期位置 [m], 初速 [m/s]，投射角 [rad]</span>
+<span class="n">var0</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">v0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ag0</span><span class="p">),</span> <span class="n">v0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ag0</span><span class="p">)]</span> <span class="c1"># [x0, y0, vx, vz]</span>
 
 <span class="c1"># 数値計算</span>
-<span class="n">var0</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">v0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ag0</span><span class="p">),</span> <span class="n">v0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ag0</span><span class="p">)]</span> <span class="c1"># [x0, y0, vx, vz]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">ode_projectile</span><span class="p">,</span> <span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">var0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;RK45&#39;</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">g</span><span class="p">,</span> <span class="n">m_k</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1129,18 +1131,25 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># パラメータと初期条件</span>
-<span class="n">l</span> <span class="o">=</span> <span class="mi">2</span>             <span class="c1"># 振り子の長さ</span>
-<span class="n">g</span> <span class="o">=</span> <span class="mf">9.8</span>           <span class="c1"># 重力加速度</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># パラメータ</span>
+<span class="n">l</span> <span class="o">=</span> <span class="mi">2</span>    <span class="c1"># 糸の長さ</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.8</span>  <span class="c1"># 重力加速度</span>
+
+<span class="c1"># 初期条件</span>
 <span class="n">var0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">([</span><span class="mi">45</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="c1"># [ag0, v0]</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 
 <span class="c1"># 数値計算</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">ode_simple_pendulum</span><span class="p">,</span> <span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">var0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;RK45&#39;</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">g</span><span class="p">,</span> <span class="n">l</span><span class="p">])</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">l</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">l</span><span class="o">-</span><span class="n">l</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-<span class="c1"># アニメーションの設定</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">l</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>   <span class="c1"># x座標</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">l</span><span class="o">-</span><span class="n">l</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># y座標</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># アニメーションの設定</span>
 <span class="k">def</span> <span class="nf">update_simple_pendulum</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
     <span class="n">pt</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="n">line</span><span class="o">.</span><span class="n">set_data</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="p">[</span><span class="n">l</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>

@@ -557,21 +557,23 @@ def ode_projectile(t, var, g, m_k):
     return [dxdt, dydt, dvxdt, dvydt]
 
 
-# In[146]:
+# In[148]:
 
 
-# パラメータと初期条件
-x0, y0, v0, ag0 = 0, 0, 45, np.radians(30) # 初期位置 [m], 初速 [m/s]，投射角 [rad]
+# パラメータ
 g = 9.8 # 重力加速度 [m/s^2]
 m_k = 3 # 質量と抵抗係数の比（m/k） [s]
-t = np.arange(0, 10, 0.1)
+
+# 初期条件
+x0, y0, v0, ag0 = 0, 0, 45, np.radians(30) # 初期位置 [m], 初速 [m/s]，投射角 [rad]
+var0 = [x0, y0, v0*np.cos(ag0), v0*np.sin(ag0)] # [x0, y0, vx, vz]
 
 # 数値計算
-var0 = [x0, y0, v0*np.cos(ag0), v0*np.sin(ag0)] # [x0, y0, vx, vz]
+t = np.arange(0, 10, 0.1)
 sol = solve_ivp(ode_projectile, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[g, m_k])
 
 
-# In[135]:
+# In[149]:
 
 
 # アニメーションの設定
@@ -629,19 +631,25 @@ def ode_simple_pendulum(t, var, g, l):
     return [dagdt, dvdt]
 
 
-# In[145]:
+# In[151]:
 
 
-# パラメータと初期条件
-l = 2             # 振り子の長さ
-g = 9.8           # 重力加速度
+# パラメータ
+l = 2    # 糸の長さ
+g = 9.8  # 重力加速度
+
+# 初期条件
 var0 = np.radians([45, 0]) # [ag0, v0]
-t = np.arange(0, 100, 0.1)
 
 # 数値計算
+t = np.arange(0, 100, 0.1)
 sol = solve_ivp(ode_simple_pendulum, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[g, l])
-x = l*np.sin(sol.y[0])
-y = l-l*np.cos(sol.y[0])
+x = l*np.sin(sol.y[0])   # x座標
+y = l-l*np.cos(sol.y[0]) # y座標
+
+
+# In[152]:
+
 
 # アニメーションの設定
 def update_simple_pendulum(i):
