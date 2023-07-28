@@ -399,6 +399,67 @@ ax.set_xlim(0, T);
 
 # ### scipy.integrate.solve_ivpによる数値計算
 
-# 現在，非常に精度が良く高速なアルゴリズムが数多く開発されているが，これらを実装するのは容易ではない．
+# 現在，非常に精度が良く高速な数値アルゴリズムが数多く開発されているが，これらを実装するのは容易ではない．
 # そこで，通常は数値計算用のライブラリを用いるのが一般的である．
-# ここでは，`scipy.integrate.solve_ivp`を用いて，様々な常微分方程式を解く方法を紹介する．
+# ここでは，`scipy.integrate.solve_ivp`を用いて，様々な常微分方程式を解く方法を紹介する．<br>
+# なお，`scipy.integrate.odeint`も同様の機能を備えているが，現在は`solve_ivp`の使用が推奨されている．
+
+# まずは，以下のように`solve_ivp`をインポートしておく．
+
+# In[ ]:
+
+
+from scipy.integrate import solve_ivp
+
+
+# `solve_ivp`は以下のような連立常微分方程式を解くことができる：
+# 
+# \begin{align*}
+#     \frac{dx}{dt} &= f(t, x, y,\ldots) \\[10pt]
+#     \frac{dy}{dt} &= g(t, x, y,\ldots) \\[10pt]
+#     \vdots \\[10pt]
+# \end{align*}
+# 
+# ただし，初期条件を $ x(t_0) = x_0,\ y(t_0) = y_0, \ldots $ とする．
+
+# `solve_ivp`は以下のように実行する：
+# ```python
+#     solve_ivp(func, t_span, y0, method='RK45', t_eval=None, args=None)
+# ```
+# それぞれの引数の意味は以下の通りである：
+# 
+# | 引数 | 意味 | 例 |
+# |:---|:---| :---|
+# | `func` | 微分方程式の右辺を定義した関数 |  |
+# | `t_span` | 数値解を求める時間範囲 | `[0, 10]` |
+# | `y0` | 初期値 | `[1, 0]` |
+# | `method` | 数値解を求めるためのアルゴリズム | `RK45`, `RK23`, `DOP853`, `Radau`, `BDF` |
+# | `t_eval` | 数値解を求める時間の配列 | np.arange(0, 100, 0.1) |
+# | `args` | `func`に渡す引数 |  |
+
+# In[2]:
+
+
+def ode_malthus(t, N, a):
+    dN_dt = a*N
+
+    return dN_dt
+
+
+# In[18]:
+
+
+a = 0.1
+N0 = [2]
+T = np.arange(0, 100, 0.1)
+
+sol = solve_ivp(ode_malthus, [T[0], T[-1]], N0, args=[a], method='RK45', t_eval=T)
+
+
+# In[19]:
+
+
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(T, sol.y[0], 'x')
+ax.plot(T, N0*np.exp(a*T), lw=2)
+
