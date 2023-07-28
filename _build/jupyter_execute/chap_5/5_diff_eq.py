@@ -557,15 +557,16 @@ def ode_projectile(t, var, g, m_k):
     return [dxdt, dydt, dvxdt, dvydt]
 
 
-# In[134]:
+# In[146]:
 
 
-# 数値計算
+# パラメータと初期条件
 x0, y0, v0, ag0 = 0, 0, 45, np.radians(30) # 初期位置 [m], 初速 [m/s]，投射角 [rad]
 g = 9.8 # 重力加速度 [m/s^2]
 m_k = 3 # 質量と抵抗係数の比（m/k） [s]
 t = np.arange(0, 10, 0.1)
 
+# 数値計算
 var0 = [x0, y0, v0*np.cos(ag0), v0*np.sin(ag0)] # [x0, y0, vx, vz]
 sol = solve_ivp(ode_projectile, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[g, m_k])
 
@@ -573,7 +574,7 @@ sol = solve_ivp(ode_projectile, [t[0], t[-1]], var0, method='RK45', t_eval=t, ar
 # In[135]:
 
 
-# アニメーション
+# アニメーションの設定
 def update(i, x, y):
 
     line.set_data(x[:i], y[:i])
@@ -606,3 +607,60 @@ anim = FuncAnimation(fig, update, fargs=[sol.y[0], sol.y[1]],\
 # 
 # この微分方程式は，$ \sin\phi $ という非線形関数を含むため，解析的に解くことができない（楕円関数を使えば解ける）．
 # そこで，`solve_ivp` を使って数値的に解いてみる．
+# 
+# まずは，以下のように2階微分方程式を1階微分方程式に変換しておく：
+# 
+# \begin{align*}
+# 	\frac{d\phi}{dt} &= v_{\phi} \\[10pt]
+# 	\frac{dv_{\phi}}{dt} &= -\frac{g}{l}\sin\phi
+# \end{align*}
+
+# In[138]:
+
+
+def ode_simple_pendulum(t, var, g, l):
+    '''
+    単振り子の運動方程式
+    '''
+    ag, v = var
+    dagdt = v
+    dvdt = -(g/l)*np.sin(ag)
+    
+    return [dagdt, dvdt]
+
+
+# In[145]:
+
+
+# パラメータと初期条件
+l = 2             # 振り子の長さ
+g = 9.8           # 重力加速度
+var0 = np.radians([45, 0]) # [ag0, v0]
+t = np.arange(0, 100, 0.1)
+
+# 数値計算
+sol = solve_ivp(ode_simple_pendulum, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[g, l])
+x = l*np.sin(sol.y[0])
+y = l-l*np.cos(sol.y[0])
+
+# アニメーションの設定
+def update_simple_pendulum(i):
+    pt.set_data(x[i], y[i])
+    line.set_data([0, x[i]], [l, y[i]])
+    
+    return [pt, line]
+
+# グラフの設定
+fig, ax = plt.subplots(figsize=(5, 5))
+pt, = ax.plot([], [], 'ko', ms=10)
+line, = ax.plot([], [], 'k-', lw=1)
+
+ax.set_aspect('equal')
+ax.set_xlim(-l, l); ax.set_ylim(-0.5, 2*l)
+ax.set_xlabel('$x$', fontsize=15)
+ax.set_ylabel('$y$', fontsize=15)
+
+# 実行
+anim = FuncAnimation(fig, update_simple_pendulum, fargs=None,\
+                     frames=len(t), blit=True, interval=20, repeat=True)
+
