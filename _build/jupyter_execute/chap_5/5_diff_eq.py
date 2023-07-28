@@ -3,11 +3,12 @@
 
 # # 微分方程式モデル
 
-# In[1]:
+# In[100]:
 
 
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 import pandas as pd
 import scipy as sp
 from scipy.integrate import odeint, solve_ivp
@@ -386,7 +387,7 @@ ax.plot(t2, f_logistic(t2, u[0], N_inf, gamma), 'r-')
 ax.set_xlim(0, T);
 
 
-# ### 演習問題
+# **演習問題**
 # 
 # - $ N_{\infty}=1000,\ \gamma=1 $ のロジスティックモデルについて，$ \Delta t $ を以下の値に設定して数値計算せよ．初期値は何でも良い．
 #   - $ 0 < \Delta t \le 1 $
@@ -522,11 +523,26 @@ ax.set_xlim(0, t[-1]);
 # \end{align*}
 # 
 # これより，元の微分方程式を4変数の連立微分方程式と見なせば，`solve_ivp`を用いて解くことができる．
+# 以下では，matplotlibの`FuncAnimation`関数を使ってアニメーションを作成する例を示す．
 
-# In[74]:
+# In[115]:
 
 
-def ode_projectile(t, var, m_k):
+from matplotlib.animation import FuncAnimation
+
+
+# In[118]:
+
+
+# 描画結果の出力先を別ウインドウとする
+# 元に戻すには %matplotlib inline を実行する
+get_ipython().run_line_magic('matplotlib', 'tk')
+
+
+# In[119]:
+
+
+def ode_projectile(t, var, g, m_k):
     '''
     斜方投射（空気抵抗あり）の運動方程式
     ---
@@ -541,27 +557,52 @@ def ode_projectile(t, var, m_k):
     return [dxdt, dydt, dvxdt, dvydt]
 
 
-# In[91]:
+# In[134]:
 
 
 # 数値計算
-x0, y0, v0, ag0 = 0, 0, 30, np.radians(30) # 初期位置 [m], 初速 [m/s]，投射角 [rad]
+x0, y0, v0, ag0 = 0, 0, 45, np.radians(30) # 初期位置 [m], 初速 [m/s]，投射角 [rad]
 g = 9.8 # 重力加速度 [m/s^2]
 m_k = 3 # 質量と抵抗係数の比（m/k） [s]
-t = np.arange(0, 6, 0.1)
+t = np.arange(0, 10, 0.1)
 
 var0 = [x0, y0, v0*np.cos(ag0), v0*np.sin(ag0)] # [x0, y0, vx, vz]
-sol = solve_ivp(ode_projectile, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[m_k])
+sol = solve_ivp(ode_projectile, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[g, m_k])
 
 
-# In[92]:
+# In[135]:
 
 
-fig, ax = plt.subplots(figsize=(8, 4))
-ax.plot(sol.y[0], sol.y[1], 'b', lw=2)
+# アニメーション
+def update(i, x, y):
+
+    line.set_data(x[:i], y[:i])
+
+    return [line]
+
+# グラフの設定
+fig, ax = plt.subplots(figsize=(7, 5))
+line, = ax.plot([], [], 'o-')
 
 ax.set_aspect('equal')
-ax.set_xlim(0, 100); ax.set_ylim(0, 50)
+ax.set_xlim(0, 100); ax.set_ylim(0, 30)
 ax.set_xlabel('$x$ [m]', fontsize=15)
 ax.set_ylabel('$y$ [m]', fontsize=15)
 
+# 実行
+anim = FuncAnimation(fig, update, fargs=[sol.y[0], sol.y[1]],\
+                     frames=len(t), blit=True, interval=10, repeat=False)
+
+
+# **単振り子**
+# 
+# 最後に，解析的に解けない微分方程式の例として，単振り子を取り上げる．
+# 天井から長さ $ l $ の糸で吊るされた質量 $ m $ の物体が，糸の垂直線から角度 $ \phi $ だけずれた位置にあるとする．
+# 物体に重力と糸の張力がはたらくとすると，角度 $ \phi $ は次のような微分方程式で記述される：
+# 
+# \begin{align*}
+# 	\frac{d^{2}\phi}{dt^2} = -\frac{g}{l}\sin\phi
+# \end{align*}
+# 
+# この微分方程式は，$ \sin\phi $ という非線形関数を含むため，解析的に解くことができない（楕円関数を使えば解ける）．
+# そこで，`solve_ivp` を使って数値的に解いてみる．
