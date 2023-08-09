@@ -3,12 +3,11 @@
 
 # # 微分方程式モデル
 
-# In[2]:
+# In[1]:
 
 
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
 import pandas as pd
 import scipy as sp
 from scipy.integrate import odeint, solve_ivp
@@ -310,7 +309,7 @@ ax.legend(loc='upper left', fontsize=12);
 # 
 # 実際に数値計算すると，時間刻み $ \Delta t $ を小さくするほど厳密解に近づくことが分かる．
 
-# In[1]:
+# In[2]:
 
 
 a = 2
@@ -318,24 +317,10 @@ def g_malthus(t_n, u_n):
     return a*u_n
 
 
-# In[94]:
+# In[24]:
 
 
-T, dt = 1, 0.05
-
-# 離散化した独立変数と従属変数
-t = np.arange(0, T, dt) 
-u = np.zeros(len(t))
-
-# 数値計算
-u[0] = 1 # 初期値
-for n in range(len(t)-1):
-    u[n+1] = u[n] + dt * g_malthus(t[n], u[n])
-
-# グラフの描画
-fig, ax = plt.subplots()
-ax.plot(t, u, 'o') # 数値解
-ax.plot(t, np.exp(a*t), 'r-'); # 厳密解
+get_ipython().run_cell_magic('time', '', "T, dt = 5, 0.001\n\n# 離散化した独立変数と従属変数\nt = np.arange(0, T, dt) \nu = np.zeros(len(t))\n\n# 数値計算\nu[0] = 1 # 初期値\nfor n in range(len(t)-1):\n    u[n+1] = u[n] + dt * g_malthus(t[n], u[n])\n\n# グラフの描画\nfig, ax = plt.subplots()\nax.plot(t, u, 'o') # 数値解\nax.plot(t, np.exp(a*t), 'r-'); # 厳密解")
 
 
 # **ロジスティックモデル**
@@ -353,7 +338,7 @@ ax.plot(t, np.exp(a*t), 'r-'); # 厳密解
 # 特に，パラメータ（今の場合は $ 1+\Delta t \gamma $ ）がある値（3.5699456...）を超えると，特定の周期を持たない非常に複雑な振る舞いを示す．
 # これは，**カオス**の一例として知られている．
 
-# In[2]:
+# In[25]:
 
 
 gamma, N_inf = 1, 1000
@@ -361,7 +346,7 @@ def g_logistic(t_n, u_n):
     return gamma*(1-u_n/N_inf)*u_n
 
 
-# In[3]:
+# In[59]:
 
 
 T, dt = 100, 3
@@ -371,7 +356,7 @@ t = np.arange(0, T, dt)
 u = np.zeros(len(t))
 
 # 数値計算
-u[0] = 0.5  # 初期値
+u[0] = 0.10002  # 初期値
 for n in range(len(t)-1):
     u[n+1] = u[n] + dt * g_logistic(t[n], u[n])
 
@@ -387,7 +372,7 @@ ax.plot(t2, f_logistic(t2, u[0], N_inf, gamma), 'r-')
 ax.set_xlim(0, T);
 
 
-# **演習問題**
+# ### 演習問題
 # 
 # - $ N_{\infty}=1000,\ \gamma=1 $ のロジスティックモデルについて，$ \Delta t $ を以下の値に設定して数値計算せよ．初期値は何でも良い．
 #   - $ 0 < \Delta t \le 1 $
@@ -398,288 +383,6 @@ ax.set_xlim(0, T);
 #   - $ 3 < \Delta t $
 # - 同様に，$ \Delta t = 3 $ の場合に様々な初期条件で数値計算せよ．
 
-# ### scipy.integrate.solve_ivpによる数値計算
+# ### Scipy.integrate.solve_ivpによる数値計算
 
-# 現在，非常に精度が良く高速な数値アルゴリズムが数多く開発されているが，これらを実装するのは容易ではない．
-# そこで，通常は数値計算用のライブラリを用いるのが一般的である．
-# ここでは，`scipy.integrate.solve_ivp`を用いて，様々な常微分方程式を解く方法を紹介する．<br>
-# なお，`scipy.integrate.odeint`も同様の機能を備えているが，現在は`solve_ivp`の使用が推奨されている．
-
-# まずは，以下のように`solve_ivp`をインポートしておく．
-
-# In[ ]:
-
-
-from scipy.integrate import solve_ivp
-
-
-# `solve_ivp`は以下のような連立常微分方程式を解くことができる：
 # 
-# \begin{align*}
-#     \frac{dx}{dt} &= f(t, x, y,\ldots) \\[10pt]
-#     \frac{dy}{dt} &= g(t, x, y,\ldots) \\[10pt]
-#     \vdots \\[10pt]
-# \end{align*}
-# 
-# ただし，初期条件を $ x(t_0) = x_0,\ y(t_0) = y_0, \ldots $ とする．
-# 
-# `solve_ivp`は以下のように実行する：
-# ```python
-#     solve_ivp(func, t_span, y0, method, t_eval, args)
-# ```
-# それぞれの引数の意味は以下の通りである：
-# 
-# | 引数 | 意味 | 例 |
-# |:---|:---| :---|
-# | `func` | 微分方程式の右辺を定義した関数 | func(t, x, y, ..., params) |
-# | `t_span` | 数値解を求める時間範囲 | `[t_min, t_max]` |
-# | `y0` | 初期値 | `[1, 0]` |
-# | `method` | 数値解を求めるためのアルゴリズム | `'RK45'`, `'RK23'`, `'DOP853'`, `'Radau'`, `'BDF'` |
-# | `t_eval` | 数値解を求める時間 | np.arange(t_min, t_max, dt) |
-# | `args` | `func`に渡す引数 |  |
-
-# **マルサスモデル**
-
-# In[156]:
-
-
-def ode_malthus(t, N, a):
-    dNdt = a*N
-
-    return [dNdt]
-
-
-# In[157]:
-
-
-# パラメータと初期条件
-a = 2   # パラメータ
-N0 = [1]  # 初期値
-
-# 数値計算
-t = np.arange(0, 1, 0.05)
-sol = solve_ivp(ode_malthus, [t[0], t[-1]], N0, method='RK45', t_eval=t, args=[a])
-
-# グラフの描画
-fig, ax = plt.subplots(figsize=(5, 4))
-ax.plot(t, sol.y[0], 'x') # 数値解
-ax.plot(t, N0*np.exp(a*t), lw=2) # 解析解
-
-
-# **ロジスティックモデル**
-
-# In[158]:
-
-
-def ode_logistic(t, N, N_inf, gamma):
-    dNdt = gamma * (1 - N / N_inf) * N
-
-    return [dNdt]
-
-
-# In[162]:
-
-
-# パラメータと初期条件
-gamma, N_inf = 1, 1000  # パラメータ
-N0 = [1]  # 初期値
-
-# 数値計算
-t = np.arange(0, 100, 0.1)
-sol = solve_ivp(ode_logistic, [t[0], t[-1]], N0, args=[N_inf, gamma], method='RK45', t_eval=t)
-
-# グラフの描画
-fig, ax = plt.subplots(figsize=(5, 4))
-ax.plot(t, sol.y[0], '-x', ms=3) # 数値解
-
-# 解析解
-f_logistic = lambda t, N0, N_inf, gamma: N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
-ax.plot(t, f_logistic(t, N0[0], N_inf, gamma), 'r-')
-ax.set_xlim(0, t[-1]);
-
-
-# **斜方投射**
-
-# 位置 $ (x_{0}, y_{0}) $ から角度 $ \theta $ の方向に初速 $ v_{0} $ で質量 $ m $ の物体を投げたときの物体の運動を考える．
-# これを斜方投射と呼ぶ．
-# 物体には重力と速度に比例した空気抵抗がはたらくとすると，物体の運動は以下の微分方程式（運動方程式）で表される
-# 
-# \begin{align*}
-#     m\frac{d^{2}x}{dt^2} &= -k\frac{dx}{dt} \\[10pt]
-#     m\frac{d^{2}y}{dt^2} &= -mg -k\frac{dy}{dt}
-# \end{align*}
-# 
-# この微分方程式は解析的に解くことができ，以下のように表される：
-# 
-# \begin{align*}
-#     x(t) &= x_{0} + \frac{m}{k}v_{0}\cos\theta \left(1 - \mathrm{e}^{-\frac{k}{m}t}\right) \\[10pt]
-#     y(t) &= y_{0} -\frac{mg}{k}t + \frac{m}{k} \left(v_{0}\sin\theta + \frac{mg}{k}\right) \left(1 - \mathrm{e}^{-\frac{k}{m}t}\right)
-# \end{align*}
-
-# この微分方程式は2階微分方程式なので，このままだと数値的に解くことができない．
-# しかし，$ \frac{dx}{dt}=v_{x},\ \frac{dy}{dt}=v_{y} $ と置くと，以下のように連立1階微分方程式に変換することができる：
-# 
-# \begin{align*}
-#     \frac{dx}{dt} &= v_{x} \\[10pt]
-#     \frac{dy}{dt} &= v_{y} \\[10pt]
-#     m\frac{dv_{x}}{dt} &= -kv_{x} \\[10pt]
-#     m\frac{dv_{y}}{dt} &= -mg -kv_{y}
-# \end{align*}
-# 
-# これより，元の微分方程式を4変数の連立微分方程式と見なせば，`solve_ivp`を用いて解くことができる．
-# 
-# 以下では，matplotlibの`FuncAnimation`関数を使って数値解をアニメーションで表示してみよう．
-
-# In[163]:
-
-
-from matplotlib.animation import FuncAnimation
-
-
-# In[164]:
-
-
-# 描画結果の出力先を別ウインドウとする
-# 元に戻すには %matplotlib inline を実行する
-get_ipython().run_line_magic('matplotlib', 'tk')
-
-
-# In[165]:
-
-
-def ode_projectile(t, var, g, m_k):
-    '''
-    斜方投射（空気抵抗あり）の運動方程式
-    ---
-    m_k: m/k
-    '''
-    x, y, vx, vy = var
-    dxdt = vx
-    dydt = vy
-    dvxdt = -vx/m_k
-    dvydt = -g - vy/m_k
-    
-    return [dxdt, dydt, dvxdt, dvydt]
-
-
-# In[166]:
-
-
-# パラメータ
-g = 9.8 # 重力加速度 [m/s^2]
-m_k = 3 # 質量と抵抗係数の比（m/k） [s]
-
-# 初期条件
-x0, y0, v0, ag0 = 0, 0, 45, np.radians(30) # 初期位置 [m], 初速 [m/s]，投射角 [rad]
-var0 = [x0, y0, v0*np.cos(ag0), v0*np.sin(ag0)] # [x0, y0, vx, vz]
-
-# 数値計算
-t = np.arange(0, 10, 0.1)
-sol = solve_ivp(ode_projectile, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[g, m_k])
-
-
-# In[167]:
-
-
-# アニメーションの設定
-def update(i, x, y):
-
-    line.set_data(x[:i], y[:i])
-
-    return [line]
-
-# グラフの設定
-fig, ax = plt.subplots(figsize=(7, 5))
-line, = ax.plot([], [], 'o-')
-
-ax.set_aspect('equal')
-ax.set_xlim(0, 100); ax.set_ylim(0, 30)
-ax.set_xlabel('$x$ [m]', fontsize=15)
-ax.set_ylabel('$y$ [m]', fontsize=15)
-
-# 実行
-anim = FuncAnimation(fig, update, fargs=[sol.y[0], sol.y[1]],                     frames=len(t), blit=True, interval=10, repeat=False)
-
-
-# **単振り子**
-# 
-# 最後に，解析的に解けない微分方程式の例として，単振り子を取り上げる．
-# 天井から長さ $ l $ の糸で質量 $ m $ の物体を吊るしたときの静止位置を原点に取る．
-# 糸の垂直線からの角度を $ \phi $ とする．
-# 物体に重力と糸の張力がはたらくとすると，角度 $ \phi $ は次のような微分方程式で記述される：
-# 
-# \begin{align*}
-# 	\frac{d^{2}\phi}{dt^2} = -\frac{g}{l}\sin\phi
-# \end{align*}
-# 
-# この微分方程式は，$ \sin\phi $ という非線形関数を含むため，解析的に解くことができない（楕円関数を使えば解ける）．
-# よって，通常は角度が小さい場合を仮定して， $ \sin\phi \approx \phi $ と近似して得られる単振動の微分方程式を解く．
-# 
-# ここでは，`solve_ivp` を使ってこの微分方程式を数値的に解いてみよう．
-# 数値解を求めるにあたり，2階微分方程式を1階微分方程式に変換しておく：
-# 
-# \begin{align*}
-# 	\frac{d\phi}{dt} &= v_{\phi} \\[10pt]
-# 	\frac{dv_{\phi}}{dt} &= -\frac{g}{l}\sin\phi
-# \end{align*}
-
-# In[168]:
-
-
-get_ipython().run_line_magic('matplotlib', 'tk')
-
-
-# In[169]:
-
-
-def ode_simple_pendulum(t, var, g, l):
-    '''
-    単振り子の運動方程式
-    '''
-    ag, v = var
-    dagdt = v
-    dvdt = -(g/l)*np.sin(ag)
-    
-    return [dagdt, dvdt]
-
-
-# In[175]:
-
-
-# パラメータ
-l = 2    # 糸の長さ
-g = 9.8  # 重力加速度
-
-# 初期条件
-var0 = np.radians([45, 0]) # [ag0, v0]
-
-# 数値計算
-t = np.arange(0, 100, 0.1)
-sol = solve_ivp(ode_simple_pendulum, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[g, l])
-x = l*np.sin(sol.y[0])   # x座標
-y = l-l*np.cos(sol.y[0]) # y座標
-
-
-# In[177]:
-
-
-# アニメーションの設定
-def update_simple_pendulum(i):
-    pt.set_data(x[i], y[i])
-    line.set_data([0, x[i]], [l, y[i]])
-    
-    return [pt, line]
-
-# グラフの設定
-fig, ax = plt.subplots(figsize=(5, 5))
-pt, = ax.plot([], [], 'ko', ms=10)
-line, = ax.plot([], [], 'k-', lw=1)
-
-ax.set_aspect('equal')
-ax.set_xlim(-l, l); ax.set_ylim(-0.5, 2*l)
-ax.set_xlabel('$x$', fontsize=15)
-ax.set_ylabel('$y$', fontsize=15)
-
-# 実行
-anim = FuncAnimation(fig, update_simple_pendulum, fargs=None,                     frames=len(t), blit=True, interval=20, repeat=True)
-
