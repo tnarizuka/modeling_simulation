@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import pandas as pd
 import scipy as sp
+import os
 from scipy.integrate import odeint, solve_ivp
 from scipy.optimize import curve_fit
 
