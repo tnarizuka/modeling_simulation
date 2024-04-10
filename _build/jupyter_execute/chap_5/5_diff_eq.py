@@ -598,7 +598,8 @@ ax.set_xlabel('$x$ [m]', fontsize=15)
 ax.set_ylabel('$y$ [m]', fontsize=15)
 
 # 実行
-anim = FuncAnimation(fig, update, fargs=[sol.y[0], sol.y[1]],                     frames=len(t), blit=True, interval=10, repeat=False)
+anim = FuncAnimation(fig, update, fargs=[sol.y[0], sol.y[1]],\
+                     frames=len(t), blit=True, interval=10, repeat=False)
 
 
 # **単振り子**
@@ -681,5 +682,6 @@ ax.set_xlabel('$x$', fontsize=15)
 ax.set_ylabel('$y$', fontsize=15)
 
 # 実行
-anim = FuncAnimation(fig, update_simple_pendulum, fargs=None,                     frames=len(t), blit=True, interval=20, repeat=True)
+anim = FuncAnimation(fig, update_simple_pendulum, fargs=None,\
+                     frames=len(t), blit=True, interval=20, repeat=True)
 
