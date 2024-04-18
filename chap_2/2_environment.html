@@ -620,8 +620,7 @@ title="Print to PDF"
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">bernoulli</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">poisson</span><span class="p">,</span> <span class="n">expon</span>
 
-<span class="c1"># 日本語フォントの設定（Mac:&#39;Hiragino Sans&#39;, Windows:&#39;MS Gothic&#39;）</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Hiragino Sans&#39;</span>
+<span class="kn">import</span> <span class="nn">japanize_matplotlib</span>
 </pre></div>
 </div>
 </div>
@@ -810,19 +809,7 @@ Windowsで絶対パスを取得するには，パスをコピーしたいファ�
 <h4>maplotlibの日本語対応<a class="headerlink" href="#maplotlib" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>Matplotlibはグラフ作成のためのライブラリである（詳しくは基礎編で解説する）．
 Matplotlibは標準で日本語に対応していないので，ここでは日本語対応する方法を2つ紹介する．</p>
-<p><strong>方法1：<code class="docutils literal notranslate"><span class="pre">rcParams</span></code>に使用するフォント名を指定する</strong></p>
-<p>以下のように，<code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>をインポートしておき，<code class="docutils literal notranslate"><span class="pre">plt.rcParams['font.family']</span></code>に日本語フォントを指定する．
-使用可能なフォントは環境によって異なるが，Windowsの場合は<code class="docutils literal notranslate"><span class="pre">'MS</span> <span class="pre">Gothic'</span></code>，<code class="docutils literal notranslate"><span class="pre">'Meiryo'</span></code>などを指定する．
-Macの場合は<code class="docutils literal notranslate"><span class="pre">'Hiragino</span> <span class="pre">Sans'</span></code>を指定する．</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Hiragino Sans&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>方法2： japanize_matplotlib を利用する（詳しくは<a class="reference external" href="https://pypi.org/project/japanize-matplotlib/">こちら</a>）</strong></p>
+<p><strong>方法1： japanize_matplotlib を利用する（詳しくは<a class="reference external" href="https://pypi.org/project/japanize-matplotlib/">こちら</a>）</strong></p>
 <p>japanize_matplotlibは一度インストールすれば，あとは他のモジュールと同じように<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">japanize_matplotlib</span></code>とするだけで日本語が使用可能になる．
 ただし，使用可能なフォントはIPAexゴシックだけなので，フォントにこだわりたい場合は方法１をおすすめする．</p>
 <ul>
@@ -839,6 +826,18 @@ Macの場合は<code class="docutils literal notranslate"><span class="pre">'Hir
 </li>
 <li><p>日本語が使用可能になる</p></li>
 </ul>
+<p><strong>方法2：<code class="docutils literal notranslate"><span class="pre">rcParams</span></code>に使用するフォント名を指定する</strong></p>
+<p>以下のように，<code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>をインポートしておき，<code class="docutils literal notranslate"><span class="pre">plt.rcParams['font.family']</span></code>に日本語フォントを指定する．
+使用可能なフォントは環境によって異なるが，Windowsの場合は<code class="docutils literal notranslate"><span class="pre">'MS</span> <span class="pre">Gothic'</span></code>，<code class="docutils literal notranslate"><span class="pre">'Meiryo'</span></code>などを指定する．
+Macの場合は<code class="docutils literal notranslate"><span class="pre">'Hiragino</span> <span class="pre">Sans'</span></code>を指定する．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MS Gothic&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="id8">
 <h4>描画結果の出力先<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">#</a></h4>
@@ -1061,7 +1060,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 
 <span class="c1"># 軸のラベル</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$X$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;頻度&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">130</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
 </pre></div>
 </div>
@@ -1259,7 +1258,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 
 <span class="c1"># 軸のラベル</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$X$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Relative Frequency&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;頻度&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">130</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
 </pre></div>
 </div>
@@ -1436,6 +1435,9 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;./normal.pdf&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2_environment_60_0.png" src="../_images/2_environment_60_0.png" />
 </div>
 </div>
 </section>
