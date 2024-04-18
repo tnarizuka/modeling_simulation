@@ -20,21 +20,31 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 
 # ## プログラミング環境の構築
 
-# ### Anacondaのインストール
+# ## Anacondaのインストール
 # 
-# 既に「プログラミング基礎」の授業内でAnacondaをインストールしているはずなので，以下ではインストールの概要だけ述べる．詳細は[Python.jp](https://www.python.jp/install/anaconda/windows/install.html)や[Let'sプログラミング](https://www.javadrive.jp/python/install/index5.html)などが参考になる．
-# 
-# - [Anacondaの公式サイト](https://www.anaconda.com/products/individual)にアクセスする
-# - 下にスクロールし，"Anaconda Installers"から環境に応じたインストーラをダウンロードする
-# - ダウンロードしたインストーラをクリックし，画面の指示に従う
-#     - 途中で，`add Anaconda to the system Pass environment variable`にチェックを入れてPathの設定を行う
-# - Anaconda Navigatorが使えるか確認する
+# - Anacondaのアンインストール（環境再構築の場合）
+#   - コントロールパネル > プログラムのアンインストール
+#   - Anacondaを選択してアンインストール
+#   - PC再起動
+# - インストーラのダウンロード
+#   - [Anaconda Distribution](https://www.anaconda.com/download) にアクセス
+#   - メールアドレスを入力して，届いたメールのURLを開く
+#   - Anacondaをダウンロード
+# - Cドライブ直下（ユーザフォルダと同じ階層）に`anaconda3`というフォルダを作っておく
+# - Anacondaのインストール
+#   - Select Installation TypeでJust Meを選ぶ
+#   - Choose Install LocationでCドライブ直下に作ったanaconda3フォルダを選ぶ
+#     - anacondaのインストール先のパスに日本語が含まれるとうまくいかないため
+#   - Advanced Installation Optionsで以下の2つに必ずチェックを入れる
+#     - Add Anaconda3 to my PATH environment variable
+#     - Register Anaconda3 as my default Python 3.9
+# - Anaconda Navigatorを起動して，インストールが成功しているか確認する（適宜アップデートする）
 
 # ### 作業フォルダの作成
 
 # データ分析では，様々なファイルを扱わなければならない．
 # 例えば，本講義では，Pythonのソースコード（`.py`），Jupyter NoteBook（`.ipynb`），データ（`.csv`），図（`.pdf`や`.png`）などのファイルを扱うことになる．
-# これらのファイルが自分のPC内のどこに保存されているかを把握しておかないと，ファイルを探すだけで時間を取られてしまい，時間の無駄である．
+# これらのファイルが自分のPC内のどこに保存されているかを把握しておかないと，ファイルを探すだけで時間を取られてしまう．
 # データ分析を始める際にまず行うべきことは，PC内のフォルダやファイルを整理することである．
 
 # まず本講義専用の作業フォルダを作成する．
@@ -65,20 +75,20 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 
 # ### Jupyter Lab
 # 
-# 本講義ノートは`.ipynb`ファイルとしてダウンロードしてJupyter上で実行可能である．
+# 本講義ノートは`.ipynb`ファイル形式でダウンロードしてJupyter上で実行可能である．
 # Jupyterの環境構築の方法はいくつかあるので自分の好きな方法を選んで良いが，Anacondaをインストールすると，自動的にJupyter NotebookとJupyter Labが使えるようになる．
 # 
 # **Jupyter Labの起動**
 # 
 # - Anaconda Navigatorを起動
-#     - ［スタートメニュー］→［Anaconda Navigator (anaconda3)］
-# - ［Jupyter Lab］をクリック
+#     - ［スタートメニュー］→［すべてのアプリ］→ [Anaconda3(64-bit)] →［Anaconda Navigator］
+# - ［Jupyter Lab］をLaunch
 # 
 # **ノートブック（.ipynbファイル）の起動**
 # 
 # - `.ipynb`ファイルをダウンロードし，作業フォルダに保存する．
 #     - 講義ノート上部のアイコンから`.ipynb`をクリック
-#     - 自動保存された場合は`ダウンロード`フォルダ内に保存されているはず
+#     - 自動保存された場合は`ダウンロード`フォルダ内に保存される
 # - Jupyter Labを起動し，左上のフォルダアイコンをクリックする．
 # - .ipynbファイルを保存した作業フォルダに移動し，`.ipynb`ファイルをダブルクリックする．
 

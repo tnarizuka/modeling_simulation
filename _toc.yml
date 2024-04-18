@@ -17,5 +17,5 @@ parts:
 - caption:
   numbered: False
   chapters:
-  - file: appendix/appendix.ipynb
+  # - file: appendix/appendix.ipynb
   - file: reference.md
