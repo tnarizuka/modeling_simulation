@@ -198,7 +198,7 @@ fig.savefig("./graph2.pdf")
 # 
 # 以下のように，`matplotlib.pyplot`をインポートしておき，`plt.rcParams['font.family']`に日本語フォントを指定する．
 # 使用可能なフォントは環境によって異なるが，Windowsの場合は`'MS Gothic'`，`'Meiryo'`などを指定する．
-# Macの場合は`'Hiragino Sans'`を指定する．
+# Macの場合は`'Hiragino Sans'`，`IPAexGothic`などを指定する．
 
 # In[ ]:
 
