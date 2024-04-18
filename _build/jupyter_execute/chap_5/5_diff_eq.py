@@ -3,7 +3,7 @@
 
 # # 微分方程式モデル
 
-# In[2]:
+# In[1]:
 
 
 import numpy as np
@@ -13,9 +13,7 @@ import pandas as pd
 import scipy as sp
 from scipy.integrate import odeint, solve_ivp
 from scipy.optimize import curve_fit
-
-# 日本語フォントの設定（Mac:'Hiragino Sans', Windows:'MS Gothic'）
-plt.rcParams['font.family'] = 'Hiragino Sans'
+import japanize_matplotlib
 
 
 # 本章の内容は，文献{cite}`Kawamura2021,Endo2017,Odaka2018,Hashimoto2021` を主に参考にしている．

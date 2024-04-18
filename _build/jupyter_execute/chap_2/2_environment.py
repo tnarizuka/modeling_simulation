@@ -3,7 +3,7 @@
 
 # # 準備
 
-# In[1]:
+# In[20]:
 
 
 import numpy as np
@@ -13,7 +13,6 @@ import pandas as pd
 import scipy as sp
 from scipy.optimize import curve_fit
 from scipy.stats import bernoulli, norm, poisson, expon
-
 import japanize_matplotlib
 
 
@@ -266,7 +265,7 @@ get_ipython().run_line_magic('matplotlib', 'tk')
 #     fig.savefig('abc.pdf', dpi=80, transparent=True, bbox_inches='tight', pad_inches=0.2)
 #     ```
 
-# In[5]:
+# In[19]:
 
 
 # FigureとAxesを生成する

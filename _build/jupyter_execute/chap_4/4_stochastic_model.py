@@ -3,7 +3,7 @@
 
 # # 確率モデル
 
-# In[1]:
+# In[2]:
 
 
 import numpy as np
@@ -12,9 +12,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
 import scipy as sp
 from scipy.stats import uniform, bernoulli, binom, norm, poisson, expon
-
-# 日本語フォントの設定（Mac:'Hiragino Sans', Windows:'MS Gothic'）
-plt.rcParams['font.family'] = 'Hiragino Sans'
+import japanize_matplotlib
 
 
 # 本章の内容は，文献{cite}`Odaka2018, TokyoUniv2019` を参考にしている．
