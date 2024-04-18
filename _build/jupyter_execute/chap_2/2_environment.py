@@ -3,7 +3,7 @@
 
 # # 準備
 
-# In[2]:
+# In[1]:
 
 
 import numpy as np
@@ -14,8 +14,7 @@ import scipy as sp
 from scipy.optimize import curve_fit
 from scipy.stats import bernoulli, norm, poisson, expon
 
-# 日本語フォントの設定（Mac:'Hiragino Sans', Windows:'MS Gothic'）
-plt.rcParams['font.family'] = 'Hiragino Sans'
+import japanize_matplotlib
 
 
 # ## プログラミング環境の構築
@@ -111,7 +110,7 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # パスを使用する場面の具体例として，matplotlibで描画した図を指定したフォルダ内に保存する場合を考える．
 # まず，以下のプログラムを実行する．
 
-# In[4]:
+# In[2]:
 
 
 import matplotlib.pyplot as plt
@@ -127,7 +126,7 @@ ax.set_xlabel('X軸'); ax.set_ylabel('Y軸');
 
 # #### 1. 絶対パスによる指定
 
-# In[ ]:
+# In[3]:
 
 
 fig.savefig(r"C:\Users\narizuka\OneDrive\modeling_simulation\2_environment\graph.pdf")
@@ -145,7 +144,7 @@ fig.savefig(r"C:\Users\narizuka\OneDrive\modeling_simulation\2_environment\graph
 
 # #### 2. 相対パスによる指定
 
-# In[ ]:
+# In[4]:
 
 
 fig.savefig("./graph2.pdf")
@@ -180,20 +179,7 @@ fig.savefig("./graph2.pdf")
 # Matplotlibはグラフ作成のためのライブラリである（詳しくは基礎編で解説する）．
 # Matplotlibは標準で日本語に対応していないので，ここでは日本語対応する方法を2つ紹介する．
 
-# **方法1：`rcParams`に使用するフォント名を指定する**
-# 
-# 以下のように，`matplotlib.pyplot`をインポートしておき，`plt.rcParams['font.family']`に日本語フォントを指定する．
-# 使用可能なフォントは環境によって異なるが，Windowsの場合は`'MS Gothic'`，`'Meiryo'`などを指定する．
-# Macの場合は`'Hiragino Sans'`を指定する．
-
-# In[ ]:
-
-
-import matplotlib.pyplot as plt
-plt.rcParams['font.family'] = 'Hiragino Sans'
-
-
-# **方法2： japanize_matplotlib を利用する（詳しくは[こちら](https://pypi.org/project/japanize-matplotlib/)）**
+# **方法1： japanize_matplotlib を利用する（詳しくは[こちら](https://pypi.org/project/japanize-matplotlib/)）**
 # 
 # japanize_matplotlibは一度インストールすれば，あとは他のモジュールと同じように`import japanize_matplotlib`とするだけで日本語が使用可能になる．
 # ただし，使用可能なフォントはIPAexゴシックだけなので，フォントにこだわりたい場合は方法１をおすすめする．
@@ -209,6 +195,19 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 #     ```
 # - 日本語が使用可能になる
 
+# **方法2：`rcParams`に使用するフォント名を指定する**
+# 
+# 以下のように，`matplotlib.pyplot`をインポートしておき，`plt.rcParams['font.family']`に日本語フォントを指定する．
+# 使用可能なフォントは環境によって異なるが，Windowsの場合は`'MS Gothic'`，`'Meiryo'`などを指定する．
+# Macの場合は`'Hiragino Sans'`を指定する．
+
+# In[ ]:
+
+
+import matplotlib.pyplot as plt
+plt.rcParams['font.family'] = 'MS Gothic'
+
+
 # #### 描画結果の出力先
 # 
 # Jupyterでは，デフォルトでコードセルの下に描画結果が表示される設定になっている．
@@ -216,7 +215,7 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # 
 # **※ 一番最後のコマンドにセミコロンを付けることがある．これは，不要な文字列が出力されるのを防ぐ（隠す）ためである．**
 
-# In[94]:
+# In[18]:
 
 
 # notebook内に出力する
@@ -267,7 +266,7 @@ get_ipython().run_line_magic('matplotlib', 'tk')
 #     fig.savefig('abc.pdf', dpi=80, transparent=True, bbox_inches='tight', pad_inches=0.2)
 #     ```
 
-# In[15]:
+# In[5]:
 
 
 # FigureとAxesを生成する
@@ -306,7 +305,7 @@ fig.savefig('./sin.pdf', bbox_inches="tight", pad_inches=0.2, transparent=False,
 # | linewidth | lw | 線の太さ | 数値 |
 # | alpha | なし | 透過度 | 0~1 |
 
-# In[16]:
+# In[6]:
 
 
 '''FigureとAxesの生成'''
@@ -365,7 +364,7 @@ fig.savefig('./multi_sin.pdf', bbox_inches="tight", pad_inches=0.2, transparent=
 #   - `bins=n`とした場合，$ n $ 個の等間隔の階級に分ける．１つの階級の大きさは `(最大値-最小値) / n` となる．
 #   - `bins=[0, 1, 2, 3]`とした場合，階級の境界は`[0, 1), [1, 2), [2, 3]`となる（最後だけ右端を含むことに注意）．
 
-# In[17]:
+# In[8]:
 
 
 # データの作成
@@ -378,11 +377,11 @@ ret = ax.hist(data, bins=10, color='gray', edgecolor='k')  # 階級数10
 
 # 軸のラベル
 ax.set_xlabel('$X$', fontsize=15)
-ax.set_ylabel('Frequency', fontsize=15)
+ax.set_ylabel('頻度', fontsize=15)
 ax.set_xticks(np.arange(130, 210, 10));
 
 
-# In[18]:
+# In[9]:
 
 
 f, x = ret[0], ret[1]
@@ -408,7 +407,7 @@ df
 # | density | Trueの場合は縦軸を相対度数に変更 | True/False |
 # | cumulative | Trueの場合は縦軸を累積度数に変更 | 1（下側累積）, 0, -1（上側累積） |
 
-# In[5]:
+# In[11]:
 
 
 # データの作成
@@ -429,7 +428,7 @@ ret = ax.hist(data,
 
 # 軸のラベル
 ax.set_xlabel('$X$', fontsize=15)
-ax.set_ylabel('Relative Frequency', fontsize=15)
+ax.set_ylabel('頻度', fontsize=15)
 ax.set_xticks(np.arange(130, 210, 10));
 
 
@@ -442,7 +441,7 @@ ax.set_xticks(np.arange(130, 210, 10));
 # 
 # まず，本講義では，`scipy`を`sp`という名前でインポートする：
 
-# In[19]:
+# In[12]:
 
 
 import scipy as sp
@@ -457,7 +456,7 @@ import scipy as sp
 # のように使用する．
 # 例えば，標準正規分布（平均0，標準偏差1のNormal Distribution）に従うサイズ10の標本を生成するには以下のように`rvs`メソッドを用いる
 
-# In[20]:
+# In[13]:
 
 
 sp.stats.norm.rvs(loc=0, scale=1, size=10)
@@ -487,14 +486,14 @@ sp.stats.norm.rvs(loc=0, scale=1, size=10)
 
 # #### 例：ポアソン分布
 
-# In[17]:
+# In[14]:
 
 
 # ポアソン分布に従うサイズ100の標本を生成
 data = sp.stats.poisson.rvs(mu=3, size=1000)
 
 
-# In[18]:
+# In[15]:
 
 
 # ヒストグラムの階級の左端の値
@@ -524,14 +523,14 @@ fig.savefig('./poisson.pdf', bbox_inches="tight", pad_inches=0.2, transparent=Fa
 
 # #### 例：正規分布
 
-# In[78]:
+# In[16]:
 
 
 # 標準正規分布に従うサイズ100の標本を生成
 data = sp.stats.norm.rvs(size=100)
 
 
-# In[90]:
+# In[17]:
 
 
 # ヒストグラムを描画する
