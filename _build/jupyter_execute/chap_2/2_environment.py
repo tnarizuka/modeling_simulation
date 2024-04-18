@@ -51,21 +51,21 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 # 名前は自分で分かれば何でも良いが，なるべく半角英数字とし，スペースは絶対に入れないこと．
 # 作業フォルダの作成場所はできればクラウドストレージのフォルダ（OneDriveやGoogle Drive）の中に作ることを推奨する（こうすれば，自動的にクラウド上にバックアップされる）．
 # 
-# ここでは，`ローカルディスク（C:）>Users>username>OneDrive`の中に`work`という作業フォルダを作ったとする：
+# ここでは，`ローカルディスク（C:）>Users>username>OneDrive`の中に`modeling_simulation`という作業フォルダを作ったとする：
 # 
 # ```
 # [OneDrive]
 #     - [デスクトップ]
 #     - [ドキュメント]
 #     ...
-#     - [work]
+#     - [modeling_simulation]
 # 
 # ```
 
-# 本講義で扱うファイルは全てこの`work`の中に保存することを想定する．
+# 本講義で扱うファイルは全てこの`modeling_simulation`の中に保存することを想定する．
 # `work`フォルダの中身は次のように章ごとのサブフォルダやレポート用のフォルダに分けておくと良い：
 # ```
-# [work]
+# [modeling_simulation]
 #     - [1_introduction]
 #     - [2_environment]
 #         - 2_environment.ipynb
@@ -130,7 +130,7 @@ ax.set_xlabel('X軸'); ax.set_ylabel('Y軸');
 # In[ ]:
 
 
-fig.savefig(r"C:\Users\narizuka\OneDrive\modeling_simulation_2023\2_environment\graph.pdf")
+fig.savefig(r"C:\Users\narizuka\OneDrive\modeling_simulation\2_environment\graph.pdf")
 
 
 # この方法では，最も上の階層であるドライブ名（ここではCドライブ）から始まるパスを指定しており，これを**絶対パス**と呼ぶ．
