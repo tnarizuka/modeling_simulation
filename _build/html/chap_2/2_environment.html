@@ -818,32 +818,28 @@ Matplotlibは標準で日本語に対応していないので，ここでは日�
 Macの場合は<code class="docutils literal notranslate"><span class="pre">'Hiragino</span> <span class="pre">Sans'</span></code>を指定する．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 日本語フォントの設定（Mac:&#39;Hiragino Sans&#39;, Windows:&#39;MS Gothic&#39;）</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Hiragino Sans&#39;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p><strong>方法2： japanize_matplotlib を利用する（詳しくは<a class="reference external" href="https://pypi.org/project/japanize-matplotlib/">こちら</a>）</strong></p>
-<p>japanize_matplotlibはPythonのモジュールなので，最初にインストールしておけば，あとは他のモジュールと同じように<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">japanize_matplotlib</span></code>とするだけで日本語が使用可能になる．
+<p>japanize_matplotlibは一度インストールすれば，あとは他のモジュールと同じように<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">japanize_matplotlib</span></code>とするだけで日本語が使用可能になる．
 ただし，使用可能なフォントはIPAexゴシックだけなので，フォントにこだわりたい場合は方法１をおすすめする．</p>
-<!-- **japanize_matplotlibのインストール（詳しくは[こちら](https://pypi.org/project/japanize-matplotlib/)）** -->
 <ul>
-<li><p>ターミナルを開いて以下のコマンドを実行し，AnacondaのインストールされているフォルダのPathを取得する</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">info</span> <span class="o">-</span><span class="n">e</span>
-</pre></div>
-</div>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code>の右に表示された文字列（フォルダのパス）をコピーして以下を実行</p>
-<div class="highlight-zsh notranslate"><div class="highlight"><pre><span></span>activate<span class="w"> </span><span class="s2">&quot;フォルダのパス&quot;</span>
-</pre></div>
-</div>
-</li>
-<li><p>以下のコマンドを実行してインストールする</p>
+<li><p>Anaconda Promptを起動</p></li>
+<li><p>以下のコマンドを実行してjapanize_matplotlibをインストールする</p>
 <div class="highlight-zsh notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>japanize-matplotlib
 </pre></div>
 </div>
 </li>
+<li><p>Jupyter Labを再起動して，以下のコードを実行する</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">japanize_matplotlib</span>
+</pre></div>
+</div>
+</li>
+<li><p>日本語が使用可能になる</p></li>
 </ul>
 </section>
 <section id="id8">
