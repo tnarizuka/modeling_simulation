@@ -20,7 +20,7 @@ plt.rcParams['font.family'] = 'Hiragino Sans'
 
 # ## プログラミング環境の構築
 
-# ## Anacondaのインストール
+# ### Anacondaのインストール
 # 
 # - Anacondaのアンインストール（環境再構築の場合）
 #   - コントロールパネル > プログラムのアンインストール
