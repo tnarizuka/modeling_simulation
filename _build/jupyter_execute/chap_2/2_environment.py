@@ -313,7 +313,7 @@ fig.savefig('./sin.pdf', bbox_inches="tight", pad_inches=0.2, transparent=False,
 # #### 基本のプロット関数
 
 # Matplotlibの最も基本的なプロット関数が`pyplot.plot()`である．
-# Axesオブジェクトを`ax`として取得したい場合，`plot`関数は以下のように実行する：
+# Axesオブジェクトを`ax`として取得した場合，`plot`関数は以下のように実行する：
 # ```python
 # ax.plot(x, y, 'rx-', option)
 # ```
