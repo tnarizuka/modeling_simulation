@@ -449,7 +449,7 @@ ret = ax.hist(data,
               edgecolor='k',   # バーの枠線の色を黒に
               linewidth=0.5,   # バーの枠線の太さを1に
               linestyle='--',  # 枠線を点線に
-              density=True     # 縦軸を相対度数に
+              density=1     # 縦軸を相対度数に
               )
 
 # 軸のラベル
