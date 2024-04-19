@@ -187,15 +187,13 @@ fig.savefig("./graph2.pdf")
 # Iris datasetはアヤメの花のデータセットであり，アヤメの種類（setosa, versicolor, virginica）ごとにがく片（sepal）と花弁（petal）の長さと幅が記録されている．
 # - 出典：Ronald A Fisher. The use of multiple measurements in taxonomic problems. Annals of eugenics, 7(2):179–188, 1936.
 
-# In[37]:
+# In[38]:
 
 
 # 相対パスを指定してcsvファイルをDataFrameに読み込む
 df = pd.read_csv('./iris_dataset.csv',
-                 header=0,      # 第0行目を列ラベルとする
-                 index_col=0,   # 第0列目を行ラベルとする
-                 usecols=None,  # 読み込む列を指定する
-                 na_values=None # 欠損値として認識する文字列を指定する
+                 header=0,      # 第0行を列ラベルとする
+                 index_col=0,   # 第0列を行ラベルとする
                  )
 df
 
