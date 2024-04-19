@@ -434,7 +434,7 @@ df
 # | density | Trueの場合は縦軸を相対度数に変更 | True/False |
 # | cumulative | Trueの場合は縦軸を累積度数に変更 | 1（下側累積）, 0, -1（上側累積） |
 
-# In[34]:
+# In[39]:
 
 
 # データの作成
@@ -444,7 +444,6 @@ data = np.random.normal(170, 10, 1000)
 fig, ax = plt.subplots()
 ret = ax.hist(data, 
               bins=10,
-              # bins=[-4, -3, -2, -1, 0, 1, 2, 3, 4], # 階級の左端の値を指定する場合
               histtype='bar',  # ヒストグラムのスタイルを棒グラフに
               color='c',       # バーの色をシアンに
               edgecolor='k',   # バーの枠線の色を黒に
@@ -513,14 +512,14 @@ sp.stats.norm.rvs(loc=0, scale=1, size=10)
 
 # #### 例：ポアソン分布
 
-# In[26]:
+# In[57]:
 
 
-# ポアソン分布に従うサイズ100の標本を生成
+# mu=3のポアソン分布に従うサイズ100の標本を生成
 data = sp.stats.poisson.rvs(mu=3, size=1000)
 
 
-# In[28]:
+# In[58]:
 
 
 # ヒストグラムの階級の左端の値
@@ -532,12 +531,13 @@ ret = ax.hist(data,
               bins=k,        # 階級の左端の値を指定
               align='left',  # バーの中央を階級の左端に合わせる
               density=1,     # 縦軸を相対度数に
-              color='c',       
-              edgecolor='k', 
-              rwidth=0.5)
+              color='red',   # バーの色を赤に
+              alpha=0.5,     # 透明度を0.5に
+              edgecolor='w', # バーの枠線の色を白に
+              rwidth=0.5)    # バーの幅を0.5に
 
 # 確率質量関数を描画する
-fk = sp.stats.poisson.pmf(k, mu=3)
+fk = sp.stats.poisson.pmf(k, mu=3)  # mu=3のポアソン分布の確率質量関数
 ax.plot(k, fk, 'k-o')
 
 # 装飾
@@ -551,19 +551,19 @@ fig.savefig('./poisson.pdf', bbox_inches="tight", pad_inches=0.2, transparent=Fa
 
 # #### 例：正規分布
 
-# In[23]:
+# In[53]:
 
 
 # 標準正規分布に従うサイズ100の標本を生成
-data = sp.stats.norm.rvs(size=100)
+data = sp.stats.norm.rvs(size=1000)
 
 
-# In[24]:
+# In[55]:
 
 
 # ヒストグラムを描画する
 fig, ax = plt.subplots()
-ret = ax.hist(data, bins=10, density=1, color='c', edgecolor='k')  # 階級数10
+ret = ax.hist(data, bins=20, density=1, color='blue', alpha=0.5, edgecolor='w')  # 階級数10
 
 # 確率密度関数を描画する
 x = np.arange(-5, 5, 0.1)
