@@ -171,6 +171,36 @@ fig.savefig("./graph2.pdf")
 
 # ## Pythonの基礎知識
 
+# ### データ（csvファイル）の読み込み
+
+# `.csv`形式のデータを読み込むには`pandas`ライブラリの`pd.read_csv()`関数を使用する．
+# 以下の例は，カレントディレクトリ内の`data.csv`ファイルを読み込む例である．
+# 
+# ```python
+# import pandas as pd
+# df = pd.read_csv('./data.csv', options)
+# ```
+# 第１引数には読み込むファイルのパス，第２引数以降には読み込む際のオプションを指定する．
+# 
+
+# 例として，[Iris dataset](https://drive.google.com/uc?export=download&id=1Y0A04s0klZiUZWWabH3ozUTgXE63Az5j)を読み込む．
+# Iris datasetはアヤメの花のデータセットであり，アヤメの種類（setosa, versicolor, virginica）ごとにがく片（sepal）と花弁（petal）の長さと幅が記録されている．
+# 
+# ※ Ronald A Fisher. The use of multiple measurements in taxonomic problems. Annals of eugenics, 7(2):179–188, 1936.
+
+# In[37]:
+
+
+# 相対パスを指定してcsvファイルをDataFrameに読み込む
+df = pd.read_csv('./iris_dataset.csv',
+                 header=0,      # 第0行目を列ラベルとする
+                 index_col=0,   # 第0列目を行ラベルとする
+                 usecols=None,  # 読み込む列を指定する
+                 na_values=None # 欠損値として認識する文字列を指定する
+                 )
+df
+
+
 # ### matplotlibの基礎
 
 # #### maplotlibの日本語対応
@@ -265,7 +295,7 @@ get_ipython().run_line_magic('matplotlib', 'tk')
 #     fig.savefig('abc.pdf', dpi=80, transparent=True, bbox_inches='tight', pad_inches=0.2)
 #     ```
 
-# In[19]:
+# In[29]:
 
 
 # FigureとAxesを生成する
@@ -360,10 +390,10 @@ fig.savefig('./multi_sin.pdf', bbox_inches="tight", pad_inches=0.2, transparent=
 # ```
 # - 第１引数には数値データを与える．
 # - `bins`引数には，以下を指定できる：
-#   - `bins=n`とした場合，$ n $ 個の等間隔の階級に分ける．１つの階級の大きさは `(最大値-最小値) / n` となる．
+#   - `bins=n`とした場合，$ n $ 個の等間隔の階級に分ける．１つの階級の幅は `(最大値-最小値) / n` となる．
 #   - `bins=[0, 1, 2, 3]`とした場合，階級の境界は`[0, 1), [1, 2), [2, 3]`となる（最後だけ右端を含むことに注意）．
 
-# In[8]:
+# In[31]:
 
 
 # データの作成
@@ -380,9 +410,10 @@ ax.set_ylabel('頻度', fontsize=15)
 ax.set_xticks(np.arange(130, 210, 10));
 
 
-# In[9]:
+# In[33]:
 
 
+# 度数分布表の作成
 f, x = ret[0], ret[1]
 df = pd.DataFrame(np.c_[x[:-1], x[1:], 0.5*(x[1:]+x[:-1]), f, f/len(data)],
                   columns=['最小', '最大', '階級値', '度数', '相対度数'])
@@ -406,7 +437,7 @@ df
 # | density | Trueの場合は縦軸を相対度数に変更 | True/False |
 # | cumulative | Trueの場合は縦軸を累積度数に変更 | 1（下側累積）, 0, -1（上側累積） |
 
-# In[11]:
+# In[34]:
 
 
 # データの作成
