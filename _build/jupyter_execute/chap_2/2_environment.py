@@ -185,8 +185,7 @@ fig.savefig("./graph2.pdf")
 
 # 例として，[Iris dataset](https://drive.google.com/uc?export=download&id=1Y0A04s0klZiUZWWabH3ozUTgXE63Az5j)を読み込む．
 # Iris datasetはアヤメの花のデータセットであり，アヤメの種類（setosa, versicolor, virginica）ごとにがく片（sepal）と花弁（petal）の長さと幅が記録されている．
-# 
-# ※ Ronald A Fisher. The use of multiple measurements in taxonomic problems. Annals of eugenics, 7(2):179–188, 1936.
+# - 出典：Ronald A Fisher. The use of multiple measurements in taxonomic problems. Annals of eugenics, 7(2):179–188, 1936.
 
 # In[37]:
 
