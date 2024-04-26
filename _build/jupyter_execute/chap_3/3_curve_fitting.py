@@ -56,13 +56,12 @@ import japanize_matplotlib
 # １つの説明変数 $ X $ と目的変数 $ Y $ について $ n $ 組のデータ $ (x_{1}, y_{1}), \ldots, (x_{n}, y_{n}) $ を取得したとする．
 # このとき，横軸に変数 $ X $，縦軸に変数 $ Y $ を取ったグラフを**散布図**と呼ぶ．
 # 散布図に対し，回帰モデル{eq}`eq:regression_model`のパラメータを変化させて理論曲線をうまく当てはめる作業がカーブフィッティングである．
-# カーブフィッティングによって得られた式 $ f(x; \boldsymbol{\theta}) $ （**回帰曲線**）にデータの $ x_{i} $ を代入すると回帰モデルによる予測値が得られる．
+# カーブフィッティングによって得られた式 $ f(x; \boldsymbol{\theta}) $ （**回帰曲線**）にデータ $ x_{i} $ を代入すると回帰モデルによる予測値が得られる．
 # 以下では，この予測値をハット $\hat{}$ を付けて次のように表す：
 # 
 # $$
 # 	\hat{y}_{i} = f(x_{i}; \boldsymbol{\theta})
 # $$(eq:regression_curve)
-# 
 
 # 回帰分析では，最適な曲線を求める手法がいくつか存在するが，最も基本的な手法が**最小二乗法**である．
 # 最小二乗法では，回帰モデルによる予測値 $ \hat{y}_{i}=f(x_{i}; \boldsymbol{\theta}) $ と実データ $ y_{i} $ の差（**残差**）の二乗和
@@ -111,12 +110,12 @@ import japanize_matplotlib
 # 	a &=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 # 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 # 	b &= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
-# \end{align}
+# \end{align}(eq:lsm_solution)
 # 
 # と求まる．
 # なお，傾き $ a $ の式の分子は $ X, Y $ の共分散，分母は $ X $ の分散となっている（相関係数の式に似ているが違う）．
 # よって，傾き $ a $ が正なら正の相関，負なら負の相関，ゼロなら無相関であることが分かる．
-# 
+
 # ```{admonition} 分散公式と共分散
 # :class: dropdown
 # $ X $ の分散は以下のように表すことができる：
@@ -196,7 +195,7 @@ def f_linear(x, a, b):
 
 # この関数は，第１引数に $ x $ 座標のデータ，第２引数以降にパラメータ $ a, b $ を入力し，出力として $ y $ 座標のデータが得られる．
 
-# **2. フィッティング対象となる実データを用意する**
+# **2. 実データを用意する**
 # 
 # 実データはNumPy配列やPandasのデータフレーム形式で準備する．
 # ここでは，以下のように乱数を用いて生成したデータをcsv形式で一旦保存する．
@@ -362,9 +361,10 @@ R2
 
 # ### 演習問題
 # 
-# 1. 適当な非線形関数からデータを生成し，手順１〜５に従ってカーブフィッティングを実行せよ．
-# 2. [soccer_player_europe_2017.csv](https://drive.google.com/uc?export=download&id=13NU87F430KkYJGJZrY44aQECBLjSjKnf)は2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．これをPandasのDataFrameに読み込み，体重（`weight`）が0の選手を削除せよ．体重（`weight`）と身長（`height`）の散布図を描き，線形単回帰モデルによるカーブフィッティングを実行せよ．
-# 3. [covid19_korea.csv](https://drive.google.com/uc?export=download&id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz)は，韓国における新型コロナウイルス感染者数の推移データである．このデータを読み込み，横軸に2020年1月22日を0日とした経過日数，縦軸に感染者数を取った散布図を描け．50日目までと100日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行せよ．
+# 1. 線形単回帰モデルについて，式{eq}`eq:lsm_solution`を導け．
+# 2. 適当な非線形関数からデータを生成し，手順１〜５に従ってカーブフィッティングを実行せよ．
+# 3. [soccer_player_europe_2017.csv](https://drive.google.com/uc?export=download&id=13NU87F430KkYJGJZrY44aQECBLjSjKnf)は2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．これをPandasのDataFrameに読み込み，体重（`weight`）が0の選手を削除せよ．体重（`weight`）と身長（`height`）の散布図を描き，線形単回帰モデルによるカーブフィッティングを実行せよ．
+# 4. [covid19_korea.csv](https://drive.google.com/uc?export=download&id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz)は，韓国における新型コロナウイルス感染者数の推移データである．このデータを読み込み，横軸に2020年1月22日を0日とした経過日数，縦軸に感染者数を取った散布図を描け．50日目までと100日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行せよ．
 #    
 #    $$
 #    f(t) = \frac{a}{1+b\mathrm{e}^{-ct}}

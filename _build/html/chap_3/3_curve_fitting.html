@@ -690,7 +690,7 @@ title="Print to PDF"
 <p>１つの説明変数 <span class="math notranslate nohighlight">\( X \)</span> と目的変数 <span class="math notranslate nohighlight">\( Y \)</span> について <span class="math notranslate nohighlight">\( n \)</span> 組のデータ <span class="math notranslate nohighlight">\( (x_{1}, y_{1}), \ldots, (x_{n}, y_{n}) \)</span> を取得したとする．
 このとき，横軸に変数 <span class="math notranslate nohighlight">\( X \)</span>，縦軸に変数 <span class="math notranslate nohighlight">\( Y \)</span> を取ったグラフを<strong>散布図</strong>と呼ぶ．
 散布図に対し，回帰モデル<a class="reference internal" href="#equation-eq-regression-model">(3.1)</a>のパラメータを変化させて理論曲線をうまく当てはめる作業がカーブフィッティングである．
-カーブフィッティングによって得られた式 <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> （<strong>回帰曲線</strong>）にデータの <span class="math notranslate nohighlight">\( x_{i} \)</span> を代入すると回帰モデルによる予測値が得られる．
+カーブフィッティングによって得られた式 <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> （<strong>回帰曲線</strong>）にデータ <span class="math notranslate nohighlight">\( x_{i} \)</span> を代入すると回帰モデルによる予測値が得られる．
 以下では，この予測値をハット <span class="math notranslate nohighlight">\(\hat{}\)</span> を付けて次のように表す：</p>
 <div class="math notranslate nohighlight" id="equation-eq-regression-curve">
 <span class="eqno">(3.2)<a class="headerlink" href="#equation-eq-regression-curve" title="この数式へのパーマリンク">#</a></span>\[
@@ -716,8 +716,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b6b7a1cd-7533-42cc-bc92-f52f63068fc5">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-b6b7a1cd-7533-42cc-bc92-f52f63068fc5" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ff94e2f6-1316-43e6-8cfa-2316f71a31a2">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-ff94e2f6-1316-43e6-8cfa-2316f71a31a2" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -734,8 +734,8 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b46e8126-5fc6-4a82-8ff7-1b0a2674a53c">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-b46e8126-5fc6-4a82-8ff7-1b0a2674a53c" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-95f0056c-c76c-49b9-b566-8f7955638891">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-95f0056c-c76c-49b9-b566-8f7955638891" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
 	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -814,7 +814,7 @@ title="Print to PDF"
 </div>
 </div>
 <p>この関数は，第１引数に <span class="math notranslate nohighlight">\( x \)</span> 座標のデータ，第２引数以降にパラメータ <span class="math notranslate nohighlight">\( a, b \)</span> を入力し，出力として <span class="math notranslate nohighlight">\( y \)</span> 座標のデータが得られる．</p>
-<p><strong>2. フィッティング対象となる実データを用意する</strong></p>
+<p><strong>2. 実データを用意する</strong></p>
 <p>実データはNumPy配列やPandasのデータフレーム形式で準備する．
 ここでは，以下のように乱数を用いて生成したデータをcsv形式で一旦保存する．
 その上で，保存したcsvをPandasのDataFrame形式で読み込み，解析する．</p>
@@ -845,7 +845,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_20_0.png" src="../_images/3_curve_fitting_20_0.png" />
+<img alt="../_images/3_curve_fitting_21_0.png" src="../_images/3_curve_fitting_21_0.png" />
 </div>
 </div>
 <p><strong>3. フィッティングを実行する</strong></p>
@@ -896,7 +896,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_26_0.png" src="../_images/3_curve_fitting_26_0.png" />
+<img alt="../_images/3_curve_fitting_27_0.png" src="../_images/3_curve_fitting_27_0.png" />
 </div>
 </div>
 <p><strong>5. 決定係数を求める</strong></p>
@@ -973,7 +973,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_36_0.png" src="../_images/3_curve_fitting_36_0.png" />
+<img alt="../_images/3_curve_fitting_37_0.png" src="../_images/3_curve_fitting_37_0.png" />
 </div>
 </div>
 <p><strong>3. フィッティングを実行する</strong></p>
@@ -1003,7 +1003,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_40_0.png" src="../_images/3_curve_fitting_40_0.png" />
+<img alt="../_images/3_curve_fitting_41_0.png" src="../_images/3_curve_fitting_41_0.png" />
 </div>
 </div>
 <p><strong>5. 決定係数を求める</strong></p>
@@ -1026,6 +1026,7 @@ title="Print to PDF"
 <section id="id10">
 <h3><span class="section-number">3.2.5. </span>演習問題<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">#</a></h3>
 <ol>
+<li><p>線形単回帰モデルについて，式<code class="xref eq docutils literal notranslate"><span class="pre">eq:lsm_solution</span></code>を導け．</p></li>
 <li><p>適当な非線形関数からデータを生成し，手順１〜５に従ってカーブフィッティングを実行せよ．</p></li>
 <li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=13NU87F430KkYJGJZrY44aQECBLjSjKnf">soccer_player_europe_2017.csv</a>は2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．これをPandasのDataFrameに読み込み，体重（<code class="docutils literal notranslate"><span class="pre">weight</span></code>）が0の選手を削除せよ．体重（<code class="docutils literal notranslate"><span class="pre">weight</span></code>）と身長（<code class="docutils literal notranslate"><span class="pre">height</span></code>）の散布図を描き，線形単回帰モデルによるカーブフィッティングを実行せよ．</p></li>
 <li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz">covid19_korea.csv</a>は，韓国における新型コロナウイルス感染者数の推移データである．このデータを読み込み，横軸に2020年1月22日を0日とした経過日数，縦軸に感染者数を取った散布図を描け．50日目までと100日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行せよ．</p>
@@ -1082,7 +1083,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1cf797640&gt;]
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_51_1.png" src="../_images/3_curve_fitting_51_1.png" />
+<img alt="../_images/3_curve_fitting_52_1.png" src="../_images/3_curve_fitting_52_1.png" />
 </div>
 </div>
 </section>
@@ -1359,7 +1360,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_74_0.png" src="../_images/3_curve_fitting_74_0.png" />
+<img alt="../_images/3_curve_fitting_75_0.png" src="../_images/3_curve_fitting_75_0.png" />
 </div>
 </div>
 </section>
@@ -1510,7 +1511,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Likelihood&#39;)
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_91_1.png" src="../_images/3_curve_fitting_91_1.png" />
+<img alt="../_images/3_curve_fitting_92_1.png" src="../_images/3_curve_fitting_92_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1528,7 +1529,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Log Likelihood&#39;)
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_92_1.png" src="../_images/3_curve_fitting_92_1.png" />
+<img alt="../_images/3_curve_fitting_93_1.png" src="../_images/3_curve_fitting_93_1.png" />
 </div>
 </div>
 <p><strong>5. 最尤推定値でカーブフィッティング</strong></p>
@@ -1546,7 +1547,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_94_0.png" src="../_images/3_curve_fitting_94_0.png" />
+<img alt="../_images/3_curve_fitting_95_0.png" src="../_images/3_curve_fitting_95_0.png" />
 </div>
 </div>
 </section>
