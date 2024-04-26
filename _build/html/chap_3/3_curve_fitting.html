@@ -716,8 +716,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ff94e2f6-1316-43e6-8cfa-2316f71a31a2">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-ff94e2f6-1316-43e6-8cfa-2316f71a31a2" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-16af5aa4-00b8-4a19-8e70-48cfb8db0b57">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-16af5aa4-00b8-4a19-8e70-48cfb8db0b57" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -734,12 +734,12 @@ title="Print to PDF"
 	\sum_{i=1}^{n} (ax_{i}+b-y_{i}) &amp;= 0
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
-<div class="amsmath math notranslate nohighlight" id="equation-95f0056c-c76c-49b9-b566-8f7955638891">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-95f0056c-c76c-49b9-b566-8f7955638891" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
-	a &amp;=\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
+<div class="math notranslate nohighlight" id="equation-eq-lsm-solution">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-eq-lsm-solution" title="この数式へのパーマリンク">#</a></span>\[\begin{split}
+	a =\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
-	b &amp;= \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
-\end{align}\]</div>
+	b = \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
+\end{split}\]</div>
 <p>と求まる．
 なお，傾き <span class="math notranslate nohighlight">\( a \)</span> の式の分子は <span class="math notranslate nohighlight">\( X, Y \)</span> の共分散，分母は <span class="math notranslate nohighlight">\( X \)</span> の分散となっている（相関係数の式に似ているが違う）．
 よって，傾き <span class="math notranslate nohighlight">\( a \)</span> が正なら正の相関，負なら負の相関，ゼロなら無相関であることが分かる．</p>
@@ -1026,7 +1026,7 @@ title="Print to PDF"
 <section id="id10">
 <h3><span class="section-number">3.2.5. </span>演習問題<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">#</a></h3>
 <ol>
-<li><p>線形単回帰モデルについて，式<code class="xref eq docutils literal notranslate"><span class="pre">eq:lsm_solution</span></code>を導け．</p></li>
+<li><p>線形単回帰モデルについて，式<a class="reference internal" href="#equation-eq-lsm-solution">(3.6)</a>を導け．</p></li>
 <li><p>適当な非線形関数からデータを生成し，手順１〜５に従ってカーブフィッティングを実行せよ．</p></li>
 <li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=13NU87F430KkYJGJZrY44aQECBLjSjKnf">soccer_player_europe_2017.csv</a>は2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．これをPandasのDataFrameに読み込み，体重（<code class="docutils literal notranslate"><span class="pre">weight</span></code>）が0の選手を削除せよ．体重（<code class="docutils literal notranslate"><span class="pre">weight</span></code>）と身長（<code class="docutils literal notranslate"><span class="pre">height</span></code>）の散布図を描き，線形単回帰モデルによるカーブフィッティングを実行せよ．</p></li>
 <li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz">covid19_korea.csv</a>は，韓国における新型コロナウイルス感染者数の推移データである．このデータを読み込み，横軸に2020年1月22日を0日とした経過日数，縦軸に感染者数を取った散布図を描け．50日目までと100日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行せよ．</p>
