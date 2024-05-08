@@ -362,11 +362,11 @@ R2
 # ### 演習問題
 # 
 # 1. 線形単回帰モデルについて，式{eq}`eq:lsm_solution`を導け
-# 2. 線形単回帰モデルについて以下の問に答えよ
+# 2. 線形単回帰モデルについて以下の問いに答えよ
 #    - `data_linear.csv`をエクセルで開いて散布図を描け
 #    - 近似曲線の追加機能（オプションは線形近似）から近似曲線を追加せよ．その際に，「グラフに数式を表示する」と「グラフにR-２乗値を表示する」にチェックを入れること．
 #    - 表示された結果ががPythonによるカーブフィッティングの結果と一致することを確認せよ．
-# 3. [soccer_player_europe_2017.csv](https://drive.google.com/uc?export=download&id=13NU87F430KkYJGJZrY44aQECBLjSjKnf)は2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．以下の問に答えよ．
+# 3. [soccer_player_europe_2017.csv](https://drive.google.com/uc?export=download&id=13NU87F430KkYJGJZrY44aQECBLjSjKnf)は2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．以下の問いに答えよ．
 #    - データをダウンロードし，PandasのDataFrameに読み込め
 #    - 体重（`weight`）が0となっている選手を削除せよ
 #    - 横軸に体重（`weight`），縦軸に身長（`height`）を取った散布図を描け
