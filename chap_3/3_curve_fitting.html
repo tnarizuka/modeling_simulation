@@ -716,8 +716,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-035db817-920d-4399-af80-b713f601883f">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-035db817-920d-4399-af80-b713f601883f" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4f4b966e-734b-405f-858e-cc56936acefd">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-4f4b966e-734b-405f-858e-cc56936acefd" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -1043,14 +1043,16 @@ title="Print to PDF"
 </ul>
 </li>
 <li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz">covid19_korea.csv</a>は，韓国における新型コロナウイルス感染者数の推移データである．以下の問いに答えよ</p>
-<ul class="simple">
+<ul>
 <li><p>データをダウンロードし，PandasのDataFrameに読み込め</p></li>
 <li><p>データフレームに2020年1月22日を0日とした経過日数を追加せよ</p></li>
 <li><p>横軸に経過日数，縦軸に感染者数を取った散布図を描け．</p></li>
-<li><p>50日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．
-$<span class="math notranslate nohighlight">\(
-f(t) = \frac{a}{1+b\mathrm{e}^{-ct}}
-\)</span>$</p></li>
+<li><p>50日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．</p>
+<div class="math notranslate nohighlight">
+\[
+     f(t) = \frac{a}{1+b\mathrm{e}^{-ct}}
+     \]</div>
+</li>
 <li><p>同様に，100日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．</p></li>
 </ul>
 <p>※ 本データの出典：<a class="reference external" href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series">John Hopkins CSSE</a></p>
