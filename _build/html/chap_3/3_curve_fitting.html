@@ -716,8 +716,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4f4b966e-734b-405f-858e-cc56936acefd">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-4f4b966e-734b-405f-858e-cc56936acefd" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3d5c7894-ece6-47f1-b0d4-3c40a735ef34">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-3d5c7894-ece6-47f1-b0d4-3c40a735ef34" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -803,7 +803,7 @@ title="Print to PDF"
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> 関数を用いたカーブフィッティングは以下の手順に従って行う．</p>
-<p><strong>1. フィッティングに用いる関数を定義する</strong></p>
+<p><strong>1. カーブフィッティングに用いる関数（モデル）を定義する</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># フィッティング関数の定義</span>
@@ -813,18 +813,18 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>この関数は，第１引数に <span class="math notranslate nohighlight">\( x \)</span> 座標のデータ，第２引数以降にパラメータ <span class="math notranslate nohighlight">\( a, b \)</span> を入力し，出力として <span class="math notranslate nohighlight">\( y \)</span> 座標のデータが得られる．</p>
-<p><strong>2. 実データを用意する</strong></p>
+<p>この関数は，第1引数に <span class="math notranslate nohighlight">\( x \)</span> 座標のデータ，第2引数以降にパラメータ <span class="math notranslate nohighlight">\( a, b \)</span> を入力し，<span class="math notranslate nohighlight">\( y \)</span> 座標の予測値を出力する．</p>
+<p><strong>2. 実データを準備する</strong></p>
 <p>実データはNumPy配列やPandasのデータフレーム形式で準備する．
-ここでは，以下のように乱数を用いて生成したデータをcsv形式で一旦保存する．
+ここでは，モデルから生成したデータに乱数による誤差を加えたデータをcsv形式で一旦保存する．
 その上で，保存したcsvをPandasのDataFrame形式で読み込み，解析する．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データの作成</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
-<span class="n">x_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">y_data</span> <span class="o">=</span> <span class="n">f_linear</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="mf">5.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">x_data</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x_data</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_data</span><span class="p">})</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>  <span class="c1"># 乱数のシードを固定</span>
+<span class="n">x_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># x座標のデータ</span>
+<span class="n">y_data</span> <span class="o">=</span> <span class="n">f_linear</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="mf">5.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">x_data</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>  <span class="c1"># y座標のデータ（モデルから生成したデータにノイズを加える）</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x_data</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_data</span><span class="p">})</span>  <span class="c1"># データフレームに変換</span>
 
 <span class="c1"># データをcsv形式で保存</span>
 <span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;./data_linear.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">float_format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%10.2f</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -834,10 +834,10 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データをDataFrame形式で読み込む</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データをデータフレームに読み込む</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data_linear.csv&#39;</span><span class="p">)</span>
 
-<span class="c1"># 散布図の描画</span>
+<span class="c1"># 散布図を描画する</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">);</span>
@@ -848,9 +848,9 @@ title="Print to PDF"
 <img alt="../_images/3_curve_fitting_21_0.png" src="../_images/3_curve_fitting_21_0.png" />
 </div>
 </div>
-<p><strong>3. フィッティングを実行する</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> 関数には，第１引数にフィッティング関数，第２，３引数にデータ，それ以降にオプションを指定する．
-オプションにはパラメータの初期値 <code class="docutils literal notranslate"><span class="pre">p0</span></code> などを指定することができる．
+<p><strong>3. カーブフィッティングを実行する</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> 関数には，第1引数にフィッティング関数，第2引数に <span class="math notranslate nohighlight">\( x \)</span> 座標のデータ，第3引数に <span class="math notranslate nohighlight">\( y \)</span> 座標のデータを指定する．
+また，第4引数以降にはオプションとしてパラメータの初期値 <code class="docutils literal notranslate"><span class="pre">p0</span></code> などを指定することができる．
 <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> 関数を実行すると，最小二乗法によって得られた最適なパラメータ（<code class="docutils literal notranslate"><span class="pre">p_opt</span></code>） と共分散（<code class="docutils literal notranslate"><span class="pre">p_cov</span></code>）が戻り値として得られる．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -866,7 +866,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>以下は公式から得られた最適解を求めた結果である．
+<p>以下は公式を用いて最適解を求めた結果である．
 確かに，<code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> 関数から求めた値と同じ値が得られていることが分かる．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -885,7 +885,8 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p><strong>4. フィッティング結果を可視化する</strong></p>
+<p><strong>4. カーブフィッティング結果を可視化する</strong></p>
+<p>散布図にモデルによる予測値を重ねてプロットすることで，カーブフィッティングの結果を可視化する．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -945,17 +946,21 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p><strong>2. フィッティング対象となる実データを用意する</strong></p>
+<p>この関数は，第1引数に <span class="math notranslate nohighlight">\( x \)</span> 座標のデータ，第2引数以降にパラメータ <span class="math notranslate nohighlight">\( a, b, c \)</span> を入力し，<span class="math notranslate nohighlight">\( y \)</span> 座標の予測値を出力する．</p>
+<p><strong>2. データを作成する</strong></p>
+<p>ここでは，フィッティング関数に誤差を加えたデータを作成する．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データの作成</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">4321</span><span class="p">)</span>
 <span class="n">x_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 <span class="n">y_data</span> <span class="o">=</span> <span class="n">f_exp</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x_data</span><span class="p">))</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="c1"># data = np.vstack([x_data, y_data]).T</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x_data</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_data</span><span class="p">})</span>
 
 <span class="c1"># データをcsv形式で保存</span>
-<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;./data_exp.csv&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="c1"># np.savetxt(&#39;./data_exp.csv&#39;, data, delimiter=&#39;,&#39;)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;./data_exp.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">float_format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%10.2f</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -963,7 +968,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データをDataFrame形式で読み込む</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data_exp.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data_exp.csv&#39;</span><span class="p">)</span>
 
 <span class="c1"># 散布図の描画</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -973,7 +978,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_37_0.png" src="../_images/3_curve_fitting_37_0.png" />
+<img alt="../_images/3_curve_fitting_38_0.png" src="../_images/3_curve_fitting_38_0.png" />
 </div>
 </div>
 <p><strong>3. フィッティングを実行する</strong></p>
@@ -986,7 +991,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.59425594 1.28716832 0.44943101]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.59145948 1.28642241 0.44874492]
 </pre></div>
 </div>
 </div>
@@ -1003,7 +1008,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_41_0.png" src="../_images/3_curve_fitting_41_0.png" />
+<img alt="../_images/3_curve_fitting_42_0.png" src="../_images/3_curve_fitting_42_0.png" />
 </div>
 </div>
 <p><strong>5. 決定係数を求める</strong></p>
@@ -1017,7 +1022,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9161811765106044
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9163784521572647
 </pre></div>
 </div>
 </div>
@@ -1104,7 +1109,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1cf797640&gt;]
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_52_1.png" src="../_images/3_curve_fitting_52_1.png" />
+<img alt="../_images/3_curve_fitting_53_1.png" src="../_images/3_curve_fitting_53_1.png" />
 </div>
 </div>
 </section>
@@ -1381,7 +1386,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_75_0.png" src="../_images/3_curve_fitting_75_0.png" />
+<img alt="../_images/3_curve_fitting_76_0.png" src="../_images/3_curve_fitting_76_0.png" />
 </div>
 </div>
 </section>
@@ -1532,7 +1537,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Likelihood&#39;)
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_92_1.png" src="../_images/3_curve_fitting_92_1.png" />
+<img alt="../_images/3_curve_fitting_93_1.png" src="../_images/3_curve_fitting_93_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1550,7 +1555,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Log Likelihood&#39;)
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_93_1.png" src="../_images/3_curve_fitting_93_1.png" />
+<img alt="../_images/3_curve_fitting_94_1.png" src="../_images/3_curve_fitting_94_1.png" />
 </div>
 </div>
 <p><strong>5. 最尤推定値でカーブフィッティング</strong></p>
@@ -1568,7 +1573,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_95_0.png" src="../_images/3_curve_fitting_95_0.png" />
+<img alt="../_images/3_curve_fitting_96_0.png" src="../_images/3_curve_fitting_96_0.png" />
 </div>
 </div>
 </section>

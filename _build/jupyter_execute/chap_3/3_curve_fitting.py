@@ -183,7 +183,7 @@ from scipy.optimize import curve_fit
 
 # `curve_fit` 関数を用いたカーブフィッティングは以下の手順に従って行う．
 
-# **1. フィッティングに用いる関数を定義する**
+# **1. カーブフィッティングに用いる関数（モデル）を定義する**
 
 # In[3]:
 
@@ -193,46 +193,46 @@ def f_linear(x, a, b):
     return a*x + b
 
 
-# この関数は，第１引数に $ x $ 座標のデータ，第２引数以降にパラメータ $ a, b $ を入力し，出力として $ y $ 座標のデータが得られる．
+# この関数は，第1引数に $ x $ 座標のデータ，第2引数以降にパラメータ $ a, b $ を入力し，$ y $ 座標の予測値を出力する．
 
-# **2. 実データを用意する**
+# **2. 実データを準備する**
 # 
 # 実データはNumPy配列やPandasのデータフレーム形式で準備する．
-# ここでは，以下のように乱数を用いて生成したデータをcsv形式で一旦保存する．
+# ここでは，モデルから生成したデータに乱数による誤差を加えたデータをcsv形式で一旦保存する．
 # その上で，保存したcsvをPandasのDataFrame形式で読み込み，解析する．
 
-# In[8]:
+# In[22]:
 
 
 # データの作成
-np.random.seed(1234)
-x_data = np.linspace(-10, 10, num=100)
-y_data = f_linear(x_data, 2, 5) + 5.*np.random.randn(x_data.size)
-data = pd.DataFrame({'x': x_data, 'y': y_data})
+np.random.seed(1234)  # 乱数のシードを固定
+x_data = np.linspace(-10, 10, num=100)  # x座標のデータ
+y_data = f_linear(x_data, 2, 5) + 5.*np.random.randn(x_data.size)  # y座標のデータ（モデルから生成したデータにノイズを加える）
+data = pd.DataFrame({'x': x_data, 'y': y_data})  # データフレームに変換
 
 # データをcsv形式で保存
 data.to_csv('./data_linear.csv', index=False, float_format="%10.2f")
 
 
-# In[10]:
+# In[23]:
 
 
-# データをDataFrame形式で読み込む
+# データをデータフレームに読み込む
 data = pd.read_csv('./data_linear.csv')
 
-# 散布図の描画
+# 散布図を描画する
 fig, ax = plt.subplots()
 ax.plot(data['x'], data['y'], 'ko', mfc='None')
 ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 
 
-# **3. フィッティングを実行する**
+# **3. カーブフィッティングを実行する**
 # 
-# `curve_fit` 関数には，第１引数にフィッティング関数，第２，３引数にデータ，それ以降にオプションを指定する．
-# オプションにはパラメータの初期値 `p0` などを指定することができる．
+# `curve_fit` 関数には，第1引数にフィッティング関数，第2引数に $ x $ 座標のデータ，第3引数に $ y $ 座標のデータを指定する．
+# また，第4引数以降にはオプションとしてパラメータの初期値 `p0` などを指定することができる．
 # `curve_fit` 関数を実行すると，最小二乗法によって得られた最適なパラメータ（`p_opt`） と共分散（`p_cov`）が戻り値として得られる．
 
-# In[11]:
+# In[25]:
 
 
 # フィッティングの実行
@@ -240,10 +240,10 @@ p_opt, p_cov = curve_fit(f_linear, data['x'], data['y'], p0=[1, 1])
 print(p_opt)
 
 
-# 以下は公式から得られた最適解を求めた結果である．
+# 以下は公式を用いて最適解を求めた結果である．
 # 確かに，`curve_fit` 関数から求めた値と同じ値が得られていることが分かる．
 
-# In[12]:
+# In[26]:
 
 
 # 公式から
@@ -254,9 +254,11 @@ b = np.mean(data['y'] - a*data['x'])
 print(a, b)
 
 
-# **4. フィッティング結果を可視化する**
+# **4. カーブフィッティング結果を可視化する**
+# 
+# 散布図にモデルによる予測値を重ねてプロットすることで，カーブフィッティングの結果を可視化する．
 
-# In[11]:
+# In[27]:
 
 
 fig, ax = plt.subplots()
@@ -267,7 +269,7 @@ ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 
 # **5. 決定係数を求める**
 
-# In[13]:
+# In[28]:
 
 
 # 決定係数
@@ -276,7 +278,7 @@ R2 = 1 - np.var(data['y'] - y_reg) / np.var(data['y']) # 決定係数
 R2
 
 
-# In[14]:
+# In[29]:
 
 
 # 相関係数の２乗
@@ -292,33 +294,39 @@ r_xy**2
 
 # **1. フィッティングに用いる関数を定義する**
 
-# In[16]:
+# In[15]:
 
 
 def f_exp(x, a, b, c):
     return a * np.exp(-b * x) + c
 
 
-# **2. フィッティング対象となる実データを用意する**
+# この関数は，第1引数に $ x $ 座標のデータ，第2引数以降にパラメータ $ a, b, c $ を入力し，$ y $ 座標の予測値を出力する．
 
-# In[17]:
+# **2. データを作成する**
+# 
+# ここでは，フィッティング関数に誤差を加えたデータを作成する．
+
+# In[16]:
 
 
 # データの作成
 np.random.seed(4321)
 x_data = np.linspace(0, 4, 50)
 y_data = f_exp(x_data, 2.5, 1.3, 0.5) + 0.2 * np.random.normal(size=len(x_data))
-data = np.vstack([x_data, y_data]).T
+# data = np.vstack([x_data, y_data]).T
+data = pd.DataFrame({'x': x_data, 'y': y_data})
 
 # データをcsv形式で保存
-np.savetxt('./data_exp.csv', data, delimiter=',')
+# np.savetxt('./data_exp.csv', data, delimiter=',')
+data.to_csv('./data_exp.csv', index=False, float_format="%10.2f")
 
 
-# In[18]:
+# In[17]:
 
 
 # データをDataFrame形式で読み込む
-data = pd.read_csv('./data_exp.csv', header=None, names=['x', 'y'])
+data = pd.read_csv('./data_exp.csv')
 
 # 散布図の描画
 fig, ax = plt.subplots()
@@ -328,7 +336,7 @@ ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 
 # **3. フィッティングを実行する**
 
-# In[21]:
+# In[18]:
 
 
 # フィッティングの実行
@@ -338,7 +346,7 @@ print(p_opt)
 
 # **4. フィッティング結果を可視化する**
 
-# In[22]:
+# In[19]:
 
 
 fig, ax = plt.subplots()
@@ -350,7 +358,7 @@ ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 
 # **5. 決定係数を求める**
 
-# In[23]:
+# In[20]:
 
 
 # 決定係数
