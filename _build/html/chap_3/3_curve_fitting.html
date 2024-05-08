@@ -716,8 +716,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1684e6a1-47eb-4070-b9ad-e18a0e72122c">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-1684e6a1-47eb-4070-b9ad-e18a0e72122c" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4d45939f-0926-4968-90c2-0e0fc1841a56">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-4d45939f-0926-4968-90c2-0e0fc1841a56" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -1113,28 +1113,30 @@ title="Print to PDF"
 </section>
 <section id="id13">
 <h3><span class="section-number">3.3.2. </span>最尤推定<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">#</a></h3>
-<p>これまで，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を持つ１次元確率分布を <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> と表記していたが，変数と定数の区別を強調するために，これ以降は <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と表記する．
+<p>これまで，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を持つ1次元確率分布を <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> と表記していたが，変数と定数の区別を強調するために，これ以降は <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と表記する．
 例えば，<span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> と書いたときは，<span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は与えられた定数（前提条件），<span class="math notranslate nohighlight">\( x \)</span> は変数を表しており，<span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> は <span class="math notranslate nohighlight">\( x \)</span> の関数であると解釈できる．</p>
 <section id="id14">
 <h4>尤度関数<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>以上を踏まえ，ある確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> に従う母集団から <span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> を独立に生成することを考える．
 このようなデータの生成は，データの生成元から見た場合とデータの観測者から見た場合の２通りの視点が考えられる．</p>
-<p>まず，データの生成元から見た場合，確率分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は分かっており，毎回確率的にデータ <span class="math notranslate nohighlight">\( x_{i} \)</span> が生成される．
-具体的に，<span class="math notranslate nohighlight">\( x_{i} \)</span> というデータが生成される確率は <span class="math notranslate nohighlight">\( f(x_{i}|\boldsymbol{\theta}) \)</span> であるので，<span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる確率は</p>
+<p><strong>データの生成元からの視点</strong></p>
+<p>まず，データの生成元から見た場合，確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は分かっており，毎回確率的にデータ <span class="math notranslate nohighlight">\( x_{i} \)</span> が生成される．
+このとき，<span class="math notranslate nohighlight">\( x_{i} \)</span> というデータが生成される確率は <span class="math notranslate nohighlight">\( f(x_{i}|\boldsymbol{\theta}) \)</span> であるので，<span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる確率は</p>
 <div class="math notranslate nohighlight">
 \[
     f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
 \]</div>
-<p>と表される（独立なので，同時確率が個々の確率の積で書ける）．
+<p>と表される（データが独立に生成されるので，同時確率が個々の確率の積で書ける）．
 このように，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> が固定されており，生成されるデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> を変数と捉えた場合は，<span class="math notranslate nohighlight">\( f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) \)</span> という表記になる．</p>
-<p>一方，この状況をデータの観測者から見ると，手元のデータ <span class="math notranslate nohighlight">\( (x_{1},\ x_{2},\ \ldots, x_{n}) \)</span> に対して，このデータの生成元となった確率分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> はどのような値だったのだろうか？という見方になる（母集団分布の関数は既知とする）．
+<p><strong>データの観測者からの視点</strong></p>
+<p>次に，同じ状況をデータの観測者から見ると，手元のデータ <span class="math notranslate nohighlight">\( (x_{1},\ x_{2},\ \ldots, x_{n}) \)</span> に対して，このデータの生成元となった確率分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> はどのような値だったのだろうか？という見方になる（母集団の確率分布の形は既知とする）．
 この場合，手元のデータ <span class="math notranslate nohighlight">\( (x_{1},\ x_{2},\ \ldots, x_{n}) \)</span> は定数で，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は変数と考えていることになる．
-そこで，同時確率 <span class="math notranslate nohighlight">\( f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) \)</span> について，<span class="math notranslate nohighlight">\( (x_{1},\ x_{2},\ \ldots, x_{n}) \)</span> を定数，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を変数と捉えた場合には</p>
+そこで， <span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる同時確率 <span class="math notranslate nohighlight">\( f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) \)</span> について，<span class="math notranslate nohighlight">\( (x_{1},\ x_{2},\ \ldots, x_{n}) \)</span> を定数，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を変数と捉えて</p>
 <div class="math notranslate nohighlight">
 \[
     L(\boldsymbol{\theta}|x_{1},\ldots, x_{n}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
 \]</div>
-<p>と表記し，これを<strong>尤度関数</strong>と呼ぶことにする．</p>
+<p>と表記する．これを<strong>尤度関数</strong>と呼ぶ．</p>
 </section>
 <section id="id15">
 <h4>最尤推定法<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">#</a></h4>
