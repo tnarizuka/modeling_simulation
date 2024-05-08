@@ -402,38 +402,38 @@ R2
 # - 最小二乗法
 # - 最尤推定
 # 
-# このうち，最小二乗法によるパラメータ推定は回帰分析と手続きは同じである．
-# そこで，以下では最尤推定を扱う．
+# このうち，最小二乗法によるパラメータ推定は回帰分析と全く同じ手続きである．
+# 以下では最尤推定を扱う．
 
 # ### ヒストグラムの作成とフィッティング
 
 # 準備として`scipy`から主要な確率分布をインポートしておく：
 
-# In[2]:
+# In[40]:
 
 
 from scipy.stats import bernoulli, norm, poisson, expon
 
 
-# また，与えられた観測データからヒストグラムを描画し，適当な確率分布をフィッティングするプログラムを作成しておく．
+# また，与えられたデータからヒストグラムを描画し，適当な確率分布を重ね描きするプログラムを作成しておく．
 
-# In[3]:
+# In[43]:
 
 
-# データの作成（正規分布に従う1000個のデータ）
+# データの作成
 np.random.seed(20)
-x_data = sp.stats.norm.rvs(loc=170, scale=10, size=1000)
+x_data = sp.stats.norm.rvs(loc=170, scale=10, size=1000) # 平均170、標準偏差10の正規分布に従うデータを1000個生成
 
-# ヒストグラムの描画
+# ヒストグラムを描画する
 fig, ax = plt.subplots()
 ret = ax.hist(x_data, bins=10, density=1, color='c', edgecolor='w')
 ax.set_xlabel('$x$', fontsize=12)
 ax.set_ylabel('相対度数', fontsize=12)
 ax.set_xticks(np.arange(130, 210, 10));
 
-# フィッティング
+# 確率密度関数を描画する
 x = np.arange(140, 200)
-ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r--')
+ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r-')  # 正規分布の確率密度関数を描画
 
 
 # ### 最尤推定
