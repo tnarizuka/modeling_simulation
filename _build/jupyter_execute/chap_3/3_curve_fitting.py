@@ -199,7 +199,7 @@ def f_linear(x, a, b):
 # 
 # 実データはNumPy配列やPandasのデータフレーム形式で準備する．
 # ここでは，モデルから生成したデータに乱数による誤差を加えたデータをcsv形式で一旦保存する．
-# その上で，保存したcsvをPandasのDataFrame形式で読み込み，解析する．
+# その上で，保存したcsvをPandasのデータフレームに読み込み，解析する．
 
 # In[22]:
 
@@ -214,10 +214,10 @@ data = pd.DataFrame({'x': x_data, 'y': y_data})  # データフレームに変�
 data.to_csv('./data_linear.csv', index=False, float_format="%10.2f")
 
 
-# In[23]:
+# In[35]:
 
 
-# データをデータフレームに読み込む
+# データフレームに読み込む
 data = pd.read_csv('./data_linear.csv')
 
 # 散布図を描画する
@@ -254,7 +254,7 @@ b = np.mean(data['y'] - a*data['x'])
 print(a, b)
 
 
-# **4. カーブフィッティング結果を可視化する**
+# **4. カーブフィッティングの結果を可視化する**
 # 
 # 散布図にモデルによる予測値を重ねてプロットすることで，カーブフィッティングの結果を可視化する．
 
@@ -292,9 +292,9 @@ r_xy**2
 # この場合はフィッティング関数に任意の非線形関数 $ f(x; \boldsymbol{\theta}) $ を指定することができる．
 # フィッティングの手順は線形単回帰モデルの場合と同様である．
 
-# **1. フィッティングに用いる関数を定義する**
+# **1. カーブフィッティングに用いる関数（モデル）を定義する**
 
-# In[15]:
+# In[30]:
 
 
 def f_exp(x, a, b, c):
@@ -303,29 +303,27 @@ def f_exp(x, a, b, c):
 
 # この関数は，第1引数に $ x $ 座標のデータ，第2引数以降にパラメータ $ a, b, c $ を入力し，$ y $ 座標の予測値を出力する．
 
-# **2. データを作成する**
+# **2. 実データを準備する**
 # 
-# ここでは，フィッティング関数に誤差を加えたデータを作成する．
+# ここでは，モデルから生成したデータに乱数による誤差を加えたデータをcsv形式で一旦保存し，その後Pandasのデータフレームに読み込む．
 
-# In[16]:
+# In[32]:
 
 
 # データの作成
 np.random.seed(4321)
 x_data = np.linspace(0, 4, 50)
 y_data = f_exp(x_data, 2.5, 1.3, 0.5) + 0.2 * np.random.normal(size=len(x_data))
-# data = np.vstack([x_data, y_data]).T
 data = pd.DataFrame({'x': x_data, 'y': y_data})
 
 # データをcsv形式で保存
-# np.savetxt('./data_exp.csv', data, delimiter=',')
 data.to_csv('./data_exp.csv', index=False, float_format="%10.2f")
 
 
-# In[17]:
+# In[36]:
 
 
-# データをDataFrame形式で読み込む
+# データフレームに読み込む
 data = pd.read_csv('./data_exp.csv')
 
 # 散布図の描画
@@ -334,19 +332,19 @@ ax.plot(data['x'], data['y'], 'x')
 ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 
 
-# **3. フィッティングを実行する**
+# **3. カーブフィッティングを実行する**
 
-# In[18]:
+# In[37]:
 
 
 # フィッティングの実行
-p_opt = curve_fit(f_exp, data['x'], data['y'])[0]
+p_opt, p_cov = curve_fit(f_exp, data['x'], data['y'], p0=[1,1,1])
 print(p_opt)
 
 
-# **4. フィッティング結果を可視化する**
+# **4. カーブフィッティングの結果を可視化する**
 
-# In[19]:
+# In[38]:
 
 
 fig, ax = plt.subplots()
@@ -358,7 +356,7 @@ ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 
 # **5. 決定係数を求める**
 
-# In[20]:
+# In[39]:
 
 
 # 決定係数
