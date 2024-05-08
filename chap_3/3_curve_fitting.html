@@ -716,8 +716,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-172bb76f-61e1-45dc-98f5-a62f5e9e15b3">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-172bb76f-61e1-45dc-98f5-a62f5e9e15b3" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ea25af36-81f7-42c2-a960-3f659901a87d">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-ea25af36-81f7-42c2-a960-3f659901a87d" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -1118,7 +1118,7 @@ title="Print to PDF"
 <section id="id14">
 <h4>尤度関数<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>以上を踏まえ，ある確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> に従う母集団から <span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> を独立に生成することを考える．
-このようなデータの生成は，データの生成元から見た場合とデータの観測者から見た場合の２通りの視点が考えられる．</p>
+このようなデータの生成は，データの生成元から見た場合とデータの観測者から見た場合の2通りの視点が考えられる．</p>
 <p><strong>データの生成元からの視点</strong></p>
 <p>まず，データの生成元から見た場合，確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は分かっており，毎回確率的にデータ <span class="math notranslate nohighlight">\( x_{i} \)</span> が生成される．
 このとき，<span class="math notranslate nohighlight">\( x_{i} \)</span> というデータが生成される確率は <span class="math notranslate nohighlight">\( f(x_{i}|\boldsymbol{\theta}) \)</span> であるので，<span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる確率は</p>
@@ -1144,7 +1144,7 @@ title="Print to PDF"
 <p>さて，尤度関数というのは，手元のデータが得られる確率を，生成元となった確率分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> の関数と捉えたものである．
 いま，手元にデータが与えられた状態で生成元の確率分布のパラメータがどのような値なら尤もらしいか？と考えてみる．
 すると，尤度が小さくなるようなパラメータだと，生起確率が小さいあり得ないことが起こっていることになるので不適切と考えられる．
-そこで，手元に <span class="math notranslate nohighlight">\( n \)</span> 個のデータが与えられたとき，尤度関数 <span class="math notranslate nohighlight">\( L(\boldsymbol{\theta}|x_{1}, x_{2},\ldots, x_{n}) \)</span> を最大にするように生成元の確率分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を最も尤もらしいパラメータと考えることにする．
+そこで，手元に <span class="math notranslate nohighlight">\( n \)</span> 個のデータが与えられたとき，尤度関数 <span class="math notranslate nohighlight">\( L(\boldsymbol{\theta}|x_{1}, x_{2},\ldots, x_{n}) \)</span> が最大となるパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を最も尤もらしいパラメータと考えることにする．
 これは，確率分布のパラメータ推定手法の一つであり，<strong>最尤推定法</strong>と呼ばれている．</p>
 </section>
 <section id="id16">
