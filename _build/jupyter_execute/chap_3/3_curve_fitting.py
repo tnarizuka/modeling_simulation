@@ -175,7 +175,7 @@ import japanize_matplotlib
 # `scipy`には最小二乗法を用いてカーブフィッティングを実行するための `scipy.optimize.curve_fit` 関数が用意されている．
 # まずはこの関数をインポートしておく．
 
-# In[3]:
+# In[2]:
 
 
 from scipy.optimize import curve_fit
@@ -185,7 +185,7 @@ from scipy.optimize import curve_fit
 
 # **1. フィッティングに用いる関数を定義する**
 
-# In[4]:
+# In[3]:
 
 
 # フィッティング関数の定義
@@ -201,24 +201,24 @@ def f_linear(x, a, b):
 # ここでは，以下のように乱数を用いて生成したデータをcsv形式で一旦保存する．
 # その上で，保存したcsvをPandasのDataFrame形式で読み込み，解析する．
 
-# In[6]:
+# In[8]:
 
 
 # データの作成
 np.random.seed(1234)
 x_data = np.linspace(-10, 10, num=100)
 y_data = f_linear(x_data, 2, 5) + 5.*np.random.randn(x_data.size)
-data = np.vstack([x_data, y_data]).T
+data = pd.DataFrame({'x': x_data, 'y': y_data})
 
 # データをcsv形式で保存
-np.savetxt('./data_linear.csv', data, delimiter=',')
+data.to_csv('./data_linear.csv', index=False, float_format="%10.2f")
 
 
-# In[7]:
+# In[10]:
 
 
 # データをDataFrame形式で読み込む
-data = pd.read_csv('./data_linear.csv', header=None, names=['x', 'y'])
+data = pd.read_csv('./data_linear.csv')
 
 # 散布図の描画
 fig, ax = plt.subplots()
@@ -232,7 +232,7 @@ ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 # オプションにはパラメータの初期値 `p0` などを指定することができる．
 # `curve_fit` 関数を実行すると，最小二乗法によって得られた最適なパラメータ（`p_opt`） と共分散（`p_cov`）が戻り値として得られる．
 
-# In[9]:
+# In[11]:
 
 
 # フィッティングの実行
@@ -243,7 +243,7 @@ print(p_opt)
 # 以下は公式から得られた最適解を求めた結果である．
 # 確かに，`curve_fit` 関数から求めた値と同じ値が得られていることが分かる．
 
-# In[10]:
+# In[12]:
 
 
 # 公式から
@@ -267,7 +267,7 @@ ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 
 # **5. 決定係数を求める**
 
-# In[12]:
+# In[13]:
 
 
 # 決定係数
@@ -276,7 +276,7 @@ R2 = 1 - np.var(data['y'] - y_reg) / np.var(data['y']) # 決定係数
 R2
 
 
-# In[13]:
+# In[14]:
 
 
 # 相関係数の２乗
@@ -361,17 +361,27 @@ R2
 
 # ### 演習問題
 # 
-# 1. 線形単回帰モデルについて，式{eq}`eq:lsm_solution`を導け．
-# 2. 適当な非線形関数からデータを生成し，手順１〜５に従ってカーブフィッティングを実行せよ．
-# 3. [soccer_player_europe_2017.csv](https://drive.google.com/uc?export=download&id=13NU87F430KkYJGJZrY44aQECBLjSjKnf)は2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．これをPandasのDataFrameに読み込み，体重（`weight`）が0の選手を削除せよ．体重（`weight`）と身長（`height`）の散布図を描き，線形単回帰モデルによるカーブフィッティングを実行せよ．
-# 4. [covid19_korea.csv](https://drive.google.com/uc?export=download&id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz)は，韓国における新型コロナウイルス感染者数の推移データである．このデータを読み込み，横軸に2020年1月22日を0日とした経過日数，縦軸に感染者数を取った散布図を描け．50日目までと100日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行せよ．
-#    
-#    $$
-#    f(t) = \frac{a}{1+b\mathrm{e}^{-ct}}
-#    $$
-#    
+# 1. 線形単回帰モデルについて，式{eq}`eq:lsm_solution`を導け
+# 2. 線形単回帰モデルについて以下の問に答えよ
+#    - `data_linear.csv`をエクセルで開いて散布図を描け
+#    - 近似曲線の追加機能（オプションは線形近似）から近似曲線を追加せよ．その際に，「グラフに数式を表示する」と「グラフにR-２乗値を表示する」にチェックを入れること．
+#    - 表示された結果ががPythonによるカーブフィッティングの結果と一致することを確認せよ．
+# 3. [soccer_player_europe_2017.csv](https://drive.google.com/uc?export=download&id=13NU87F430KkYJGJZrY44aQECBLjSjKnf)は2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．以下の問に答えよ．
+#    - データをダウンロードし，PandasのDataFrameに読み込め
+#    - 体重（`weight`）が0となっている選手を削除せよ
+#    - 横軸に体重（`weight`），縦軸に身長（`height`）を取った散布図を描け
+#    - 線形単回帰モデルによるカーブフィッティングを実行し，散布図に回帰直線を追加せよ
+# 4. [covid19_korea.csv](https://drive.google.com/uc?export=download&id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz)は，韓国における新型コロナウイルス感染者数の推移データである．以下の問いに答えよ
+#    - データをダウンロードし，PandasのDataFrameに読み込め
+#    - データフレームに2020年1月22日を0日とした経過日数を追加せよ
+#    - 横軸に経過日数，縦軸に感染者数を取った散布図を描け．
+#    - 50日目までと100日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．
+#      $$
+#      f(t) = \frac{a}{1+b\mathrm{e}^{-ct}}
+#      $$
 #    ※ 本データの出典：[John Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series)
 
+# 
 # ## 確率分布のパラメータ推定
 # 
 
