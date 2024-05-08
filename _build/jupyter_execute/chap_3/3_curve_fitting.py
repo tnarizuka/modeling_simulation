@@ -366,7 +366,7 @@ R2
 #    - `data_linear.csv`をエクセルで開いて散布図を描け
 #    - 近似曲線の追加機能（オプションは線形近似）から近似曲線を追加せよ．その際に，「グラフに数式を表示する」と「グラフにR-２乗値を表示する」にチェックを入れること．
 #    - 表示された結果ががPythonによるカーブフィッティングの結果と一致することを確認せよ．
-# 3. [soccer_player_europe_2017.csv](https://drive.google.com/uc?export=download&id=13NU87F430KkYJGJZrY44aQECBLjSjKnf)は2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．以下の問いに答えよ．
+# 3. [soccer_player_europe_2017.csv](https://drive.google.com/uc?export=download&id=13NU87F430KkYJGJZrY44aQECBLjSjKnf)は，2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．以下の問いに答えよ．
 #    - データをダウンロードし，PandasのDataFrameに読み込め
 #    - 体重（`weight`）が0となっている選手を削除せよ
 #    - 横軸に体重（`weight`），縦軸に身長（`height`）を取った散布図を描け
@@ -375,10 +375,12 @@ R2
 #    - データをダウンロードし，PandasのDataFrameに読み込め
 #    - データフレームに2020年1月22日を0日とした経過日数を追加せよ
 #    - 横軸に経過日数，縦軸に感染者数を取った散布図を描け．
-#    - 50日目までと100日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．
+#    - 50日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．
 #      $$
 #      f(t) = \frac{a}{1+b\mathrm{e}^{-ct}}
 #      $$
+#    - 同様に，100日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．
+#   
 #    ※ 本データの出典：[John Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series)
 
 # 
