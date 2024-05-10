@@ -716,8 +716,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e2316525-ba42-41c9-afdc-4767197fe23a">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-e2316525-ba42-41c9-afdc-4767197fe23a" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c9a6ccd4-e5e7-4923-97eb-004d16057fab">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-c9a6ccd4-e5e7-4923-97eb-004d16057fab" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -900,13 +900,13 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 相関係数の２乗</span>
-<span class="n">r_xy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">corr</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># pandasのcorr()関数で相関係数を計算</span>
+<span class="n">r_xy</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span> <span class="c1"># pandasのcorr()関数で相関係数を計算</span>
 <span class="n">r_xy</span><span class="o">**</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8436605083584499
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8436605083584496
 </pre></div>
 </div>
 </div>
@@ -970,7 +970,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.59145948 1.28642241 0.44874492]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.59425594 1.28716833 0.44943101]
 </pre></div>
 </div>
 </div>
@@ -1001,7 +1001,21 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9163784521572647
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9161811765106044
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 相関係数の２乗（線形単回帰モデル以外の場合は決定係数と一致しない）</span>
+<span class="n">r_xy</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span> <span class="c1"># pandasのcorr()関数で相関係数を計算</span>
+<span class="n">r_xy</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6577469204652011
 </pre></div>
 </div>
 </div>
@@ -1094,7 +1108,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x16f9ceb80&gt;]
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_53_1.png" src="../_images/3_curve_fitting_53_1.png" />
+<img alt="../_images/3_curve_fitting_54_1.png" src="../_images/3_curve_fitting_54_1.png" />
 </div>
 </div>
 </section>
@@ -1373,7 +1387,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_76_0.png" src="../_images/3_curve_fitting_76_0.png" />
+<img alt="../_images/3_curve_fitting_77_0.png" src="../_images/3_curve_fitting_77_0.png" />
 </div>
 </div>
 </section>
@@ -1524,7 +1538,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Likelihood&#39;)
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_93_1.png" src="../_images/3_curve_fitting_93_1.png" />
+<img alt="../_images/3_curve_fitting_94_1.png" src="../_images/3_curve_fitting_94_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1542,7 +1556,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Log Likelihood&#39;)
 </pre></div>
 </div>
-<img alt="../_images/3_curve_fitting_94_1.png" src="../_images/3_curve_fitting_94_1.png" />
+<img alt="../_images/3_curve_fitting_95_1.png" src="../_images/3_curve_fitting_95_1.png" />
 </div>
 </div>
 <p><strong>5. 最尤推定値でカーブフィッティング</strong></p>
@@ -1560,7 +1574,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_96_0.png" src="../_images/3_curve_fitting_96_0.png" />
+<img alt="../_images/3_curve_fitting_97_0.png" src="../_images/3_curve_fitting_97_0.png" />
 </div>
 </div>
 </section>
