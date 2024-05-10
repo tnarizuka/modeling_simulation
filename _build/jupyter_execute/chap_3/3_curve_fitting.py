@@ -391,6 +391,12 @@ R2
 #      f(t) = \frac{a}{1+b\mathrm{e}^{-ct}}
 #      $$
 #      
+#      なお，シグモイド関数をそのまま実装するとオーバーフローが発生する可能性があるため，以下のように`np.clip`関数を用いてオーバーフローを回避すること：
+#      ```
+#      def f_sigmoid(t, a, b, c):
+#          return a*(1+b*np.exp(-np.clip(c*t, -709, 100000)))**(-1)
+#      ```
+#      
 #    - 同様に，100日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．
 #   
 #    ※ 本データの出典：[John Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series)

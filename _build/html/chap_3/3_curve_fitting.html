@@ -716,8 +716,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4d06fce6-c23d-4738-abfc-abc32d560739">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-4d06fce6-c23d-4738-abfc-abc32d560739" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-38edc4dd-aacb-4da8-bb34-04b248cfa624">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-38edc4dd-aacb-4da8-bb34-04b248cfa624" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -1056,6 +1056,11 @@ title="Print to PDF"
 \[
      f(t) = \frac{a}{1+b\mathrm{e}^{-ct}}
      \]</div>
+<p>なお，シグモイド関数をそのまま実装するとオーバーフローが発生する可能性があるため，以下のように<code class="docutils literal notranslate"><span class="pre">np.clip</span></code>関数を用いてオーバーフローを回避すること：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f_sigmoid</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">t</span><span class="p">,</span> <span class="o">-</span><span class="mi">709</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)))</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
 </li>
 <li><p>同様に，100日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．</p></li>
 </ul>
