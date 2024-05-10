@@ -3,7 +3,7 @@
 
 # # カーブフィッティング
 
-# In[1]:
+# In[4]:
 
 
 import numpy as np
@@ -164,7 +164,7 @@ from scipy.optimize import curve_fit
 
 # **1. カーブフィッティングに用いる関数（モデル）を定義する**
 
-# In[3]:
+# In[2]:
 
 
 # フィッティング関数の定義
@@ -180,7 +180,7 @@ def f_linear(x, a, b):
 # ここでは，モデルから生成したデータに乱数による誤差を加えたデータをcsv形式で一旦保存する．
 # その上で，保存したcsvをPandasのデータフレームに読み込み，解析する．
 
-# In[22]:
+# In[5]:
 
 
 # データの作成
@@ -193,7 +193,7 @@ data = pd.DataFrame({'x': x_data, 'y': y_data})  # データフレームに変�
 data.to_csv('./data_linear.csv', index=False, float_format="%10.2f")
 
 
-# In[35]:
+# In[6]:
 
 
 # データフレームに読み込む
@@ -211,7 +211,7 @@ ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 # また，第4引数以降にはオプションとしてパラメータの初期値 `p0` などを指定することができる．
 # `curve_fit` 関数を実行すると，最小二乗法によって得られた最適なパラメータ（`p_opt`） と共分散（`p_cov`）が戻り値として得られる．
 
-# In[25]:
+# In[7]:
 
 
 # フィッティングの実行
@@ -222,7 +222,7 @@ print(p_opt)
 # 以下は公式を用いて最適解を求めた結果である．
 # 確かに，`curve_fit` 関数から求めた値と同じ値が得られていることが分かる．
 
-# In[26]:
+# In[8]:
 
 
 # 公式から
@@ -237,7 +237,7 @@ print(a, b)
 # 
 # 散布図にモデルによる予測値を重ねてプロットすることで，カーブフィッティングの結果を可視化する．
 
-# In[27]:
+# In[9]:
 
 
 fig, ax = plt.subplots()
@@ -248,7 +248,7 @@ ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 
 # **5. 決定係数を求める**
 
-# In[28]:
+# In[10]:
 
 
 # 決定係数
@@ -257,11 +257,11 @@ R2 = 1 - np.var(data['y'] - y_reg) / np.var(data['y']) # 決定係数
 R2
 
 
-# In[29]:
+# In[11]:
 
 
 # 相関係数の２乗
-r_xy = pd.DataFrame(np.c_[data['x'], data['y']]).corr()[0][1] # pandasのcorr()関数で相関係数を計算
+r_xy = data['x'].corr(data['y']) # pandasのcorr()関数で相関係数を計算
 r_xy**2
 
 
@@ -273,7 +273,7 @@ r_xy**2
 
 # **1. カーブフィッティングに用いる関数（モデル）を定義する**
 
-# In[30]:
+# In[12]:
 
 
 def f_exp(x, a, b, c):
@@ -286,7 +286,7 @@ def f_exp(x, a, b, c):
 # 
 # ここでは，モデルから生成したデータに乱数による誤差を加えたデータをcsv形式で一旦保存し，その後Pandasのデータフレームに読み込む．
 
-# In[32]:
+# In[13]:
 
 
 # データの作成
@@ -313,7 +313,7 @@ ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 
 # **3. カーブフィッティングを実行する**
 
-# In[37]:
+# In[14]:
 
 
 # フィッティングの実行
@@ -323,7 +323,7 @@ print(p_opt)
 
 # **4. カーブフィッティングの結果を可視化する**
 
-# In[38]:
+# In[15]:
 
 
 fig, ax = plt.subplots()
@@ -335,13 +335,21 @@ ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$y$', fontsize=15);
 
 # **5. 決定係数を求める**
 
-# In[39]:
+# In[16]:
 
 
 # 決定係数
 y_reg = f_exp(data['x'], p_opt[0], p_opt[1], p_opt[2]) # 回帰直線の値
 R2 = 1 - np.var(data['y']-y_reg) / np.var(data['y']) # 決定係数
 R2
+
+
+# In[18]:
+
+
+# 相関係数の２乗（線形単回帰モデル以外の場合は決定係数と一致しない）
+r_xy = data['x'].corr(data['y']) # pandasのcorr()関数で相関係数を計算
+r_xy**2
 
 
 # ### 演習問題
