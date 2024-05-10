@@ -440,35 +440,25 @@ title="Print to PDF"
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id18">
-       解析解
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id19">
        Pythonによる実装
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id20">
+    <a class="reference internal nav-link" href="#id19">
      3.3.4. 正規分布の最尤推定
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id21">
-       解析解
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id22">
+      <a class="reference internal nav-link" href="#id20">
        Pythonによる実装
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id23">
+    <a class="reference internal nav-link" href="#id21">
      3.3.5. 演習問題
     </a>
    </li>
@@ -586,35 +576,25 @@ title="Print to PDF"
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id18">
-       解析解
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id19">
        Pythonによる実装
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id20">
+    <a class="reference internal nav-link" href="#id19">
      3.3.4. 正規分布の最尤推定
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id21">
-       解析解
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id22">
+      <a class="reference internal nav-link" href="#id20">
        Pythonによる実装
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id23">
+    <a class="reference internal nav-link" href="#id21">
      3.3.5. 演習問題
     </a>
    </li>
@@ -716,8 +696,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c9a6ccd4-e5e7-4923-97eb-004d16057fab">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-c9a6ccd4-e5e7-4923-97eb-004d16057fab" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d68b284e-7c9f-41ea-ab48-8652a5ce3031">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-d68b284e-7c9f-41ea-ab48-8652a5ce3031" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -1120,12 +1100,18 @@ title="Print to PDF"
 <h4>尤度関数<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>以上を踏まえ，ある確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> に従う母集団から <span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> を独立に生成することを考える．
 このようなデータの生成は，データの生成元から見た場合とデータの観測者から見た場合の2通りの視点が考えられる．</p>
+<figure class="align-default" id="fig-maximum-likelihood">
+<a class="reference internal image-reference" href="../_images/maximum_likelihood.png"><img alt="../_images/maximum_likelihood.png" src="../_images/maximum_likelihood.png" style="height: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">図 3.1 </span><span class="caption-text">母集団からのデータ生成とパラメータ推定の模式図</span><a class="headerlink" href="#fig-maximum-likelihood" title="この画像へのパーマリンク">#</a></p>
+</figcaption>
+</figure>
 <p><strong>データの生成元からの視点</strong></p>
 <p>まず，データの生成元から見た場合，確率分布 <span class="math notranslate nohighlight">\( f(x|\boldsymbol{\theta}) \)</span> のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は分かっており，毎回確率的にデータ <span class="math notranslate nohighlight">\( x_{i} \)</span> が生成される．
 このとき，<span class="math notranslate nohighlight">\( x_{i} \)</span> というデータが生成される確率は <span class="math notranslate nohighlight">\( f(x_{i}|\boldsymbol{\theta}) \)</span> であるので，<span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる確率は</p>
 <div class="math notranslate nohighlight">
 \[
-    f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
+    f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) = f(x_{1}|\boldsymbol{\theta})f(x_{2}|\boldsymbol{\theta})\cdots f(x_{n}|\boldsymbol{\theta})
 \]</div>
 <p>と表される（データが独立に生成されるので，同時確率が個々の確率の積で書ける）．
 このように，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> が固定されており，生成されるデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> を変数と捉えた場合は，<span class="math notranslate nohighlight">\( f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) \)</span> という表記になる．</p>
@@ -1135,7 +1121,7 @@ title="Print to PDF"
 そこで， <span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる同時確率 <span class="math notranslate nohighlight">\( f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) \)</span> について，<span class="math notranslate nohighlight">\( (x_{1},\ x_{2},\ \ldots, x_{n}) \)</span> を定数，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を変数と捉えて</p>
 <div class="math notranslate nohighlight">
 \[
-    L(\boldsymbol{\theta}|x_{1},\ldots, x_{n}) = \prod_{i=1}^{n} f(x_{i}|\boldsymbol{\theta})
+    L(\boldsymbol{\theta}|x_{1},\ldots, x_{n}) = f(x_{1}|\boldsymbol{\theta})f(x_{2}|\boldsymbol{\theta})\cdots f(x_{n}|\boldsymbol{\theta})
 \]</div>
 <p>と表記する．これを<strong>尤度関数</strong>と呼ぶ．
 尤度関数と同時確率は，データとパラメータのどちらを変数と見るかの違いだけで，中身は全く同じである．</p>
@@ -1176,8 +1162,11 @@ title="Print to PDF"
 \]</div>
 <p>ここで，<span class="math notranslate nohighlight">\( x \)</span> の取りうる値は <span class="math notranslate nohighlight">\( 0, 1 \)</span> の2値である．
 ベルヌーイ分布はコイン投げのように確率変数 <span class="math notranslate nohighlight">\( X \)</span> が2値を取るような試行（ベルヌーイ試行）を1回行ったときの確率分布であり，<span class="math notranslate nohighlight">\( p \)</span> は <span class="math notranslate nohighlight">\( x=1 \)</span> となる確率（表が出る確率）を表すパラメータである．</p>
-<section id="id18">
-<h4>解析解<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>ベルヌーイ分布の場合，以下のように最尤推定値を計算することができ，その結果は観測データの標本平均となる．
+例えば，コインを5回投げて最初に表が連続して3回出たとすると，データは <span class="math notranslate nohighlight">\( (1,1,1,0,0) \)</span> である．
+よって，この場合の最尤推定値は <span class="math notranslate nohighlight">\( p=3/5 \)</span> となる．</p>
+<div class="dropdown admonition">
+<p class="admonition-title">ベルヌーイ分布の最尤推定（解析解）</p>
 <p>観測データ <span class="math notranslate nohighlight">\( (x_{1}, \ldots, x_{n}) \)</span> に対する尤度関数は</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1199,16 +1188,14 @@ title="Print to PDF"
 \[
     p = \frac{1}{n} \sum_{i=1}^{n} x_{i}
 \]</div>
-<p>が得られる．
-すなわち，<span class="math notranslate nohighlight">\( p \)</span> の最尤推定値は観測データの標本平均である．
-例えば，コインを5回投げて最初に表が連続して3回出たとすると，データは <span class="math notranslate nohighlight">\( (1,1,1,0,0) \)</span> である．
-よって，この場合の最尤推定値は <span class="math notranslate nohighlight">\( p=3/5 \)</span> となる．</p>
-</section>
-<section id="id19">
-<h4>Pythonによる実装<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>が得られる．</p>
+</div>
+<section id="id18">
+<h4>Pythonによる実装<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p><strong>1. データの生成</strong></p>
-<p>まずは，パラメータ <span class="math notranslate nohighlight">\( p \)</span> のベルヌーイ分布からサイズ100の標本を発生させる．
-例えば，以下では <span class="math notranslate nohighlight">\( p=0.3 \)</span> を真の値としている．</p>
+<p>パラメータ <span class="math notranslate nohighlight">\( p \)</span> のベルヌーイ分布からサイズ100の標本を発生させる．
+例えば，<span class="math notranslate nohighlight">\( p=0.3 \)</span> とする．
+これが母集団分布のパラメータ（真の値）となる．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データの作成</span>
@@ -1241,7 +1228,7 @@ title="Print to PDF"
 <span class="c1"># 様々なPについて尤度と対数尤度を計算する</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">P</span><span class="p">:</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">bernoulli</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
-    <span class="n">log_l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">bernoulli</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="mf">1e-100</span><span class="p">)))</span>
+    <span class="n">log_l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">bernoulli</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="mf">1e-100</span><span class="p">)))</span> <span class="c1"># logの中身が極端に小さいときは1e-100に置き換える</span>
     <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
     <span class="n">log_L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">log_l</span><span class="p">)</span>
 
@@ -1257,7 +1244,7 @@ title="Print to PDF"
 サンプルサイズをこれ以上増やすと尤度の値はさらに小さくなるため，数値計算の際には対数尤度を用いた方が良い．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="n">P</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="n">L</span><span class="p">,</span> <span class="s1">&#39;log_L&#39;</span><span class="p">:</span> <span class="n">log_L</span><span class="p">})</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="n">P</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="n">L</span><span class="p">,</span> <span class="s1">&#39;log_L&#39;</span><span class="p">:</span> <span class="n">log_L</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -1316,8 +1303,45 @@ title="Print to PDF"
       <td>9.149972e-40</td>
       <td>-89.889653</td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>0.95</td>
+      <td>2.650621e-96</td>
+      <td>-220.073375</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>0.96</td>
+      <td>2.962802e-103</td>
+      <td>-236.080129</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>0.97</td>
+      <td>2.969535e-112</td>
+      <td>-256.801125</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>0.98</td>
+      <td>5.473861e-125</td>
+      <td>-286.123152</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>0.99</td>
+      <td>7.623427e-147</td>
+      <td>-336.448783</td>
+    </tr>
   </tbody>
 </table>
+<p>100 rows × 3 columns</p>
 </div></div></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">np.argmax</span></code>関数を用いると，ある配列について最大値に対応するインデックスを取得できる．
@@ -1381,28 +1405,29 @@ title="Print to PDF"
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span> <span class="c1"># 新しいy軸を作成</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">log_L</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">)</span> <span class="c1"># 対数尤度関数</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;対数尤度 $\log L(p) $&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;対数尤度 $\log L(p) $&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=-</span><span class="mi">90</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_77_0.png" src="../_images/3_curve_fitting_77_0.png" />
+<img alt="../_images/3_curve_fitting_79_0.png" src="../_images/3_curve_fitting_79_0.png" />
 </div>
 </div>
 </section>
 </section>
-<section id="id20">
-<h3><span class="section-number">3.3.4. </span>正規分布の最尤推定<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">#</a></h3>
+<section id="id19">
+<h3><span class="section-number">3.3.4. </span>正規分布の最尤推定<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p>次に，最尤推定値の解析解が求まるもう少し複雑な例として，生成元の確率分布が正規分布の場合を考える．
 正規分布の確率密度関数は以下で与えられる：</p>
 <div class="math notranslate nohighlight">
 \[
     f(x|\mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}} \mathrm{e}^{-\frac{(x-\mu)^2}{2\sigma^2}}
 \]</div>
-<p>ここで，<span class="math notranslate nohighlight">\( \mu, \sigma \)</span> がパラメータでそれぞれ期待値と標準偏差に対応する．</p>
-<section id="id21">
-<h4>解析解<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>ここで，<span class="math notranslate nohighlight">\( \mu, \sigma \)</span> がパラメータでそれぞれ期待値と標準偏差に対応する．
+正規分布のパラメータ <span class="math notranslate nohighlight">\( \mu,\ \sigma^2 \)</span> の最尤推定値はそれぞれ標本平均と標本分散となる．</p>
+<div class="dropdown admonition">
+<p class="admonition-title">正規分布の最尤推定（解析解）</p>
 <p>観測データ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する尤度関数は</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1428,11 +1453,10 @@ title="Print to PDF"
     \mu &amp;= \frac{1}{n}\sum_{i=1}^{n}x_{i}\\
     \sigma^2 &amp;= \frac{1}{n}\sum_{i=1}^{n}(x_{i}-\mu)^2
 \end{align*}\]</div>
-<p>が得られる．
-すなわち，<span class="math notranslate nohighlight">\( \mu,\ \sigma^2 \)</span> の最尤推定値はそれぞれ標本平均と標本分散であることが分かる．</p>
-</section>
-<section id="id22">
-<h4>Pythonによる実装<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">#</a></h4>
+<p>が得られる．</p>
+</div>
+<section id="id20">
+<h4>Pythonによる実装<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p><strong>1. データの生成</strong></p>
 <p>まずは平均0，標準偏差1の正規分布（標準正規分布）からサイズ100の標本を生成する．</p>
 <div class="cell docutils container">
@@ -1579,8 +1603,8 @@ title="Print to PDF"
 </div>
 </section>
 </section>
-<section id="id23">
-<h3><span class="section-number">3.3.5. </span>演習問題<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">#</a></h3>
+<section id="id21">
+<h3><span class="section-number">3.3.5. </span>演習問題<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p><strong>1. 指数分布の最尤推定</strong></p>
 <p>指数分布は以下で与えられる：</p>
 <div class="math notranslate nohighlight">
