@@ -716,8 +716,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-80afabe7-af85-47d6-8c86-b31a69092f57">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-80afabe7-af85-47d6-8c86-b31a69092f57" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-066d5905-57e1-4447-8091-a515986b1899">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-066d5905-57e1-4447-8091-a515986b1899" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -1034,7 +1034,7 @@ title="Print to PDF"
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">data_linear.csv</span></code>をエクセルで開いて散布図を描け</p></li>
 <li><p>近似曲線の追加機能（オプションは線形近似）から近似曲線を追加せよ．その際に，「グラフに数式を表示する」と「グラフにR-２乗値を表示する」にチェックを入れること．</p></li>
-<li><p>表示された結果ががPythonによるカーブフィッティングの結果と一致することを確認せよ．</p></li>
+<li><p>Excelで表示された結果がPythonによるカーブフィッティングの結果と一致することを確認せよ．</p></li>
 </ul>
 </li>
 <li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=13NU87F430KkYJGJZrY44aQECBLjSjKnf">soccer_player_europe_2017.csv</a>は，2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．以下の問いに答えよ．</p>
@@ -1044,8 +1044,9 @@ title="Print to PDF"
 <li><p>横軸に体重（<code class="docutils literal notranslate"><span class="pre">weight</span></code>），縦軸に身長（<code class="docutils literal notranslate"><span class="pre">height</span></code>）を取った散布図を描け</p></li>
 <li><p>線形単回帰モデルによるカーブフィッティングを実行し，散布図に回帰直線を追加せよ</p></li>
 </ul>
+<p>※ 本データの出典：<a class="reference external" href="https://www.nature.com/articles/s41597-019-0247-7">L. Pappalardo et al., Sci Data 6, 236 (2019).</a></p>
 </li>
-<li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz">covid19_korea.csv</a>は，韓国における新型コロナウイルス感染者数の推移データである．以下の問いに答えよ</p>
+<li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=12-dPS038xvax8KwIZLYv2OFMZ55J-WaK">covid19_korea.csv</a>は，韓国における新型コロナウイルス感染者数の推移データである．以下の問いに答えよ</p>
 <ul>
 <li><p>データをダウンロードし，データフレームに読み込め</p></li>
 <li><p>データフレームに2020年1月22日を0日とした経過日数を追加せよ</p></li>
@@ -1167,7 +1168,7 @@ title="Print to PDF"
 </section>
 <section id="id17">
 <h3><span class="section-number">3.3.3. </span>ベルヌーイ分布の最尤推定<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">#</a></h3>
-<p>最尤推定の具体例として，まずはデータ生成元の確率分布がベルヌーイ分布の場合を考える．
+<p>最尤推定の具体例として，まずはデータ生成元の確率分布がベルヌーイ分布に従う場合を考える．
 ベルヌーイ分布とは，以下の式で与えられる離散型確率分布である：</p>
 <div class="math notranslate nohighlight">
 \[
