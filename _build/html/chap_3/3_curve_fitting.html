@@ -696,8 +696,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-195df072-f7fd-47cb-8d43-9e2516b89b6d">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-195df072-f7fd-47cb-8d43-9e2516b89b6d" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ec85027d-d0f0-4ba4-9881-94775ba1a802">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-ec85027d-d0f0-4ba4-9881-94775ba1a802" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -1149,11 +1149,11 @@ title="Print to PDF"
 このように対数尤度関数を考えると，得られる解は尤度関数を偏微分した場合と変わらないが，以下のメリットがある：</p>
 <ul class="simple">
 <li><p>尤度関数の積が和の形に分解できるので計算が簡単になる</p></li>
-<li><p>尤度関数が極端に小さい値になることを防ぐ</p></li>
+<li><p>尤度関数が極端に小さい値になることを防ぐ（確率の積は非常に小さくなる）</p></li>
 </ul>
 <p>なお，最尤推定値が実際に計算可能かどうかは対数尤度関数の形によって異なる．
-例えば，対数尤度関数が凸関数の場合には対数尤度方程式を解くことで大域解が求まるが，非凸関数の場合にはその限りではない．
-また，対数尤度関数は非常に複雑な形をしていることが多いため，数値解を求めるための様々なアルゴリズム（例えばEMアルゴリズムなど）が考案されている．</p>
+例えば，対数尤度関数が凸関数の場合には対数尤度方程式を解くことで大域解が求まるが，非凸関数の場合には局所解しか求まらないことがある．
+また，対数尤度関数は非常に複雑な形をしていることが多いため，数値解を求めるための様々なアルゴリズム（例えば，勾配法やEMアルゴリズムなど）が考案されている．</p>
 </section>
 </section>
 <section id="id17">
@@ -1166,7 +1166,7 @@ title="Print to PDF"
 \]</div>
 <p>ここで，<span class="math notranslate nohighlight">\( x \)</span> の取りうる値は <span class="math notranslate nohighlight">\( 0, 1 \)</span> の2値である．
 ベルヌーイ分布はコイン投げのように確率変数 <span class="math notranslate nohighlight">\( X \)</span> が2値を取るような試行（ベルヌーイ試行）を1回行ったときの確率分布であり，<span class="math notranslate nohighlight">\( p \)</span> は <span class="math notranslate nohighlight">\( x=1 \)</span> となる確率（表が出る確率）を表すパラメータである．</p>
-<p>ベルヌーイ分布の場合，以下のように最尤推定値を計算することができ，その結果は観測データの標本平均となる．
+<p>ベルヌーイ分布の場合，以下のように最尤推定値の解析解を計算することができ，その結果は観測データの標本平均となる．
 例えば，コインを5回投げて最初に表が連続して3回出たとすると，データは <span class="math notranslate nohighlight">\( (1,1,1,0,0) \)</span> である．
 よって，この場合の最尤推定値は <span class="math notranslate nohighlight">\( p=3/5 \)</span> となる．</p>
 <div class="dropdown admonition">
