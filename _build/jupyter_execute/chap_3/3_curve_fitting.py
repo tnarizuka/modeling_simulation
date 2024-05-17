@@ -3,7 +3,7 @@
 
 # # カーブフィッティング
 
-# In[4]:
+# In[2]:
 
 
 import numpy as np
@@ -354,39 +354,43 @@ r_xy**2
 
 # ### 演習問題
 # 
+# **A. 最小二乗法の解析解**
+#    
 # 1. 線形単回帰モデルについて，式{eq}`eq:lsm_solution`を導け
-# 2. 線形単回帰モデルについて以下の問いに答えよ
-#    - `data_linear.csv`をエクセルで開いて散布図を描け
-#    - 近似曲線の追加機能（オプションは線形近似）から近似曲線を追加せよ．その際に，「グラフに数式を表示する」と「グラフにR-２乗値を表示する」にチェックを入れること．
-#    - Excelで表示された結果がPythonによるカーブフィッティングの結果と一致することを確認せよ．
+#    
+# **B. Excelによる最小二乗法**
 # 
-# 3. [soccer_player_europe_2017.csv](https://drive.google.com/uc?export=download&id=12-NKKj-fHFfCRHhQfJ6sTdZjDRxLc1hX)は，2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．以下の問いに答えよ．
-#    - データをダウンロードし，データフレームに読み込め
-#    - 体重（`weight`）が0となっている選手を削除せよ
-#    - 横軸に体重（`weight`），縦軸に身長（`height`）を取った散布図を描け
-#    - 線形単回帰モデルによるカーブフィッティングを実行し，散布図に回帰直線を追加せよ
+# 1. `data_linear.csv`をエクセルで開いて散布図を描け
+# 2. 近似曲線の追加機能（オプションは線形近似）から近似曲線を追加せよ．その際に，「グラフに数式を表示する」と「グラフにR-２乗値を表示する」にチェックを入れること．
+# 3. Excelで表示された結果がPythonによるカーブフィッティングの結果と一致することを確認せよ．
+# 
+# **C. サッカー選手の身長と体重**
+# 
+# 1. [soccer_player_europe_2017.csv](https://drive.google.com/uc?export=download&id=12-NKKj-fHFfCRHhQfJ6sTdZjDRxLc1hX)は，2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．データをダウンロードし，データフレームに読み込め
+# 2. 体重（`weight`）が0となっている選手を削除せよ
+# 3. 横軸に体重（`weight`），縦軸に身長（`height`）を取った散布図を描け
+# 4. 線形単回帰モデルによるカーブフィッティングを実行し，散布図に回帰直線を追加せよ
 #    
 #    ※ 本データの出典：[L. Pappalardo et al., Sci Data 6, 236 (2019).](https://www.nature.com/articles/s41597-019-0247-7)
+# 
+# **D. コロナウイルスの感染者数の増加**
 #    
-# 4. [covid19_korea.csv](https://drive.google.com/uc?export=download&id=12-dPS038xvax8KwIZLYv2OFMZ55J-WaK)は，韓国における新型コロナウイルス感染者数の推移データである．以下の問いに答えよ
-#    - データをダウンロードし，データフレームに読み込め
-#    - データフレームに2020年1月22日を0日とした経過日数を追加せよ
-#    - 横軸に経過日数，縦軸に感染者数を取った散布図を描け．
-#    - 50日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．
-#   
-#      $$
-#      f(t) = \frac{a}{1+b\mathrm{e}^{-ct}}
-#      $$
-#      
-#      なお，シグモイド関数をそのまま実装するとオーバーフローが発生する可能性があるため，以下のように`np.clip`関数を用いてオーバーフローを回避すること：
-#      ```
-#      def f_sigmoid(t, a, b, c):
-#          return a*(1+b*np.exp(-np.clip(c*t, -709, 100000)))**(-1)
-#      ```
-#      
-#    - 同様に，100日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．
-#   
-#    ※ 本データの出典：[John Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series)
+# 1. [covid19_korea.csv](https://drive.google.com/uc?export=download&id=12-dPS038xvax8KwIZLYv2OFMZ55J-WaK)は，韓国における新型コロナウイルス感染者数の推移データである．データをダウンロードし，データフレームに読み込め<br>※ 本データの出典：[John Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series)
+# 2. データフレームに2020年1月22日を0日とした経過日数を追加せよ
+# 3. 横軸に経過日数，縦軸に感染者数を取った散布図を描け．
+# 4. 50日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．
+# 
+#    $$
+#    f(t) = \frac{a}{1+b\mathrm{e}^{-ct}}
+#    $$
+#    
+#    なお，シグモイド関数をそのまま実装するとオーバーフローが発生する可能性があるため，以下のように`np.clip`関数を用いてオーバーフローを回避すること：
+#    ```
+#    def f_sigmoid(t, a, b, c):
+#        return a*(1+b*np.exp(-np.clip(c*t, -709, 100000)))**(-1)
+#    ```
+#    
+# 5. 同様に，100日目までの散布図に対して，以下のシグモイド関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．
 
 # 
 # ## 確率分布のパラメータ推定
@@ -400,13 +404,13 @@ r_xy**2
 # - 最尤推定
 # 
 # このうち，最小二乗法によるパラメータ推定は回帰分析と全く同じ手続きである．
-# 以下では最尤推定を扱う．
+# 以下では最尤推定を中心に説明する．
 
 # ### ヒストグラムの作成とフィッティング
 
 # 準備として`scipy`から主要な確率分布をインポートしておく：
 
-# In[40]:
+# In[3]:
 
 
 from scipy.stats import bernoulli, norm, poisson, expon
@@ -414,34 +418,43 @@ from scipy.stats import bernoulli, norm, poisson, expon
 
 # また，与えられたデータからヒストグラムを描画し，適当な確率分布を重ね描きするプログラムを作成しておく．
 
-# In[43]:
+# In[32]:
 
 
-# データの作成
+def f_norm(x, mu, sigma):
+    # 正規分布の確率密度関数
+    return norm.pdf(x, loc=mu, scale=sigma)
+
+
+# In[39]:
+
+
+# データの作成（平均170，標準偏差10の正規分布に従うデータを1000個生成）
 np.random.seed(20)
-x_data = sp.stats.norm.rvs(loc=170, scale=10, size=1000) # 平均170、標準偏差10の正規分布に従うデータを1000個生成
+data = sp.stats.norm.rvs(loc=170, scale=10, size=1000)
 
 # ヒストグラムを描画する
 fig, ax = plt.subplots()
-ret = ax.hist(x_data, bins=10, density=1, color='c', edgecolor='w')
+ret = ax.hist(data, bins=10, density=1, color='c', edgecolor='w')
 ax.set_xlabel('$x$', fontsize=12)
 ax.set_ylabel('相対度数', fontsize=12)
 ax.set_xticks(np.arange(130, 210, 10));
 
 # 確率密度関数を描画する
 x = np.arange(140, 200)
-ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r-')  # 正規分布の確率密度関数を描画
+fx = norm.pdf(x, loc=170, scale=10)
+ax.plot(x, fx, 'r-');  # 正規分布の確率密度関数を描画
 
 
 # ### 最尤推定
 
-# これまで，パラメータ $ \boldsymbol{\theta} $ を持つ1次元確率分布を $ f(x; \boldsymbol{\theta}) $ と表記していたが，変数と定数の区別を強調するために，これ以降は $ f(x|\boldsymbol{\theta}) $ と表記する．
-# 例えば，$ f(x|\boldsymbol{\theta}) $ と書いたときは，$ \boldsymbol{\theta} $ は与えられた定数（前提条件），$ x $ は変数を表しており，$ f(x|\boldsymbol{\theta}) $ は $ x $ の関数であると解釈できる．
+# これまで，パラメータ $ \boldsymbol{\theta} $ を持つ1次元確率分布を $ f(x; \boldsymbol{\theta}) $ と表記していたが，変数と定数の区別を強調するために，これ以降は $ f(x\mid \boldsymbol{\theta}) $ と表記する．
+# 例えば，$ f(x\mid \boldsymbol{\theta}) $ と書いたときは，$ \boldsymbol{\theta} $ は与えられた定数（前提条件），$ x $ は変数を表しており，$ f(x\mid \boldsymbol{\theta}) $ は $ x $ の関数であると解釈できる．
 
 # #### 尤度関数
 # 
-# 以上を踏まえ，ある確率分布 $ f(x|\boldsymbol{\theta}) $ に従う母集団から $ n $ 個のデータ $ (x_{1}, x_{2}, \ldots, x_{n}) $ を独立に生成することを考える．
-# このようなデータの生成は，データの生成元から見た場合とデータの観測者から見た場合の2通りの視点が考えられる．
+# ある確率分布 $ f(x\mid \boldsymbol{\theta}) $ に従う母集団から $ n $ 個のデータ $ (x_{1}, x_{2}, \ldots, x_{n}) $ を独立に生成することを考える．
+# このとき，データの生成元から見た場合とデータの観測者から見た場合の2通りの視点が考えられる．
 
 # ```{figure} ../figure/maximum_likelihood.png
 # ---
@@ -453,24 +466,23 @@ ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r-')  # 正規分布の確率密度�
 
 # **データの生成元からの視点**
 # 
-# まず，データの生成元から見た場合，確率分布 $ f(x|\boldsymbol{\theta}) $ のパラメータ $ \boldsymbol{\theta} $ は分かっており，毎回確率的にデータ $ x_{i} $ が生成される．
-# このとき，$ x_{i} $ というデータが生成される確率は $ f(x_{i}|\boldsymbol{\theta}) $ であるので，$ n $ 個のデータが得られる確率は
+# まず，データの生成元から見た場合，確率分布 $ f(x\mid \boldsymbol{\theta}) $ のパラメータ $ \boldsymbol{\theta} $ は分かっており，毎回確率的にデータ $ x_{i} $ が生成される．
+# このとき，$ x_{i} $ というデータが生成される確率は $ f(x_{i}\mid \boldsymbol{\theta}) $ であるので，$ n $ 個の独立なデータが得られる確率は
 # 
 # $$
-#     f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) = f(x_{1}|\boldsymbol{\theta})f(x_{2}|\boldsymbol{\theta})\cdots f(x_{n}|\boldsymbol{\theta})
+#     f(x_{1}, x_{2},\ldots, x_{n}\mid \boldsymbol{\theta}) = f(x_{1}\mid \boldsymbol{\theta})f(x_{2}\mid \boldsymbol{\theta})\cdots f(x_{n}\mid \boldsymbol{\theta})
 # $$
 # 
 # と表される（データが独立に生成されるので，同時確率が個々の確率の積で書ける）．
-# このように，パラメータ $ \boldsymbol{\theta} $ が固定されており，生成されるデータ $ (x_{1}, x_{2}, \ldots, x_{n}) $ を変数と捉えた場合は，$ f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) $ という表記になる．
+# このように，パラメータ $ \boldsymbol{\theta} $ が固定されており，生成されるデータ $ (x_{1}, x_{2}, \ldots, x_{n}) $ を変数と捉えた場合は，$ f(x_{1}, x_{2},\ldots, x_{n}\mid \boldsymbol{\theta}) $ という表記になる．
 
 # **データの観測者からの視点**
 # 
-# 次に，同じ状況をデータの観測者から見ると，手元のデータ $ (x_{1},\ x_{2},\ \ldots, x_{n}) $ に対して，このデータの生成元となった確率分布のパラメータ $ \boldsymbol{\theta} $ はどのような値だったのだろうか？という見方になる（母集団の確率分布の形は既知とする）．
-# この場合，手元のデータ $ (x_{1},\ x_{2},\ \ldots, x_{n}) $ は定数で，パラメータ $ \boldsymbol{\theta} $ は変数と考えていることになる．
-# そこで， $ n $ 個のデータが得られる同時確率 $ f(x_{1}, x_{2},\ldots, x_{n}|\boldsymbol{\theta}) $ について，$ (x_{1},\ x_{2},\ \ldots, x_{n}) $ を定数，パラメータ $ \boldsymbol{\theta} $ を変数と捉えて
+# 次に，同じ状況をデータの観測者から見ると，手元のデータ $ (x_{1},\ x_{2},\ \ldots, x_{n}) $ に対して，このデータの生成元となった確率分布のパラメータ $ \boldsymbol{\theta} $ はどのような値だったのだろうか？という見方になる（母集団の確率分布の形は既知とする）．これを確率分布のパラメータ推定と呼ぶ．この場合，手元のデータ $ (x_{1},\ x_{2},\ \ldots, x_{n}) $ は定数で，パラメータ $ \boldsymbol{\theta} $ は変数と考えていることになる．
+# そこで， $ n $ 個のデータが得られる同時確率 $ f(x_{1}, x_{2},\ldots, x_{n}\mid \boldsymbol{\theta}) $ について，$ (x_{1},\ x_{2},\ \ldots, x_{n}) $ を定数，パラメータ $ \boldsymbol{\theta} $ を変数と捉えて
 # 
 # $$
-#     L(\boldsymbol{\theta}|x_{1},\ldots, x_{n}) = f(x_{1}|\boldsymbol{\theta})f(x_{2}|\boldsymbol{\theta})\cdots f(x_{n}|\boldsymbol{\theta})
+#     L(\boldsymbol{\theta}\mid x_{1},\ldots, x_{n}) = f(x_{1}\mid \boldsymbol{\theta})f(x_{2}\mid \boldsymbol{\theta})\cdots f(x_{n}\mid \boldsymbol{\theta})
 # $$
 # 
 # と表記する．これを**尤度関数**と呼ぶ．
@@ -478,11 +490,11 @@ ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r-')  # 正規分布の確率密度�
 
 # #### 最尤推定法
 # 
-# さて，尤度関数というのは，手元のデータが得られる確率を，生成元となった確率分布のパラメータ $ \boldsymbol{\theta} $ の関数と捉えたものである．
-# いま，手元にデータが与えられた状態で生成元の確率分布のパラメータがどのような値なら尤もらしいか？と考えてみる．
-# すると，尤度が小さくなるようなパラメータだと，生起確率が小さいあり得ないことが起こっていることになるので不適切と考えられる．
-# そこで，手元に $ n $ 個のデータが与えられたとき，尤度関数 $ L(\boldsymbol{\theta}|x_{1}, x_{2},\ldots, x_{n}) $ が最大となるパラメータ $ \boldsymbol{\theta} $ を最も尤もらしいパラメータと考えることにする．
-# これは，確率分布のパラメータ推定手法の一つであり，**最尤推定法**と呼ばれている．
+# 尤度関数は，手元のデータが得られる確率を生成元の確率分布のパラメータ $ \boldsymbol{\theta} $ の関数として捉えたものである．
+# いま，手元のデータから生成元の確率分布のパラメータを推定する際，どのような値が最も尤もらしいかを考える．
+# このとき，尤度は手元のデータが得られる確率であるため，尤度が小さいパラメータは（生起確率が低いためあり得ないことが起こっているので）不適切と考えられる．
+# そこで，手元に $ n $ 個のデータが与えられたとき，尤度関数 $ L(\boldsymbol{\theta} \mid x_{1}, x_{2}, \ldots, x_{n}) $ を最大化するパラメータ $ \boldsymbol{\theta} $ を最も尤もらしいパラメータと考える．
+# これは確率分布のパラメータ推定手法の一つであり，**最尤推定法**と呼ばれている。
 
 # #### 対数尤度方程式
 # 
@@ -508,7 +520,7 @@ ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r-')  # 正規分布の確率密度�
 # ベルヌーイ分布とは，以下の式で与えられる離散型確率分布である：
 # 
 # $$
-#     f(x|p) = p^{x}(1-p)^{1-x}
+#     f(x\mid p) = p^{x}(1-p)^{1-x}
 # $$
 # 
 # ここで，$ x $ の取りうる値は $ 0, 1 $ の2値である．
@@ -523,13 +535,13 @@ ax.plot(x, norm.pdf(x, loc=170, scale=10), 'r-')  # 正規分布の確率密度�
 # 観測データ $ (x_{1}, \ldots, x_{n}) $ に対する尤度関数は
 # 
 # $$
-#     L(p|x_{1}, \ldots, x_{n}) = \prod_{i=1}^{n} p^{x_{i}}(1-p)^{1-x_{i}}=p^{\sum_{i}x_{i}}(1-p)^{n-\sum_{i}x_{i}}
+#     L(p\mid x_{1}, \ldots, x_{n}) = \prod_{i=1}^{n} p^{x_{i}}(1-p)^{1-x_{i}}=p^{\sum_{i}x_{i}}(1-p)^{n-\sum_{i}x_{i}}
 # $$
 # 
 # となるので，対数尤度関数は
 # 
 # $$
-#     \log L(p|x_{1}, \ldots, x_{n}) = \left(\sum_{i} x_{i}\right) \log p + \left(n-\sum_{i}x_{i}\right)\log(1-p)
+#     \log L(p\mid x_{1}, \ldots, x_{n}) = \left(\sum_{i} x_{i}\right) \log p + \left(n-\sum_{i}x_{i}\right)\log(1-p)
 # $$
 # 
 # と表される．
@@ -659,7 +671,7 @@ ax2.set_xlim(0, 1); ax2.set_ylim(-200, 0);
 # 正規分布の確率密度関数は以下で与えられる：
 # 
 # $$
-#     f(x|\mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}} \mathrm{e}^{-\frac{(x-\mu)^2}{2\sigma^2}}
+#     f(x\mid \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}} \mathrm{e}^{-\frac{(x-\mu)^2}{2\sigma^2}}
 # $$
 # 
 # ここで，$ \mu, \sigma $ がパラメータでそれぞれ期待値と標準偏差に対応する．
@@ -671,7 +683,7 @@ ax2.set_xlim(0, 1); ax2.set_ylim(-200, 0);
 # 観測データ $ x_{1}, \ldots, x_{n} $ に対する尤度関数は
 # 
 # $$
-#     L(\mu, \sigma|x_{1}, \ldots, x_{n}) = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}} \mathrm{e}^{-\frac{(x_{i}-\mu)^2}{2\sigma^2}}
+#     L(\mu, \sigma\mid x_{1}, \ldots, x_{n}) = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}} \mathrm{e}^{-\frac{(x_{i}-\mu)^2}{2\sigma^2}}
 #     = \frac{1}{(2\pi\sigma^2)^{n/2}} \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^{n}(x_{i}-\mu)^2\right]
 # $$
 # 
@@ -815,30 +827,44 @@ ax.plot(x2, norm.pdf(x2, loc=np.mean(x), scale=np.std(x)), 'r-');
 
 # ### 演習問題
 
-# **1. 指数分布の最尤推定**
+# **A. 指数分布の最尤推定（理論）**
 # 
 # 指数分布は以下で与えられる：
 # 
 # $$
-#     f(x|\lambda) = \frac{1}{\lambda}\mathrm{e}^{-\frac{x}{\lambda}}
+#     f(x\mid \lambda) = \frac{1}{\lambda}\mathrm{e}^{-\frac{x}{\lambda}}
 # $$
 # 
-# - 最尤推定値の解析解を計算せよ．
-# - ベルヌーイ分布の場合を参考に，指数分布の最尤推定をPythonで実装せよ．
+# 1. データ $ x_{i} $ が得られる確率を求めよ
+# 2. $ n $ 個のデータ $ x_{1}, \ldots, x_{n} $ に対する尤度関数を求めよ
+# 3. $ n $ 個のデータ $ x_{1}, \ldots, x_{n} $ に対する対数尤度関数を求めよ
+# 4. 対数尤度方程式を解いて， $ \lambda $ の最尤推定値を計算せよ．
 # 
-# **2. ポアソン分布の最尤推定**
+# <!-- **2. 指数分布の最尤推定（データ）** -->
+# 
+# **B. 指数分布の最尤推定（データ解析）**
+# 
+# 準備中
+# 
+# **C. ポアソン分布の最尤推定（理論）**
 # 
 # ポアソン分布は以下で与えられる：
 # 
 # $$
-#     f(x|\lambda) = \frac{\lambda^{x}\mathrm{e}^{-\lambda}}{k!}
+#     f(x\mid \lambda) = \frac{\lambda^{x}\mathrm{e}^{-\lambda}}{x!}
 # $$
 # 
-# - 最尤推定値の解析解を計算せよ．
-# - ベルヌーイ分布の場合を参考に，ポアソン分布の最尤推定をPythonで実装せよ．
+# 1. データ $ x_{i} $ が得られる確率を求めよ
+# 2. $ n $ 個のデータ $ x_{1}, \ldots, x_{n} $ に対する尤度関数を求めよ
+# 3. $ n $ 個のデータ $ x_{1}, \ldots, x_{n} $ に対する対数尤度関数を求めよ
+# 4. 対数尤度方程式を解いて， $ \lambda $ の最尤推定値を計算せよ．
+# 
+# **D. ポアソン分布の最尤推定（データ解析）**
+# 
+# 準備中
 # 
 # 
-# **3. Scipyによる最尤推定の実装**
+# **C. Scipyによる最尤推定の実装**
 # 
-# - `scipy.optimize.minimize`関数を用いて，任意の確率分布の最尤推定を行うプログラムを作成せよ．
-# - ChatGPTなどを駆使して良い
+# - `scipy.optimize.minimize`関数を用いて，任意の確率分布の最尤推定を行うプログラムを作成せよ．<br>
+#   ※ ChatGPTなどを駆使して良い
