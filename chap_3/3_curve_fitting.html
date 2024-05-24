@@ -702,8 +702,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f3f4f43b-2350-4630-8d80-f8b3683370bb">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-f3f4f43b-2350-4630-8d80-f8b3683370bb" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4c49564f-0dee-4061-ac4d-7386f24547db">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-4c49564f-0dee-4061-ac4d-7386f24547db" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -1057,7 +1057,7 @@ title="Print to PDF"
 <li><p>最尤推定</p></li>
 </ul>
 <p>このうち，最小二乗法によるパラメータ推定は回帰分析と全く同じ手続きである．
-以下では最尤推定を中心に説明する．</p>
+以下では最尤推定について説明する．</p>
 <section id="id12">
 <h3><span class="section-number">3.3.1. </span>ヒストグラムの作成とフィッティング<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p>まずは，与えられたデータからヒストグラムを描画し，適当な確率分布を重ね描きするプログラムを作成しておく．
@@ -1117,7 +1117,7 @@ title="Print to PDF"
 <section id="n">
 <h4><span class="math notranslate nohighlight">\( n \)</span> 個のデータが生成される同時確率<a class="headerlink" href="#n" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>ある確率分布 <span class="math notranslate nohighlight">\( f(x\mid \boldsymbol{\theta}) \)</span> に従う母集団から <span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> を独立に生成することを考える．
-このとき，データ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> が得られる同時確率はどのように表されるだろうか？
+このとき，データ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> が得られる確率はどのように表されるだろうか？
 ここでは，データの生成元から見た場合とデータの観測者から見た場合の2通りの視点で考える．</p>
 <figure class="align-default" id="fig-maximum-likelihood">
 <a class="reference internal image-reference" href="../_images/maximum_likelihood.png"><img alt="../_images/maximum_likelihood.png" src="../_images/maximum_likelihood.png" style="height: 180px;" /></a>
@@ -1127,7 +1127,7 @@ title="Print to PDF"
 </figure>
 <p><strong>データの生成元からの視点</strong></p>
 <p>まず，データの生成元（母集団）から見た場合，母集団分布 <span class="math notranslate nohighlight">\( f(x\mid \boldsymbol{\theta}) \)</span> のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は分かっており，毎回確率的にデータ <span class="math notranslate nohighlight">\( x_{i} \)</span> が生成される．
-このとき，<span class="math notranslate nohighlight">\( x_{i} \)</span> というデータが生成される確率は <span class="math notranslate nohighlight">\( f(x_{i}\mid \boldsymbol{\theta}) \)</span> であるので，<span class="math notranslate nohighlight">\( n \)</span> 個の独立なデータが得られる同時確率は</p>
+このとき，<span class="math notranslate nohighlight">\( x_{i} \)</span> というデータが生成される確率は <span class="math notranslate nohighlight">\( f(x_{i}\mid \boldsymbol{\theta}) \)</span> であるので，<span class="math notranslate nohighlight">\( n \)</span> 個の独立なデータが得られる確率は</p>
 <div class="math notranslate nohighlight" id="equation-eq-joint-probability-1">
 <span class="eqno">(3.8)<a class="headerlink" href="#equation-eq-joint-probability-1" title="この数式へのパーマリンク">#</a></span>\[
     f(x_{1}, x_{2},\ldots, x_{n}\mid \boldsymbol{\theta}) = f(x_{1}\mid \boldsymbol{\theta})f(x_{2}\mid \boldsymbol{\theta})\cdots f(x_{n}\mid \boldsymbol{\theta})
@@ -1136,8 +1136,8 @@ title="Print to PDF"
 このように，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> が定数で，生成されるデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> が変数の場合には<span class="math notranslate nohighlight">\( f(x_{1}, x_{2},\ldots, x_{n}\mid \boldsymbol{\theta}) \)</span> という表記になる．</p>
 <p><strong>データの観測者からの視点</strong></p>
 <p>次に，同じ状況をデータの観測者から見ると，手元のデータ <span class="math notranslate nohighlight">\( (x_{1},\ x_{2},\ \ldots, x_{n}) \)</span> はどのような母集団分布から生成されたのだろうか？という見方になる．
-このとき，データの観測者は母集団分布の情報が何も分からないので，通常は母集団分布 <span class="math notranslate nohighlight">\( f(x\mid \boldsymbol{\theta}) \)</span> の関数形を適当に仮定し，そのパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を変数としてこれを推定する（これを確率分布のパラメータ推定と呼ぶ）．
-この状況において，手元の <span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる同時確率は式<a class="reference internal" href="#equation-eq-joint-probability-1">(3.8)</a>の右辺で計算できるが，データ <span class="math notranslate nohighlight">\( (x_{1},\ x_{2},\ \ldots, x_{n}) \)</span> が定数で，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> が変数であることを明示するために次のように表記する：</p>
+ただし，データの観測者は母集団分布の情報が何も分からないので，通常は母集団分布 <span class="math notranslate nohighlight">\( f(x\mid \boldsymbol{\theta}) \)</span> の関数形を適当に仮定し，そのパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を変数としてこれを推定する（これを確率分布のパラメータ推定と呼ぶ）．
+この状況において，手元の <span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる確率は式<a class="reference internal" href="#equation-eq-joint-probability-1">(3.8)</a>の右辺で計算できるが，データ <span class="math notranslate nohighlight">\( (x_{1},\ x_{2},\ \ldots, x_{n}) \)</span> が定数で，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> が変数であることを明示するために次のように表記する：</p>
 <div class="math notranslate nohighlight" id="equation-eq-joint-probability-2">
 <span class="eqno">(3.9)<a class="headerlink" href="#equation-eq-joint-probability-2" title="この数式へのパーマリンク">#</a></span>\[
     L(\boldsymbol{\theta}\mid x_{1},\ldots, x_{n}) = f(x_{1}\mid \boldsymbol{\theta})f(x_{2}\mid \boldsymbol{\theta})\cdots f(x_{n}\mid \boldsymbol{\theta})
@@ -1147,11 +1147,11 @@ title="Print to PDF"
 </section>
 <section id="id14">
 <h4>最尤推定法<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">#</a></h4>
-<p>尤度関数は，手元のデータが得られる同時確率を母集団分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> の関数として捉えたものである．
-いま，手元のデータから生成元の確率分布のパラメータを推定する際，どのような値が最も良いかを考える．
-このとき，尤度は手元のデータが得られる確率であるため，尤度が小さいパラメータは（生起確率が低いためあり得ないことが起こっているので）不適切と考えられる．
-そこで，手元に <span class="math notranslate nohighlight">\( n \)</span> 個のデータが与えられたとき，尤度関数 <span class="math notranslate nohighlight">\( L(\boldsymbol{\theta} \mid x_{1}, x_{2}, \ldots, x_{n}) \)</span> を最大化するパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を最も尤もらしいパラメータと考える．
-これは確率分布のパラメータ推定手法の一つであり，<strong>最尤推定法</strong>と呼ばれている。</p>
+<p>尤度関数は，手元のデータが得られる確率を母集団分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> の関数として捉えたものである．
+いま，手元のデータから生成元の確率分布のパラメータを推定する際，どのようなパラメータが良い値かを考える．
+「良い値」の基準は色々と考えられるが，ここでは手元のデータが得られる確率が最も高くなるようなパラメータを良い値と考えてみる．
+これは，手元に <span class="math notranslate nohighlight">\( n \)</span> 個のデータが与えられたとき，尤度関数 <span class="math notranslate nohighlight">\( L(\boldsymbol{\theta} \mid x_{1}, x_{2}, \ldots, x_{n}) \)</span> を最大化するパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を選ぶことに対応する．
+この方法は，確率分布のパラメータ推定手法の一つであり，<strong>最尤推定法</strong>と呼ばれている．</p>
 </section>
 <section id="id15">
 <h4>対数尤度方程式<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">#</a></h4>
@@ -1416,7 +1416,7 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
 <span class="c1"># 尤度関数の描画</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="c1"># 尤度関数</span>
+<span class="n">p1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;尤度関数&#39;</span><span class="p">)</span> <span class="c1"># 尤度関数</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">p_mle_1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">L</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span> <span class="c1"># 尤度関数Lの最大値を与えるパラメータを赤線で表示</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;尤度$L(p)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
@@ -1424,10 +1424,13 @@ title="Print to PDF"
 
 <span class="c1"># 対数尤度関数の描画</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span> <span class="c1"># 新しいy軸を作成</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">log_L</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">)</span> <span class="c1"># 対数尤度関数</span>
+<span class="n">p2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">log_L</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;対数尤度関数&#39;</span><span class="p">)</span> <span class="c1"># 対数尤度関数</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;対数尤度 $\log L(p) $&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=-</span><span class="mi">90</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># 凡例を表示</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
@@ -1446,7 +1449,7 @@ title="Print to PDF"
     f(x\mid \mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}} \mathrm{e}^{-\frac{(x-\mu)^2}{2\sigma^2}}
 \]</div>
 <p>ここで，<span class="math notranslate nohighlight">\( \mu, \sigma \)</span> がパラメータでそれぞれ期待値と標準偏差に対応する．
-正規分布のパラメータ <span class="math notranslate nohighlight">\( \mu,\ \sigma^2 \)</span> の最尤推定値はそれぞれ標本平均と標本分散となる．</p>
+正規分布のパラメータ <span class="math notranslate nohighlight">\( \mu,\ \sigma \)</span> の最尤推定値はそれぞれ標本平均と標本標準偏差となる．</p>
 <div class="dropdown admonition">
 <p class="admonition-title">正規分布の最尤推定（解析解）</p>
 <p>観測データ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する尤度関数は</p>
@@ -1575,15 +1578,12 @@ title="Print to PDF"
 <span class="n">ax</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Likelihood&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Likelihood&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Likelihood&#39;)
-</pre></div>
-</div>
-<img alt="../_images/3_curve_fitting_94_1.png" src="../_images/3_curve_fitting_94_1.png" />
+<img alt="../_images/3_curve_fitting_94_0.png" src="../_images/3_curve_fitting_94_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1593,15 +1593,12 @@ title="Print to PDF"
 <span class="n">ax</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">log_L</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Log Likelihood&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Log Likelihood&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Log Likelihood&#39;)
-</pre></div>
-</div>
-<img alt="../_images/3_curve_fitting_95_1.png" src="../_images/3_curve_fitting_95_1.png" />
+<img alt="../_images/3_curve_fitting_95_0.png" src="../_images/3_curve_fitting_95_0.png" />
 </div>
 </div>
 <p><strong>5. 最尤推定値でカーブフィッティング</strong></p>
