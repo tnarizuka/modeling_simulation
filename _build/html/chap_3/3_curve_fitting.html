@@ -702,8 +702,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-708b3cd2-3aff-4770-a009-17aa8725b364">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-708b3cd2-3aff-4770-a009-17aa8725b364" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c321222c-6bf6-4810-a3d1-a83326505d11">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-c321222c-6bf6-4810-a3d1-a83326505d11" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -1050,14 +1050,10 @@ title="Print to PDF"
 </section>
 <section id="id11">
 <h2><span class="section-number">3.3. </span>確率分布のパラメータ推定<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">#</a></h2>
-<p>手元にあるデータから作成したヒストグラムがある確率分布に従うと仮定し，データに合うように確率分布のパラメータを推定することもカーブフィッティングの一つである．</p>
-<p>確率分布のパラメータ推定では，以下の方法がよく用いられる：</p>
-<ul class="simple">
-<li><p>最小二乗法</p></li>
-<li><p>最尤推定</p></li>
-</ul>
-<p>このうち，最小二乗法によるパラメータ推定は回帰分析と全く同じ手続きである．
-以下では最尤推定について説明する．</p>
+<p>手元にあるデータから作成したヒストグラムがある確率分布に従うと仮定し，データに合うように確率分布のパラメータを推定することもカーブフィッティングの一つである．
+確率分布のパラメータ推定には色々な方法があり，前節で説明した最小二乗法もその一つである．
+ヒストグラムに対して最小二乗法でカーブフィッティングする方法は回帰分析と全く同じである．
+本節では，確率分布のパラメータ推定手法として重要な最尤推定法について説明する．</p>
 <section id="id12">
 <h3><span class="section-number">3.3.1. </span>ヒストグラムの作成とフィッティング<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p>まずは，与えられたデータからヒストグラムを描画し，適当な確率分布を重ね描きするプログラムを作成しておく．
@@ -1103,7 +1099,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_54_0.png" src="../_images/3_curve_fitting_54_0.png" />
+<img alt="../_images/3_curve_fitting_53_0.png" src="../_images/3_curve_fitting_53_0.png" />
 </div>
 </div>
 </section>
@@ -1439,7 +1435,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_79_0.png" src="../_images/3_curve_fitting_79_0.png" />
+<img alt="../_images/3_curve_fitting_78_0.png" src="../_images/3_curve_fitting_78_0.png" />
 </div>
 </div>
 </section>
@@ -1591,7 +1587,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_94_0.png" src="../_images/3_curve_fitting_94_0.png" />
+<img alt="../_images/3_curve_fitting_93_0.png" src="../_images/3_curve_fitting_93_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1606,7 +1602,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_95_0.png" src="../_images/3_curve_fitting_95_0.png" />
+<img alt="../_images/3_curve_fitting_94_0.png" src="../_images/3_curve_fitting_94_0.png" />
 </div>
 </div>
 <p><strong>5. 最尤推定値でカーブフィッティング</strong></p>
@@ -1624,7 +1620,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_97_0.png" src="../_images/3_curve_fitting_97_0.png" />
+<img alt="../_images/3_curve_fitting_96_0.png" src="../_images/3_curve_fitting_96_0.png" />
 </div>
 </div>
 </section>
