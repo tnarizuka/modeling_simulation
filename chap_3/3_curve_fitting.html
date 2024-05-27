@@ -702,8 +702,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c321222c-6bf6-4810-a3d1-a83326505d11">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-c321222c-6bf6-4810-a3d1-a83326505d11" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-dc6c887b-c9ab-47e9-a495-7d7aa96fb05b">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-dc6c887b-c9ab-47e9-a495-7d7aa96fb05b" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -1091,7 +1091,7 @@ title="Print to PDF"
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">130</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
 
 <span class="c1"># 確率密度関数を描画する</span>
-<span class="n">mean</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">10</span>  <span class="c1"># 確率密度関数のパラメータ（平均と標準偏差）</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">10</span>   <span class="c1"># 確率密度関数のパラメータ（平均と標準偏差）</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">140</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
 <span class="n">fx</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sd</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fx</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">);</span>  <span class="c1"># 正規分布の確率密度関数を描画</span>
@@ -1627,7 +1627,7 @@ title="Print to PDF"
 </section>
 <section id="id20">
 <h3><span class="section-number">3.3.5. </span>演習問題<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">#</a></h3>
-<p><strong>A. 指数分布の最尤推定（理論）</strong></p>
+<p><strong>D. 指数分布の最尤推定（理論）</strong></p>
 <p>指数分布は以下で与えられる：</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1639,10 +1639,7 @@ title="Print to PDF"
 <li><p><span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する対数尤度関数を求めよ</p></li>
 <li><p>対数尤度方程式を解いて， <span class="math notranslate nohighlight">\( \lambda \)</span> の最尤推定値を計算せよ．</p></li>
 </ol>
-<!-- **2. 指数分布の最尤推定（データ）** -->
-<p><strong>B. 指数分布の最尤推定（データ解析）</strong></p>
-<p>準備中</p>
-<p><strong>C. ポアソン分布の最尤推定（理論）</strong></p>
+<p><strong>B. ポアソン分布の最尤推定（理論）</strong></p>
 <p>ポアソン分布は以下で与えられる：</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1654,13 +1651,18 @@ title="Print to PDF"
 <li><p><span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する対数尤度関数を求めよ</p></li>
 <li><p>対数尤度方程式を解いて， <span class="math notranslate nohighlight">\( \lambda \)</span> の最尤推定値を計算せよ．</p></li>
 </ol>
-<p><strong>D. ポアソン分布の最尤推定（データ解析）</strong></p>
-<p>準備中</p>
-<p><strong>E. （難）Scipyによる最尤推定の実装</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code>関数を用いて，任意の確率分布の最尤推定を行うプログラムを作成せよ．<br>
-※ ChatGPTなどを駆使して良い</p></li>
-</ul>
+<p><strong>C. ポアソン分布の最尤推定（データ解析）</strong></p>
+<ol class="simple">
+<li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=1FVw2xauvJ1tOnYQ8WJTHKsIVO2Gvesso">score_germany.csv</a>は，ブンデスリーガの2017-2018シーズンにおける一方のチームの１試合の得点数データである．このデータをダウンロードし，データフレームに読み込め．</p></li>
+<li><p>このデータがポアソン分布に従うと仮定して，ポアソン分布の最尤推定値を求めよ．</p></li>
+<li><p>このデータからヒストグラムを作成せよ．また，最尤推定値をパラメータとするポアソン分布を重ね描きせよ．</p></li>
+</ol>
+<p><strong>A. 正規分布の最尤推定（データ解析）</strong></p>
+<ol class="simple">
+<li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=11w-vbKo7TWxDs9A76Gzp57V1mA9_xcYj">score_nba.csv</a>は，NBAの2015-16シーズンにおける一方のチームの１試合の得点数データである．このデータをダウンロードし，データフレームに読み込め．</p></li>
+<li><p>このデータが正規分布に従うと仮定して，正規分布の最尤推定値を求めよ．</p></li>
+<li><p>このデータからヒストグラムを作成せよ．また，最尤推定値をパラメータとする正規分布を重ね描きせよ．</p></li>
+</ol>
 </section>
 </section>
 </section>
