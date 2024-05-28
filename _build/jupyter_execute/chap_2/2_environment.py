@@ -458,6 +458,7 @@ ax.set_ylabel('頻度', fontsize=15)
 ax.set_xticks(np.arange(130, 210, 10));
 
 
+# (scipy-stats_basic)=
 # ### `scipy.stats`の基礎
 
 # Pythonには，科学技術計算に特化した `scipy` というライブラリが存在する．

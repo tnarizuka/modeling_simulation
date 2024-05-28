@@ -3,7 +3,7 @@
 
 # # 確率モデル
 
-# In[2]:
+# In[1]:
 
 
 import numpy as np
@@ -90,7 +90,7 @@ print(U)
 
 # 次に，$ x_{\mathrm{min}} $ 以上 $ x_{\mathrm{max}} $ 以下の一様乱数を生成する汎用的な関数を作成する．
 
-# In[25]:
+# In[3]:
 
 
 # 線形合同法により[0, 1)の一様乱数を生成する
@@ -104,7 +104,7 @@ def lcg(seed=1, size=100, umin=0, umax=1):
     return umin + (umax - umin) * U / M
 
 
-# In[26]:
+# In[4]:
 
 
 U = lcg(seed=10, size=1000, umin=0, umax=100)
@@ -126,14 +126,14 @@ ax.scatter(U2[:, 0], U2[:, 1], s=10);
 # 
 # ※ ライブラリのバージョンアップによって変わる可能性がある．
 
-# In[17]:
+# In[6]:
 
 
 # Scipyを用いて[0, 1)の一様乱数を生成する
 sp.stats.uniform.rvs(size=10)
 
 
-# In[24]:
+# In[7]:
 
 
 # Numpyを用いて[0, 1)の一様乱数を生成する
@@ -199,15 +199,15 @@ rng.random(10)
 # となり，その逆関数は $ F(x)=u $ と置くと，
 # 
 # $$
-#     F^{-1}(u) = -\lambda \log(1-u)  
+#     F^{-1}(u) = -\mu \log(1-u)  
 # $$
 # 
 # と求まる．
-# これより，[0, 1)の一様乱数 $ u $ に対して，$ -\lambda \log(1-u) $ は指数分布に従うことが分かる．
+# これより，[0, 1)の一様乱数 $ u $ に対して，$ -\mu \log(1-u) $ は指数分布に従うことが分かる．
 
 # 以下は，線形合同法を用いて生成した一様乱数から指数乱数を生成する例である．
 
-# In[27]:
+# In[8]:
 
 
 # 線形合同法で[0, 1)の一様乱数を生成する
@@ -218,7 +218,7 @@ lmd = 1
 R_exp = -lmd*np.log(1-U)
 
 
-# In[28]:
+# In[9]:
 
 
 # ヒストグラムの描画
@@ -321,7 +321,7 @@ ax.plot(x, norm.pdf(x), 'r-');
 # 
 # 二項分布は試行回数 $ n $ と成功確率 $ p $ がパラメータであり，これらによって分布の形が決まる．
 
-# In[13]:
+# In[12]:
 
 
 # 試行回数nを変化させた場合の二項分布の変化
@@ -336,7 +336,7 @@ ax.set_ylabel('$f(x)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 
-# In[14]:
+# In[13]:
 
 
 # 成功確率pを変化させた場合の二項分布の変化
@@ -358,32 +358,32 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # ### ポアソン分布
 # 
 # ベルヌーイ試行を独立に $ n $ 回繰り返すとき，成功確率 $ p $ が小さく，かつ試行回数 $ n $ が大きい場合を考える．
-# ただし，極限を取る際に平均値が一定値 $ np=\lambda $ になるようにする．
-# このような条件で成功回数 $ X $ が従う分布は，二項分布の式に $ np=\lambda $ を代入し，極限 $ p\to 0,\ n\to \infty $ を取ることで
+# ただし，極限を取る際に平均値が一定値 $ np=\mu $ になるようにする．
+# このような条件で成功回数 $ X $ が従う分布は，二項分布の式に $ np=\mu $ を代入し，極限 $ p\to 0,\ n\to \infty $ を取ることで
 # 
 # $$
-# 	f(x) = \frac{\lambda^{x}}{x!} \mathrm{e}^{-\lambda}
+# 	f(x) = \frac{\mu^{x}}{x!} \mathrm{e}^{-\mu}
 # $$
 # 
 # と求まる．
 # これを**ポアソン分布**と呼ぶ．
-# ポアソン分布は1つのパラメータ $ \lambda $ だけで特徴づけられ，期待値と分散はともに $ \lambda $ となる．
+# ポアソン分布は1つのパラメータ $ \mu $ だけで特徴づけられ，期待値と分散はともに $ \mu $ となる．
 # 
 # ポアソン分布は，一定の期間内（例えば１時間や１日）に，稀な現象（$ p\to 0 $）を多数回試行（$ n\to \infty $）した場合にその発生回数が従う分布である．
 # ポアソン分布が現れる例は無数にあり，「1日の交通事故件数」，「1分間の放射性元素の崩壊数」，「1ヶ月の有感地震の回数」，「サッカーの試合における90分間の得点数」などは典型例である．
 
-# 以下は $ np=5 $ に保って $ n $ を大きく，$ p $ を小さくしたときの二項分布（実線）と $ \lambda=5 $ のポアソン分布（o）の比較である．
+# 以下は $ np=5 $ に保って $ n $ を大きく，$ p $ を小さくしたときの二項分布（実線）と $ \mu=5 $ のポアソン分布（o）の比較である．
 # $ n=80,\ p=1/16 $ になると，二項分布とポアソン分布はほとんど一致していることが分かる．
 
-# In[73]:
+# In[16]:
 
 
 fig, ax = plt.subplots(figsize=(5, 3))
 x = np.arange(0, 15, 1)
-ax.plot(k, poisson.pmf(x, mu=5), 'o', mfc='w', ms=5, label='$\lambda=5$')
+ax.plot(x, poisson.pmf(x, mu=5), 'o', mfc='w', ms=5, label='$\mu=5$')
 for i in np.arange(4):
     p, n = 1/2**(i+1), 10*2**i
-    ax.plot(k, binom.pmf(x, n=n, p=p), '-', mfc='w', ms=5, label='$n=%s, p=1/%s$' % (n, 2**(i+1)))
+    ax.plot(x, binom.pmf(x, n=n, p=p), '-', mfc='w', ms=5, label='$n=%s, p=1/%s$' % (n, 2**(i+1)))
 
 ax.legend(numpoints=1, fontsize=10, loc='upper left', frameon=True, bbox_to_anchor=(1, 1))
 ax.set_xlim(0, 15); ax.set_ylim(0, 0.25)
@@ -391,26 +391,26 @@ ax.set_xlabel('$x$', fontsize=15)
 ax.set_ylabel('$f(x)$', fontsize=15);
 
 
-# **$ \lambda $が大きいとき**
+# **$ \mu $が大きいとき**
 # 
-# ポアソン分布は $ \lambda \to \infty $ において正規分布に近づくことが知られている．
-# 以下は $ \lambda $ を変化させた場合の分布の変化である．
-# $ \lambda $ が小さいときには左右非対称な分布となるが，$ \lambda $ が大きくなると左右対称な分布に近づくことが分かる．
+# ポアソン分布は $ \mu \to \infty $ において正規分布に近づくことが知られている．
+# 以下は $ \mu $ を変化させた場合の分布の変化である．
+# $ \mu $ が小さいときには左右非対称な分布となるが，$ \mu $ が大きくなると左右対称な分布に近づくことが分かる．
 
-# In[11]:
+# In[17]:
 
 
 fig, ax = plt.subplots()
 k = np.arange(0, 25, 1)
 for lmd in [1, 4, 8, 12]:
-    ax.plot(k, poisson.pmf(k, lmd, 1), '-o', mfc='w', ms=5, label='$\lambda=%s$'% lmd)
+    ax.plot(k, poisson.pmf(k, lmd, 1), '-o', mfc='w', ms=5, label='$\mu=%s$'% lmd)
 
 ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$f(x)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 
 # #### 演習問題
-# 1. ポアソン分布の期待値と分散が共に $ \lambda $ であることを示せ．
+# 1. ポアソン分布の期待値と分散が共に $ \mu $ であることを示せ．
 # 2. [score_germany.csv](https://drive.google.com/uc?export=download&id=11kyLRP2sSwHKux0VQ3GqfVVqfM2aZlrk)は，ブンデスリーガの2017-2018シーズンにおける一方のチームの１試合の得点数データである．このデータからヒストグラムを作成し，ポアソン分布によってカーブフィッティングせよ（最小二乗法を用いること）．
 # 3. [score_nba.csv](https://drive.google.com/uc?export=download&id=11jUB1cocU40zSUCPzlNfWPX5mLO2Vq_G)は，NBAの2015-16シーズンにおける一方のチームの１試合の得点数データである．このデータからヒストグラムを作成し，ポアソン分布によってカーブフィッティングせよ（最小二乗法を用いること）．
 # 4. 2.と3.の結果を比較し，ポアソン分布の特徴を考察せよ．
@@ -443,7 +443,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 以下は成功確率 $ p $ を一定値 $ p=0.2 $ に固定して，試行回数 $ n $ を大きくしたときの標本平均 $ T $ の確率分布である．
 # この図を見ると，$ n $ の増加に伴って $ t=0.2 $ の周りに分布が集中するとともに，高さが大きくなる様子が分かる．
 
-# In[ ]:
+# In[18]:
 
 
 fig, ax = plt.subplots()
@@ -477,7 +477,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 # 以下は，様々な確率分布に対する大数の法則のシミュレーションである．
 
-# In[150]:
+# In[19]:
 
 
 N = np.arange(1, 1000)
@@ -530,7 +530,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper left', frameon=True, bbox_to_anch
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ が成功確率 $ p $ のベルヌーイ分布に従うとき，期待値は $ p $，分散は $ p(1-p) $である．
 # よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(p, p(1-p)/n) $ に近づく．
 
-# In[3]:
+# In[20]:
 
 
 fig, ax = plt.subplots(figsize=(5, 4))
@@ -558,10 +558,10 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 # #### ポアソン分布の場合
 # 
-# 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ がパラメータ $ \lambda $ のポアソン分布に従うとき，期待値と分散は共に $ \lambda $である．
-# よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(\lambda, \lambda/n) $ に近づく．
+# 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ がパラメータ $ \mu $ のポアソン分布に従うとき，期待値と分散は共に $ \mu $である．
+# よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(\mu, \mu/n) $ に近づく．
 
-# In[4]:
+# In[21]:
 
 
 fig, ax = plt.subplots(figsize=(5, 4))
@@ -580,7 +580,7 @@ for n in [10, 50, 100, 500]:
 # 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画
 t = np.arange(0.5, 3.5, 0.01)
 gt = sp.stats.norm.pdf(t, loc=lmd, scale=np.sqrt(lmd/n))
-ax.plot(t, gt, 'r-', label='$N(\lambda, \lambda/n)$')
+ax.plot(t, gt, 'r-', label='$N(\mu, \mu/n)$')
 
 ax.set_xlabel('標本平均 $t$', fontsize=12)
 ax.set_ylabel('$g(t)$', fontsize=15)
@@ -815,7 +815,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 # 以下のデータは，ある都市の30日間の天気を0（＝晴れ），1（＝曇），2（＝雨）の3つの状態で表したものである．
 
-# In[2]:
+# In[22]:
 
 
 data = [0,0,2,1,0,0,0,0,1,0,0,1,2,2,2,0,1,1,0,1,0,0,0,0,0,0,0,0,1,1]
@@ -831,7 +831,7 @@ data = [0,0,2,1,0,0,0,0,1,0,0,1,2,2,2,0,1,1,0,1,0,0,0,0,0,0,0,0,1,1]
 # 
 # ここで，$ N_{ij} $ は状態 $ i $ から $ j $ への遷移回数，$ N_{i} $ は状態 $ i $ の出現回数である．
 
-# In[3]:
+# In[23]:
 
 
 # 時刻kとk+1のデータをデータフレームに格納
@@ -839,7 +839,7 @@ df = pd.DataFrame({'t': data[:-1], 't+1': data[1:]})
 df.head(3)
 
 
-# In[4]:
+# In[24]:
 
 
 # 遷移確率行列の推定
@@ -849,7 +849,7 @@ for i in range(3):
         P[i, j] = len(df.loc[(df['t']==i) & (df['t+1']==j)])/len(df.loc[df['t']==i])
 
 
-# In[5]:
+# In[25]:
 
 
 P
@@ -861,7 +861,7 @@ P
 # NumPy配列の行列積は `np.dot()` で計算できる．
 # 今回の遷移確率行列の場合は，どんな初期状態ベクトルに対しても，最終的には同じ定常状態に収束することが確認できる．
 
-# In[23]:
+# In[26]:
 
 
 # 初期状態分布
@@ -876,7 +876,7 @@ for t in range(len(data)):
 w
 
 
-# In[24]:
+# In[27]:
 
 
 fig, ax = plt.subplots(figsize=(7, 3))
