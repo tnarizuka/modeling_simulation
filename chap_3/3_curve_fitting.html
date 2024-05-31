@@ -702,8 +702,8 @@ title="Print to PDF"
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5c6241fe-67f6-4892-8530-08560cac9b65">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-5c6241fe-67f6-4892-8530-08560cac9b65" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-234c9c5f-168d-4921-b0c3-79090deaa4c8">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-234c9c5f-168d-4921-b0c3-79090deaa4c8" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -1633,11 +1633,17 @@ title="Print to PDF"
 \[
     f(x\mid \lambda) = \frac{1}{\lambda}\mathrm{e}^{-\frac{x}{\lambda}}
 \]</div>
-<ol class="simple">
+<ol>
 <li><p>データ <span class="math notranslate nohighlight">\( x_{i} \)</span> が得られる確率を求めよ．</p></li>
 <li><p><span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する尤度関数を求めよ．</p></li>
 <li><p><span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する対数尤度関数を求めよ．</p></li>
-<li><p>対数尤度方程式を解いて， <span class="math notranslate nohighlight">\( \lambda \)</span> の最尤推定値を計算せよ．</p></li>
+<li><p>対数尤度方程式を解いて， <span class="math notranslate nohighlight">\( \lambda \)</span> の最尤推定値が標本平均</p>
+<div class="math notranslate nohighlight">
+\[
+         \lambda = \frac{1}{n}\sum_{i=1}^{n}x_{i}
+   \]</div>
+<p>になることを示せ．</p>
+</li>
 </ol>
 <p><strong>B. ポアソン分布の最尤推定（理論）</strong></p>
 <p>ポアソン分布は以下で与えられる：</p>
@@ -1645,11 +1651,17 @@ title="Print to PDF"
 \[
     f(x\mid \mu) = \frac{\mu^{x}\mathrm{e}^{-\mu}}{x!}
 \]</div>
-<ol class="simple">
+<ol>
 <li><p>データ <span class="math notranslate nohighlight">\( x_{i} \)</span> が得られる確率を求めよ．</p></li>
 <li><p><span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する尤度関数を求めよ．</p></li>
 <li><p><span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する対数尤度関数を求めよ．</p></li>
-<li><p>対数尤度方程式を解いて， <span class="math notranslate nohighlight">\( \mu \)</span> の最尤推定値を計算せよ．</p></li>
+<li><p>対数尤度方程式を解いて， <span class="math notranslate nohighlight">\( \mu \)</span> の最尤推定値が標本平均</p>
+<div class="math notranslate nohighlight">
+\[
+         \mu = \frac{1}{n}\sum_{i=1}^{n}x_{i}
+   \]</div>
+<p>になることを示せ．</p>
+</li>
 </ol>
 <p><strong>C. ポアソン分布の最尤推定（データ解析）</strong></p>
 <ol class="simple">
