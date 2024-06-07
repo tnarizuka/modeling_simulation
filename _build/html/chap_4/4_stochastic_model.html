@@ -796,7 +796,8 @@ title="Print to PDF"
 </div>
 <p>以上のアルゴリズムを用いると，<span class="math notranslate nohighlight">\( 0 \)</span> 以上 <span class="math notranslate nohighlight">\( M-1 \)</span> 以下の一様乱数列が得られる．
 線形合同法によって得られた一様乱数には，実用的には問題も多く，例えば<span class="math notranslate nohighlight">\( M \)</span> が偶数の場合には偶数と奇数が交互に出現してしまう．
-また，<span class="math notranslate nohighlight">\( a, b, M \)</span> がいくつかの条件を満たすと，最大周期が <span class="math notranslate nohighlight">\( M \)</span> となることが知られているため<span id="id6">[<a class="reference internal" href="../reference.html#id7" title="東京大学教養学部統計学教室編. 自然科学の統計学. 東京大学出版会, 2019.">5</a>]</span>，良い乱数を生成するためには条件を満たした上で <span class="math notranslate nohighlight">\( M \)</span> を大きく取る方が良い．
+また，同じ値からは同じ乱数列が得られるので，乱数列が必ず周期を持ってしまう．
+特に，<span class="math notranslate nohighlight">\( a, b, M \)</span> がいくつかの条件を満たすと，最大周期が <span class="math notranslate nohighlight">\( M \)</span> となることが知られているため<span id="id6">[<a class="reference internal" href="../reference.html#id7" title="東京大学教養学部統計学教室編. 自然科学の統計学. 東京大学出版会, 2019.">5</a>]</span>，良い乱数を生成するためには条件を満たした上で <span class="math notranslate nohighlight">\( M \)</span> を大きく取る必要がある．
 例えば，<span class="math notranslate nohighlight">\( M=2^{32},\ a=1664525,\ b=1013904223 \)</span> の場合には，最大周期が <span class="math notranslate nohighlight">\( 2^{32} \)</span> となる．</p>
 <p><strong>Pythonでの実装</strong></p>
 <p>まず，アルゴリズムに従って素朴に実装すると以下のようになる．</p>
