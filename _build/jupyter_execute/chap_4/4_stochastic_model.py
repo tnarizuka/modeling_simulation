@@ -425,10 +425,11 @@ ax.legend(numpoints=1, fontsize=12, loc='best', frameon=True);
 
 
 # #### 演習問題
-# 1. ポアソン分布の期待値と分散が共に $ \mu $ であることを示せ．
-# 2. [score_germany.csv](https://drive.google.com/uc?export=download&id=11kyLRP2sSwHKux0VQ3GqfVVqfM2aZlrk)は，ブンデスリーガの2017-2018シーズンにおける一方のチームの１試合の得点数データである．このデータからヒストグラムを作成し，ポアソン分布によってカーブフィッティングせよ（最小二乗法を用いること）．
-# 3. [score_nba.csv](https://drive.google.com/uc?export=download&id=11jUB1cocU40zSUCPzlNfWPX5mLO2Vq_G)は，NBAの2015-16シーズンにおける一方のチームの１試合の得点数データである．このデータからヒストグラムを作成し，ポアソン分布によってカーブフィッティングせよ（最小二乗法を用いること）．
-# 4. 2.と3.の結果を比較し，ポアソン分布の特徴を考察せよ．
+# 1. 二項分布からポアソン分布を導出せよ．
+# 2. ポアソン分布の期待値と分散が共に $ \mu $ であることを示せ．
+# 3. [score_germany.csv](https://drive.google.com/uc?export=download&id=11kyLRP2sSwHKux0VQ3GqfVVqfM2aZlrk)は，ブンデスリーガの2017-2018シーズンにおける一方のチームの１試合の得点数データである．このデータからヒストグラムを作成し，ポアソン分布によってカーブフィッティングせよ（最小二乗法を用いること）．
+# 4. [score_nba.csv](https://drive.google.com/uc?export=download&id=11jUB1cocU40zSUCPzlNfWPX5mLO2Vq_G)は，NBAの2015-16シーズンにおける一方のチームの１試合の得点数データである．このデータからヒストグラムを作成し，ポアソン分布によってカーブフィッティングせよ（最小二乗法を用いること）．
+# 5. 2.と3.の結果を比較し，ポアソン分布の特徴を考察せよ．
 
 # ## 大数の法則と中心極限定理
 # <!-- 
