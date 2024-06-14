@@ -324,34 +324,34 @@ ax.plot(x, norm.pdf(x), 'r-');
 # 
 # 二項分布は試行回数 $ n $ と成功確率 $ p $ がパラメータであり，これらによって分布の形が決まる．
 
-# In[ ]:
+# In[53]:
 
 
 # 成功確率pを変化させた場合の二項分布の変化
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(5, 4))
 k = np.arange(0, 20, 1)
 for p in [0.1, 0.2, 0.3, 0.5]:
-    ax.plot(k, binom.pmf(k, n=10, p=p), '-o', mfc='w', ms=5, label='$n=10, p=%s$' % p)
+    ax.plot(k, binom.pmf(k, n=10, p=p), '-o', mfc='w', ms=7, lw=1.5, label='Binomial ($n=10, p=%s$)' % p)
 
 ax.set_xlim(0, 10); ax.set_ylim(0, 0.5)
 ax.set_xlabel('$x$', fontsize=15)
 ax.set_ylabel('$f(x)$', fontsize=15)
-ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
+ax.legend(numpoints=1, fontsize=12, loc='upper right', frameon=True);
 
 
-# In[2]:
+# In[49]:
 
 
 # 試行回数nを変化させた場合の二項分布の変化
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(5, 4))
 k = np.arange(0, 20, 1)
 for n in [5, 10, 30, 50]:
-    ax.plot(k, binom.pmf(k, n=n, p=0.2), '-o', mfc='w', ms=5, label='$n=%s, p=0.2$' % n)
+    ax.plot(k, binom.pmf(k, n=n, p=0.2), '-o', mfc='w', ms=7, lw=1.5, label='Binomial ($n=%s, p=0.2$)' % n)
 
 ax.set_xlim(0, 20); ax.set_ylim(0, 0.5)
 ax.set_xlabel('$x$', fontsize=15)
 ax.set_ylabel('$f(x)$', fontsize=15)
-ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
+ax.legend(numpoints=1, fontsize=12, loc='upper right', frameon=True);
 
 
 # #### 演習問題
@@ -378,7 +378,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 以下は $ np=5 $ に保って $ n $ を大きく，$ p $ を小さくしたときの二項分布（折れ線グラフ）と $ \mu=5 $ のポアソン分布（棒グラフ）の比較である．
 # $ n=80,\ p=1/16 $ になると，二項分布とポアソン分布はほとんど一致していることが分かる．
 
-# In[32]:
+# In[54]:
 
 
 fig, ax = plt.subplots(figsize=(7, 5))
@@ -390,7 +390,7 @@ ax.bar(x, poisson.pmf(x, mu=5), width=0.3, color='skyblue', ec='k', alpha=1, lab
 # 二項分布
 for i in [0, 1, 3]:
     p, n = 1/2**(i+1), 10*2**i
-    ax.plot(x, binom.pmf(x, n=n, p=p), 'o--', mfc='w', ms=7, lw=1, label='Binom ($n=%s, p=1/%s$)' % (n, 2**(i+1)))
+    ax.plot(x, binom.pmf(x, n=n, p=p), 'o--', mfc='w', ms=7, lw=1, label='Binomial ($n=%s, p=1/%s$)' % (n, 2**(i+1)))
 
 ax.legend(numpoints=1, fontsize=12, loc='best', frameon=True, bbox_to_anchor=(1, 1))
 ax.set_xlim(0, 15); ax.set_ylim(0, 0.25)
@@ -403,13 +403,13 @@ ax.set_ylabel('$f(x)$', fontsize=15);
 # ポアソン分布は $ \mu $ を大きくすると平均と分散が共に $ \mu $ の正規分布に近づくことが知られている：
 # 
 # $$
-#     f(x) = \frac{\mu^{x}}{x!} \mathrm{e}^{-\mu} \to \frac{1}{\sqrt{2\pi\mu}} \exp\left(-\frac{(x-\mu)^2}{2\mu}\right)
+#     f(x) = \frac{\mu^{x}}{x!} \mathrm{e}^{-\mu} \quad \longrightarrow \quad \frac{1}{\sqrt{2\pi\mu}} \exp\left(-\frac{(x-\mu)^2}{2\mu}\right)
 # $$
 # 
 # 以下はパラメータ $ \mu $ を増加させた場合のポアソン分布（棒グラフ）と正規分布（破線）の比較である．
 # $ \mu $ が大きくなるほどポアソン分布が正規分布に近づくことが確認できる．
 
-# In[41]:
+# In[56]:
 
 
 fig, ax = plt.subplots(figsize=(7, 5))
@@ -418,22 +418,10 @@ k = np.arange(0, 25, 1)
 for mu in [1, 4, 12]:
     ax.bar(k, poisson.pmf(k, mu=mu), width=0.4,  ec='k', alpha=0.6, label='Poisson ($\mu=%s$)' % mu)
 
-    ax.plot(k, norm.pdf(k, loc=mu, scale=np.sqrt(mu)), '--', lw=1.5, label='Normal ($\mu=12, \sigma^2=12$)')
+    ax.plot(k, norm.pdf(k, loc=mu, scale=np.sqrt(mu)), '--', lw=1.5, label='Normal ($\mu=%s, \sigma^2=%s$)' % (mu, mu))
 
 ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$f(x)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=12, loc='best', frameon=True);
-
-
-# In[2]:
-
-
-fig, ax = plt.subplots()
-k = np.arange(0, 25, 1)
-for lmd in [1, 4, 8, 12]:
-    ax.plot(k, poisson.pmf(k, lmd, 1), '-o', mfc='w', ms=5, label='$\mu=%s$'% lmd)
-
-ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$f(x)$', fontsize=15)
-ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 
 # #### 演習問題
