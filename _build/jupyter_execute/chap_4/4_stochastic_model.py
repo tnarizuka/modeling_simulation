@@ -77,21 +77,21 @@ import japanize_matplotlib
 
 # まず，アルゴリズムに従って素朴に実装すると以下のようになる．
 
-# In[5]:
+# In[3]:
 
 
 # 10個の一様乱数を生成する
 a, b, M = 1664525, 1013904223, 2**32
 
 U = np.array([0])
-for i in range(10):
+for i in range(100):
     U = np.append(U, (a*U[i] + b) % M)
 print(U)
 
 
 # 次に，$ x_{\mathrm{min}} $ 以上 $ x_{\mathrm{max}} $ 以下の一様乱数を生成する汎用的な関数を作成する．
 
-# In[17]:
+# In[4]:
 
 
 # 線形合同法により[0, 1)の一様乱数を生成する
@@ -106,13 +106,13 @@ def generagte_rand_u(seed=1, size=100, umin=0, umax=1):
     return umin + (umax - umin) * U / M
 
 
-# In[18]:
+# In[8]:
 
 
 U = generagte_rand_u(seed=10, size=1000, umin=0, umax=100)
 
 
-# In[19]:
+# In[9]:
 
 
 # 乱数列の相関を調べる
@@ -128,14 +128,14 @@ ax.scatter(U2[:, 0], U2[:, 1], s=10);
 # 
 # ※ ライブラリのバージョンアップによって変わる可能性がある．
 
-# In[15]:
+# In[10]:
 
 
 # Scipyを用いて[0, 1)の一様乱数を生成する
 sp.stats.uniform.rvs(size=10)
 
 
-# In[16]:
+# In[12]:
 
 
 # Numpyを用いて[0, 1)の一様乱数を生成する
@@ -209,7 +209,7 @@ rng.random(10)
 
 # 以下は，線形合同法を用いて生成した一様乱数から指数乱数を生成する例である．
 
-# In[24]:
+# In[13]:
 
 
 # 線形合同法で[0, 1)の一様乱数を生成する
@@ -220,7 +220,7 @@ lmd = 1  # 指数分布のパラメータ
 R_exp = -lmd*np.log(1-U)
 
 
-# In[26]:
+# In[14]:
 
 
 # 生成した指数乱数からヒストグラムを描画する
@@ -249,7 +249,7 @@ ax.plot(x, expon.pdf(x, scale=lmd), 'r-');
 #     $ Z_1, Z_2 $ は標準正規分布に従う．
 # ```
 
-# In[27]:
+# In[15]:
 
 
 # 線形合同法で[0, 1)の一様乱数を生成する
@@ -261,7 +261,7 @@ Z1 = np.sqrt(-2*np.log(U1))*np.cos(2*np.pi*U2)
 Z2 = np.sqrt(-2*np.log(U1))*np.sin(2*np.pi*U2)
 
 
-# In[29]:
+# In[16]:
 
 
 fig, ax = plt.subplots(figsize=(4, 3))
@@ -319,27 +319,12 @@ ax.plot(x, norm.pdf(x), 'r-');
 # 
 # で与えられる．
 # この式において，$ p^{x}(1-p)^{n-x} $ は成功が $ x $ 回，失敗が $ n-x $ 回生じる確率を意味する．
-# また，$ \binom{n}{x} $ は $ n $ 個から $ x $ を取り出す組み合わせの数 $ _{n}C_{x} $ を表し，$ n $ 回の中で何回目に成功するかの場合の数に対応する．
+# また，$ \displaystyle\binom{n}{x} $ は $ n $ 個から $ x $ を取り出す組み合わせの数 $ _{n}C_{x} $ を表し，$ n $ 回の中で何回目に成功するかの場合の数に対応する．
 # なお，$ n=1 $ の場合はベルヌーイ分布に対応する．
 # 
 # 二項分布は試行回数 $ n $ と成功確率 $ p $ がパラメータであり，これらによって分布の形が決まる．
 
-# In[12]:
-
-
-# 試行回数nを変化させた場合の二項分布の変化
-fig, ax = plt.subplots()
-k = np.arange(0, 20, 1)
-for n in [5, 10, 30, 50]:
-    ax.plot(k, binom.pmf(k, n=n, p=0.2), '-o', mfc='w', ms=5, label='$n=%s, p=0.2$' % n)
-
-ax.set_xlim(0, 20); ax.set_ylim(0, 0.5)
-ax.set_xlabel('$x$', fontsize=15)
-ax.set_ylabel('$f(x)$', fontsize=15)
-ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
-
-
-# In[13]:
+# In[ ]:
 
 
 # 成功確率pを変化させた場合の二項分布の変化
@@ -354,13 +339,28 @@ ax.set_ylabel('$f(x)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 
+# In[2]:
+
+
+# 試行回数nを変化させた場合の二項分布の変化
+fig, ax = plt.subplots()
+k = np.arange(0, 20, 1)
+for n in [5, 10, 30, 50]:
+    ax.plot(k, binom.pmf(k, n=n, p=0.2), '-o', mfc='w', ms=5, label='$n=%s, p=0.2$' % n)
+
+ax.set_xlim(0, 20); ax.set_ylim(0, 0.5)
+ax.set_xlabel('$x$', fontsize=15)
+ax.set_ylabel('$f(x)$', fontsize=15)
+ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
+
+
 # #### 演習問題
 # 
 # - 確率変数 $ X $ が二項分布に従うとき，その期待値と分散が $ E(X) = np $，分散が $ V(X) = np(1-p) $ となることを示せ．
 
 # ### ポアソン分布
 # 
-# ベルヌーイ試行を $ n $ 回繰り返すとき，成功確率 $ p $ が小さく，かつ試行回数 $ n $ が大きい場合を考える．
+# ベルヌーイ試行を $ n $ 回繰り返すとき，成功確率 $ p $ が小さく，かつ試行回数 $ n $ が大きい極限を考える．
 # ただし，極限を取る際に平均値が一定値 $ np=\mu $ になるようにする．
 # このような条件で成功回数 $ X $ が従う分布は，二項分布の式に $ np=\mu $ を代入し，極限 $ p\to 0,\ n\to \infty $ を取ることで
 # 
@@ -373,22 +373,26 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # ポアソン分布は1つのパラメータ $ \mu $ だけで特徴づけられ，期待値と分散はともに $ \mu $ となる．
 # 
 # ポアソン分布は，一定の期間内（例えば１時間や１日）に，稀な現象（$ p\to 0 $）を多数回試行（$ n\to \infty $）した場合にその発生回数が従う分布である．
-# ポアソン分布が現れる例は無数にあり，「1日の交通事故件数」，「1分間の放射性元素の崩壊数」，「1ヶ月の有感地震の回数」，「サッカーの試合における90分間の得点数」などは典型例である．
+# ポアソン分布が現れる例は無数にあり，「1日のコンビニの来店客数」，「1日の交通事故件数」，「1分間の放射性元素の崩壊数」，「1ヶ月の有感地震の回数」，「サッカーの試合における90分間の得点数」などは典型例である．
 
-# 以下は $ np=5 $ に保って $ n $ を大きく，$ p $ を小さくしたときの二項分布（実線）と $ \mu=5 $ のポアソン分布（o）の比較である．
+# 以下は $ np=5 $ に保って $ n $ を大きく，$ p $ を小さくしたときの二項分布（折れ線グラフ）と $ \mu=5 $ のポアソン分布（棒グラフ）の比較である．
 # $ n=80,\ p=1/16 $ になると，二項分布とポアソン分布はほとんど一致していることが分かる．
 
-# In[16]:
+# In[32]:
 
 
-fig, ax = plt.subplots(figsize=(5, 3))
+fig, ax = plt.subplots(figsize=(7, 5))
 x = np.arange(0, 15, 1)
-ax.plot(x, poisson.pmf(x, mu=5), 'o', mfc='w', ms=5, label='$\mu=5$')
-for i in np.arange(4):
-    p, n = 1/2**(i+1), 10*2**i
-    ax.plot(x, binom.pmf(x, n=n, p=p), '-', mfc='w', ms=5, label='$n=%s, p=1/%s$' % (n, 2**(i+1)))
 
-ax.legend(numpoints=1, fontsize=10, loc='upper left', frameon=True, bbox_to_anchor=(1, 1))
+# ポアソン分布
+ax.bar(x, poisson.pmf(x, mu=5), width=0.3, color='skyblue', ec='k', alpha=1, label='Poisson ($\mu=5$)')
+
+# 二項分布
+for i in [0, 1, 3]:
+    p, n = 1/2**(i+1), 10*2**i
+    ax.plot(x, binom.pmf(x, n=n, p=p), 'o--', mfc='w', ms=7, lw=1, label='Binom ($n=%s, p=1/%s$)' % (n, 2**(i+1)))
+
+ax.legend(numpoints=1, fontsize=12, loc='best', frameon=True, bbox_to_anchor=(1, 1))
 ax.set_xlim(0, 15); ax.set_ylim(0, 0.25)
 ax.set_xlabel('$x$', fontsize=15)
 ax.set_ylabel('$f(x)$', fontsize=15);
@@ -396,11 +400,31 @@ ax.set_ylabel('$f(x)$', fontsize=15);
 
 # **$ \mu $が大きいとき**
 # 
-# ポアソン分布は $ \mu \to \infty $ において正規分布に近づくことが知られている．
-# 以下は $ \mu $ を変化させた場合の分布の変化である．
-# $ \mu $ が小さいときには左右非対称な分布となるが，$ \mu $ が大きくなると左右対称な分布に近づくことが分かる．
+# ポアソン分布は $ \mu $ を大きくすると平均と分散が共に $ \mu $ の正規分布に近づくことが知られている：
+# 
+# $$
+#     f(x) = \frac{\mu^{x}}{x!} \mathrm{e}^{-\mu} \to \frac{1}{\sqrt{2\pi\mu}} \exp\left(-\frac{(x-\mu)^2}{2\mu}\right)
+# $$
+# 
+# 以下はパラメータ $ \mu $ を増加させた場合のポアソン分布（棒グラフ）と正規分布（破線）の比較である．
+# $ \mu $ が大きくなるほどポアソン分布が正規分布に近づくことが確認できる．
 
-# In[17]:
+# In[41]:
+
+
+fig, ax = plt.subplots(figsize=(7, 5))
+k = np.arange(0, 25, 1)
+
+for mu in [1, 4, 12]:
+    ax.bar(k, poisson.pmf(k, mu=mu), width=0.4,  ec='k', alpha=0.6, label='Poisson ($\mu=%s$)' % mu)
+
+    ax.plot(k, norm.pdf(k, loc=mu, scale=np.sqrt(mu)), '--', lw=1.5, label='Normal ($\mu=12, \sigma^2=12$)')
+
+ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$f(x)$', fontsize=15)
+ax.legend(numpoints=1, fontsize=12, loc='best', frameon=True);
+
+
+# In[2]:
 
 
 fig, ax = plt.subplots()
