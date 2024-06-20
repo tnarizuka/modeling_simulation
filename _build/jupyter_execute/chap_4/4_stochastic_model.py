@@ -541,26 +541,26 @@ ax.legend(numpoints=1, fontsize=10, loc='upper left', frameon=True, bbox_to_anch
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ が成功確率 $ p $ のベルヌーイ分布に従うとき，期待値は $ p $，分散は $ p(1-p) $である．
 # よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(p, p(1-p)/n) $ に近づく．
 
-# In[55]:
+# In[269]:
 
 
 fig, ax = plt.subplots(figsize=(5, 4))
 
 # 様々な標本サイズnに対して標本平均のヒストグラムを描画
 p=1/6
-for n in [10, 30, 50, 100]:
+for n in [5, 10, 30, 100]:
 
-    # 標本平均を1000回計算してヒストグラムを描画
+    # 標本平均を1000回計算してヒストグラムを描画（サンプル数）
     T = []
     for j in range(1000):
         U = sp.stats.bernoulli.rvs(p, size=n) # 確率pのベルヌーイ分布からサイズnの標本を生成
         T.append(U.mean())
-    ax.hist(T, bins=int(np.log2(1000)+1), density=1, edgecolor='w', alpha=0.5, label='$n=%s$' % n); 
+    ax.hist(T, bins=10, density=1, edgecolor='w', alpha=0.5, label='$n=%s$' % n); 
 
 # 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画
 t = np.arange(0, 1, 0.001)
 gt = sp.stats.norm.pdf(t, loc=p, scale=np.sqrt(p*(1-p)/n))
-ax.plot(t, gt, 'r-', label='$N(p, p(1-p)/n)$')
+ax.plot(t, gt, 'g-', label='$N(p, p(1-p)/n)$')
 
 ax.set_xlim(0, 1)
 ax.set_xlabel('標本平均 $t$', fontsize=12)
@@ -568,32 +568,33 @@ ax.set_ylabel('$g(t)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 
-# #### ポアソン分布の場合
+# #### 指数分布の場合
 # 
-# 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ がパラメータ $ \mu $ のポアソン分布に従うとき，期待値と分散は共に $ \mu $である．
-# よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(\mu, \mu/n) $ に近づく．
+# 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ がパラメータ $ \lambda $ の指数分布に従うとき，期待値は $ \lambda $，分散は $ \lambda^2 $ である．
+# よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(\lambda, \lambda^2/n) $ に近づく．
 
-# In[25]:
+# In[114]:
 
 
 fig, ax = plt.subplots(figsize=(5, 4))
 
 # 様々な標本サイズnに対して標本平均のヒストグラムを描画
-mu=1
-for n in [10, 30, 50, 100]:
+lmd=2
+for n in [1, 3, 10, 50]:
 
-    # 標本平均を1000回計算してヒストグラムを描画
+    # 標本平均を1000回計算してヒストグラムを描画（サンプルサイズ10000）
     T = []
-    for j in range(1000):
-        U = sp.stats.poisson.rvs(mu, size=n) # パラメータlmdのポアソン分布からサイズnの標本を生成
+    for j in range(10000):
+        U = sp.stats.expon.rvs(loc=0, scale=lmd, size=n) # パラメータlmdのポアソン分布からサイズnの標本を生成
         T.append(U.mean())
-    ax.hist(T, bins=10, density=1, edgecolor='w', alpha=0.5, label='$n=%s$' % n); 
+    ax.hist(T, bins=50, density=1, edgecolor='w', alpha=0.5, label='$n=%s$' % n); 
 
 # 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画
-t = np.arange(0.5, 2.5, 0.01)
-gt = sp.stats.norm.pdf(t, loc=mu, scale=np.sqrt(mu/n))
-ax.plot(t, gt, 'r-', label='$N(\mu, \mu/n)$')
+t = np.arange(0, 10, 0.01)
+gt = sp.stats.norm.pdf(t, loc=lmd, scale=np.sqrt(lmd**2/n))
+ax.plot(t, gt, 'g-', label='$N(\lambda, \lambda/n)$')
 
+ax.set_xlim(0, 6)
 ax.set_xlabel('標本平均 $t$', fontsize=12)
 ax.set_ylabel('$g(t)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
