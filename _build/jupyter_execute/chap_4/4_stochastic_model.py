@@ -354,10 +354,6 @@ ax.set_ylabel('$f(x)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=12, loc='upper right', frameon=True);
 
 
-# #### 演習問題
-# 
-# - 確率変数 $ X $ が二項分布に従うとき，その期待値と分散が $ E(X) = np $，分散が $ V(X) = np(1-p) $ となることを示せ．
-
 # ### ポアソン分布
 # 
 # ベルヌーイ試行を $ n $ 回繰り返すとき，成功確率 $ p $ が小さく，かつ試行回数 $ n $ が大きい極限を考える．
@@ -409,7 +405,7 @@ ax.set_ylabel('$f(x)$', fontsize=15);
 # 以下はパラメータ $ \mu $ を増加させた場合のポアソン分布（棒グラフ）と正規分布（破線）の比較である．
 # $ \mu $ が大きくなるほどポアソン分布が正規分布に近づくことが確認できる．
 
-# In[56]:
+# In[8]:
 
 
 fig, ax = plt.subplots(figsize=(7, 5))
@@ -419,17 +415,16 @@ for mu in [1, 4, 12]:
     ax.bar(k, poisson.pmf(k, mu=mu), width=0.4,  ec='k', alpha=0.6, label='Poisson ($\mu=%s$)' % mu)
 
     ax.plot(k, norm.pdf(k, loc=mu, scale=np.sqrt(mu)), '--', lw=1.5, label='Normal ($\mu=%s, \sigma^2=%s$)' % (mu, mu))
-
+    
+ax.set_xlim(-0.5, 25); ax.set_ylim(0, 0.4)
 ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$f(x)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=12, loc='best', frameon=True);
 
 
-# #### 演習問題
-# 1. 二項分布からポアソン分布を導出せよ．
-# 2. ポアソン分布の期待値と分散が共に $ \mu $ であることを示せ．
-# 3. [score_germany.csv](https://drive.google.com/uc?export=download&id=11kyLRP2sSwHKux0VQ3GqfVVqfM2aZlrk)は，ブンデスリーガの2017-2018シーズンにおける一方のチームの１試合の得点数データである．このデータからヒストグラムを作成し，ポアソン分布によってカーブフィッティングせよ（最小二乗法を用いること）．
-# 4. [score_nba.csv](https://drive.google.com/uc?export=download&id=11jUB1cocU40zSUCPzlNfWPX5mLO2Vq_G)は，NBAの2015-16シーズンにおける一方のチームの１試合の得点数データである．このデータからヒストグラムを作成し，ポアソン分布によってカーブフィッティングせよ（最小二乗法を用いること）．
-# 5. 2.と3.の結果を比較し，ポアソン分布の特徴を考察せよ．
+# ### 演習問題
+# 1. 二項分布の期待値が $ np $，分散が $ np(1-p) $ となることを示せ．
+# 2. 二項分布からポアソン分布を導出せよ．
+# 3. ポアソン分布の期待値と分散が共に $ \mu $ であることを示せ．
 
 # ## 大数の法則と中心極限定理
 # <!-- 
@@ -456,17 +451,17 @@ ax.legend(numpoints=1, fontsize=12, loc='best', frameon=True);
 # を新しい確率変数とする．
 # このとき， $ T $ の確率分布を $ g(t) $ とすると，$ g(t) $ も二項分布に従い，$ g(t)=nf(nt) $ の関係にある．
 
-# 以下は成功確率 $ p $ を一定値 $ p=0.2 $ に固定して，試行回数 $ n $ を大きくしたときの標本平均 $ T $ の確率分布である．
-# この図を見ると，$ n $ の増加に伴って $ t=0.2 $ の周りに分布が集中するとともに，高さが大きくなる様子が分かる．
+# 次の例は成功確率を $ p=1/6 $ に固定して，試行回数 $ n $ を大きくしたときの標本平均 $ T $ の確率分布である（例えば，サイコロを振って1が出た場合に $ U=1 $ ，それ以外の場合に $ U=0 $ とした場合）．
+# この図を見ると，$ n $ の増加に伴って $ t=1/6 $ の周りに分布が集中するとともに，高さが大きくなる様子が分かる．
 
-# In[18]:
+# In[63]:
 
 
 fig, ax = plt.subplots()
 k = np.arange(0, 20, 1)
 
 for n in [5, 10, 30, 50]:
-    ax.plot(k/n, n*binom.pmf(k, n=n, p=0.2), '-o', mfc='w', ms=5, label='$n=%s, p=0.2$' % n)
+    ax.plot(k/n, n*binom.pmf(k, n=n, p=1/6), '-o', mfc='w', ms=5, label='$n=%s, p=1/6$' % n)
 
 ax.set_xlim(0, 1); ax.set_ylim(0, 8)
 ax.set_xlabel('標本平均 $t$', fontsize=12)
@@ -493,17 +488,17 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 # 以下は，様々な確率分布に対する大数の法則のシミュレーションである．
 
-# In[19]:
+# In[18]:
 
 
 N = np.arange(1, 1000)
 
 # 様々な確率分布からサイズnの標本を生成する
-U_uni = uniform.rvs(loc=0, scale=2, size=len(N)) # 一様分布（平均1）
-U_norm = norm.rvs(loc=2, scale=1, size=len(N))   # 正規分布（平均2）
-U_binom = binom.rvs(n=10, p=0.3, size=len(N))    # 二項分布（平均3）
-U_poisson = poisson.rvs(mu=4, size=len(N))       # ポアソン分布（平均4）
-U_expon = expon.rvs(scale=5, size=len(N))        # 指数分布（平均5）
+U_uni = uniform.rvs(loc=0, scale=2, size=len(N)) # 一様分布（母平均1）
+U_norm = norm.rvs(loc=2, scale=1, size=len(N))   # 正規分布（母平均2）
+U_binom = binom.rvs(n=10, p=0.3, size=len(N))    # 二項分布（母平均3）
+U_poisson = poisson.rvs(mu=4, size=len(N))       # ポアソン分布（母平均4）
+U_expon = expon.rvs(scale=5, size=len(N))        # 指数分布（母平均5）
 
 # 様々な標本サイズnに対して標本平均を計算
 T_uni, T_norm, T_binom, T_poisson, T_expon = [], [], [], [], []
@@ -516,11 +511,11 @@ for n in N:
 
 # 標本平均の変化をプロット
 fig, ax = plt.subplots(figsize=(7, 3))
-ax.plot(N, np.array(T_uni), '-', label='一様分布（平均1）')
-ax.plot(N, np.array(T_norm), '-', label='正規分布（平均2）')
-ax.plot(N, np.array(T_binom), '-', label='二項分布（平均3）')
-ax.plot(N, np.array(T_poisson), '-', label='ポアソン分布（平均4）')
-ax.plot(N, np.array(T_expon), '-', label='指数分布（平均5）')
+ax.plot(N, np.array(T_uni), '-', label='一様分布（母平均=1）')
+ax.plot(N, np.array(T_norm), '-', label='正規分布（母平均=2）')
+ax.plot(N, np.array(T_binom), '-', label='二項分布（母平均=3）')
+ax.plot(N, np.array(T_poisson), '-', label='ポアソン分布（母平均=4）')
+ax.plot(N, np.array(T_expon), '-', label='指数分布（母平均=5）')
 
 ax.set_xlim(0, len(N)); ax.set_ylim(0, 6)
 ax.set_xlabel('標本サイズ $n$', fontsize=12)
@@ -532,7 +527,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper left', frameon=True, bbox_to_anch
 # 
 # ベルヌーイ過程において，$ n $ 回のベルヌーイ試行を１セットとして，成功回数 $ X $ や成功割合（標本平均） $ T $ を求める．
 # これを何セットも繰り返すと，$ X $ や $ T $ の分布が得られ，いずれも二項分布に従うが，$ n $ を大きくしていくと左右非対称な分布から左右対称な分布へと変化する．
-# この $ n $ を十分大きくしたときに出現する左右対称で滑らかな分布は**正規分布**であることが知られている．
+# この性質は，大数の法則の解説で述べたとおりであるが，$ n $ を十分大きくしたときに出現する左右対称で滑らかな分布は**正規分布**であることが知られている．
 # 
 # 以上はベルヌーイ過程の場合であるが，実は一般の確率分布に従う確率変数列についても，$ n $ が十分大きいとき，確率変数列の和や標本平均は正規分布に近づくことが知られている．
 # この性質は**中心極限定理**と呼ばれており，より具体的には以下のように表される．
@@ -546,27 +541,28 @@ ax.legend(numpoints=1, fontsize=10, loc='upper left', frameon=True, bbox_to_anch
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ が成功確率 $ p $ のベルヌーイ分布に従うとき，期待値は $ p $，分散は $ p(1-p) $である．
 # よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(p, p(1-p)/n) $ に近づく．
 
-# In[20]:
+# In[55]:
 
 
 fig, ax = plt.subplots(figsize=(5, 4))
 
 # 様々な標本サイズnに対して標本平均のヒストグラムを描画
-p=0.5
-for n in [10, 50, 100, 500]:
+p=1/6
+for n in [10, 30, 50, 100]:
 
     # 標本平均を1000回計算してヒストグラムを描画
     T = []
     for j in range(1000):
         U = sp.stats.bernoulli.rvs(p, size=n) # 確率pのベルヌーイ分布からサイズnの標本を生成
         T.append(U.mean())
-    ax.hist(T, bins=10, density=1, edgecolor='w', alpha=0.5, label='$n=%s$' % n); 
+    ax.hist(T, bins=int(np.log2(1000)+1), density=1, edgecolor='w', alpha=0.5, label='$n=%s$' % n); 
 
 # 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画
 t = np.arange(0, 1, 0.001)
 gt = sp.stats.norm.pdf(t, loc=p, scale=np.sqrt(p*(1-p)/n))
 ax.plot(t, gt, 'r-', label='$N(p, p(1-p)/n)$')
 
+ax.set_xlim(0, 1)
 ax.set_xlabel('標本平均 $t$', fontsize=12)
 ax.set_ylabel('$g(t)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
@@ -577,25 +573,25 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ がパラメータ $ \mu $ のポアソン分布に従うとき，期待値と分散は共に $ \mu $である．
 # よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(\mu, \mu/n) $ に近づく．
 
-# In[21]:
+# In[25]:
 
 
 fig, ax = plt.subplots(figsize=(5, 4))
 
 # 様々な標本サイズnに対して標本平均のヒストグラムを描画
-lmd=2
-for n in [10, 50, 100, 500]:
+mu=1
+for n in [10, 30, 50, 100]:
 
     # 標本平均を1000回計算してヒストグラムを描画
     T = []
     for j in range(1000):
-        U = sp.stats.poisson.rvs(lmd, size=n) # パラメータlmdのポアソン分布からサイズnの標本を生成
+        U = sp.stats.poisson.rvs(mu, size=n) # パラメータlmdのポアソン分布からサイズnの標本を生成
         T.append(U.mean())
     ax.hist(T, bins=10, density=1, edgecolor='w', alpha=0.5, label='$n=%s$' % n); 
 
 # 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画
-t = np.arange(0.5, 3.5, 0.01)
-gt = sp.stats.norm.pdf(t, loc=lmd, scale=np.sqrt(lmd/n))
+t = np.arange(0.5, 2.5, 0.01)
+gt = sp.stats.norm.pdf(t, loc=mu, scale=np.sqrt(mu/n))
 ax.plot(t, gt, 'r-', label='$N(\mu, \mu/n)$')
 
 ax.set_xlabel('標本平均 $t$', fontsize=12)
