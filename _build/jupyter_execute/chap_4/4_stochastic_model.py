@@ -454,7 +454,7 @@ ax.legend(numpoints=1, fontsize=12, loc='best', frameon=True);
 # 次の例は成功確率を $ p=1/6 $ に固定して，試行回数 $ n $ を大きくしたときの標本平均 $ T $ の確率分布である（例えば，サイコロを振って1が出た場合に $ U=1 $ ，それ以外の場合に $ U=0 $ とした場合）．
 # この図を見ると，$ n $ の増加に伴って $ t=1/6 $ の周りに分布が集中するとともに，高さが大きくなる様子が分かる．
 
-# In[63]:
+# In[2]:
 
 
 fig, ax = plt.subplots()
@@ -488,7 +488,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 # 以下は，様々な確率分布に対する大数の法則のシミュレーションである．
 
-# In[18]:
+# In[5]:
 
 
 N = np.arange(1, 1000)
@@ -527,13 +527,13 @@ ax.legend(numpoints=1, fontsize=10, loc='upper left', frameon=True, bbox_to_anch
 # 
 # ベルヌーイ過程において，$ n $ 回のベルヌーイ試行を１セットとして，成功回数 $ X $ や成功割合（標本平均） $ T $ を求める．
 # これを何セットも繰り返すと，$ X $ や $ T $ の分布が得られ，いずれも二項分布に従うが，$ n $ を大きくしていくと左右非対称な分布から左右対称な分布へと変化する．
-# この性質は，大数の法則の解説で述べたとおりであるが，$ n $ を十分大きくしたときに出現する左右対称で滑らかな分布は**正規分布**であることが知られている．
+# このとき，$ n $ を十分大きくしたときに出現する左右対称で滑らかな分布は**正規分布**であることが知られている．
 # 
 # 以上はベルヌーイ過程の場合であるが，実は一般の確率分布に従う確率変数列についても，$ n $ が十分大きいとき，確率変数列の和や標本平均は正規分布に近づくことが知られている．
 # この性質は**中心極限定理**と呼ばれており，より具体的には以下のように表される．
 # 
 # ```{admonition} 中心極限定理
-# 独立同分布に従う $ n $ 個の確率変数 $ U_{1}, U_{2},\ldots, U_{n} $ に対し，それぞれの母平均を $ \mu $，母分散を $ \sigma^2 $ とする．このとき，確率変数列の標本平均 $ \displaystyle T=\frac{1}{n}\sum_{i=1}^{n}U_{i} $ の分布 $ g(t) $ が $ n $ を大きくしたときに正規分布 $ N(\mu, \sigma^{2}/n) $ に近づく
+# 独立同分布に従う $ n $ 個の確率変数 $ U_{1}, U_{2},\ldots, U_{n} $ に対し，それぞれの母平均を $ \mu $，母分散を $ \sigma^2 < \infty $ とする．このとき，確率変数列の標本平均 $ \displaystyle T=\frac{1}{n}\sum_{i=1}^{n}U_{i} $ の分布 $ g(t) $ が $ n $ を大きくしたときに正規分布 $ N(\mu, \sigma^{2}/n) $ に近づく
 # ```
 
 # #### ベルヌーイ分布の場合
@@ -541,16 +541,16 @@ ax.legend(numpoints=1, fontsize=10, loc='upper left', frameon=True, bbox_to_anch
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ が成功確率 $ p $ のベルヌーイ分布に従うとき，期待値は $ p $，分散は $ p(1-p) $である．
 # よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(p, p(1-p)/n) $ に近づく．
 
-# In[269]:
+# In[39]:
 
 
 fig, ax = plt.subplots(figsize=(5, 4))
 
 # 様々な標本サイズnに対して標本平均のヒストグラムを描画
 p=1/6
-for n in [5, 10, 30, 100]:
+for n in [5, 20, 100]:
 
-    # 標本平均を1000回計算してヒストグラムを描画（サンプル数）
+    # 標本平均を1000回計算してヒストグラムを描画（標本数）
     T = []
     for j in range(1000):
         U = sp.stats.bernoulli.rvs(p, size=n) # 確率pのベルヌーイ分布からサイズnの標本を生成
@@ -560,9 +560,9 @@ for n in [5, 10, 30, 100]:
 # 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画
 t = np.arange(0, 1, 0.001)
 gt = sp.stats.norm.pdf(t, loc=p, scale=np.sqrt(p*(1-p)/n))
-ax.plot(t, gt, 'g-', label='$N(p, p(1-p)/n)$')
+ax.plot(t, gt, 'k--', lw=1.2, label='$N(p, p(1-p)/n)$')
 
-ax.set_xlim(0, 1)
+ax.set_xlim(0, 1), ax.set_ylim(0, 12)
 ax.set_xlabel('標本平均 $t$', fontsize=12)
 ax.set_ylabel('$g(t)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
@@ -573,7 +573,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ がパラメータ $ \lambda $ の指数分布に従うとき，期待値は $ \lambda $，分散は $ \lambda^2 $ である．
 # よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(\lambda, \lambda^2/n) $ に近づく．
 
-# In[114]:
+# In[40]:
 
 
 fig, ax = plt.subplots(figsize=(5, 4))
@@ -582,12 +582,12 @@ fig, ax = plt.subplots(figsize=(5, 4))
 lmd=2
 for n in [1, 3, 10, 50]:
 
-    # 標本平均を1000回計算してヒストグラムを描画（サンプルサイズ10000）
+    # 標本平均を1000回計算してヒストグラムを描画（サンプルサイズ1000）
     T = []
-    for j in range(10000):
+    for j in range(1000):
         U = sp.stats.expon.rvs(loc=0, scale=lmd, size=n) # パラメータlmdのポアソン分布からサイズnの標本を生成
         T.append(U.mean())
-    ax.hist(T, bins=50, density=1, edgecolor='w', alpha=0.5, label='$n=%s$' % n); 
+    ax.hist(T, bins=20, density=1, edgecolor='w', alpha=0.5, label='$n=%s$' % n); 
 
 # 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画
 t = np.arange(0, 10, 0.01)
