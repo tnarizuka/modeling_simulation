@@ -541,7 +541,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper left', frameon=True, bbox_to_anch
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ が成功確率 $ p $ のベルヌーイ分布に従うとき，期待値は $ p $，分散は $ p(1-p) $である．
 # よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(p, p(1-p)/n) $ に近づく．
 
-# In[39]:
+# In[63]:
 
 
 fig, ax = plt.subplots(figsize=(5, 4))
