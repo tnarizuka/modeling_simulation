@@ -452,12 +452,12 @@ title="Print to PDF"
        指数分布の場合
       </a>
      </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id22">
-       演習問題
-      </a>
-     </li>
     </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id22">
+     4.3.3. 演習問題
+    </a>
    </li>
   </ul>
  </li>
@@ -641,12 +641,12 @@ title="Print to PDF"
        指数分布の場合
       </a>
      </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id22">
-       演習問題
-      </a>
-     </li>
     </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id22">
+     4.3.3. 演習問題
+    </a>
    </li>
   </ul>
  </li>
@@ -1371,10 +1371,32 @@ title="Print to PDF"
 </div>
 </div>
 </section>
-<section id="id22">
-<h4>演習問題<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">#</a></h4>
-<p>確率変数列 <span class="math notranslate nohighlight">\( U_{1}, U_{2},\ldots, U_{n} \)</span> がその他の確率分布に従う場合について上と同様のシミュレーションを行い，中心極限定理が成り立つことを確認せよ．</p>
 </section>
+<section id="id22">
+<h3><span class="section-number">4.3.3. </span>演習問題<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">#</a></h3>
+<p>サイコロを <span class="math notranslate nohighlight">\( n \)</span> 回投げて1が出たら成功，それ以外は失敗とする．
+これは，成功確率 <span class="math notranslate nohighlight">\( p=1/6 \)</span> のベルヌーイ過程となるので，<span class="math notranslate nohighlight">\( n \)</span> を大きくすると成功割合（1が出た割合）は理論値 <span class="math notranslate nohighlight">\( p \)</span> に近づく（大数の法則）．
+また，<span class="math notranslate nohighlight">\( n \)</span> を大きくすると成功割合（1が出た割合）分布は正規分布 <span class="math notranslate nohighlight">\( N(p, p(1-p)/n) \)</span> に近づく（中心極限定理）．
+以上の性質を実際にサイコロを投げる実験によって確認してみよう．</p>
+<p><strong>サイコロを投げる実験</strong></p>
+<p>サイコロを <span class="math notranslate nohighlight">\( n \)</span> 回振ることを1セットとする．
+今回の実験では，Excelの１行が1セットとなるように記録する．</p>
+<ul class="simple">
+<li><p>グループに分かれて5個のサイコロを何度も振り，出た目をExcelファイルに記録せよ．</p></li>
+<li><p>記録する際には，50個のサイコロの出目を記録するごとに次の行に移ること．</p></li>
+<li><p>50行を目安にサイコロを振ること．</p></li>
+</ul>
+<p><strong>サイコロ実験の集計（Excel）</strong></p>
+<ul class="simple">
+<li><p>1セットの試行回数が <span class="math notranslate nohighlight">\( n=10,20,50 \)</span> の場合について，各セットで1が出た割合を計算せよ．</p></li>
+<li><p><span class="math notranslate nohighlight">\( n=10,20,50 \)</span> の場合について，1が出た割合のデータをcsvファイルに保存せよ．</p></li>
+</ul>
+<p><strong>サイコロ実験の解析（Python）</strong></p>
+<ul class="simple">
+<li><p>csvファイルをPandasのDataFrameに読み込め．</p></li>
+<li><p><span class="math notranslate nohighlight">\( n=10,20,50 \)</span> の場合について，1が出た割合のヒストグラムを描け．</p></li>
+<li><p>各ヒストグラムに対して，正規分布 <span class="math notranslate nohighlight">\( N(p, p(1-p)/n) \)</span> を重ね描きせよ．</p></li>
+</ul>
 </section>
 </section>
 <section id="id23">
