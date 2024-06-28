@@ -541,27 +541,30 @@ ax.legend(numpoints=1, fontsize=10, loc='upper left', frameon=True, bbox_to_anch
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ が成功確率 $ p $ のベルヌーイ分布に従うとき，期待値は $ p $，分散は $ p(1-p) $である．
 # よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(p, p(1-p)/n) $ に近づく．
 
-# In[190]:
+# In[236]:
 
 
-# 標本平均を10000回計算してヒストグラムを描画（標本数）
-p=1/6
+# 標本平均を10000回計算する
+p=1/6 # ベルヌーイ試行の成功確率
 T10, T20, T50 = [], [], []
 for j in range(10000):
-    U10 = sp.stats.bernoulli.rvs(p, size=10) # 確率pのベルヌーイ分布からサイズnの標本を生成
-    U20 = sp.stats.bernoulli.rvs(p, size=20) # 確率pのベルヌーイ分布からサイズnの標本を生成
-    U50 = sp.stats.bernoulli.rvs(p, size=50) # 確率pのベルヌーイ分布からサイズnの標本を生成
+    # 確率pのベルヌーイ分布からサイズnの標本を生成
+    U10 = sp.stats.bernoulli.rvs(p, size=10) 
+    U20 = sp.stats.bernoulli.rvs(p, size=20) 
+    U50 = sp.stats.bernoulli.rvs(p, size=50) 
+    
+    # 標本平均を計算してリストに追加
     T10.append(U10.mean())
     T20.append(U20.mean())
     T50.append(U50.mean())
 
 # 標本平均のヒストグラムを描画
 fig, ax = plt.subplots(figsize=(5, 4))
-ax.hist(T10, bins=np.unique(T10), align='left', rwidth=0.2, density=1, edgecolor='w', alpha=0.5, label='$n=10$')
-ax.hist(T20, bins=np.unique(T20), align='left', rwidth=0.2, density=1, edgecolor='w', alpha=0.5, label='$n=20$')
-ret = ax.hist(T50, bins=np.unique(T50), align='left', rwidth=1, density=1, edgecolor='w', alpha=0.3, label='$n=50$')
+ax.hist(T10, bins=np.unique(T10), align='left', rwidth=0.2, density=1, ec='w', alpha=0.5, label='$n=10$')
+ax.hist(T20, bins=np.unique(T20), align='left', rwidth=0.2, density=1, ec='w', alpha=0.5, label='$n=20$')
+ret = ax.hist(T50, bins=np.unique(T50), align='left', rwidth=1, density=1, ec='w', alpha=0.3, label='$n=50$')
 
-# 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画
+# 正規分布の確率密度関数を描画
 t = np.arange(0, 1, 0.001)
 gt = sp.stats.norm.pdf(t, loc=p, scale=np.sqrt(p*(1-p)/50))
 ax.plot(t, gt, 'k--', lw=1, label='$N(p, p(1-p)/n)$')
@@ -577,24 +580,28 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ がパラメータ $ \lambda $ の指数分布に従うとき，期待値は $ \lambda $，分散は $ \lambda^2 $ である．
 # よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(\lambda, \lambda^2/n) $ に近づく．
 
-# In[221]:
+# In[235]:
 
 
-# 標本平均を1000回計算してヒストグラムを描画（標本数）
-lmd=2
+# 標本平均を10000回計算する
+lmd=2  # 指数分布のパラメータ
 T3, T10, T50 = [], [], []
 for j in range(10000):
-    U3 = sp.stats.expon.rvs(loc=0, scale=lmd, size=3) # パラメータlmdのポアソン分布からサイズnの標本を生成
-    U10 = sp.stats.expon.rvs(loc=0, scale=lmd, size=10) # パラメータlmdのポアソン分布からサイズnの標本を生成
-    U50 = sp.stats.expon.rvs(loc=0, scale=lmd, size=50) # パラメータlmdのポアソン分布からサイズnの標本を生成
-    T3.append(U3.mean())
+    # パラメータlmdのポアソン分布からサイズnの標本を生成
+    U3 = sp.stats.expon.rvs(loc=0, scale=lmd, size=3) 
+    U10 = sp.stats.expon.rvs(loc=0, scale=lmd, size=10)
+    U50 = sp.stats.expon.rvs(loc=0, scale=lmd, size=50)
+    
+    # 標本平均を計算してリストに追加
+    T3.append(U3.mean())    
     T10.append(U10.mean())
     T50.append(U50.mean())
 
+# 標本平均のヒストグラムを描画
 fig, ax = plt.subplots(figsize=(5, 4))
-ax.hist(T3, bins=20, rwidth=0.2, density=1, edgecolor='w', alpha=0.5, label='$n=10$')
-ax.hist(T10, bins=30, rwidth=0.4, density=1, edgecolor='w', alpha=0.5, label='$n=20$')
-ret = ax.hist(T50, bins=50, rwidth=1, density=1, edgecolor='w', alpha=0.3, label='$n=50$')
+ax.hist(T3, bins=20, rwidth=0.2, density=1, ec='w', alpha=0.5, label='$n=10$')
+ax.hist(T10, bins=30, rwidth=0.4, density=1, ec='w', alpha=0.5, label='$n=20$')
+ret = ax.hist(T50, bins=50, rwidth=1, density=1, ec='w', alpha=0.3, label='$n=50$')
 
 # 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画
 t = np.arange(0, 10, 0.01)
@@ -607,14 +614,14 @@ ax.set_ylabel('$g(t)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 
-# ### サイコロを投げる実験
+# ### サイコロを振る実験
 # 
 # サイコロを $ n $ 回投げて1が出たら成功，それ以外は失敗とする．
 # これは，成功確率 $ p=1/6 $ のベルヌーイ過程となるので，$ n $ を大きくすると成功割合（1が出た割合）は理論値 $ p $ に近づく（大数の法則）．
 # また，$ n $ を大きくすると成功割合（1が出た割合）分布は正規分布 $ N(p, p(1-p)/n) $ に近づく（中心極限定理）．
 # 以上の性質を実際にサイコロを投げる実験によって確認してみよう．
 # 
-# **サイコロを投げる実験**
+# **サイコロを振る実験**
 # 
 # サイコロを $ n $ 回振ることを1セットとする．
 # 今回の実験では，Excelの１行が1セットとなるように記録する．
