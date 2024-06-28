@@ -91,7 +91,7 @@ print(U)
 
 # 次に，$ x_{\mathrm{min}} $ 以上 $ x_{\mathrm{max}} $ 以下の一様乱数を生成する汎用的な関数を作成する．
 
-# In[4]:
+# In[268]:
 
 
 # 線形合同法により[0, 1)の一様乱数を生成する
@@ -106,13 +106,13 @@ def generagte_rand_u(seed=1, size=100, umin=0, umax=1):
     return umin + (umax - umin) * U / M
 
 
-# In[8]:
+# In[269]:
 
 
 U = generagte_rand_u(seed=10, size=1000, umin=0, umax=100)
 
 
-# In[9]:
+# In[270]:
 
 
 # 乱数列の相関を調べる
@@ -128,14 +128,14 @@ ax.scatter(U2[:, 0], U2[:, 1], s=10);
 # 
 # ※ ライブラリのバージョンアップによって変わる可能性がある．
 
-# In[10]:
+# In[271]:
 
 
 # Scipyを用いて[0, 1)の一様乱数を生成する
 sp.stats.uniform.rvs(size=10)
 
 
-# In[12]:
+# In[272]:
 
 
 # Numpyを用いて[0, 1)の一様乱数を生成する
@@ -209,7 +209,7 @@ rng.random(10)
 
 # 以下は，線形合同法を用いて生成した一様乱数から指数乱数を生成する例である．
 
-# In[13]:
+# In[273]:
 
 
 # 線形合同法で[0, 1)の一様乱数を生成する
@@ -220,7 +220,7 @@ lmd = 1  # 指数分布のパラメータ
 R_exp = -lmd*np.log(1-U)
 
 
-# In[14]:
+# In[281]:
 
 
 # 生成した指数乱数からヒストグラムを描画する
@@ -229,7 +229,9 @@ ret = ax.hist(R_exp, bins=50, density=1, color='c', edgecolor='w')
 
 # パラメータlmdの指数分布を描画する
 x = np.linspace(0, 10, 100)
-ax.plot(x, expon.pdf(x, scale=lmd), 'r-');
+ax.plot(x, expon.pdf(x, scale=lmd), 'r-')
+ax.set_xlabel('$ x $', fontsize=12)
+ax.set_ylabel('確率密度 $ f(x) $', fontsize=12)
 
 
 # #### Box-Muller法（正規分布）
@@ -249,7 +251,7 @@ ax.plot(x, expon.pdf(x, scale=lmd), 'r-');
 #     $ Z_1, Z_2 $ は標準正規分布に従う．
 # ```
 
-# In[15]:
+# In[275]:
 
 
 # 線形合同法で[0, 1)の一様乱数を生成する
@@ -261,7 +263,7 @@ Z1 = np.sqrt(-2*np.log(U1))*np.cos(2*np.pi*U2)
 Z2 = np.sqrt(-2*np.log(U1))*np.sin(2*np.pi*U2)
 
 
-# In[16]:
+# In[280]:
 
 
 fig, ax = plt.subplots(figsize=(4, 3))
@@ -271,7 +273,9 @@ ret1 = ax.hist(Z1, bins=50, density=1, color='c', edgecolor='w')
 
 # 標準正規分布の描画
 x = np.linspace(-5, 5, 100)
-ax.plot(x, norm.pdf(x), 'r-');
+ax.plot(x, norm.pdf(x), 'r-')
+ax.set_xlabel('$ x $', fontsize=12)
+ax.set_ylabel('確率密度 $ f(x) $', fontsize=12)
 
 
 # #### 複雑な確率分布の場合
@@ -324,7 +328,7 @@ ax.plot(x, norm.pdf(x), 'r-');
 # 
 # 二項分布は試行回数 $ n $ と成功確率 $ p $ がパラメータであり，これらによって分布の形が決まる．
 
-# In[80]:
+# In[264]:
 
 
 # 成功確率pを変化させた場合の二項分布の変化
@@ -334,12 +338,12 @@ for p in [0.1, 0.2, 0.3, 0.5]:
     ax.plot(k, binom.pmf(k, n=10, p=p), '-o', mfc='w', ms=7, lw=1.5, label='Binomial ($n=10, p=%s$)' % p)
 
 ax.set_xlim(0, 10); ax.set_ylim(0, 0.5)
-ax.set_xlabel('$x$', fontsize=15)
-ax.set_ylabel('$f(x)$', fontsize=15)
+ax.set_xlabel('成功回数 $x$', fontsize=15)
+ax.set_ylabel('確率 $f(x)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=12, loc='upper right', frameon=True);
 
 
-# In[49]:
+# In[263]:
 
 
 # 試行回数nを変化させた場合の二項分布の変化
@@ -349,8 +353,8 @@ for n in [5, 10, 30, 50]:
     ax.plot(k, binom.pmf(k, n=n, p=0.2), '-o', mfc='w', ms=7, lw=1.5, label='Binomial ($n=%s, p=0.2$)' % n)
 
 ax.set_xlim(0, 20); ax.set_ylim(0, 0.5)
-ax.set_xlabel('$x$', fontsize=15)
-ax.set_ylabel('$f(x)$', fontsize=15)
+ax.set_xlabel('成功回数 $x$', fontsize=15)
+ax.set_ylabel('確率 $f(x)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=12, loc='upper right', frameon=True);
 
 
@@ -374,7 +378,7 @@ ax.legend(numpoints=1, fontsize=12, loc='upper right', frameon=True);
 # 以下は $ np=5 $ に保って $ n $ を大きく，$ p $ を小さくしたときの二項分布（折れ線グラフ）と $ \mu=5 $ のポアソン分布（棒グラフ）の比較である．
 # $ n=80,\ p=1/16 $ になると，二項分布とポアソン分布はほとんど一致していることが分かる．
 
-# In[54]:
+# In[262]:
 
 
 fig, ax = plt.subplots(figsize=(7, 5))
@@ -390,8 +394,8 @@ for i in [0, 1, 3]:
 
 ax.legend(numpoints=1, fontsize=12, loc='best', frameon=True, bbox_to_anchor=(1, 1))
 ax.set_xlim(0, 15); ax.set_ylim(0, 0.25)
-ax.set_xlabel('$x$', fontsize=15)
-ax.set_ylabel('$f(x)$', fontsize=15);
+ax.set_xlabel('成功回数 $ x $', fontsize=15)
+ax.set_ylabel('確率 $f(x)$', fontsize=15);
 
 
 # **$ \mu $が大きいとき**
@@ -405,7 +409,7 @@ ax.set_ylabel('$f(x)$', fontsize=15);
 # 以下はパラメータ $ \mu $ を増加させた場合のポアソン分布（棒グラフ）と正規分布（破線）の比較である．
 # $ \mu $ が大きくなるほどポアソン分布が正規分布に近づくことが確認できる．
 
-# In[8]:
+# In[261]:
 
 
 fig, ax = plt.subplots(figsize=(7, 5))
@@ -413,11 +417,11 @@ k = np.arange(0, 25, 1)
 
 for mu in [1, 4, 12]:
     ax.bar(k, poisson.pmf(k, mu=mu), width=0.4,  ec='k', alpha=0.6, label='Poisson ($\mu=%s$)' % mu)
-
     ax.plot(k, norm.pdf(k, loc=mu, scale=np.sqrt(mu)), '--', lw=1.5, label='Normal ($\mu=%s, \sigma^2=%s$)' % (mu, mu))
     
 ax.set_xlim(-0.5, 25); ax.set_ylim(0, 0.4)
-ax.set_xlabel('$x$', fontsize=15); ax.set_ylabel('$f(x)$', fontsize=15)
+ax.set_xlabel('成功回数 $x$', fontsize=15)
+ax.set_ylabel('確率 $f(x)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=12, loc='best', frameon=True);
 
 
@@ -454,7 +458,7 @@ ax.legend(numpoints=1, fontsize=12, loc='best', frameon=True);
 # 次の例は成功確率を $ p=1/6 $ に固定して，試行回数 $ n $ を大きくしたときの標本平均 $ T $ の確率分布である（例えば，サイコロを振って1が出た場合に $ U=1 $ ，それ以外の場合に $ U=0 $ とした場合）．
 # この図を見ると，$ n $ の増加に伴って $ t=1/6 $ の周りに分布が集中するとともに，高さが大きくなる様子が分かる．
 
-# In[237]:
+# In[259]:
 
 
 fig, ax = plt.subplots()
@@ -465,7 +469,7 @@ for n in [5, 10, 30, 50]:
 
 ax.set_xlim(0, 1); ax.set_ylim(0, 8)
 ax.set_xlabel('標本平均 $t$', fontsize=12)
-ax.set_ylabel('$g(t)$', fontsize=15)
+ax.set_ylabel('確率密度 $g(t)$', fontsize=15)
 ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 
@@ -541,7 +545,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper left', frameon=True, bbox_to_anch
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ が成功確率 $ p $ のベルヌーイ分布に従うとき，期待値は $ p $，分散は $ p(1-p) $である．
 # よって，中心極限定理によると， $ U $ の標本平均（成功割合）の分布は $ n $ を大きくしたときに正規分布 $ N(p, p(1-p)/n) $ に近づく．
 
-# In[242]:
+# In[258]:
 
 
 # 標本平均を10000回計算する
@@ -560,9 +564,9 @@ for j in range(10000):
 
 # 標本平均のヒストグラムを描画
 fig, ax = plt.subplots(figsize=(5, 4))
-ax.hist(T10, bins=np.unique(T10), align='left', rwidth=0.2, density=1, ec='w', alpha=0.5, label='$n=10$')
-ax.hist(T20, bins=np.unique(T20), align='left', rwidth=0.2, density=1, ec='w', alpha=0.5, label='$n=20$')
-ax.hist(T50, bins=np.unique(T50), align='left', rwidth=1, density=1, ec='w', alpha=0.3, label='$n=50$')
+ax.hist(T10, bins=np.unique(T10), rwidth=1, density=1, ec='w', alpha=0.3, label='$n=10$')
+ax.hist(T20, bins=np.unique(T20), rwidth=1, density=1, ec='w', alpha=0.3, label='$n=20$')
+ax.hist(T50, bins=np.unique(T50), rwidth=1, density=1, ec='w', alpha=0.3, label='$n=50$')
 
 # 正規分布の確率密度関数を描画
 t = np.arange(0, 1, 0.001)
@@ -570,8 +574,8 @@ gt = sp.stats.norm.pdf(t, loc=p, scale=np.sqrt(p*(1-p)/50))
 ax.plot(t, gt, 'k--', lw=1, label='$N(p, p(1-p)/n)$')
 
 ax.set_xlim(0, 0.6), ax.set_ylim(0, 8)
-ax.set_xlabel('標本平均 $t$', fontsize=12)
-ax.set_ylabel('$g(t)$', fontsize=15)
+ax.set_xlabel('標本平均 $ t $ ', fontsize=12)
+ax.set_ylabel('確率密度 $ g(t) $ ', fontsize=15)
 ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 
@@ -580,7 +584,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ がパラメータ $ \lambda $ の指数分布に従うとき，期待値は $ \lambda $，分散は $ \lambda^2 $ である．
 # よって，中心極限定理によると， $ U $ の標本平均（成功割合）の分布は $ n $ を大きくしたときに正規分布 $ N(\lambda, \lambda^2/n) $ に近づく．
 
-# In[235]:
+# In[257]:
 
 
 # 標本平均を10000回計算する
@@ -599,18 +603,18 @@ for j in range(10000):
 
 # 標本平均のヒストグラムを描画
 fig, ax = plt.subplots(figsize=(5, 4))
-ax.hist(T3, bins=20, rwidth=0.2, density=1, ec='w', alpha=0.5, label='$n=10$')
-ax.hist(T10, bins=30, rwidth=0.4, density=1, ec='w', alpha=0.5, label='$n=20$')
-ret = ax.hist(T50, bins=50, rwidth=1, density=1, ec='w', alpha=0.3, label='$n=50$')
+ax.hist(T3, bins=20, density=1, ec='w', alpha=0.5, label='$n=10$')
+ax.hist(T10, bins=30, density=1, ec='w', alpha=0.5, label='$n=20$')
+ret = ax.hist(T50, bins=50, density=1, ec='w', alpha=0.3, label='$n=50$')
 
 # 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画
 t = np.arange(0, 10, 0.01)
-gt = sp.stats.norm.pdf(t, loc=lmd, scale=np.sqrt(lmd**2/n))
+gt = sp.stats.norm.pdf(t, loc=lmd, scale=np.sqrt(lmd**2/50))
 ax.plot(t, gt, 'k--', lw=1, label='$N(\lambda, \lambda/n)$')
 
 ax.set_xlim(0, 6)
-ax.set_xlabel('標本平均 $t$', fontsize=12)
-ax.set_ylabel('$g(t)$', fontsize=15)
+ax.set_xlabel('標本平均 $ t $ ', fontsize=12)
+ax.set_ylabel('確率密度 $ g(t) $ ', fontsize=15)
 ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 
