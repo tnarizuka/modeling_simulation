@@ -442,7 +442,7 @@ ax.legend(numpoints=1, fontsize=12, loc='best', frameon=True);
 
 # #### ベルヌーイ過程の場合
 # 
-# 既にベルヌーイ過程における成功回数 $ X=\displaystyle\sum_{i=1}^{n} U_{i} $ が二項分布に従うことを見たが，ここでは $ X $ を $ n $ で割った標本平均（成功割合）
+# 既にベルヌーイ過程における成功回数 $ X=\displaystyle\sum_{i=1}^{n} U_{i} $ が二項分布に従うことを見たが，ここでは $ U $ の標本平均（成功割合）
 # 
 # $$
 # 	T = \frac{X}{n} = \frac{1}{n}\displaystyle\sum_{i=1}^{n} U_{i}
@@ -454,7 +454,7 @@ ax.legend(numpoints=1, fontsize=12, loc='best', frameon=True);
 # 次の例は成功確率を $ p=1/6 $ に固定して，試行回数 $ n $ を大きくしたときの標本平均 $ T $ の確率分布である（例えば，サイコロを振って1が出た場合に $ U=1 $ ，それ以外の場合に $ U=0 $ とした場合）．
 # この図を見ると，$ n $ の増加に伴って $ t=1/6 $ の周りに分布が集中するとともに，高さが大きくなる様子が分かる．
 
-# In[2]:
+# In[237]:
 
 
 fig, ax = plt.subplots()
@@ -488,7 +488,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 # 以下は，様々な確率分布に対する大数の法則のシミュレーションである．
 
-# In[5]:
+# In[238]:
 
 
 N = np.arange(1, 1000)
@@ -539,9 +539,9 @@ ax.legend(numpoints=1, fontsize=10, loc='upper left', frameon=True, bbox_to_anch
 # #### ベルヌーイ分布の場合
 
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ が成功確率 $ p $ のベルヌーイ分布に従うとき，期待値は $ p $，分散は $ p(1-p) $である．
-# よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(p, p(1-p)/n) $ に近づく．
+# よって，中心極限定理によると， $ U $ の標本平均（成功割合）の分布は $ n $ を大きくしたときに正規分布 $ N(p, p(1-p)/n) $ に近づく．
 
-# In[236]:
+# In[242]:
 
 
 # 標本平均を10000回計算する
@@ -562,7 +562,7 @@ for j in range(10000):
 fig, ax = plt.subplots(figsize=(5, 4))
 ax.hist(T10, bins=np.unique(T10), align='left', rwidth=0.2, density=1, ec='w', alpha=0.5, label='$n=10$')
 ax.hist(T20, bins=np.unique(T20), align='left', rwidth=0.2, density=1, ec='w', alpha=0.5, label='$n=20$')
-ret = ax.hist(T50, bins=np.unique(T50), align='left', rwidth=1, density=1, ec='w', alpha=0.3, label='$n=50$')
+ax.hist(T50, bins=np.unique(T50), align='left', rwidth=1, density=1, ec='w', alpha=0.3, label='$n=50$')
 
 # 正規分布の確率密度関数を描画
 t = np.arange(0, 1, 0.001)
@@ -578,7 +578,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # #### 指数分布の場合
 # 
 # 確率変数列 $ U_{1}, U_{2},\ldots, U_{n} $ がパラメータ $ \lambda $ の指数分布に従うとき，期待値は $ \lambda $，分散は $ \lambda^2 $ である．
-# よって，中心極限定理によると，標本平均の分布は $ n $ を大きくしたときに正規分布 $ N(\lambda, \lambda^2/n) $ に近づく．
+# よって，中心極限定理によると， $ U $ の標本平均（成功割合）の分布は $ n $ を大きくしたときに正規分布 $ N(\lambda, \lambda^2/n) $ に近づく．
 
 # In[235]:
 
@@ -616,10 +616,10 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 
 # ### サイコロを振る実験
 # 
-# サイコロを $ n $ 回投げて1が出たら成功，それ以外は失敗とする．
-# これは，成功確率 $ p=1/6 $ のベルヌーイ過程となるので，$ n $ を大きくすると成功割合（1が出た割合）は理論値 $ p $ に近づく（大数の法則）．
-# また，$ n $ を大きくすると成功割合（1が出た割合）分布は正規分布 $ N(p, p(1-p)/n) $ に近づく（中心極限定理）．
-# 以上の性質を実際にサイコロを投げる実験によって確認してみよう．
+# サイコロを振って1が出たら成功（ $ U=1 $ ），それ以外は失敗（ $ U=0 $ ）とする．
+# これを $ n $ 回繰り返すと，成功確率 $ p=1/6 $ のベルヌーイ過程となるので，$ n $ を大きくすると $ U $ の標本平均（1が出た割合）は理論値 $ p $ に近づく（大数の法則）．
+# また，$ n $ を大きくすると $ U $ の標本平均（1が出た割合）の分布は正規分布 $ N(p, p(1-p)/n) $ に近づく（中心極限定理）．
+# 以上の性質を実際にサイコロを振る実験を行って確認せよ．
 # 
 # **サイコロを振る実験**
 # 
@@ -639,7 +639,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 
 # - csvファイルをPandasのDataFrameに読み込め．
 # - $ n=10,20,50 $ の場合について，1が出た割合のヒストグラムを描け．
-# - 各ヒストグラムに対して，正規分布 $ N(p, p(1-p)/n) $ を重ね描きせよ．
+# - $ n=50 $ の場合について，正規分布 $ N(p, p(1-p)/n) $ を重ね描きし，中心極限定理を確認せよ．
 
 # ## マルコフ連鎖
 
