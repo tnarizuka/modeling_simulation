@@ -761,9 +761,14 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # $$
 # 
 # となることから，$ \boldsymbol{w}^{\top} $ は行列$ P^{\top} $の固有値1に対応する固有ベクトルであることが分かる．
+# なお，行列 $ P^{\top} $ が固有値1を持つことは，以下の固有方程式を解くことで確認できる：
+# 
+# $$
+#     |P^{\top} - \lambda I| = 0
+# $$
 
-# ```{admonition} 固有値方程式の導出
-# :class: dropdown -->
+# ```{admonition} 固有方程式の導出
+# :class: dropdown
 # 
 # 以下の固有値問題を考える：
 # 
@@ -786,7 +791,7 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 #     |P^{\top} - \lambda I| = 0
 # $$
 # 
-# と表され，これを**固有値方程式**と呼ぶ．
+# と表され，これを**固有方程式**と呼ぶ．
 # 
 # ```
 
