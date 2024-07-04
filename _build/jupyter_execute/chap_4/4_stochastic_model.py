@@ -762,6 +762,34 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 
 # となることから，$ \boldsymbol{w}^{\top} $ は行列$ P^{\top} $の固有値1に対応する固有ベクトルであることが分かる．
 
+# ```{admonition} 固有値方程式の導出
+# :class: dropdown -->
+# 
+# 以下の固有値問題を考える：
+# 
+# $$
+#     P^{\top}\boldsymbol{w}^{\top} = \lambda \boldsymbol{w}^{\top}
+# $$
+# 
+# 単位行列を $ I $ とすると，上式は次のように変形できる：
+# 
+# \begin{align}
+#     P^{\top}\boldsymbol{w}^{\top} &= \lambda I \boldsymbol{w}^{\top}\\
+#     (P^{\top} - \lambda I)\boldsymbol{w}^{\top} &= 0
+# \end{align}
+# 
+# ここで，$ P^{\top} - \lambda I $ が逆行列を持つと（つまり正則だと）， $ \boldsymbol{w}^{\top} = 0 $ という自明解しか持たないことになってしまう．
+# よって，固有ベクトル $ \boldsymbol{w}^{\top} $ が0でない解を持つためには，$ P^{\top} - \lambda I $ が逆行列を持たないことが条件となる．
+# この条件は，行列式が0になることと等価であるので，
+# 
+# $$
+#     |P^{\top} - \lambda I| = 0
+# $$
+# 
+# と表され，これを**固有値方程式**と呼ぶ．
+# 
+# ```
+
 # ### マルコフ連鎖の例
 # 
 # #### 具体例
