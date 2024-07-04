@@ -1524,7 +1524,34 @@ title="Print to PDF"
 \[
     P^{\top}\boldsymbol{w}^{\top} = \boldsymbol{w}^{\top}
 \]</div>
-<p>となることから，<span class="math notranslate nohighlight">\( \boldsymbol{w}^{\top} \)</span> は行列<span class="math notranslate nohighlight">\( P^{\top} \)</span>の固有値1に対応する固有ベクトルであることが分かる．</p>
+<p>となることから，<span class="math notranslate nohighlight">\( \boldsymbol{w}^{\top} \)</span> は行列<span class="math notranslate nohighlight">\( P^{\top} \)</span>の固有値1に対応する固有ベクトルであることが分かる．
+なお，行列 <span class="math notranslate nohighlight">\( P^{\top} \)</span> が固有値1を持つことは，以下の固有方程式を解くことで確認できる：</p>
+<div class="math notranslate nohighlight">
+\[
+    |P^{\top} - \lambda I| = 0
+\]</div>
+<div class="dropdown admonition">
+<p class="admonition-title">固有方程式の導出</p>
+<p>以下の固有値問題を考える：</p>
+<div class="math notranslate nohighlight">
+\[
+    P^{\top}\boldsymbol{w}^{\top} = \lambda \boldsymbol{w}^{\top}
+\]</div>
+<p>単位行列を <span class="math notranslate nohighlight">\( I \)</span> とすると，上式は次のように変形できる：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-68d2bf86-05b7-4b9e-8196-b9234bd68d2f">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-68d2bf86-05b7-4b9e-8196-b9234bd68d2f" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+    P^{\top}\boldsymbol{w}^{\top} &amp;= \lambda I \boldsymbol{w}^{\top}\\
+    (P^{\top} - \lambda I)\boldsymbol{w}^{\top} &amp;= 0
+\end{align}\]</div>
+<p>ここで，<span class="math notranslate nohighlight">\( P^{\top} - \lambda I \)</span> が逆行列を持つと（つまり正則だと）， <span class="math notranslate nohighlight">\( \boldsymbol{w}^{\top} = 0 \)</span> という自明解しか持たないことになってしまう．
+よって，固有ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w}^{\top} \)</span> が0でない解を持つためには，<span class="math notranslate nohighlight">\( P^{\top} - \lambda I \)</span> が逆行列を持たないことが条件となる．
+この条件は，行列式が0になることと等価であるので，</p>
+<div class="math notranslate nohighlight">
+\[
+    |P^{\top} - \lambda I| = 0
+\]</div>
+<p>と表され，これを<strong>固有方程式</strong>と呼ぶ．</p>
+</div>
 </section>
 </section>
 <section id="id28">
