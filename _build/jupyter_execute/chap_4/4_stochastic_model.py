@@ -689,8 +689,8 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 #         p_{20} & p_{21} & p_{22}
 #     \end{pmatrix}
 #     = \begin{pmatrix}
-#         0.5 & 0.3 & 0.2 \\
-#         0.2 & 0.5 & 0.3 \\
+#         0.1 & 0.3 & 0.6 \\
+#         0.2 & 0.7 & 0.1 \\
 #         0.3 & 0.2 & 0.5
 #     \end{pmatrix}
 # $$
@@ -738,10 +738,10 @@ ax.legend(numpoints=1, fontsize=10, loc='upper right', frameon=True);
 # 
 # $$
 #     \boldsymbol{w}_{1} = \boldsymbol{w}_{0}P = [1, 0, 0] \begin{pmatrix}
-#         0.5 & 0.3 & 0.2 \\
-#         0.2 & 0.5 & 0.3 \\
+#         0.1 & 0.3 & 0.6 \\
+#         0.2 & 0.7 & 0.1 \\
 #         0.3 & 0.2 & 0.5
-#     \end{pmatrix} = [0.5, 0.3, 0.2]
+#     \end{pmatrix} = [0.1, 0.3, 0.6]
 # $$
 
 # #### マルコフ連鎖の定常状態
