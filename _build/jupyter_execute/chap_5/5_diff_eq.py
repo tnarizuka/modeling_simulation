@@ -354,10 +354,10 @@ ax.set_ylabel('$N(t)$', fontsize=15)
 # 特に，パラメータ（今の場合は $ 1+\Delta t \gamma $ ）がある値（3.5699456...）を超えると，特定の周期を持たない非常に複雑な振る舞いを示す．
 # これは，**カオス**の一例として知られている．
 
-# In[23]:
+# In[27]:
 
 
-# 離散化したロジスティック方程式
+# オイラー法で離散化したロジスティック方程式
 gamma, N_inf = 1, 1000
 def g_logistic(t_n, u_n):
     return gamma*(1-u_n/N_inf)*u_n
@@ -410,7 +410,7 @@ ax.set_xlim(0, T);
 
 # まずは，以下のように`solve_ivp`をインポートしておく．
 
-# In[ ]:
+# In[28]:
 
 
 from scipy.integrate import solve_ivp
@@ -443,7 +443,7 @@ from scipy.integrate import solve_ivp
 
 # **マルサスモデル**
 
-# In[156]:
+# In[29]:
 
 
 def ode_malthus(t, N, a):
@@ -452,7 +452,7 @@ def ode_malthus(t, N, a):
     return [dNdt]
 
 
-# In[157]:
+# In[30]:
 
 
 # パラメータと初期条件
@@ -471,7 +471,7 @@ ax.plot(t, N0*np.exp(a*t), lw=2) # 解析解
 
 # **ロジスティックモデル**
 
-# In[158]:
+# In[31]:
 
 
 def ode_logistic(t, N, N_inf, gamma):
@@ -480,7 +480,7 @@ def ode_logistic(t, N, N_inf, gamma):
     return [dNdt]
 
 
-# In[162]:
+# In[32]:
 
 
 # パラメータと初期条件
@@ -533,13 +533,13 @@ ax.set_xlim(0, t[-1]);
 # 
 # 以下では，matplotlibの`FuncAnimation`関数を使って数値解をアニメーションで表示してみよう．
 
-# In[163]:
+# In[33]:
 
 
 from matplotlib.animation import FuncAnimation
 
 
-# In[164]:
+# In[34]:
 
 
 # 描画結果の出力先を別ウインドウとする
@@ -547,7 +547,7 @@ from matplotlib.animation import FuncAnimation
 get_ipython().run_line_magic('matplotlib', 'tk')
 
 
-# In[165]:
+# In[35]:
 
 
 def ode_projectile(t, var, g, m_k):
@@ -565,7 +565,7 @@ def ode_projectile(t, var, g, m_k):
     return [dxdt, dydt, dvxdt, dvydt]
 
 
-# In[166]:
+# In[39]:
 
 
 # パラメータ
@@ -573,7 +573,7 @@ g = 9.8 # 重力加速度 [m/s^2]
 m_k = 3 # 質量と抵抗係数の比（m/k） [s]
 
 # 初期条件
-x0, y0, v0, ag0 = 0, 0, 45, np.radians(30) # 初期位置 [m], 初速 [m/s]，投射角 [rad]
+x0, y0, v0, ag0 = 0, 0, 30, np.radians(30) # 初期位置 [m], 初速 [m/s]，投射角 [rad]
 var0 = [x0, y0, v0*np.cos(ag0), v0*np.sin(ag0)] # [x0, y0, vx, vz]
 
 # 数値計算
@@ -581,7 +581,7 @@ t = np.arange(0, 10, 0.1)
 sol = solve_ivp(ode_projectile, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[g, m_k])
 
 
-# In[167]:
+# In[40]:
 
 
 # アニメーションの設定
@@ -633,7 +633,7 @@ anim = FuncAnimation(fig, update, fargs=[sol.y[0], sol.y[1]],\
 get_ipython().run_line_magic('matplotlib', 'tk')
 
 
-# In[169]:
+# In[41]:
 
 
 def ode_simple_pendulum(t, var, g, l):
@@ -647,7 +647,7 @@ def ode_simple_pendulum(t, var, g, l):
     return [dagdt, dvdt]
 
 
-# In[175]:
+# In[42]:
 
 
 # パラメータ
@@ -664,7 +664,7 @@ x = l*np.sin(sol.y[0])   # x座標
 y = l-l*np.cos(sol.y[0]) # y座標
 
 
-# In[177]:
+# In[43]:
 
 
 # アニメーションの設定
