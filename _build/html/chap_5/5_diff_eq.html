@@ -524,16 +524,15 @@ title="Print to PDF"
 </section>
 <section id="id5">
 <h3><span class="section-number">5.1.2. </span>簡単な微分方程式<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">#</a></h3>
-<p><span class="math notranslate nohighlight">\( t \)</span> が時刻，<span class="math notranslate nohighlight">\( x(t) \)</span> が時刻<span class="math notranslate nohighlight">\( t \)</span>の物体の位置を表すとすると，物体の速度 <span class="math notranslate nohighlight">\( v \)</span> は <span class="math notranslate nohighlight">\( v = \frac{dx}{dt} \)</span> で与えられる．
+<p><span class="math notranslate nohighlight">\( t \)</span> を時刻，<span class="math notranslate nohighlight">\( x(t) \)</span> を時刻 <span class="math notranslate nohighlight">\( t \)</span> における物体の位置とすると，物体の速度 <span class="math notranslate nohighlight">\( v(t) \)</span> は <span class="math notranslate nohighlight">\( v(t) = \frac{dx}{dt} \)</span> で与えられる．
 いま，速度が一定値 <span class="math notranslate nohighlight">\( v_{0} \)</span> であると仮定すると，</p>
 <div class="math notranslate nohighlight">
 \[
     \frac{dx}{dt} = v_{0} 
 \]</div>
 <p>が成り立つ．
-これを<strong>等速直線運動</strong>と呼ぶ．
-これは，物体の運動を表す最も簡単な微分方程式である．
-この微分方程式の解を求めるには，両辺を <span class="math notranslate nohighlight">\( t \)</span> で積分すれば良い：</p>
+このように，直線上を等速で運動するような運動を<strong>等速直線運動</strong>と呼ぶ．</p>
+<p>この微分方程式の解を求めるには， <span class="math notranslate nohighlight">\( t \)</span> で微分して一定値 <span class="math notranslate nohighlight">\( v_{0} \)</span> になるような <span class="math notranslate nohighlight">\( x(t) \)</span> を求めれば良いので，両辺を <span class="math notranslate nohighlight">\( t \)</span> で積分すれば良い：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \int \frac{dx}{dt} dt = \int v_{0} dt \\[10pt]
@@ -701,8 +700,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6.44366481e-03 7.94804311e+03 3.55899263e-01]
-[4.72320355e+00 1.01973809e+04 1.79595109e-01]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6.44366653e-03 7.94804315e+03 3.55899256e-01]
+[4.72313866e+00 1.01973783e+04 1.79595488e-01]
 </pre></div>
 </div>
 <img alt="../_images/5_diff_eq_14_1.png" src="../_images/5_diff_eq_14_1.png" />
@@ -785,13 +784,19 @@ title="Print to PDF"
 
 <span class="c1"># グラフの描画</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span> <span class="c1"># 数値解</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># 数値解</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;r-&#39;</span><span class="p">);</span> <span class="c1"># 厳密解</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$N(t)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5_diff_eq_22_0.png" src="../_images/5_diff_eq_22_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$N(t)$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/5_diff_eq_22_1.png" src="../_images/5_diff_eq_22_1.png" />
 </div>
 </div>
 <p><strong>ロジスティックモデル</strong></p>
@@ -808,7 +813,8 @@ title="Print to PDF"
 これは，<strong>カオス</strong>の一例として知られている．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma</span><span class="p">,</span> <span class="n">N_inf</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 離散化したロジスティック方程式</span>
+<span class="n">gamma</span><span class="p">,</span> <span class="n">N_inf</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span>
 <span class="k">def</span> <span class="nf">g_logistic</span><span class="p">(</span><span class="n">t_n</span><span class="p">,</span> <span class="n">u_n</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">gamma</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">u_n</span><span class="o">/</span><span class="n">N_inf</span><span class="p">)</span><span class="o">*</span><span class="n">u_n</span>
 </pre></div>
@@ -817,7 +823,8 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
 
 <span class="c1"># 離散化した独立変数と従属変数</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span> 
@@ -828,7 +835,7 @@ title="Print to PDF"
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">g_logistic</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
 
-<span class="c1"># グラフの描画</span>
+<span class="c1"># 数値解の描画</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="s1">&#39;-x&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># 数値解</span>
 

@@ -51,7 +51,7 @@ import japanize_matplotlib
 
 # ### 簡単な微分方程式
 # 
-# $ t $ が時刻，$ x(t) $ が時刻$ t $の物体の位置を表すとすると，物体の速度 $ v $ は $ v = \frac{dx}{dt} $ で与えられる．
+# $ t $ を時刻，$ x(t) $ を時刻 $ t $ における物体の位置とすると，物体の速度 $ v(t) $ は $ v(t) = \frac{dx}{dt} $ で与えられる．
 # いま，速度が一定値 $ v_{0} $ であると仮定すると，
 # 
 # $$
@@ -59,9 +59,9 @@ import japanize_matplotlib
 # $$
 # 
 # が成り立つ．
-# これを**等速直線運動**と呼ぶ．
-# これは，物体の運動を表す最も簡単な微分方程式である．
-# この微分方程式の解を求めるには，両辺を $ t $ で積分すれば良い：
+# このように，直線上を等速で運動するような運動を**等速直線運動**と呼ぶ．
+# 
+# この微分方程式の解を求めるには， $ t $ で微分して一定値 $ v_{0} $ になるような $ x(t) $ を求めれば良いので，両辺を $ t $ で積分すれば良い：
 # 
 # $$
 #     \int \frac{dx}{dt} dt = \int v_{0} dt \\[10pt]
@@ -198,7 +198,7 @@ import japanize_matplotlib
 # 生物集団における個体数変化のモデルをより現実に近づけるためには，多数の生物種の間の捕食・被食関係を考慮する方法が考えられる．
 # このようなモデルの中で単純なものとして，2種の生物間の相互作用を考慮した**ロトカ・ヴォルテラモデル**が知られている．
 
-# In[29]:
+# In[2]:
 
 
 # シグモイド関数の定義
@@ -206,7 +206,7 @@ def f_logistic(t, N0, N_inf, gamma):
     return N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
 
 
-# In[81]:
+# In[3]:
 
 
 fig, ax = plt.subplots(figsize=(4, 3))
@@ -226,7 +226,7 @@ ax.set_ylabel('$N(t)$', fontsize=15);
 # 
 # ※ 本データの出典：[John Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series)
 
-# In[82]:
+# In[4]:
 
 
 # データの読み込み
@@ -308,7 +308,7 @@ ax.legend(loc='upper left', fontsize=12);
 # 
 # 実際に数値計算すると，時間刻み $ \Delta t $ を小さくするほど厳密解に近づくことが分かる．
 
-# In[1]:
+# In[5]:
 
 
 a = 2
@@ -316,7 +316,7 @@ def g_malthus(t_n, u_n):
     return a*u_n
 
 
-# In[94]:
+# In[19]:
 
 
 T, dt = 1, 0.05
@@ -332,8 +332,11 @@ for n in range(len(t)-1):
 
 # グラフの描画
 fig, ax = plt.subplots()
-ax.plot(t, u, 'o') # 数値解
+ax.plot(t, u, '.', ms=3) # 数値解
 ax.plot(t, np.exp(a*t), 'r-'); # 厳密解
+
+ax.set_xlabel('$t$', fontsize=15)
+ax.set_ylabel('$N(t)$', fontsize=15)
 
 
 # **ロジスティックモデル**
@@ -351,18 +354,20 @@ ax.plot(t, np.exp(a*t), 'r-'); # 厳密解
 # 特に，パラメータ（今の場合は $ 1+\Delta t \gamma $ ）がある値（3.5699456...）を超えると，特定の周期を持たない非常に複雑な振る舞いを示す．
 # これは，**カオス**の一例として知られている．
 
-# In[2]:
+# In[23]:
 
 
+# 離散化したロジスティック方程式
 gamma, N_inf = 1, 1000
 def g_logistic(t_n, u_n):
     return gamma*(1-u_n/N_inf)*u_n
 
 
-# In[3]:
+# In[26]:
 
 
-T, dt = 100, 3
+T = 100
+dt = 0.1
 
 # 離散化した独立変数と従属変数
 t = np.arange(0, T, dt) 
@@ -373,7 +378,7 @@ u[0] = 0.5  # 初期値
 for n in range(len(t)-1):
     u[n+1] = u[n] + dt * g_logistic(t[n], u[n])
 
-# グラフの描画
+# 数値解の描画
 fig, ax = plt.subplots(figsize=(7, 5))
 ax.plot(t, u, '-x', ms=3) # 数値解
 
