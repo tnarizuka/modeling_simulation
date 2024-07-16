@@ -213,21 +213,21 @@ import japanize_matplotlib
 # 生物集団における個体数変化のモデルをより現実に近づけるためには，多数の生物種の間の捕食・被食関係を考慮する方法が考えられる．
 # このようなモデルの中で単純なものとして，2種の生物間の相互作用を考慮した**ロトカ・ヴォルテラモデル**が知られている．
 
-# In[47]:
+# In[57]:
 
 
 # シグモイド関数の定義
-def f_logistic(t, N0, N_inf, gamma): 
+def f_sigmoid(t, N0, N_inf, gamma): 
     return N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
 
 
-# In[55]:
+# In[58]:
 
 
 fig, ax = plt.subplots(figsize=(4, 3))
 t = np.arange(200)
-ax.plot(t, f_logistic(t, 10, 1000, 0.05), 'r-')
-ax.plot(t, f_logistic(t, 1500, 1000, 0.05), 'b-')
+ax.plot(t, f_sigmoid(t, 10, 1000, 0.05), 'r-')
+ax.plot(t, f_sigmoid(t, 1500, 1000, 0.05), 'b-')
 ax.plot(t, np.full_like(t, 1000), '--')
 
 ax.set_xlim(0, 200), ax.set_ylim(0, 2000); 
@@ -242,7 +242,7 @@ ax.set_ylabel('$N(t)$', fontsize=15);
 # 
 # ※ 本データの出典：[John Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series)
 
-# In[56]:
+# In[59]:
 
 
 # データの読み込み
@@ -253,9 +253,9 @@ ax.plot(data.index[:100], data['num'][:100], 'x', ms=6)
 
 for tmax in [50, 100]:
     t, Nt = data.index[:tmax], data['num'][:tmax] 
-    p_opt = curve_fit(f_logistic, t, Nt)[0]
+    p_opt = curve_fit(f_sigmoid, t, Nt)[0]
     print(p_opt)
-    ax.plot(t, f_logistic(t, p_opt[0], p_opt[1], p_opt[2]), '-', lw=2, label='%s日まで' % tmax)
+    ax.plot(t, f_sigmoid(t, p_opt[0], p_opt[1], p_opt[2]), '-', lw=2, label='%s日まで' % tmax)
 
 ax.set_xlim(0, 100), ax.set_ylim(0, 11000)
 ax.set_xlabel('time (day)', fontsize=15); ax.set_ylabel('Number of infected', fontsize=15)
@@ -399,23 +399,12 @@ fig, ax = plt.subplots(figsize=(7, 5))
 ax.plot(t, u, '-x', ms=3) # 数値解
 
 # 厳密解（シグモイド関数）の描画
-f_logistic = lambda t, N0, N_inf, gamma: N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
+f_sigmoid = lambda t, N0, N_inf, gamma: N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
 t2 = np.arange(0, T, 0.01)
-ax.plot(t2, f_logistic(t2, u[0], N_inf, gamma), 'r-')
+ax.plot(t2, f_sigmoid(t2, u[0], N_inf, gamma), 'r-')
 
 ax.set_xlim(0, T);
 
-
-# **演習問題**
-# 
-# - $ N_{\infty}=1000,\ \gamma=1 $ のロジスティックモデルについて，$ \Delta t $ を以下の値に設定して数値計算せよ．初期値は何でも良い．
-#   - $ 0 < \Delta t \le 1 $
-#   - $ 1 < \Delta t \le 2 $
-#   - $ 2 < \Delta t \le 2.4494879 $
-#   - $ 2.4494897 < \Delta t \le 2.5699456 $
-#   - $ 2.5699456 < \Delta t < 3 $
-#   - $ 3 < \Delta t $
-# - 同様に，$ \Delta t = 3 $ の場合に様々な初期条件で数値計算せよ．
 
 # ### scipy.integrate.solve_ivpによる数値計算
 
@@ -512,12 +501,12 @@ fig, ax = plt.subplots(figsize=(5, 4))
 ax.plot(t, sol.y[0], '-x', ms=3) # 数値解
 
 # 解析解
-f_logistic = lambda t, N0, N_inf, gamma: N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
-ax.plot(t, f_logistic(t, N0[0], N_inf, gamma), 'r-')
+f_sigmoid = lambda t, N0, N_inf, gamma: N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
+ax.plot(t, f_sigmoid(t, N0[0], N_inf, gamma), 'r-')
 ax.set_xlim(0, t[-1]);
 
 
-# **斜方投射**
+# **空気抵抗のある斜方投射の軌道**
 
 # 位置 $ (x_{0}, y_{0}) $ から角度 $ \theta $ の方向に初速 $ v_{0} $ で質量 $ m $ の物体を投げたときの物体の運動を考える．
 # これを斜方投射と呼ぶ．
@@ -704,3 +693,16 @@ ax.set_ylabel('$y$', fontsize=15)
 anim = FuncAnimation(fig, update_simple_pendulum, fargs=None,\
                      frames=len(t), blit=True, interval=20, repeat=True)
 
+
+# ### 演習問題
+# 
+# **A. オイラー法によるロジスティックモデルの数値計算**
+# 
+# - $ N_{\infty}=1000,\ \gamma=1 $ のロジスティックモデルについて，$ \Delta t $ を以下の値に設定してオイラー法で数値計算せよ．初期値は何でも良い．
+#   - $ 0 < \Delta t \le 1 $
+#   - $ 1 < \Delta t \le 2 $
+#   - $ 2 < \Delta t \le 2.4494879 $
+#   - $ 2.4494897 < \Delta t \le 2.5699456 $
+#   - $ 2.5699456 < \Delta t < 3 $
+#   - $ 3 < \Delta t $
+# - 同様に，$ \Delta t = 3 $ の場合に様々な初期条件で数値計算せよ．
