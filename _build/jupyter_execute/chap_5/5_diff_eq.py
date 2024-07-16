@@ -171,7 +171,7 @@ import japanize_matplotlib
 # $$
 # 
 # ロジスティックモデルは右辺が非線形な関数となっているが，これも変数分離形なのでマルサスモデルと同じように解くことができる．
-# まず，式を以下のように変形する：
+# まず，微分方程式を以下のように変形する：
 # 
 # $$
 # 	\frac{dN}{N(1 - N/N_{\infty})} = \gamma dt
@@ -200,10 +200,11 @@ import japanize_matplotlib
 # 
 # という一般解を得る．
 
-# 得られた一般解は**シグモイド関数**と呼ばれ，下図のような時間変化となる．
+# 得られた一般解は**ロジスティック関数**または**ロジスティック曲線**と呼ばれ，下図のような時間変化となる．
 # 初期の個体数が $ N_{0} < N_{\infty} $ を満たす場合には，最初は指数関数的な増加を示すが，次第に増加率が小さくなっていき，最終的には $ N_{\infty} $ に収束する．
 # この意味で，$ N_{\infty} $ は人口の上限を表す定数であることが分かる．
 # 一方，$ N_{0} > N_{\infty} $ の場合には指数関数的な減少を示すが，この場合にも最終的には $ N_{\infty} $ へと収束する．
+# なお，ロジスティック関数の特別な場合である $ 1/(1+\exp(-x)) $ は**シグモイド関数**と呼ばれ，機械学習の分野でよく使われる．
 # 
 # なお，実社会における人口の増加はマルサスモデルよりもロジスティックモデルに近いふるまいをするが，完璧に記述できるわけではない．
 # それでも，微生物などの場合には，環境をコントロールした実験によって，その増殖の仕方がロジスティックモデルによく従うことが分かっている．
@@ -216,8 +217,8 @@ import japanize_matplotlib
 # In[57]:
 
 
-# シグモイド関数の定義
-def f_sigmoid(t, N0, N_inf, gamma): 
+# ロジスティック関数の定義
+def logistic_func(t, N0, N_inf, gamma): 
     return N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
 
 
@@ -226,8 +227,8 @@ def f_sigmoid(t, N0, N_inf, gamma):
 
 fig, ax = plt.subplots(figsize=(4, 3))
 t = np.arange(200)
-ax.plot(t, f_sigmoid(t, 10, 1000, 0.05), 'r-')
-ax.plot(t, f_sigmoid(t, 1500, 1000, 0.05), 'b-')
+ax.plot(t, logistic_func(t, 10, 1000, 0.05), 'r-')
+ax.plot(t, logistic_func(t, 1500, 1000, 0.05), 'b-')
 ax.plot(t, np.full_like(t, 1000), '--')
 
 ax.set_xlim(0, 200), ax.set_ylim(0, 2000); 
@@ -236,9 +237,9 @@ ax.set_ylabel('$N(t)$', fontsize=15);
 
 
 # 改めて，韓国における新型コロナウイルス感染者数の推移データ（[covid19_korea.csv](https://drive.google.com/uc?export=download&id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz)）を調べてみよう．
-# このデータを読み込み，横軸に2020年1月22日を0日とした経過日数，縦軸に感染者数を取った散布図を50日目までと100日目までに分けて描くと，いずれもシグモイド関数のような変化となる．
+# このデータを読み込み，横軸に2020年1月22日を0日とした経過日数，縦軸に感染者数を取った散布図を50日目までと100日目までに分けて描くと，いずれもロジスティック関数のような変化となる．
 # そこで，$ N_{0},\ N_{\infty}, \gamma $ をフィッティングパラメータとして最小二乗法でフィッティングを行うと，以下のような結果が得られる．
-# 50日目まではほぼシグモイド関数に従っているが，50日目以降で増加の仕方に変化があり，シグモイド関数からのズレが見られることが分かる．
+# 50日目まではほぼロジスティック関数に従っているが，50日目以降で増加の仕方に変化があり，ロジスティック関数からのズレが見られることが分かる．
 # 
 # ※ 本データの出典：[John Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series)
 
@@ -253,9 +254,9 @@ ax.plot(data.index[:100], data['num'][:100], 'x', ms=6)
 
 for tmax in [50, 100]:
     t, Nt = data.index[:tmax], data['num'][:tmax] 
-    p_opt = curve_fit(f_sigmoid, t, Nt)[0]
+    p_opt = curve_fit(logistic_func, t, Nt)[0]
     print(p_opt)
-    ax.plot(t, f_sigmoid(t, p_opt[0], p_opt[1], p_opt[2]), '-', lw=2, label='%s日まで' % tmax)
+    ax.plot(t, logistic_func(t, p_opt[0], p_opt[1], p_opt[2]), '-', lw=2, label='%s日まで' % tmax)
 
 ax.set_xlim(0, 100), ax.set_ylim(0, 11000)
 ax.set_xlabel('time (day)', fontsize=15); ax.set_ylabel('Number of infected', fontsize=15)
@@ -398,10 +399,10 @@ for n in range(len(t)-1):
 fig, ax = plt.subplots(figsize=(7, 5))
 ax.plot(t, u, '-x', ms=3) # 数値解
 
-# 厳密解（シグモイド関数）の描画
-f_sigmoid = lambda t, N0, N_inf, gamma: N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
+# 厳密解（ロジスティック関数）の描画
+logistic_func = lambda t, N0, N_inf, gamma: N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
 t2 = np.arange(0, T, 0.01)
-ax.plot(t2, f_sigmoid(t2, u[0], N_inf, gamma), 'r-')
+ax.plot(t2, logistic_func(t2, u[0], N_inf, gamma), 'r-')
 
 ax.set_xlim(0, T);
 
@@ -501,8 +502,8 @@ fig, ax = plt.subplots(figsize=(5, 4))
 ax.plot(t, sol.y[0], '-x', ms=3) # 数値解
 
 # 解析解
-f_sigmoid = lambda t, N0, N_inf, gamma: N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
-ax.plot(t, f_sigmoid(t, N0[0], N_inf, gamma), 'r-')
+logistic_func = lambda t, N0, N_inf, gamma: N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
+ax.plot(t, logistic_func(t, N0[0], N_inf, gamma), 'r-')
 ax.set_xlim(0, t[-1]);
 
 
