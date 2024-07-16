@@ -3,7 +3,7 @@
 
 # # 微分方程式モデル
 
-# In[1]:
+# In[2]:
 
 
 import numpy as np
@@ -317,7 +317,13 @@ ax.legend(loc='upper left', fontsize=12);
 
 # **マルサスモデル**
 # 
-# マルサスモデルをオイラー法で離散化すると，以下のようになる：
+# マルサスモデル
+# 
+# $$
+# 	\frac{dN}{dt} = \alpha N(t)
+# $$
+# 
+# をオイラー法で離散化すると，以下のようになる：
 # 
 # $$
 #     u_{n+1} = u_{n} + \Delta t \alpha u_{n}
@@ -358,7 +364,13 @@ ax.set_ylabel('$N(t)$', fontsize=15)
 
 # **ロジスティックモデル**
 # 
-# ロジスティックモデルをオイラー法で離散化すると，以下のようになる：
+# ロジスティックモデル
+# 
+# $$
+# 	\frac{dN}{dt} = \gamma \left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)
+# $$
+# 
+# をオイラー法で離散化すると，以下のようになる：
 # 
 # $$
 #     u_{n+1} = u_{n} + \Delta t \gamma \left(1 - \frac{u_{n}}{N_{\infty}}\right)u_{n}
@@ -448,8 +460,12 @@ from scipy.integrate import solve_ivp
 # | `args` | `func`に渡す引数 |  |
 
 # **マルサスモデル**
+# 
+# $$
+# 	\frac{dN}{dt} = \alpha N(t)
+# $$
 
-# In[29]:
+# In[3]:
 
 
 def ode_malthus(t, N, a):
@@ -458,7 +474,7 @@ def ode_malthus(t, N, a):
     return [dNdt]
 
 
-# In[30]:
+# In[4]:
 
 
 # パラメータと初期条件
@@ -476,6 +492,10 @@ ax.plot(t, N0*np.exp(a*t), lw=2) # 解析解
 
 
 # **ロジスティックモデル**
+# 
+# $$
+# 	\frac{dN}{dt} = \gamma \left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)
+# $$
 
 # In[31]:
 

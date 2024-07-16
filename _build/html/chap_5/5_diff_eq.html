@@ -779,7 +779,12 @@ title="Print to PDF"
     u_{n+1} &amp;= u_{n} + \Delta t g(t_{n}, u_{n})
 \end{align*}\]</div>
 <p><strong>マルサスモデル</strong></p>
-<p>マルサスモデルをオイラー法で離散化すると，以下のようになる：</p>
+<p>マルサスモデル</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{dN}{dt} = \alpha N(t)
+\]</div>
+<p>をオイラー法で離散化すると，以下のようになる：</p>
 <div class="math notranslate nohighlight">
 \[
     u_{n+1} = u_{n} + \Delta t \alpha u_{n}
@@ -825,7 +830,12 @@ title="Print to PDF"
 </div>
 </div>
 <p><strong>ロジスティックモデル</strong></p>
-<p>ロジスティックモデルをオイラー法で離散化すると，以下のようになる：</p>
+<p>ロジスティックモデル</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{dN}{dt} = \gamma \left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)
+\]</div>
+<p>をオイラー法で離散化すると，以下のようになる：</p>
 <div class="math notranslate nohighlight">
 \[
     u_{n+1} = u_{n} + \Delta t \gamma \left(1 - \frac{u_{n}}{N_{\infty}}\right)u_{n}
@@ -940,6 +950,10 @@ title="Print to PDF"
 </tbody>
 </table>
 <p><strong>マルサスモデル</strong></p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{dN}{dt} = \alpha N(t)
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ode_malthus</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
@@ -968,13 +982,17 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x16c3af550&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x3205747c0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/5_diff_eq_33_1.png" src="../_images/5_diff_eq_33_1.png" />
 </div>
 </div>
 <p><strong>ロジスティックモデル</strong></p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{dN}{dt} = \gamma \left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ode_logistic</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">N_inf</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
