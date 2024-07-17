@@ -986,7 +986,7 @@ $$
 <span class="n">N0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 初期値</span>
 
 <span class="c1"># 数値計算</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
 <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">ode_malthus</span><span class="p">,</span> <span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">N0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;RK45&#39;</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
 
 <span class="c1"># グラフの描画</span>
@@ -1230,7 +1230,7 @@ $$
 <h3><span class="section-number">5.3.3. </span>演習問題<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p><strong>A. オイラー法によるロジスティックモデルの数値計算</strong></p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\( r=1,\ N_{\infty}=1000 \)</span> のロジスティックモデルについて，<span class="math notranslate nohighlight">\( \Delta t \)</span> を以下の値に設定してオイラー法で数値計算せよ．初期値は何でも良い．</p>
+<li><p><span class="math notranslate nohighlight">\( r=1,\ N_{\infty}=1000 \)</span> のロジスティックモデルについて，時間刻み <span class="math notranslate nohighlight">\( \Delta t \)</span> を以下の値に設定してオイラー法で数値計算せよ．初期値は何でも良い．</p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\( 0 &lt; \Delta t \le 1 \)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\( 1 &lt; \Delta t \le 2 \)</span></p></li>
@@ -1240,7 +1240,6 @@ $$
 <li><p><span class="math notranslate nohighlight">\( 3 &lt; \Delta t \)</span></p></li>
 </ul>
 </li>
-<li><p>同様に，<span class="math notranslate nohighlight">\( \Delta t = 3 \)</span> の場合に様々な初期条件で数値計算せよ．</p></li>
 </ul>
 <p><strong>B. オイラー法による自由落下の数値計算</strong></p>
 </section>
