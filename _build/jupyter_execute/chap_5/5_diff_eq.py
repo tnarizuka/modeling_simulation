@@ -3,7 +3,7 @@
 
 # # 微分方程式モデル
 
-# In[2]:
+# In[183]:
 
 
 import numpy as np
@@ -13,6 +13,7 @@ import pandas as pd
 import scipy as sp
 from scipy.integrate import odeint, solve_ivp
 from scipy.optimize import curve_fit
+
 import japanize_matplotlib
 
 
@@ -243,7 +244,7 @@ ax.set_ylabel('$N(t)$', fontsize=15);
 # 
 # ※ 本データの出典：[John Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series)
 
-# In[106]:
+# In[198]:
 
 
 # データの読み込み
@@ -256,7 +257,7 @@ for tmax in [50, 100]:
     t, Nt = data.index[:tmax], data['num'][:tmax] 
     p_opt = curve_fit(logistic_func, t, Nt)[0]
     print(p_opt)
-    ax.plot(t, logistic_func(t, p_opt[0], p_opt[1], p_opt[2]), '-', lw=2, label='%s日まで' % tmax)
+    ax.plot(t, logistic_func(t, p_opt[0], p_opt[1], p_opt[2]), '-', lw=2, label='$<%s$ day' % tmax)
 
 ax.set_xlim(0, 100), ax.set_ylim(0, 11000)
 ax.set_xlabel('time (day)', fontsize=15); ax.set_ylabel('Number of infected', fontsize=15)
@@ -345,7 +346,7 @@ def g_malthus(t, n, a=2):
     return a*n
 
 
-# In[108]:
+# In[184]:
 
 
 dt = 0.05 # 時間刻み
@@ -364,10 +365,11 @@ while t < 1:
 T = np.array(T); N = np.array(N)
 
 # グラフの描画
-fig, ax = plt.subplots()
-ax.plot(T, N, '.', ms=3) # 数値解
-ax.plot(T, np.exp(a*T), 'r-'); # 厳密解
+fig, ax = plt.subplots(figsize=(5, 4))
+ax.plot(T, N, 'o', ms=3, label='数値解') # 数値解
+ax.plot(T, np.exp(a*T), 'r-', label='解析解'); # 解析解
 
+ax.legend(loc='upper left', fontsize=12)
 ax.set_xlabel('$t$', fontsize=15)
 ax.set_ylabel('$N(t)$', fontsize=15);
 
@@ -393,7 +395,7 @@ ax.set_ylabel('$N(t)$', fontsize=15);
 # 特に，パラメータ（今の場合は $ 1+ r\Delta t $ ）がある値（3.5699456...）を超えると，特定の周期を持たない非常に複雑な振る舞いを示す．
 # これは，**カオス**の一例として知られている．
 
-# In[109]:
+# In[178]:
 
 
 # オイラー法で離散化したロジスティックモデル
@@ -401,7 +403,7 @@ def g_logistic(t, n, r=1, N_inf=1000):
     return r*(1-n/N_inf)*n
 
 
-# In[110]:
+# In[179]:
 
 
 # ロジスティック関数の定義
@@ -409,7 +411,7 @@ def logistic_func(t, N0, r=1, N_inf=1000):
     return N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(r*t, -709, 100000)))**(-1)
 
 
-# In[175]:
+# In[189]:
 
 
 dt = 0.05 # 時間刻み
@@ -429,11 +431,15 @@ T = np.array(T); N = np.array(N)
 
 # 数値解の描画
 fig, ax = plt.subplots(figsize=(5, 4))
-ax.plot(T, N, '-x', ms=3) # 数値解
+ax.plot(T, N, '-x', ms=3, label='数値解') # 数値解
 
 # 厳密解（ロジスティック関数）の描画
 T2 = np.linspace(0, 100, 1000)
-ax.plot(T2, logistic_func(T2, N[0], r=1, N_inf=1000), 'r-');
+ax.plot(T2, logistic_func(T2, N[0], r=1, N_inf=1000), 'r-', label='解析解')
+
+ax.legend(loc='best', fontsize=12)
+ax.set_xlabel('$t$', fontsize=15)
+ax.set_ylabel('$N(t)$', fontsize=15);
 
 
 # ### scipy.integrate.solve_ivpによる数値計算
@@ -445,7 +451,7 @@ ax.plot(T2, logistic_func(T2, N[0], r=1, N_inf=1000), 'r-');
 
 # まずは，以下のように`solve_ivp`をインポートしておく．
 
-# In[127]:
+# In[181]:
 
 
 from scipy.integrate import solve_ivp
@@ -493,7 +499,7 @@ def ode_malthus(t, N, a):
     return [dNdt]
 
 
-# In[156]:
+# In[190]:
 
 
 # パラメータと初期条件
@@ -506,8 +512,12 @@ sol = solve_ivp(ode_malthus, [t[0], t[-1]], N0, method='RK45', t_eval=t, args=[a
 
 # グラフの描画
 fig, ax = plt.subplots(figsize=(5, 4))
-ax.plot(t, sol.y[0], 'x') # 数値解
-ax.plot(t, N0*np.exp(a*t), lw=2); # 解析解
+ax.plot(t, sol.y[0], 'x', label='数値解') # 数値解
+ax.plot(t, N0*np.exp(a*t), lw=2, label='解析解'); # 解析解
+
+ax.legend(loc='best', fontsize=12)
+ax.set_xlabel('$t$', fontsize=15)
+ax.set_ylabel('$N(t)$', fontsize=15);
 
 
 # **ロジスティックモデル**
@@ -527,24 +537,29 @@ def ode_logistic(t, N, r=1, N_inf=1000):
     return [dNdt]
 
 
-# In[140]:
+# In[203]:
 
 
 # パラメータと初期条件
+dt = 0.05
 r, N_inf = 1, 1000  # パラメータ
 N0 = [1]  # 初期値
 
 # 数値計算
-t = np.arange(0, 100, 0.1)
+t = np.arange(0, 100, dt)
 sol = solve_ivp(ode_logistic, [t[0], t[-1]], N0, args=[r, N_inf], method='RK45', t_eval=t)
 
 # グラフの描画
 fig, ax = plt.subplots(figsize=(5, 4))
-ax.plot(t, sol.y[0], '-x', ms=3) # 数値解
+ax.plot(t, sol.y[0], '-x', ms=3, label='数値解') # 数値解
 
 # 解析解
-ax.plot(t, logistic_func(t, N0[0], r=1, N_inf=1000), 'r-')
-ax.set_xlim(0, t[-1]);
+ax.plot(t, logistic_func(t, N0[0], r=1, N_inf=1000), 'r-', label='解析解')
+
+ax.set_xlim(0, t[-1])
+ax.legend(loc='best', fontsize=12)
+ax.set_xlabel('$t$', fontsize=15)
+ax.set_ylabel('$N(t)$', fontsize=15);
 
 
 # **空気抵抗のある斜方投射の軌道**
@@ -691,7 +706,7 @@ def ode_simple_pendulum(t, var, g, l):
     return [dagdt, dvdt]
 
 
-# In[153]:
+# In[ ]:
 
 
 # パラメータ
@@ -726,19 +741,19 @@ ax.set_ylabel('$y$', fontsize=15)
 
 # 実行
 anim = FuncAnimation(fig, update_simple_pendulum, fargs=None,\
-                     frames=len(t), blit=True, interval=20, repeat=True)
+                     frames=len(t), blit=True, interval=20, repeat=True);
 
 
 # ### 演習問題
 # 
 # **A. オイラー法によるロジスティックモデルの数値計算**
 # 
-# - $ r=1,\ N_{\infty}=1000 $ のロジスティックモデルについて，時間刻み $ \Delta t $ を以下の値に設定してオイラー法で数値計算せよ．初期値は何でも良い．
+# - $ r=1,\ N_{\infty}=1000 $ のロジスティックモデルについて，時間刻み $ \Delta t $ を以下の値に設定して，オイラー法で数値計算せよ．初期値は何でも良い．
 #   - $ 0 < \Delta t \le 1 $
 #   - $ 1 < \Delta t \le 2 $
 #   - $ 2 < \Delta t \le 2.4494879 $
 #   - $ 2.4494897 < \Delta t \le 2.5699456 $
 #   - $ 2.5699456 < \Delta t < 3 $
-#   - $ 3 < \Delta t $
+# - 同様に，`solve_ivp`を用いて数値計算せよ．
 # 
 # **B. オイラー法による自由落下の数値計算**
