@@ -395,9 +395,31 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#scipy-integrate-solve-ivp">
      5.3.2. scipy.integrate.solve_ivpによる数値計算
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       マルサスモデル
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id12">
+       ロジスティックモデル
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id13">
+       斜方投射の軌道
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       単振り子
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id11">
+    <a class="reference internal nav-link" href="#id15">
      5.3.3. 演習問題
     </a>
    </li>
@@ -470,9 +492,31 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#scipy-integrate-solve-ivp">
      5.3.2. scipy.integrate.solve_ivpによる数値計算
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       マルサスモデル
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id12">
+       ロジスティックモデル
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id13">
+       斜方投射の軌道
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       単振り子
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id11">
+    <a class="reference internal nav-link" href="#id15">
      5.3.3. 演習問題
     </a>
    </li>
@@ -931,7 +975,7 @@ $$
 \end{align*}\]</div>
 <p>ただし，初期条件を <span class="math notranslate nohighlight">\( x(t_0) = x_0,\ y(t_0) = y_0, \ldots \)</span> とする．</p>
 <p><code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>は以下のように実行する：</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">solve_ivp</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">t_eval</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">t_eval</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>それぞれの引数の意味は以下の通りである：</p>
@@ -969,7 +1013,9 @@ $$
 </tr>
 </tbody>
 </table>
-<p><strong>マルサスモデル</strong></p>
+<p>また，微分方程式の解は戻り値<code class="docutils literal notranslate"><span class="pre">sol</span></code>に対して<code class="docutils literal notranslate"><span class="pre">sol.y[0]</span></code>，<code class="docutils literal notranslate"><span class="pre">sol.y[1]</span></code>とすることで順番に取り出すことができる．</p>
+<section id="id11">
+<h4>マルサスモデル<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">#</a></h4>
 <div class="math notranslate nohighlight">
 \[
 	\frac{dN}{dt} = \alpha N(t)
@@ -997,8 +1043,8 @@ $$
 
 <span class="c1"># グラフの描画</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;数値解&#39;</span><span class="p">)</span> <span class="c1"># 数値解</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;解析解&#39;</span><span class="p">);</span> <span class="c1"># 解析解</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;数値解&#39;</span><span class="p">)</span> <span class="c1"># 数値解</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">N0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;解析解&#39;</span><span class="p">);</span> <span class="c1"># 解析解</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
@@ -1010,7 +1056,9 @@ $$
 <img alt="../_images/5_diff_eq_34_0.png" src="../_images/5_diff_eq_34_0.png" />
 </div>
 </div>
-<p><strong>ロジスティックモデル</strong></p>
+</section>
+<section id="id12">
+<h4>ロジスティックモデル<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">#</a></h4>
 <div class="math notranslate nohighlight">
 \[
 	\frac{dN}{dt} = r \left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)
@@ -1039,7 +1087,7 @@ $$
 
 <span class="c1"># グラフの描画</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;-x&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;数値解&#39;</span><span class="p">)</span> <span class="c1"># 数値解</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;-x&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;数値解&#39;</span><span class="p">)</span> <span class="c1"># 数値解</span>
 
 <span class="c1"># 解析解</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">logistic_func</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N_inf</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;解析解&#39;</span><span class="p">)</span>
@@ -1055,20 +1103,22 @@ $$
 <img alt="../_images/5_diff_eq_37_0.png" src="../_images/5_diff_eq_37_0.png" />
 </div>
 </div>
-<p><strong>空気抵抗のある斜方投射の軌道</strong></p>
+</section>
+<section id="id13">
+<h4>斜方投射の軌道<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>位置 <span class="math notranslate nohighlight">\( (x_{0}, y_{0}) \)</span> から角度 <span class="math notranslate nohighlight">\( \theta \)</span> の方向に初速 <span class="math notranslate nohighlight">\( v_{0} \)</span> で質量 <span class="math notranslate nohighlight">\( m \)</span> の物体を投げたときの運動を考える．
 これを斜方投射と呼ぶ．
-物体には重力と速度に比例した空気抵抗がはたらくとすると，物体の運動は以下の微分方程式（運動方程式）で表される：</p>
+物体には重力だけがはたらくとすると，物体の運動は以下の微分方程式（運動方程式）で表される：</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    m\frac{d^{2}x}{dt^2} &amp;= -k\frac{dx}{dt} \\[10pt]
-    m\frac{d^{2}y}{dt^2} &amp;= -mg -k\frac{dy}{dt}
+    m\frac{d^{2}x}{dt^2} &amp;= 0 \\[10pt]
+    m\frac{d^{2}y}{dt^2} &amp;= -mg
 \end{align*}\]</div>
 <p>この微分方程式は解析的に解くことができ，解析解は次のように表される：</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    x(t) &amp;= x_{0} + \frac{m}{k}v_{0}\cos\theta \left(1 - \mathrm{e}^{-\frac{k}{m}t}\right) \\[10pt]
-    y(t) &amp;= y_{0} -\frac{mg}{k}t + \frac{m}{k} \left(v_{0}\sin\theta + \frac{mg}{k}\right) \left(1 - \mathrm{e}^{-\frac{k}{m}t}\right)
+    x(t) &amp;= x_{0} + v_{0}\cos\theta\cdot t \\[10pt]
+    y(t) &amp;= y_{0} - \frac{1}{2}gt^{2}+v_{0}\sin\theta \cdot t
 \end{align*}\]</div>
 <p>この微分方程式は2階微分方程式なので，このままだと<code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>で数値的に解くことができない．
 しかし，<span class="math notranslate nohighlight">\( \frac{dx}{dt}=v_{x},\ \frac{dy}{dt}=v_{y} \)</span> と置くと，以下のように連立1階微分方程式に変換することができる：</p>
@@ -1076,11 +1126,169 @@ $$
 \[\begin{align*}
     \frac{dx}{dt} &amp;= v_{x} \\[10pt]
     \frac{dy}{dt} &amp;= v_{y} \\[10pt]
-    m\frac{dv_{x}}{dt} &amp;= -kv_{x} \\[10pt]
-    m\frac{dv_{y}}{dt} &amp;= -mg -kv_{y}
+    m\frac{dv_{x}}{dt} &amp;= 0 \\[10pt]
+    m\frac{dv_{y}}{dt} &amp;= -mg
 \end{align*}\]</div>
 <p>これより，元の微分方程式を4変数の連立微分方程式と見なせば，<code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>を用いて解くことができる．</p>
 <p>以下では，matplotlibの<code class="docutils literal notranslate"><span class="pre">FuncAnimation</span></code>関数を使って数値解をアニメーションで表示してみよう．</p>
+<p>微分方程式の数値解を求める</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ode_projectile</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    斜方投射の運動方程式</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">vx</span><span class="p">,</span> <span class="n">vy</span> <span class="o">=</span> <span class="n">var</span>
+    <span class="n">dxdt</span> <span class="o">=</span> <span class="n">vx</span>
+    <span class="n">dydt</span> <span class="o">=</span> <span class="n">vy</span>
+    <span class="n">dvxdt</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">dvydt</span> <span class="o">=</span> <span class="o">-</span><span class="n">g</span>
+    
+    <span class="k">return</span> <span class="p">[</span><span class="n">dxdt</span><span class="p">,</span> <span class="n">dydt</span><span class="p">,</span> <span class="n">dvxdt</span><span class="p">,</span> <span class="n">dvydt</span><span class="p">]</span>
+
+<span class="c1"># パラメータ</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span> <span class="c1"># 重力加速度 [m/s^2]</span>
+
+<span class="c1"># 初期条件</span>
+<span class="n">x0</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># 初期位置(x0, y0) [m]</span>
+<span class="n">v0</span><span class="p">,</span> <span class="n">ag0</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>  <span class="c1"># 初速 [m/s]，投射角 [rad]</span>
+<span class="n">var0</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">v0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ag0</span><span class="p">),</span> <span class="n">v0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ag0</span><span class="p">)]</span> <span class="c1"># [x0, y0, vx, vz]</span>
+
+<span class="c1"># 数値計算</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">ode_projectile</span><span class="p">,</span> <span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">var0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;RK45&#39;</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">g</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 数値解の表示</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;vx&#39;</span><span class="p">:</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;vy&#39;</span><span class="p">:</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">3</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>t</th>
+      <th>x</th>
+      <th>y</th>
+      <th>vx</th>
+      <th>vy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>21.213203</td>
+      <td>21.213203</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.01</td>
+      <td>0.212132</td>
+      <td>0.211642</td>
+      <td>21.213203</td>
+      <td>21.115103</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.02</td>
+      <td>0.424264</td>
+      <td>0.422302</td>
+      <td>21.213203</td>
+      <td>21.017003</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.03</td>
+      <td>0.636396</td>
+      <td>0.631982</td>
+      <td>21.213203</td>
+      <td>20.918903</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.04</td>
+      <td>0.848528</td>
+      <td>0.840680</td>
+      <td>21.213203</td>
+      <td>20.820803</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>995</th>
+      <td>9.95</td>
+      <td>211.071374</td>
+      <td>-274.535888</td>
+      <td>21.213203</td>
+      <td>-76.396297</td>
+    </tr>
+    <tr>
+      <th>996</th>
+      <td>9.96</td>
+      <td>211.283506</td>
+      <td>-275.300342</td>
+      <td>21.213203</td>
+      <td>-76.494397</td>
+    </tr>
+    <tr>
+      <th>997</th>
+      <td>9.97</td>
+      <td>211.495638</td>
+      <td>-276.065776</td>
+      <td>21.213203</td>
+      <td>-76.592497</td>
+    </tr>
+    <tr>
+      <th>998</th>
+      <td>9.98</td>
+      <td>211.707770</td>
+      <td>-276.832192</td>
+      <td>21.213203</td>
+      <td>-76.690597</td>
+    </tr>
+    <tr>
+      <th>999</th>
+      <td>9.99</td>
+      <td>211.919902</td>
+      <td>-277.599588</td>
+      <td>21.213203</td>
+      <td>-76.788697</td>
+    </tr>
+  </tbody>
+</table>
+<p>1000 rows × 5 columns</p>
+</div></div></div>
+</div>
+<p>アニメーション</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.animation</span> <span class="kn">import</span> <span class="n">FuncAnimation</span>
@@ -1099,38 +1307,7 @@ $$
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ode_projectile</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">m_k</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    斜方投射（空気抵抗あり）の運動方程式</span>
-<span class="sd">    ---</span>
-<span class="sd">    m_k: m/k</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">vx</span><span class="p">,</span> <span class="n">vy</span> <span class="o">=</span> <span class="n">var</span>
-    <span class="n">dxdt</span> <span class="o">=</span> <span class="n">vx</span>
-    <span class="n">dydt</span> <span class="o">=</span> <span class="n">vy</span>
-    <span class="n">dvxdt</span> <span class="o">=</span> <span class="o">-</span><span class="n">vx</span><span class="o">/</span><span class="n">m_k</span>
-    <span class="n">dvydt</span> <span class="o">=</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span> <span class="n">vy</span><span class="o">/</span><span class="n">m_k</span>
-    
-    <span class="k">return</span> <span class="p">[</span><span class="n">dxdt</span><span class="p">,</span> <span class="n">dydt</span><span class="p">,</span> <span class="n">dvxdt</span><span class="p">,</span> <span class="n">dvydt</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># パラメータ</span>
-<span class="n">g</span> <span class="o">=</span> <span class="mf">9.8</span> <span class="c1"># 重力加速度 [m/s^2]</span>
-<span class="n">m_k</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># 質量と抵抗係数の比（m/k） [s]</span>
-
-<span class="c1"># 初期条件</span>
-<span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">ag0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="c1"># 初期位置 [m], 初速 [m/s]，投射角 [rad]</span>
-<span class="n">var0</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">v0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ag0</span><span class="p">),</span> <span class="n">v0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ag0</span><span class="p">)]</span> <span class="c1"># [x0, y0, vx, vz]</span>
-
-<span class="c1"># 数値計算</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">ode_projectile</span><span class="p">,</span> <span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">var0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;RK45&#39;</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">g</span><span class="p">,</span> <span class="n">m_k</span><span class="p">])</span>
-
-<span class="c1"># アニメーションの設定</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># アニメーションの設定</span>
 <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 
     <span class="n">line</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span> <span class="n">y</span><span class="p">[:</span><span class="n">i</span><span class="p">])</span>
@@ -1141,7 +1318,7 @@ $$
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="c1"># ax.set_aspect(&#39;equal&#39;)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$ [m]&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$ [m]&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
@@ -1153,7 +1330,9 @@ $$
 </div>
 </div>
 </div>
-<p><strong>単振り子</strong></p>
+</section>
+<section id="id14">
+<h4>単振り子<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">#</a></h4>
 <p>最後に，解析的に解けない微分方程式の例として，単振り子を取り上げる．
 天井から長さ <span class="math notranslate nohighlight">\( l \)</span> の糸で質量 <span class="math notranslate nohighlight">\( m \)</span> の物体を吊るしたときの静止位置を原点に取る．
 糸の垂直線からの角度を <span class="math notranslate nohighlight">\( \phi \)</span> とする．
@@ -1171,15 +1350,7 @@ $$
 	\frac{d\phi}{dt} &amp;= v_{\phi} \\[10pt]
 	\frac{dv_{\phi}}{dt} &amp;= -\frac{g}{l}\sin\phi
 \end{align*}\]</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 描画結果の出力先を別ウインドウとする</span>
-<span class="c1"># 元に戻すには %matplotlib inline を実行する</span>
-<span class="o">%</span><span class="k">matplotlib</span> tk
-</pre></div>
-</div>
-</div>
-</div>
+<p>微分方程式の数値解を求める</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ode_simple_pendulum</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span>
@@ -1191,13 +1362,8 @@ $$
     <span class="n">dvdt</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">g</span><span class="o">/</span><span class="n">l</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ag</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="p">[</span><span class="n">dagdt</span><span class="p">,</span> <span class="n">dvdt</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># パラメータ</span>
+
+<span class="c1"># パラメータ</span>
 <span class="n">l</span> <span class="o">=</span> <span class="mi">2</span>    <span class="c1"># 糸の長さ</span>
 <span class="n">g</span> <span class="o">=</span> <span class="mf">9.8</span>  <span class="c1"># 重力加速度</span>
 
@@ -1209,8 +1375,23 @@ $$
 <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">ode_simple_pendulum</span><span class="p">,</span> <span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">var0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;RK45&#39;</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">g</span><span class="p">,</span> <span class="n">l</span><span class="p">])</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">l</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>   <span class="c1"># x座標</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">l</span><span class="o">-</span><span class="n">l</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># y座標</span>
-
-<span class="c1"># アニメーションの設定</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>アニメーション</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 描画結果の出力先を別ウインドウとする</span>
+<span class="c1"># 元に戻すには %matplotlib inline を実行する</span>
+<span class="o">%</span><span class="k">matplotlib</span> tk
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># アニメーションの設定</span>
 <span class="k">def</span> <span class="nf">update_simple_pendulum</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
     <span class="n">pt</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="n">line</span><span class="o">.</span><span class="n">set_data</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="p">[</span><span class="n">l</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
@@ -1235,8 +1416,9 @@ $$
 </div>
 </div>
 </section>
-<section id="id11">
-<h3><span class="section-number">5.3.3. </span>演習問題<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">#</a></h3>
+</section>
+<section id="id15">
+<h3><span class="section-number">5.3.3. </span>演習問題<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">#</a></h3>
 <p><strong>A. オイラー法によるロジスティックモデルの数値計算</strong></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\( r=1,\ N_{\infty}=1000 \)</span> のロジスティックモデルについて，時間刻み <span class="math notranslate nohighlight">\( \Delta t \)</span> を以下の値に設定して，オイラー法で数値計算せよ．初期値は何でも良い．</p>
@@ -1250,7 +1432,10 @@ $$
 </li>
 <li><p>同様に，<code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>を用いて数値計算せよ．</p></li>
 </ul>
-<p><strong>B. オイラー法による自由落下の数値計算</strong></p>
+<p><strong>B. 斜方投射の最適角度</strong></p>
+<ul class="simple">
+<li><p>斜方投射の運動方程式を数値計算し，原点 <span class="math notranslate nohighlight">\( (0, 0) \)</span> から初速30m/sで投射した場合に最も遠くまで飛ぶ角度を求めよ．</p></li>
+</ul>
 </section>
 </section>
 </section>

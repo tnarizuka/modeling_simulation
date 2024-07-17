@@ -468,9 +468,11 @@ from scipy.integrate import solve_ivp
 # ただし，初期条件を $ x(t_0) = x_0,\ y(t_0) = y_0, \ldots $ とする．
 # 
 # `solve_ivp`は以下のように実行する：
+# 
 # ```python
-#     solve_ivp(func, t_span, y0, method, t_eval, args)
+# sol = solve_ivp(func, t_span, y0, method, t_eval, args)
 # ```
+# 
 # それぞれの引数の意味は以下の通りである：
 # 
 # | 引数 | 意味 | 例 |
@@ -481,8 +483,10 @@ from scipy.integrate import solve_ivp
 # | `method` | 数値解を求めるためのアルゴリズム | `'RK45'`, `'RK23'`, `'DOP853'`, `'Radau'`, `'BDF'` |
 # | `t_eval` | 数値解を求める時間 | np.arange(t_min, t_max, dt) |
 # | `args` | `func`に渡す引数 |  |
+# 
+# また，微分方程式の解は戻り値`sol`に対して`sol.y[0]`，`sol.y[1]`とすることで順番に取り出すことができる．
 
-# **マルサスモデル**
+# #### マルサスモデル
 # 
 # $$
 # 	\frac{dN}{dt} = \alpha N(t)
@@ -490,7 +494,7 @@ from scipy.integrate import solve_ivp
 # 
 # オイラー法の場合は時間刻みを大きくすると解析解から大幅にずれるが，`solve_ivp`を用いると，時間刻みが粗くても解析解に近い振る舞いを示すことが分かる．
 
-# In[128]:
+# In[248]:
 
 
 def ode_malthus(t, N, a):
@@ -499,7 +503,7 @@ def ode_malthus(t, N, a):
     return [dNdt]
 
 
-# In[190]:
+# In[249]:
 
 
 # パラメータと初期条件
@@ -512,15 +516,15 @@ sol = solve_ivp(ode_malthus, [t[0], t[-1]], N0, method='RK45', t_eval=t, args=[a
 
 # グラフの描画
 fig, ax = plt.subplots(figsize=(5, 4))
-ax.plot(t, sol.y[0], 'x', label='数値解') # 数値解
-ax.plot(t, N0*np.exp(a*t), lw=2, label='解析解'); # 解析解
+ax.plot(sol.t, sol.y[0], 'x', label='数値解') # 数値解
+ax.plot(sol.t, N0*np.exp(a*sol.t), lw=2, label='解析解'); # 解析解
 
 ax.legend(loc='best', fontsize=12)
 ax.set_xlabel('$t$', fontsize=15)
 ax.set_ylabel('$N(t)$', fontsize=15);
 
 
-# **ロジスティックモデル**
+# #### ロジスティックモデル
 # 
 # $$
 # 	\frac{dN}{dt} = r \left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)
@@ -528,7 +532,7 @@ ax.set_ylabel('$N(t)$', fontsize=15);
 # 
 # オイラー法の場合は時間刻みを大きくすると解析解から大幅にずれるが，`solve_ivp`を用いると，時間刻みが粗くても解析解に近い振る舞いを示すことが分かる．
 
-# In[134]:
+# In[250]:
 
 
 def ode_logistic(t, N, r=1, N_inf=1000):
@@ -537,7 +541,7 @@ def ode_logistic(t, N, r=1, N_inf=1000):
     return [dNdt]
 
 
-# In[203]:
+# In[261]:
 
 
 # パラメータと初期条件
@@ -551,7 +555,7 @@ sol = solve_ivp(ode_logistic, [t[0], t[-1]], N0, args=[r, N_inf], method='RK45',
 
 # グラフの描画
 fig, ax = plt.subplots(figsize=(5, 4))
-ax.plot(t, sol.y[0], '-x', ms=3, label='数値解') # 数値解
+ax.plot(sol.t, sol.y[0], '-x', ms=3, label='数値解') # 数値解
 
 # 解析解
 ax.plot(t, logistic_func(t, N0[0], r=1, N_inf=1000), 'r-', label='解析解')
@@ -562,22 +566,22 @@ ax.set_xlabel('$t$', fontsize=15)
 ax.set_ylabel('$N(t)$', fontsize=15);
 
 
-# **空気抵抗のある斜方投射の軌道**
+# #### 斜方投射の軌道
 
 # 位置 $ (x_{0}, y_{0}) $ から角度 $ \theta $ の方向に初速 $ v_{0} $ で質量 $ m $ の物体を投げたときの運動を考える．
 # これを斜方投射と呼ぶ．
-# 物体には重力と速度に比例した空気抵抗がはたらくとすると，物体の運動は以下の微分方程式（運動方程式）で表される：
+# 物体には重力だけがはたらくとすると，物体の運動は以下の微分方程式（運動方程式）で表される：
 # 
 # \begin{align*}
-#     m\frac{d^{2}x}{dt^2} &= -k\frac{dx}{dt} \\[10pt]
-#     m\frac{d^{2}y}{dt^2} &= -mg -k\frac{dy}{dt}
+#     m\frac{d^{2}x}{dt^2} &= 0 \\[10pt]
+#     m\frac{d^{2}y}{dt^2} &= -mg
 # \end{align*}
 # 
 # この微分方程式は解析的に解くことができ，解析解は次のように表される：
 # 
 # \begin{align*}
-#     x(t) &= x_{0} + \frac{m}{k}v_{0}\cos\theta \left(1 - \mathrm{e}^{-\frac{k}{m}t}\right) \\[10pt]
-#     y(t) &= y_{0} -\frac{mg}{k}t + \frac{m}{k} \left(v_{0}\sin\theta + \frac{mg}{k}\right) \left(1 - \mathrm{e}^{-\frac{k}{m}t}\right)
+#     x(t) &= x_{0} + v_{0}\cos\theta\cdot t \\[10pt]
+#     y(t) &= y_{0} - \frac{1}{2}gt^{2}+v_{0}\sin\theta \cdot t
 # \end{align*}
 
 # この微分方程式は2階微分方程式なので，このままだと`solve_ivp`で数値的に解くことができない．
@@ -586,21 +590,60 @@ ax.set_ylabel('$N(t)$', fontsize=15);
 # \begin{align*}
 #     \frac{dx}{dt} &= v_{x} \\[10pt]
 #     \frac{dy}{dt} &= v_{y} \\[10pt]
-#     m\frac{dv_{x}}{dt} &= -kv_{x} \\[10pt]
-#     m\frac{dv_{y}}{dt} &= -mg -kv_{y}
+#     m\frac{dv_{x}}{dt} &= 0 \\[10pt]
+#     m\frac{dv_{y}}{dt} &= -mg
 # \end{align*}
 # 
 # これより，元の微分方程式を4変数の連立微分方程式と見なせば，`solve_ivp`を用いて解くことができる．
 # 
 # 以下では，matplotlibの`FuncAnimation`関数を使って数値解をアニメーションで表示してみよう．
 
-# In[141]:
+# 微分方程式の数値解を求める
+
+# In[259]:
+
+
+def ode_projectile(t, var, g=9.81):
+    '''
+    斜方投射の運動方程式
+    '''
+    x, y, vx, vy = var
+    dxdt = vx
+    dydt = vy
+    dvxdt = 0
+    dvydt = -g
+    
+    return [dxdt, dydt, dvxdt, dvydt]
+
+# パラメータ
+g = 9.81 # 重力加速度 [m/s^2]
+
+# 初期条件
+x0, y0 = 0, 0,  # 初期位置(x0, y0) [m]
+v0, ag0 = 30, np.radians(45)  # 初速 [m/s]，投射角 [rad]
+var0 = [x0, y0, v0*np.cos(ag0), v0*np.sin(ag0)] # [x0, y0, vx, vz]
+
+# 数値計算
+t = np.arange(0, 10, 0.01)
+sol = solve_ivp(ode_projectile, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[g])
+
+
+# In[260]:
+
+
+# 数値解の表示
+pd.DataFrame({'t': sol.t, 'x': sol.y[0], 'y': sol.y[1], 'vx': sol.y[2], 'vy': sol.y[3]})
+
+
+# アニメーション
+
+# In[ ]:
 
 
 from matplotlib.animation import FuncAnimation
 
 
-# In[142]:
+# In[ ]:
 
 
 # 描画結果の出力先を別ウインドウとする
@@ -608,38 +651,8 @@ from matplotlib.animation import FuncAnimation
 get_ipython().run_line_magic('matplotlib', 'tk')
 
 
-# In[143]:
+# In[ ]:
 
-
-def ode_projectile(t, var, g, m_k):
-    '''
-    斜方投射（空気抵抗あり）の運動方程式
-    ---
-    m_k: m/k
-    '''
-    x, y, vx, vy = var
-    dxdt = vx
-    dydt = vy
-    dvxdt = -vx/m_k
-    dvydt = -g - vy/m_k
-    
-    return [dxdt, dydt, dvxdt, dvydt]
-
-
-# In[148]:
-
-
-# パラメータ
-g = 9.8 # 重力加速度 [m/s^2]
-m_k = 3 # 質量と抵抗係数の比（m/k） [s]
-
-# 初期条件
-x0, y0, v0, ag0 = 0, 0, 30, np.radians(30) # 初期位置 [m], 初速 [m/s]，投射角 [rad]
-var0 = [x0, y0, v0*np.cos(ag0), v0*np.sin(ag0)] # [x0, y0, vx, vz]
-
-# 数値計算
-t = np.arange(0, 10, 0.1)
-sol = solve_ivp(ode_projectile, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[g, m_k])
 
 # アニメーションの設定
 def update(i, x, y):
@@ -652,7 +665,7 @@ def update(i, x, y):
 fig, ax = plt.subplots(figsize=(7, 4))
 line, = ax.plot([], [], 'o-')
 
-ax.set_aspect('equal')
+# ax.set_aspect('equal')
 ax.set_xlim(0, 100); ax.set_ylim(0, 30)
 ax.set_xlabel('$x$ [m]', fontsize=15)
 ax.set_ylabel('$y$ [m]', fontsize=15)
@@ -662,7 +675,7 @@ anim = FuncAnimation(fig, update, fargs=[sol.y[0], sol.y[1]],\
                      frames=len(t), blit=True, interval=10, repeat=False)
 
 
-# **単振り子**
+# #### 単振り子
 # 
 # 最後に，解析的に解けない微分方程式の例として，単振り子を取り上げる．
 # 天井から長さ $ l $ の糸で質量 $ m $ の物体を吊るしたときの静止位置を原点に取る．
@@ -684,15 +697,9 @@ anim = FuncAnimation(fig, update, fargs=[sol.y[0], sol.y[1]],\
 # 	\frac{dv_{\phi}}{dt} &= -\frac{g}{l}\sin\phi
 # \end{align*}
 
-# In[149]:
+# 微分方程式の数値解を求める
 
-
-# 描画結果の出力先を別ウインドウとする
-# 元に戻すには %matplotlib inline を実行する
-get_ipython().run_line_magic('matplotlib', 'tk')
-
-
-# In[152]:
+# In[252]:
 
 
 def ode_simple_pendulum(t, var, g, l):
@@ -704,10 +711,6 @@ def ode_simple_pendulum(t, var, g, l):
     dvdt = -(g/l)*np.sin(ag)
     
     return [dagdt, dvdt]
-
-
-# In[ ]:
-
 
 # パラメータ
 l = 2    # 糸の長さ
@@ -721,6 +724,20 @@ t = np.arange(0, 100, 0.1)
 sol = solve_ivp(ode_simple_pendulum, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[g, l])
 x = l*np.sin(sol.y[0])   # x座標
 y = l-l*np.cos(sol.y[0]) # y座標
+
+
+# アニメーション
+
+# In[ ]:
+
+
+# 描画結果の出力先を別ウインドウとする
+# 元に戻すには %matplotlib inline を実行する
+get_ipython().run_line_magic('matplotlib', 'tk')
+
+
+# In[ ]:
+
 
 # アニメーションの設定
 def update_simple_pendulum(i):
@@ -756,4 +773,6 @@ anim = FuncAnimation(fig, update_simple_pendulum, fargs=None,\
 #   - $ 2.5699456 < \Delta t < 3 $
 # - 同様に，`solve_ivp`を用いて数値計算せよ．
 # 
-# **B. オイラー法による自由落下の数値計算**
+# **B. 斜方投射の最適角度**
+# 
+# - 斜方投射の運動方程式を数値計算し，原点 $ (0, 0) $ から初速30m/sで投射した場合に最も遠くまで飛ぶ角度を求めよ．
