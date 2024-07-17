@@ -22,7 +22,7 @@ import japanize_matplotlib
 
 # ### 微分方程式の定義
 # 
-# 独立変数を $ t $，$ t $に伴って決まる従属変数を $ x(t) $ とする．
+# 独立変数を $ t $，その従属変数を $ x(t) $ とする．
 # このとき，$ x $ の $ t $ による微分を含む方程式を**微分方程式**と呼ぶ．
 # 例えば，以下は微分方程式の例である：
 # 
@@ -159,43 +159,43 @@ import japanize_matplotlib
 # このような考察から，より現実に即したモデルとしてVerhulstによって導入されたのが以下の微分方程式である：
 # 
 # $$
-# 	\frac{dN}{dt} = \gamma \left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)
+# 	\frac{dN}{dt} = r \left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)
 # $$
 # 
-# ここで，$ \gamma,\ N_{\infty} $ は定数である．
+# ここで，$ r,\ N_{\infty} $ は定数である．
 # このモデルは**ロジスティックモデル**と呼ばれる．
 # ロジスティックモデルは，マルサスモデルの $ \alpha $ を以下のように置き換えた形になっている：
 # 
 # $$
-# 	\alpha \rightarrow \gamma \left(1 - \frac{N(t)}{N_{\infty}}\right)
+# 	\alpha \rightarrow r \left(1 - \frac{N(t)}{N_{\infty}}\right)
 # $$
 # 
 # ロジスティックモデルは右辺が非線形な関数となっているが，これも変数分離形なのでマルサスモデルと同じように解くことができる．
 # まず，微分方程式を以下のように変形する：
 # 
 # $$
-# 	\frac{dN}{N(1 - N/N_{\infty})} = \gamma dt
+# 	\frac{dN}{N(1 - N/N_{\infty})} = r dt
 # $$
 # 
 # ここで，左辺の被積分変数を部分分数分解すると，
 # 
 # $$
-# 	\left[\frac{1}{N} - \frac{1/N_{\infty}}{(1-N/N_{\infty})}\right]dN = \gamma dt
+# 	\left[\frac{1}{N} - \frac{1/N_{\infty}}{(1-N/N_{\infty})}\right]dN = r dt
 # $$
 # 
 # となる．
 # これより，両辺を不定積分することができて，
 # 
 # \begin{align*}
-# 	\int\left[\frac{1}{N} - \frac{1/N_{\infty}}{(1-N/N_{\infty})}\right]dN &= \int\gamma dt \\[10pt]
-# 	\ln \left(\frac{N}{1-N/N_{\infty}}\right) &= \gamma t + C
+# 	\int\left[\frac{1}{N} - \frac{1/N_{\infty}}{(1-N/N_{\infty})}\right]dN &= \int r dt \\[10pt]
+# 	\ln \left(\frac{N}{1-N/N_{\infty}}\right) &= r t + C
 # \end{align*}
 # 
 # となる．
 # さらに，初期条件として　$ t=0 $　で　$ N(0)=N_{0} $　とすれば，最終的に
 # 
 # $$
-# 	N(t) = \frac{N_{\infty}}{1+[(N_{\infty}/N_{0})-1]\mathrm{e}^{-\gamma t}}
+# 	N(t) = \frac{N_{\infty}}{1+[(N_{\infty}/N_{0})-1]\mathrm{e}^{-r t}}
 # $$
 # 
 # という一般解を得る．
@@ -206,44 +206,44 @@ import japanize_matplotlib
 # 一方，$ N_{0} > N_{\infty} $ の場合には指数関数的な減少を示すが，この場合にも最終的には $ N_{\infty} $ へと収束する．
 # なお，ロジスティック関数の特別な場合である $ f(x) = 1/(1+\mathrm{e}^{-x}) $ は**シグモイド関数**と呼ばれ，機械学習の分野でよく使われる．
 # 
-# なお，実社会における人口の増加はマルサスモデルよりもロジスティックモデルに近いふるまいをするが，完璧に記述できるわけではない．
-# それでも，微生物などの場合には，環境をコントロールした実験によって，その増殖の仕方がロジスティックモデルによく従うことが分かっている．
-# また，感染症のモデルとして知られるSIモデル（未感染者が感染者と接触すると一定の確率で感染するモデル）は感染者数がロジスティックモデルに従う．
+# 実社会における人口の増加はマルサスモデルよりもロジスティックモデルに近いふるまいをする．
+# 特に微生物などの場合には，環境をコントロールした実験によって，その増殖の仕方がロジスティックモデルによく従うことが分かっている．
+# また，感染症のモデルとして知られるSIモデル（未感染者が感染者と接触すると一定の確率で感染するモデル）は感染者数の増減がロジスティックモデルに従う．
 # さらに，家電の普及率など，近似的にロジスティックモデルで記述できる現象は多い．
 # 
 # 生物集団における個体数変化のモデルをより現実に近づけるためには，多数の生物種の間の捕食・被食関係を考慮する方法が考えられる．
 # このようなモデルの中で単純なものとして，2種の生物間の相互作用を考慮した**ロトカ・ヴォルテラモデル**が知られている．
 
-# In[57]:
+# In[100]:
 
 
 # ロジスティック関数の定義
-def logistic_func(t, N0, N_inf, gamma): 
-    return N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
+def logistic_func(t, N0=1, r=1, N_inf=1000): 
+    return N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(r*t, -709, 100000)))**(-1)
 
 
-# In[58]:
+# In[105]:
 
 
-fig, ax = plt.subplots(figsize=(4, 3))
+fig, ax = plt.subplots(figsize=(5, 4))
 t = np.arange(200)
-ax.plot(t, logistic_func(t, 10, 1000, 0.05), 'r-')
-ax.plot(t, logistic_func(t, 1500, 1000, 0.05), 'b-')
+ax.plot(t, logistic_func(t, N0=10, r=0.05, N_inf=1000), 'r-')
+ax.plot(t, logistic_func(t, N0=1500, r=0.05, N_inf=1000), 'b-')
 ax.plot(t, np.full_like(t, 1000), '--')
 
-ax.set_xlim(0, 200), ax.set_ylim(0, 2000); 
+ax.set_xlim(0, 200), ax.set_ylim(0, 1600); 
 ax.set_xlabel('$t$', fontsize=15)
 ax.set_ylabel('$N(t)$', fontsize=15);
 
 
 # 改めて，韓国における新型コロナウイルス感染者数の推移データ（[covid19_korea.csv](https://drive.google.com/uc?export=download&id=14l9chvX4PqHMQQl2yTQTPm7J7S5Us6Xz)）を調べてみよう．
 # このデータを読み込み，横軸に2020年1月22日を0日とした経過日数，縦軸に感染者数を取った散布図を50日目までと100日目までに分けて描くと，いずれもロジスティック関数のような変化となる．
-# そこで，$ N_{0},\ N_{\infty}, \gamma $ をフィッティングパラメータとして最小二乗法でフィッティングを行うと，以下のような結果が得られる．
+# そこで，$ N_{0},\ N_{\infty}, r $ をフィッティングパラメータとして最小二乗法でフィッティングを行うと，以下のような結果が得られる．
 # 50日目まではほぼロジスティック関数に従っているが，50日目以降で増加の仕方に変化があり，ロジスティック関数からのズレが見られることが分かる．
 # 
 # ※ 本データの出典：[John Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series)
 
-# In[59]:
+# In[106]:
 
 
 # データの読み込み
@@ -267,16 +267,17 @@ ax.legend(loc='upper left', fontsize=12);
 
 # ### オイラー法による数値計算
 
-# マルサスモデルとロジスティックモデルのように解析的に解けるような微分方程式は一般的には多くない．
+# マルサスモデルやロジスティックモデルのように解析的に解ける微分方程式は多くない．
 # そこで，微分方程式を解くもう一つの方法である数値解法が必要となる．
-# 数値解法は，非線形項を含む微分方程式や偏微分方程式などに対しても解を求めることができるが，ここでは次のような１階微分方程式を対象とする：
+# 数値解法は，非線形項を含む微分方程式や偏微分方程式などに対しても解を求めることができるが，あくまでも近似的な解であることに注意する必要がある．
+# ここでは次のような１階微分方程式を対象とする：
 # 
 # \begin{align*}
 #     \frac{du}{dt} &= g(t, u(t)) \\[10pt]
 #     u(0) &= u_{0}
 # \end{align*}
 # 
-# ここで，$ g(t, u(t)) $ は独立変数 $ t $ と従属変数 $ u(t) $ の任意関数であり，マルサスモデルやロジスティックモデルはこの形に帰着できる．
+# ここで，$ g(t, u(t)) $ は独立変数 $ t $ と従属変数 $ u(t) $ の任意関数であり，マルサスモデルやロジスティックモデルはいずれもこの形に帰着できる．
 # 
 # この微分方程式をコンピュータで数値的に扱うには微分の計算
 # 
@@ -288,10 +289,15 @@ ax.legend(loc='upper left', fontsize=12);
 # しかし，$ \Delta t $ を十分に小さくとれば，微分の近似値として十分に精度の高い値を得ることができる．
 # そこで，元の微分方程式を以下のように置き換えてみる：
 # 
-# \begin{align*}
-#     \frac{u(t+\Delta t) - u(t)}{\Delta t} &= g(t, u(t)) \\[10pt]
-#     u(t+\Delta t) &= u(t) + \Delta t g(t, u(t))
-# \end{align*}
+# $$
+#     \frac{u(t+\Delta t) - u(t)}{\Delta t} = g(t, u(t)) \\[10pt]
+# $$
+# 
+# さらに，$ u(t+\Delta t) $ を左辺に移項すると以下を得る：
+# 
+# $$
+#     u(t+\Delta t) = u(t) + g(t, u(t))\Delta t
+# $$
 # 
 # この式は $ u(t) $ から次の時刻の $ u(t+\Delta t) $ を求める漸化式と見なすことができる．
 # よって，初期条件 $ u(0) $ から $ u(\Delta t) $ を求め，さらに $ u(2\Delta t) $ を求めていけば，任意の時刻における $ u(t) $ を求めることができる．
@@ -300,7 +306,7 @@ ax.legend(loc='upper left', fontsize=12);
 # オイラー法は $ \Delta t $ を小さくとると精度が向上するが，その分計算量が増えてしまうという欠点がある．
 # そこで，ホイン法やルンゲクッタ法などより精度の高い方法が数多く提案されている．
 
-# オイラー法をPythonで実装するために，式の整理をしておこう．
+# <!-- オイラー法をPythonで実装するために，式の整理をしておこう．
 # まず，$ 0\sim t $ の時刻を $ \Delta t $ の間隔で $ n $ 個に分割すると，
 # 
 # $$
@@ -313,7 +319,7 @@ ax.legend(loc='upper left', fontsize=12);
 # 
 # \begin{align*}
 #     u_{n+1} &= u_{n} + \Delta t g(t_{n}, u_{n})
-# \end{align*}
+# \end{align*} -->
 
 # **マルサスモデル**
 # 
@@ -326,40 +332,44 @@ ax.legend(loc='upper left', fontsize=12);
 # をオイラー法で離散化すると，以下のようになる：
 # 
 # $$
-#     u_{n+1} = u_{n} + \Delta t \alpha u_{n}
+#     N(t+\Delta t) = N(t) + \alpha N(t)\Delta t
 # $$
 # 
 # 実際に数値計算すると，時間刻み $ \Delta t $ を小さくするほど厳密解に近づくことが分かる．
 
-# In[5]:
+# In[107]:
 
 
-a = 2
-def g_malthus(t_n, u_n):
-    return a*u_n
+# オイラー法で離散化したマルサスモデル
+def g_malthus(t, n, a=2):
+    return a*n
 
 
-# In[19]:
+# In[108]:
 
 
-T, dt = 1, 0.05
-
-# 離散化した独立変数と従属変数
-t = np.arange(0, T, dt) 
-u = np.zeros(len(t))
+dt = 0.05 # 時間刻み
+T = [0] # 独立変数を格納するリスト
+N = [1] # 従属変数を格納するリスト
 
 # 数値計算
-u[0] = 1 # 初期値
-for n in range(len(t)-1):
-    u[n+1] = u[n] + dt * g_malthus(t[n], u[n])
+t = T[0]; n = N[0] # 初期値
+while t < 1:
+    # オイラー法による更新
+    t = t + dt
+    n = n + dt * g_malthus(t, n, a=2)
+    T.append(t); N.append(n) # 更新結果をリストに追加
+
+# リストをnumpy配列に変換
+T = np.array(T); N = np.array(N)
 
 # グラフの描画
 fig, ax = plt.subplots()
-ax.plot(t, u, '.', ms=3) # 数値解
-ax.plot(t, np.exp(a*t), 'r-'); # 厳密解
+ax.plot(T, N, '.', ms=3) # 数値解
+ax.plot(T, np.exp(a*T), 'r-'); # 厳密解
 
 ax.set_xlabel('$t$', fontsize=15)
-ax.set_ylabel('$N(t)$', fontsize=15)
+ax.set_ylabel('$N(t)$', fontsize=15);
 
 
 # **ロジスティックモデル**
@@ -367,56 +377,63 @@ ax.set_ylabel('$N(t)$', fontsize=15)
 # ロジスティックモデル
 # 
 # $$
-# 	\frac{dN}{dt} = \gamma \left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)
+# 	\frac{dN}{dt} = r \left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)
 # $$
 # 
 # をオイラー法で離散化すると，以下のようになる：
 # 
 # $$
-#     u_{n+1} = u_{n} + \Delta t \gamma \left(1 - \frac{u_{n}}{N_{\infty}}\right)u_{n}
+#     N(t+\Delta t) = N(t) + r\left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)\Delta t
 # $$
 # 
 # この場合も時間刻み $ \Delta t $ を小さくすると数値解と厳密解がよく一致することが分かる．
 # 一方，$ \Delta t $ を大きくしていくと，マルサスモデルの場合とは異なった振る舞いが見られる．
 # 詳しくは，演習問題をやれば分かるが，オイラー法が全く役に立たないことが実感できるだろう．
 # 実は，ロジスティック方程式をオイラー法で離散化した方程式は**ロジスティック写像**と呼ばれており，**周期倍分岐**と呼ばれる特異な振る舞いをすることが知られている．
-# 特に，パラメータ（今の場合は $ 1+\Delta t \gamma $ ）がある値（3.5699456...）を超えると，特定の周期を持たない非常に複雑な振る舞いを示す．
+# 特に，パラメータ（今の場合は $ 1+ r\Delta t $ ）がある値（3.5699456...）を超えると，特定の周期を持たない非常に複雑な振る舞いを示す．
 # これは，**カオス**の一例として知られている．
 
-# In[27]:
+# In[109]:
 
 
-# オイラー法で離散化したロジスティック方程式
-gamma, N_inf = 1, 1000
-def g_logistic(t_n, u_n):
-    return gamma*(1-u_n/N_inf)*u_n
+# オイラー法で離散化したロジスティックモデル
+def g_logistic(t, n, r=1, N_inf=1000):
+    return r*(1-n/N_inf)*n
 
 
-# In[26]:
+# In[110]:
 
 
-T = 100
-dt = 0.1
+# ロジスティック関数の定義
+def logistic_func(t, N0, r=1, N_inf=1000): 
+    return N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(r*t, -709, 100000)))**(-1)
 
-# 離散化した独立変数と従属変数
-t = np.arange(0, T, dt) 
-u = np.zeros(len(t))
+
+# In[126]:
+
+
+dt = 0.05 # 時間刻み
+T = [0] # 独立変数を格納するリスト
+N = [1] # 従属変数を格納するリスト
 
 # 数値計算
-u[0] = 0.5  # 初期値
-for n in range(len(t)-1):
-    u[n+1] = u[n] + dt * g_logistic(t[n], u[n])
+t = T[0]; n = N[0] # 初期値
+while t < 100:
+    # オイラー法による更新
+    t = t + dt
+    n = n + dt * g_logistic(t, n, r=1, N_inf=1000)
+    T.append(t); N.append(n) # 更新結果をリストに追加
+
+# リストをnumpy配列に変換    
+T = np.array(T); N = np.array(N)
 
 # 数値解の描画
-fig, ax = plt.subplots(figsize=(7, 5))
-ax.plot(t, u, '-x', ms=3) # 数値解
+fig, ax = plt.subplots(figsize=(5, 4))
+ax.plot(T, N, '-x', ms=3) # 数値解
 
 # 厳密解（ロジスティック関数）の描画
-logistic_func = lambda t, N0, N_inf, gamma: N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
-t2 = np.arange(0, T, 0.01)
-ax.plot(t2, logistic_func(t2, u[0], N_inf, gamma), 'r-')
-
-ax.set_xlim(0, T);
+T2 = np.linspace(0, 100, 1000)
+ax.plot(T2, logistic_func(T2, N[0], r=1, N_inf=1000), 'r-');
 
 
 # ### scipy.integrate.solve_ivpによる数値計算
@@ -428,7 +445,7 @@ ax.set_xlim(0, T);
 
 # まずは，以下のように`solve_ivp`をインポートしておく．
 
-# In[28]:
+# In[127]:
 
 
 from scipy.integrate import solve_ivp
@@ -464,8 +481,10 @@ from scipy.integrate import solve_ivp
 # $$
 # 	\frac{dN}{dt} = \alpha N(t)
 # $$
+# 
+# オイラー法の場合は時間刻みを大きくすると解析解から大幅にずれるが，`solve_ivp`を用いると，時間刻みが粗くても解析解に近い振る舞いを示すことが分かる．
 
-# In[3]:
+# In[128]:
 
 
 def ode_malthus(t, N, a):
@@ -474,7 +493,7 @@ def ode_malthus(t, N, a):
     return [dNdt]
 
 
-# In[4]:
+# In[133]:
 
 
 # パラメータと初期条件
@@ -482,70 +501,71 @@ a = 2   # パラメータ
 N0 = [1]  # 初期値
 
 # 数値計算
-t = np.arange(0, 1, 0.05)
+t = np.arange(0, 1, 0.2)
 sol = solve_ivp(ode_malthus, [t[0], t[-1]], N0, method='RK45', t_eval=t, args=[a])
 
 # グラフの描画
 fig, ax = plt.subplots(figsize=(5, 4))
 ax.plot(t, sol.y[0], 'x') # 数値解
-ax.plot(t, N0*np.exp(a*t), lw=2) # 解析解
+ax.plot(t, N0*np.exp(a*t), lw=2); # 解析解
 
 
 # **ロジスティックモデル**
 # 
 # $$
-# 	\frac{dN}{dt} = \gamma \left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)
+# 	\frac{dN}{dt} = r \left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)
 # $$
+# 
+# オイラー法の場合は時間刻みを大きくすると解析解から大幅にずれるが，`solve_ivp`を用いると，時間刻みが粗くても解析解に近い振る舞いを示すことが分かる．
 
-# In[31]:
+# In[134]:
 
 
-def ode_logistic(t, N, N_inf, gamma):
-    dNdt = gamma * (1 - N / N_inf) * N
+def ode_logistic(t, N, r=1, N_inf=1000):
+    dNdt = r * (1 - N / N_inf) * N
 
     return [dNdt]
 
 
-# In[32]:
+# In[140]:
 
 
 # パラメータと初期条件
-gamma, N_inf = 1, 1000  # パラメータ
+r, N_inf = 1, 1000  # パラメータ
 N0 = [1]  # 初期値
 
 # 数値計算
 t = np.arange(0, 100, 0.1)
-sol = solve_ivp(ode_logistic, [t[0], t[-1]], N0, args=[N_inf, gamma], method='RK45', t_eval=t)
+sol = solve_ivp(ode_logistic, [t[0], t[-1]], N0, args=[r, N_inf], method='RK45', t_eval=t)
 
 # グラフの描画
 fig, ax = plt.subplots(figsize=(5, 4))
 ax.plot(t, sol.y[0], '-x', ms=3) # 数値解
 
 # 解析解
-logistic_func = lambda t, N0, N_inf, gamma: N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(gamma*t, -709, 100000)))**(-1)
-ax.plot(t, logistic_func(t, N0[0], N_inf, gamma), 'r-')
+ax.plot(t, logistic_func(t, N0[0], r=1, N_inf=1000), 'r-')
 ax.set_xlim(0, t[-1]);
 
 
 # **空気抵抗のある斜方投射の軌道**
 
-# 位置 $ (x_{0}, y_{0}) $ から角度 $ \theta $ の方向に初速 $ v_{0} $ で質量 $ m $ の物体を投げたときの物体の運動を考える．
+# 位置 $ (x_{0}, y_{0}) $ から角度 $ \theta $ の方向に初速 $ v_{0} $ で質量 $ m $ の物体を投げたときの運動を考える．
 # これを斜方投射と呼ぶ．
-# 物体には重力と速度に比例した空気抵抗がはたらくとすると，物体の運動は以下の微分方程式（運動方程式）で表される
+# 物体には重力と速度に比例した空気抵抗がはたらくとすると，物体の運動は以下の微分方程式（運動方程式）で表される：
 # 
 # \begin{align*}
 #     m\frac{d^{2}x}{dt^2} &= -k\frac{dx}{dt} \\[10pt]
 #     m\frac{d^{2}y}{dt^2} &= -mg -k\frac{dy}{dt}
 # \end{align*}
 # 
-# この微分方程式は解析的に解くことができ，以下のように表される：
+# この微分方程式は解析的に解くことができ，解析解は次のように表される：
 # 
 # \begin{align*}
 #     x(t) &= x_{0} + \frac{m}{k}v_{0}\cos\theta \left(1 - \mathrm{e}^{-\frac{k}{m}t}\right) \\[10pt]
 #     y(t) &= y_{0} -\frac{mg}{k}t + \frac{m}{k} \left(v_{0}\sin\theta + \frac{mg}{k}\right) \left(1 - \mathrm{e}^{-\frac{k}{m}t}\right)
 # \end{align*}
 
-# この微分方程式は2階微分方程式なので，このままだと数値的に解くことができない．
+# この微分方程式は2階微分方程式なので，このままだと`solve_ivp`で数値的に解くことができない．
 # しかし，$ \frac{dx}{dt}=v_{x},\ \frac{dy}{dt}=v_{y} $ と置くと，以下のように連立1階微分方程式に変換することができる：
 # 
 # \begin{align*}
@@ -559,13 +579,13 @@ ax.set_xlim(0, t[-1]);
 # 
 # 以下では，matplotlibの`FuncAnimation`関数を使って数値解をアニメーションで表示してみよう．
 
-# In[33]:
+# In[141]:
 
 
 from matplotlib.animation import FuncAnimation
 
 
-# In[34]:
+# In[142]:
 
 
 # 描画結果の出力先を別ウインドウとする
@@ -573,7 +593,7 @@ from matplotlib.animation import FuncAnimation
 get_ipython().run_line_magic('matplotlib', 'tk')
 
 
-# In[35]:
+# In[143]:
 
 
 def ode_projectile(t, var, g, m_k):
@@ -591,7 +611,7 @@ def ode_projectile(t, var, g, m_k):
     return [dxdt, dydt, dvxdt, dvydt]
 
 
-# In[39]:
+# In[148]:
 
 
 # パラメータ
@@ -606,10 +626,6 @@ var0 = [x0, y0, v0*np.cos(ag0), v0*np.sin(ag0)] # [x0, y0, vx, vz]
 t = np.arange(0, 10, 0.1)
 sol = solve_ivp(ode_projectile, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[g, m_k])
 
-
-# In[40]:
-
-
 # アニメーションの設定
 def update(i, x, y):
 
@@ -618,7 +634,7 @@ def update(i, x, y):
     return [line]
 
 # グラフの設定
-fig, ax = plt.subplots(figsize=(7, 5))
+fig, ax = plt.subplots(figsize=(7, 4))
 line, = ax.plot([], [], 'o-')
 
 ax.set_aspect('equal')
@@ -626,7 +642,7 @@ ax.set_xlim(0, 100); ax.set_ylim(0, 30)
 ax.set_xlabel('$x$ [m]', fontsize=15)
 ax.set_ylabel('$y$ [m]', fontsize=15)
 
-# 実行
+# アニメーションの実行
 anim = FuncAnimation(fig, update, fargs=[sol.y[0], sol.y[1]],\
                      frames=len(t), blit=True, interval=10, repeat=False)
 
@@ -653,13 +669,15 @@ anim = FuncAnimation(fig, update, fargs=[sol.y[0], sol.y[1]],\
 # 	\frac{dv_{\phi}}{dt} &= -\frac{g}{l}\sin\phi
 # \end{align*}
 
-# In[168]:
+# In[149]:
 
 
+# 描画結果の出力先を別ウインドウとする
+# 元に戻すには %matplotlib inline を実行する
 get_ipython().run_line_magic('matplotlib', 'tk')
 
 
-# In[41]:
+# In[152]:
 
 
 def ode_simple_pendulum(t, var, g, l):
@@ -673,7 +691,7 @@ def ode_simple_pendulum(t, var, g, l):
     return [dagdt, dvdt]
 
 
-# In[42]:
+# In[153]:
 
 
 # パラメータ
@@ -688,10 +706,6 @@ t = np.arange(0, 100, 0.1)
 sol = solve_ivp(ode_simple_pendulum, [t[0], t[-1]], var0, method='RK45', t_eval=t, args=[g, l])
 x = l*np.sin(sol.y[0])   # x座標
 y = l-l*np.cos(sol.y[0]) # y座標
-
-
-# In[43]:
-
 
 # アニメーションの設定
 def update_simple_pendulum(i):
@@ -719,7 +733,7 @@ anim = FuncAnimation(fig, update_simple_pendulum, fargs=None,\
 # 
 # **A. オイラー法によるロジスティックモデルの数値計算**
 # 
-# - $ N_{\infty}=1000,\ \gamma=1 $ のロジスティックモデルについて，$ \Delta t $ を以下の値に設定してオイラー法で数値計算せよ．初期値は何でも良い．
+# - $ r=1,\ N_{\infty}=1000 $ のロジスティックモデルについて，$ \Delta t $ を以下の値に設定してオイラー法で数値計算せよ．初期値は何でも良い．
 #   - $ 0 < \Delta t \le 1 $
 #   - $ 1 < \Delta t \le 2 $
 #   - $ 2 < \Delta t \le 2.4494879 $
