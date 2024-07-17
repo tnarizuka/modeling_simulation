@@ -409,7 +409,7 @@ def logistic_func(t, N0, r=1, N_inf=1000):
     return N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(r*t, -709, 100000)))**(-1)
 
 
-# In[126]:
+# In[175]:
 
 
 dt = 0.05 # 時間刻み
@@ -493,7 +493,7 @@ def ode_malthus(t, N, a):
     return [dNdt]
 
 
-# In[133]:
+# In[156]:
 
 
 # パラメータと初期条件
@@ -501,7 +501,7 @@ a = 2   # パラメータ
 N0 = [1]  # 初期値
 
 # 数値計算
-t = np.arange(0, 1, 0.2)
+t = np.arange(0, 1, 0.05)
 sol = solve_ivp(ode_malthus, [t[0], t[-1]], N0, method='RK45', t_eval=t, args=[a])
 
 # グラフの描画
@@ -733,14 +733,12 @@ anim = FuncAnimation(fig, update_simple_pendulum, fargs=None,\
 # 
 # **A. オイラー法によるロジスティックモデルの数値計算**
 # 
-# - $ r=1,\ N_{\infty}=1000 $ のロジスティックモデルについて，$ \Delta t $ を以下の値に設定してオイラー法で数値計算せよ．初期値は何でも良い．
+# - $ r=1,\ N_{\infty}=1000 $ のロジスティックモデルについて，時間刻み $ \Delta t $ を以下の値に設定してオイラー法で数値計算せよ．初期値は何でも良い．
 #   - $ 0 < \Delta t \le 1 $
 #   - $ 1 < \Delta t \le 2 $
 #   - $ 2 < \Delta t \le 2.4494879 $
 #   - $ 2.4494897 < \Delta t \le 2.5699456 $
 #   - $ 2.5699456 < \Delta t < 3 $
 #   - $ 3 < \Delta t $
-# - 同様に，$ \Delta t = 3 $ の場合に様々な初期条件で数値計算せよ．
-# 
 # 
 # **B. オイラー法による自由落下の数値計算**
