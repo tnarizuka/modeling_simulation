@@ -1433,12 +1433,14 @@ $$
 <li><p>同様に，<code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>を用いて数値計算せよ．</p></li>
 </ul>
 <p><strong>B. 空気抵抗を受ける落下運動の終端速度</strong></p>
-<ul class="simple">
-<li><p>空気抵抗を受ける物体の落下運動は，以下の微分方程式で記述される：
-$<span class="math notranslate nohighlight">\(
-  m\frac{dv}{dt} = -mg - kv(t)
-\)</span><span class="math notranslate nohighlight">\(
-ここで，\)</span> m <span class="math notranslate nohighlight">\( は物体の質量，\)</span> g <span class="math notranslate nohighlight">\( は重力加速度，\)</span> v(t) <span class="math notranslate nohighlight">\( は時刻 \)</span> t <span class="math notranslate nohighlight">\( における物体の速度，\)</span> k $ は空気抵抗の係数である．</p></li>
+<ul>
+<li><p>空気抵抗を受ける物体の落下運動は，以下の微分方程式で記述される：</p>
+<div class="math notranslate nohighlight">
+\[
+    m\frac{dv}{dt} = -mg - kv(t)
+  \]</div>
+<p>ここで，<span class="math notranslate nohighlight">\( m \)</span> は物体の質量，<span class="math notranslate nohighlight">\( g \)</span> は重力加速度，<span class="math notranslate nohighlight">\( v(t) \)</span> は時刻 <span class="math notranslate nohighlight">\( t \)</span> における物体の速度，<span class="math notranslate nohighlight">\( k \)</span> は空気抵抗の係数である．</p>
+</li>
 <li><p>この微分方程式をオイラー法で数値計算し，物体の速度の時間変化をプロットせよ．
 ただし，<span class="math notranslate nohighlight">\( m=1\ \mathrm{kg},\ g=9.8\ \mathrm{m/s^2},\ k=1\ \mathrm{kg/s} \)</span> とする．
 また，初速度は <span class="math notranslate nohighlight">\( v(0)=0\ \mathrm{m/s} \)</span> とする．</p></li>
