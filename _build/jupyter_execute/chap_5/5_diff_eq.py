@@ -3,7 +3,7 @@
 
 # # 微分方程式モデル
 
-# In[183]:
+# In[1]:
 
 
 import numpy as np
@@ -338,7 +338,7 @@ ax.legend(loc='upper left', fontsize=12);
 # 
 # 実際に数値計算すると，時間刻み $ \Delta t $ を小さくするほど厳密解に近づくことが分かる．
 
-# In[107]:
+# In[2]:
 
 
 # オイラー法で離散化したマルサスモデル
@@ -346,7 +346,7 @@ def g_malthus(t, n, a=2):
     return a*n
 
 
-# In[184]:
+# In[8]:
 
 
 dt = 0.05 # 時間刻み
@@ -367,7 +367,7 @@ T = np.array(T); N = np.array(N)
 # グラフの描画
 fig, ax = plt.subplots(figsize=(5, 4))
 ax.plot(T, N, 'o', ms=3, label='数値解') # 数値解
-ax.plot(T, np.exp(a*T), 'r-', label='解析解'); # 解析解
+ax.plot(T, np.exp(2*T), 'r-', label='解析解'); # 解析解
 
 ax.legend(loc='upper left', fontsize=12)
 ax.set_xlabel('$t$', fontsize=15)
@@ -395,7 +395,7 @@ ax.set_ylabel('$N(t)$', fontsize=15);
 # 特に，パラメータ（今の場合は $ 1+ r\Delta t $ ）がある値（3.5699456...）を超えると，特定の周期を持たない非常に複雑な振る舞いを示す．
 # これは，**カオス**の一例として知られている．
 
-# In[178]:
+# In[9]:
 
 
 # オイラー法で離散化したロジスティックモデル
@@ -403,7 +403,7 @@ def g_logistic(t, n, r=1, N_inf=1000):
     return r*(1-n/N_inf)*n
 
 
-# In[179]:
+# In[10]:
 
 
 # ロジスティック関数の定義
@@ -411,7 +411,7 @@ def logistic_func(t, N0, r=1, N_inf=1000):
     return N_inf * (1+(N_inf/N0-1)*np.exp(-np.clip(r*t, -709, 100000)))**(-1)
 
 
-# In[189]:
+# In[11]:
 
 
 dt = 0.05 # 時間刻み
@@ -494,7 +494,7 @@ from scipy.integrate import solve_ivp
 # 
 # オイラー法の場合は時間刻みを大きくすると解析解から大幅にずれるが，`solve_ivp`を用いると，時間刻みが粗くても解析解に近い振る舞いを示すことが分かる．
 
-# In[248]:
+# In[2]:
 
 
 def ode_malthus(t, N, a):
@@ -773,6 +773,19 @@ anim = FuncAnimation(fig, update_simple_pendulum, fargs=None,\
 #   - $ 2.5699456 < \Delta t < 3 $
 # - 同様に，`solve_ivp`を用いて数値計算せよ．
 # 
-# **B. 斜方投射の最適角度**
+# **B. 空気抵抗を受ける落下運動の終端速度**
+# 
+# - 空気抵抗を受ける物体の落下運動は，以下の微分方程式で記述される：
+#   $$
+#     m\frac{dv}{dt} = -mg - kv(t)
+#   $$
+#   ここで，$ m $ は物体の質量，$ g $ は重力加速度，$ v(t) $ は時刻 $ t $ における物体の速度，$ k $ は空気抵抗の係数である．
+# - この微分方程式をオイラー法で数値計算し，物体の速度の時間変化をプロットせよ．
+#   ただし，$ m=1\ \mathrm{kg},\ g=9.8\ \mathrm{m/s^2},\ k=1\ \mathrm{kg/s} $ とする．
+#   また，初速度は $ v(0)=0\ \mathrm{m/s} $ とする．
+# - 物体の終端速度（ $ t\to \infty $ の速度）の理論値は $ v_{\infty} = -mg/k $ である．
+#   この値と数値計算で得られた終端速度を比較せよ．
+# 
+# **C. 斜方投射の最適角度**
 # 
 # - 斜方投射の運動方程式を数値計算し，原点 $ (0, 0) $ から初速30m/sで投射した場合に最も遠くまで飛ぶ角度を求めよ．
