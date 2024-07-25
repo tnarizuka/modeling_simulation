@@ -869,7 +869,7 @@ $$
 <span class="c1"># グラフの描画</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;数値解&#39;</span><span class="p">)</span> <span class="c1"># 数値解</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">T</span><span class="p">),</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;解析解&#39;</span><span class="p">);</span> <span class="c1"># 解析解</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">),</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;解析解&#39;</span><span class="p">);</span> <span class="c1"># 解析解</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
@@ -1432,7 +1432,20 @@ $$
 </li>
 <li><p>同様に，<code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>を用いて数値計算せよ．</p></li>
 </ul>
-<p><strong>B. 斜方投射の最適角度</strong></p>
+<p><strong>B. 空気抵抗を受ける落下運動の終端速度</strong></p>
+<ul class="simple">
+<li><p>空気抵抗を受ける物体の落下運動は，以下の微分方程式で記述される：
+$<span class="math notranslate nohighlight">\(
+  m\frac{dv}{dt} = -mg - kv(t)
+\)</span><span class="math notranslate nohighlight">\(
+ここで，\)</span> m <span class="math notranslate nohighlight">\( は物体の質量，\)</span> g <span class="math notranslate nohighlight">\( は重力加速度，\)</span> v(t) <span class="math notranslate nohighlight">\( は時刻 \)</span> t <span class="math notranslate nohighlight">\( における物体の速度，\)</span> k $ は空気抵抗の係数である．</p></li>
+<li><p>この微分方程式をオイラー法で数値計算し，物体の速度の時間変化をプロットせよ．
+ただし，<span class="math notranslate nohighlight">\( m=1\ \mathrm{kg},\ g=9.8\ \mathrm{m/s^2},\ k=1\ \mathrm{kg/s} \)</span> とする．
+また，初速度は <span class="math notranslate nohighlight">\( v(0)=0\ \mathrm{m/s} \)</span> とする．</p></li>
+<li><p>物体の終端速度（ <span class="math notranslate nohighlight">\( t\to \infty \)</span> の速度）の理論値は <span class="math notranslate nohighlight">\( v_{\infty} = -mg/k \)</span> である．
+この値と数値計算で得られた終端速度を比較せよ．</p></li>
+</ul>
+<p><strong>C. 斜方投射の最適角度</strong></p>
 <ul class="simple">
 <li><p>斜方投射の運動方程式を数値計算し，原点 <span class="math notranslate nohighlight">\( (0, 0) \)</span> から初速30m/sで投射した場合に最も遠くまで飛ぶ角度を求めよ．</p></li>
 </ul>
