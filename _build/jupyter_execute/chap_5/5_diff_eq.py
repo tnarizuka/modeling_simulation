@@ -758,7 +758,7 @@ get_ipython().run_line_magic('matplotlib', 'tk')
 
 # アニメーションの設定
 def update_simple_pendulum(i):
-    pt.set_data(x[i], y[i])
+    pt.set_data([x[i]], [y[i]])
     line.set_data([0, x[i]], [l, y[i]])
     
     return [pt, line]
