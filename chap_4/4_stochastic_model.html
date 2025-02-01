@@ -1,723 +1,446 @@
 
 <!DOCTYPE html>
 
-<html lang="ja">
+
+<html lang="ja" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>4. 確率モデル &#8212; Mathematical Modeling and Simulation</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/documentation_options.js?v=1cf7f4d9"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=91613774"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap_4/4_stochastic_model';</script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
     <link rel="next" title="5. 微分方程式モデル" href="../chap_5/5_diff_eq.html" />
     <link rel="prev" title="3. カーブフィッティング" href="../chap_3/3_curve_fitting.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="ja">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="ja"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Mathematical Modeling and Simulation</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Mathematical Modeling and Simulation - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Mathematical Modeling and Simulation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">検索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../chap_1/1_introduction.html">
-   1. イントロダクション
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../chap_2/2_environment.html">
-   2. 準備
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../chap_3/3_curve_fitting.html">
-   3. カーブフィッティング
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   4. 確率モデル
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../chap_5/5_diff_eq.html">
-   5. 微分方程式モデル
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../chap_1/1_introduction.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap_2/2_environment.html">2. 準備</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap_3/3_curve_fitting.html">3. カーブフィッティング</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. 確率モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap_5/5_diff_eq.html">5. 微分方程式モデル</a></li>
 </ul>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../reference.html">
-   参考文献リスト
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">参考文献リスト</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/tnarizuka/modeling_simulation/main?urlpath=tree/docs/chap_4/4_stochastic_model.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tnarizuka/modeling_simulation" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="ソースリポジトリ"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tnarizuka/modeling_simulation/issues/new?title=Issue%20on%20page%20%2Fchap_4/4_stochastic_model.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="問題を報告"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="このページをダウンロード">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chap_4/4_stochastic_model.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="ソースファイルをダウンロード"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="PDFに印刷"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全画面モード"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/tnarizuka/modeling_simulation"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/tnarizuka/modeling_simulation/issues/new?title=Issue%20on%20page%20%2Fchap_4/4_stochastic_model.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/chap_4/4_stochastic_model.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </button>
-
-      </li>
+</div></div>
       
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
+    </div>
   
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   4.1. 乱数の生成
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     4.1.1. 一様乱数
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id5">
-       線形合同法
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id7">
-       より性能の良い一様乱数生成アルゴリズム
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     4.1.2. 任意の確率分布に従う乱数
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id9">
-       逆関数法
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#box-muller">
-       Box-Muller法（正規分布）
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id10">
-       複雑な確率分布の場合
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id11">
-   4.2. ベルヌーイ過程
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id12">
-     4.2.1. 二項分布
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id13">
-     4.2.2. ポアソン分布
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id14">
-     4.2.3. 演習問題
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id15">
-   4.3. 大数の法則と中心極限定理
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id16">
-     4.3.1. 大数の法則
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id17">
-       ベルヌーイ過程の場合
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id18">
-       大数の法則（一般の場合）
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id19">
-     4.3.2. 中心極限定理
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id20">
-       ベルヌーイ分布の場合
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id21">
-       指数分布の場合
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id22">
-     4.3.3. サイコロを振る実験
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id23">
-   4.4. マルコフ連鎖
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id24">
-     4.4.1. マルコフ連鎖の定式化
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id25">
-       遷移確率
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id26">
-       状態ベクトル
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id27">
-       マルコフ連鎖の定常状態
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id28">
-     4.4.2. マルコフ連鎖の例
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id29">
-       具体例
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id30">
-       応用例
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python">
-     4.4.3. Pythonによる実装
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id31">
-     4.4.4. 演習問題
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>確率モデル</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   4.1. 乱数の生成
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     4.1.1. 一様乱数
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id5">
-       線形合同法
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id7">
-       より性能の良い一様乱数生成アルゴリズム
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     4.1.2. 任意の確率分布に従う乱数
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id9">
-       逆関数法
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#box-muller">
-       Box-Muller法（正規分布）
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id10">
-       複雑な確率分布の場合
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id11">
-   4.2. ベルヌーイ過程
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id12">
-     4.2.1. 二項分布
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id13">
-     4.2.2. ポアソン分布
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id14">
-     4.2.3. 演習問題
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id15">
-   4.3. 大数の法則と中心極限定理
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id16">
-     4.3.1. 大数の法則
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id17">
-       ベルヌーイ過程の場合
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id18">
-       大数の法則（一般の場合）
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id19">
-     4.3.2. 中心極限定理
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id20">
-       ベルヌーイ分布の場合
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id21">
-       指数分布の場合
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id22">
-     4.3.3. サイコロを振る実験
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id23">
-   4.4. マルコフ連鎖
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id24">
-     4.4.1. マルコフ連鎖の定式化
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id25">
-       遷移確率
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id26">
-       状態ベクトル
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id27">
-       マルコフ連鎖の定常状態
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id28">
-     4.4.2. マルコフ連鎖の例
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id29">
-       具体例
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id30">
-       応用例
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python">
-     4.4.3. Pythonによる実装
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id31">
-     4.4.4. 演習問題
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>確率モデル</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目次 </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.1. 乱数の生成</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.1.1. 一様乱数</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">線形合同法</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">より性能の良い一様乱数生成アルゴリズム</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4.1.2. 任意の確率分布に従う乱数</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">逆関数法</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#box-muller">Box-Muller法（正規分布）</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">複雑な確率分布の場合</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4.2. ベルヌーイ過程</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">4.2.1. 二項分布</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">4.2.2. ポアソン分布</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">4.2.3. 演習問題</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">4.3. 大数の法則と中心極限定理</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">4.3.1. 大数の法則</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">ベルヌーイ過程の場合</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">大数の法則（一般の場合）</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">4.3.2. 中心極限定理</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">ベルヌーイ分布の場合</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">指数分布の場合</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">4.3.3. サイコロを振る実験</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">4.4. マルコフ連鎖</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">4.4.1. マルコフ連鎖の定式化</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">遷移確率</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">状態ベクトル</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">マルコフ連鎖の定常状態</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">4.4.2. マルコフ連鎖の例</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">具体例</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">応用例</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python">4.4.3. Pythonによる実装</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">4.4.4. 演習問題</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1><span class="section-number">4. </span>確率モデル<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">#</a></h1>
+<h1><span class="section-number">4. </span>確率モデル<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -738,7 +461,7 @@ title="Print to PDF"
 また，株価の変動は，毎時刻ごとに株価の上がり幅と下がり幅が確率的に決まるようなモデル（ランダムウォーク）によって記述することができる．
 本章では，確率モデルを用いたシミュレーションで必要な乱数について述べた後，確率モデルにおいて重要となる大数の法則と中心極限定理，そしてランダムウォークについて説明する．</p>
 <section id="id3">
-<h2><span class="section-number">4.1. </span>乱数の生成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">#</a></h2>
+<h2><span class="section-number">4.1. </span>乱数の生成<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>ある数列が与えられたとき，数の並び方に規則性や周期性がない場合，この数列の各要素を<strong>乱数</strong>と呼ぶ．
 乱数を生成するにはいくつかの方法がある．
 例えば，サイコロを振って出た目を記録するだけでも，1〜6の数値から成る乱数を生成することができる．
@@ -748,17 +471,17 @@ title="Print to PDF"
 疑似乱数はアルゴリズム次第で十分にランダムに見える値を高速に生成することができるため，シミュレーションにおいて役立つ．
 一方，疑似乱数はアルゴリズムが分かれば値を予測することができてしまう，ある種の周期性が現れてしまう，などの欠点があるため，これを解決するための様々なアルゴリズムが提案されている．</p>
 <section id="id4">
-<h3><span class="section-number">4.1.1. </span>一様乱数<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">4.1.1. </span>一様乱数<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>乱数の中で最も基本的なものは，ある範囲の値が同じ確率で出現する<strong>一様乱数</strong>である．
 一様乱数は，一様分布に従う確率変数の実現値と捉えることができ，様々な確率モデルの構築に用いられる．
 また，任意の確率分布に従う乱数を生成するためにも不可欠である．</p>
 <section id="id5">
-<h4>線形合同法<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>線形合同法<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <p>一様乱数を生成するアルゴリズムの中で，最も基本的なものが<strong>線形合同法</strong>である．
 線形合同法にはいくつかの問題があるため，精度が求められる大規模なシミュレーションには使われないが，手軽に乱数を生成したりアルゴリズムの基礎を理解するためには便利である．</p>
 <div class="admonition- admonition">
 <p class="admonition-title">線形合同法のアルゴリズム</p>
-<ol>
+<ol class="arabic">
 <li><p>以下の大小関係を満たすように整数 <span class="math notranslate nohighlight">\( a, b, M \)</span> を決める：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -851,12 +574,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_stochastic_model_15_0.png" src="../_images/4_stochastic_model_15_0.png" />
+<img alt="../_images/6ae2a076e2ff53333e4a8bd86a649691de4d046f634d88c7a41af71a4b195ec0.png" src="../_images/6ae2a076e2ff53333e4a8bd86a649691de4d046f634d88c7a41af71a4b195ec0.png" />
 </div>
 </div>
 </section>
 <section id="id7">
-<h4>より性能の良い一様乱数生成アルゴリズム<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>より性能の良い一様乱数生成アルゴリズム<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <p>線形合同法は，周期性の問題などがあるため，実用的にはより性能の良いアルゴリズムが用いられる．
 例えば，NumpyやSciPyでは，高速で長い周期を持つ一様乱数を生成するために，<a class="reference external" href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/TEACH/ichimura-sho-koen.pdf">メルセンヌ・ツイスタ</a>やPCG64などのアルゴリズムを選ぶことができる．</p>
 <p>※ ライブラリのバージョンアップによって変わる可能性がある．</p>
@@ -892,14 +615,14 @@ title="Print to PDF"
 </section>
 </section>
 <section id="id8">
-<h3><span class="section-number">4.1.2. </span>任意の確率分布に従う乱数<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">4.1.2. </span>任意の確率分布に従う乱数<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <section id="id9">
-<h4>逆関数法<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>逆関数法<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
 <p>ある確率分布に従う乱数を生成したいとする．
 もし，求めたい確率分布について，その累積分布関数の逆関数が求まるならば，以下の<strong>逆関数法</strong>が適用できる．</p>
 <div class="admonition- admonition">
 <p class="admonition-title">逆関数法のアルゴリズム</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>求めたい確率分布の累積分布関数 <span class="math notranslate nohighlight">\( F(x) \)</span> を求める．</p></li>
 <li><p><span class="math notranslate nohighlight">\( F(x) \)</span> の逆関数 <span class="math notranslate nohighlight">\( F^{-1} \)</span> を計算する．</p></li>
 <li><p><span class="math notranslate nohighlight">\( [0, 1) \)</span> の一様乱数 <span class="math notranslate nohighlight">\( U \)</span> に対し， <span class="math notranslate nohighlight">\( F^{-1}(U) \)</span> は求めたい確率分布に従う乱数である．</p></li>
@@ -977,17 +700,17 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;確率密度 $ f(x) $&#39;)
 </pre></div>
 </div>
-<img alt="../_images/4_stochastic_model_26_1.png" src="../_images/4_stochastic_model_26_1.png" />
+<img alt="../_images/34db408c7cc702a3ef00a356ab1698653272379f58a047a15737a4503071fb2c.png" src="../_images/34db408c7cc702a3ef00a356ab1698653272379f58a047a15737a4503071fb2c.png" />
 </div>
 </div>
 </section>
 <section id="box-muller">
-<h4>Box-Muller法（正規分布）<a class="headerlink" href="#box-muller" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>Box-Muller法（正規分布）<a class="headerlink" href="#box-muller" title="Link to this heading">#</a></h4>
 <p>正規分布の場合は，中心極限定理（後述）を用いた方法やボックス・ミュラー法が知られている．
 ボックスミュラー法は，<span class="math notranslate nohighlight">\( [0, 1) \)</span> の一様乱数 <span class="math notranslate nohighlight">\( U_{1},\ U_{2} \)</span> から標準正規分布に従う正規乱数 <span class="math notranslate nohighlight">\( Z_{1},\ Z_{2} \)</span> を生成することができる．</p>
 <div class="admonition- admonition">
 <p class="admonition-title">ボックスミュラー法のアルゴリズム</p>
-<ol>
+<ol class="arabic">
 <li><p><span class="math notranslate nohighlight">\( [0, 1) \)</span> の一様乱数 <span class="math notranslate nohighlight">\( U_1, U_2 \)</span> を生成する．</p></li>
 <li><p>以下の式で一様乱数を変換する：</p>
 <div class="amsmath math notranslate nohighlight">
@@ -1031,19 +754,19 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;確率密度 $ f(x) $&#39;)
 </pre></div>
 </div>
-<img alt="../_images/4_stochastic_model_29_1.png" src="../_images/4_stochastic_model_29_1.png" />
+<img alt="../_images/2cd6b34b84076f6ae562b8fb0167e489f48ecdca5032ec1802d7a954dfd21641.png" src="../_images/2cd6b34b84076f6ae562b8fb0167e489f48ecdca5032ec1802d7a954dfd21641.png" />
 </div>
 </div>
 </section>
 <section id="id10">
-<h4>複雑な確率分布の場合<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>複雑な確率分布の場合<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
 <p>逆関数法は累積分布関数の逆関数が求まる場合にしか適用できなかったが，どんな確率分布にも適用できる方法として，<a class="reference external" href="https://en.wikipedia.org/wiki/Rejection_sampling">棄却法</a>がある．
 また，マルコフ連鎖に基づいて任意の確率分布に従う乱数を生成するマルコフ連鎖モンテカルロ法（MCMC）は，主にベイズ推定を始めとして様々な分野で用いられている．</p>
 </section>
 </section>
 </section>
 <section id="id11">
-<h2><span class="section-number">4.2. </span>ベルヌーイ過程<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">#</a></h2>
+<h2><span class="section-number">4.2. </span>ベルヌーイ過程<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
 <p>以下の条件を満たす試行を<strong>ベルヌーイ試行</strong>と呼ぶ：</p>
 <ul class="simple">
 <li><p>1回の試行において，起こりうる事象が2種類しかない</p></li>
@@ -1069,7 +792,7 @@ title="Print to PDF"
 <li><p><strong>ポアソン分布</strong>：ベルヌーイ過程において，成功確率 <span class="math notranslate nohighlight">\( p \)</span> が小さく，試行回数 <span class="math notranslate nohighlight">\( n \)</span> が大きいときに <span class="math notranslate nohighlight">\( np=一定 \)</span> の条件の下で成功回数が従う確率分布．</p></li>
 </ul>
 <section id="id12">
-<h3><span class="section-number">4.2.1. </span>二項分布<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">4.2.1. </span>二項分布<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
 <p>ベルヌーイ試行を <span class="math notranslate nohighlight">\( n \)</span> 回繰り返すとき，成功回数 <span class="math notranslate nohighlight">\( X=\displaystyle\sum_{i=1}^{n} U_{i} \)</span> を新たな確率変数とする．
 このとき，成功が <span class="math notranslate nohighlight">\( x \)</span> 回，失敗が <span class="math notranslate nohighlight">\( n-x \)</span> 回生じたとすると，その確率分布は<strong>二項分布</strong></p>
 <div class="math notranslate nohighlight">
@@ -1097,7 +820,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_stochastic_model_34_0.png" src="../_images/4_stochastic_model_34_0.png" />
+<img alt="../_images/a743ae92bb59a1a2857a703358171678f7e48883c29dbc0288bde6f6449ed526.png" src="../_images/a743ae92bb59a1a2857a703358171678f7e48883c29dbc0288bde6f6449ed526.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1116,12 +839,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_stochastic_model_35_0.png" src="../_images/4_stochastic_model_35_0.png" />
+<img alt="../_images/f995531250b2aae7364ba8e151753b28edecef60cf4b8f7fe75ad7f94d6eb785.png" src="../_images/f995531250b2aae7364ba8e151753b28edecef60cf4b8f7fe75ad7f94d6eb785.png" />
 </div>
 </div>
 </section>
 <section id="id13">
-<h3><span class="section-number">4.2.2. </span>ポアソン分布<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">4.2.2. </span>ポアソン分布<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
 <p>ベルヌーイ試行を <span class="math notranslate nohighlight">\( n \)</span> 回繰り返すとき，成功確率 <span class="math notranslate nohighlight">\( p \)</span> が小さく，かつ試行回数 <span class="math notranslate nohighlight">\( n \)</span> が大きい極限を考える．
 ただし，極限を取る際に平均値が一定値 <span class="math notranslate nohighlight">\( np=\mu \)</span> になるようにする．
 このような条件で成功回数 <span class="math notranslate nohighlight">\( X \)</span> が従う分布は，二項分布の式に <span class="math notranslate nohighlight">\( np=\mu \)</span> を代入し，極限 <span class="math notranslate nohighlight">\( p\to 0,\ n\to \infty \)</span> を取ることで</p>
@@ -1157,7 +880,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_stochastic_model_38_0.png" src="../_images/4_stochastic_model_38_0.png" />
+<img alt="../_images/9d0cb926ce898c603a1b927c26facaec255ed91d1ef4c71b640a77046584b428.png" src="../_images/9d0cb926ce898c603a1b927c26facaec255ed91d1ef4c71b640a77046584b428.png" />
 </div>
 </div>
 <p><strong><span class="math notranslate nohighlight">\( \mu \)</span>が大きいとき</strong></p>
@@ -1185,13 +908,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_stochastic_model_40_0.png" src="../_images/4_stochastic_model_40_0.png" />
+<img alt="../_images/a09ccc5c4dba99c5dbf79d2278906ba37f4ba2d0ef9d085517f466bcf1477a7d.png" src="../_images/a09ccc5c4dba99c5dbf79d2278906ba37f4ba2d0ef9d085517f466bcf1477a7d.png" />
 </div>
 </div>
 </section>
 <section id="id14">
-<h3><span class="section-number">4.2.3. </span>演習問題<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">#</a></h3>
-<ol class="simple">
+<h3><span class="section-number">4.2.3. </span>演習問題<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
 <li><p>二項分布の期待値が <span class="math notranslate nohighlight">\( np \)</span>，分散が <span class="math notranslate nohighlight">\( np(1-p) \)</span> となることを示せ．</p></li>
 <li><p>二項分布からポアソン分布を導出せよ．</p></li>
 <li><p>ポアソン分布の期待値と分散が共に <span class="math notranslate nohighlight">\( \mu \)</span> であることを示せ．</p></li>
@@ -1199,7 +922,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="id15">
-<h2><span class="section-number">4.3. </span>大数の法則と中心極限定理<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">#</a></h2>
+<h2><span class="section-number">4.3. </span>大数の法則と中心極限定理<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
 <!-- 
 ### ベルヌーイ試行
 
@@ -1210,9 +933,9 @@ title="Print to PDF"
 ### 中心極限定理
 
 ## ランダムウォーク --><section id="id16">
-<h3><span class="section-number">4.3.1. </span>大数の法則<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">4.3.1. </span>大数の法則<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
 <section id="id17">
-<h4>ベルヌーイ過程の場合<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>ベルヌーイ過程の場合<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
 <p>既にベルヌーイ過程における成功回数 <span class="math notranslate nohighlight">\( X=\displaystyle\sum_{i=1}^{n} U_{i} \)</span> が二項分布に従うことを見たが，ここでは <span class="math notranslate nohighlight">\( U \)</span> の標本平均（成功割合）</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1238,7 +961,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_stochastic_model_46_0.png" src="../_images/4_stochastic_model_46_0.png" />
+<img alt="../_images/d6c1b9639f0fe4302a7d6340603f85ca11d0bf6b7f61272edbda03a5b5d2f961.png" src="../_images/d6c1b9639f0fe4302a7d6340603f85ca11d0bf6b7f61272edbda03a5b5d2f961.png" />
 </div>
 </div>
 <p>以上のような図の変化を数式で確認する．
@@ -1249,7 +972,7 @@ title="Print to PDF"
 このように，確率変数の標本平均が理論値に一致する性質は<strong>大数の法則</strong>と呼ばれている．</p>
 </section>
 <section id="id18">
-<h4>大数の法則（一般の場合）<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>大数の法則（一般の場合）<a class="headerlink" href="#id18" title="Link to this heading">#</a></h4>
 <p>大数の法則は，一般の確率分布に従う確率変数列について成り立つ法則であり，以下のように表される．</p>
 <div class="admonition- admonition">
 <p class="admonition-title">大数の法則</p>
@@ -1293,13 +1016,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_stochastic_model_51_0.png" src="../_images/4_stochastic_model_51_0.png" />
+<img alt="../_images/707f26236b94b358632c8f16330f785979834e76ba41600e86baf82a9b6450d2.png" src="../_images/707f26236b94b358632c8f16330f785979834e76ba41600e86baf82a9b6450d2.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="id19">
-<h3><span class="section-number">4.3.2. </span>中心極限定理<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">4.3.2. </span>中心極限定理<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
 <p>ベルヌーイ過程において，<span class="math notranslate nohighlight">\( n \)</span> 回のベルヌーイ試行を１セットとして，成功回数 <span class="math notranslate nohighlight">\( X \)</span> や成功割合（標本平均） <span class="math notranslate nohighlight">\( T \)</span> を求める．
 これを何セットも繰り返すと，<span class="math notranslate nohighlight">\( X \)</span> や <span class="math notranslate nohighlight">\( T \)</span> の分布が得られ，いずれも二項分布に従うが，<span class="math notranslate nohighlight">\( n \)</span> を大きくしていくと左右非対称な分布から左右対称な分布へと変化する．
 このとき，<span class="math notranslate nohighlight">\( n \)</span> を十分大きくしたときに出現する左右対称で滑らかな分布は<strong>正規分布</strong>であることが知られている．</p>
@@ -1310,7 +1033,7 @@ title="Print to PDF"
 <p>独立同分布に従う <span class="math notranslate nohighlight">\( n \)</span> 個の確率変数 <span class="math notranslate nohighlight">\( U_{1}, U_{2},\ldots, U_{n} \)</span> に対し，それぞれの母平均を <span class="math notranslate nohighlight">\( \mu \)</span>，母分散を <span class="math notranslate nohighlight">\( \sigma^2 &lt; \infty \)</span> とする．このとき，確率変数列の標本平均 <span class="math notranslate nohighlight">\( \displaystyle T=\frac{1}{n}\sum_{i=1}^{n}U_{i} \)</span> の分布 <span class="math notranslate nohighlight">\( g(t) \)</span> が <span class="math notranslate nohighlight">\( n \)</span> を大きくしたときに正規分布 <span class="math notranslate nohighlight">\( N(\mu, \sigma^{2}/n) \)</span> に近づく</p>
 </div>
 <section id="id20">
-<h4>ベルヌーイ分布の場合<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>ベルヌーイ分布の場合<a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
 <p>確率変数列 <span class="math notranslate nohighlight">\( U_{1}, U_{2},\ldots, U_{n} \)</span> が成功確率 <span class="math notranslate nohighlight">\( p \)</span> のベルヌーイ分布に従うとき，期待値は <span class="math notranslate nohighlight">\( p \)</span>，分散は <span class="math notranslate nohighlight">\( p(1-p) \)</span>である．
 よって，中心極限定理によると， <span class="math notranslate nohighlight">\( U \)</span> の標本平均（成功割合）の分布は <span class="math notranslate nohighlight">\( n \)</span> を大きくしたときに正規分布 <span class="math notranslate nohighlight">\( N(p, p(1-p)/n) \)</span> に近づく．</p>
 <div class="cell docutils container">
@@ -1348,12 +1071,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_stochastic_model_55_0.png" src="../_images/4_stochastic_model_55_0.png" />
+<img alt="../_images/82e72dbd7d85283216434b6b40e692a471f162c16d0aeb7e34089113bd5212b4.png" src="../_images/82e72dbd7d85283216434b6b40e692a471f162c16d0aeb7e34089113bd5212b4.png" />
 </div>
 </div>
 </section>
 <section id="id21">
-<h4>指数分布の場合<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>指数分布の場合<a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
 <p>確率変数列 <span class="math notranslate nohighlight">\( U_{1}, U_{2},\ldots, U_{n} \)</span> がパラメータ <span class="math notranslate nohighlight">\( \lambda \)</span> の指数分布に従うとき，期待値は <span class="math notranslate nohighlight">\( \lambda \)</span>，分散は <span class="math notranslate nohighlight">\( \lambda^2 \)</span> である．
 よって，中心極限定理によると， <span class="math notranslate nohighlight">\( U \)</span> の標本平均（成功割合）の分布は <span class="math notranslate nohighlight">\( n \)</span> を大きくしたときに正規分布 <span class="math notranslate nohighlight">\( N(\lambda, \lambda^2/n) \)</span> に近づく．</p>
 <div class="cell docutils container">
@@ -1391,13 +1114,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_stochastic_model_57_0.png" src="../_images/4_stochastic_model_57_0.png" />
+<img alt="../_images/c88be68d2008809b3184c6be8936f859df073bb7afa22e32228158973c887c8f.png" src="../_images/c88be68d2008809b3184c6be8936f859df073bb7afa22e32228158973c887c8f.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="id22">
-<h3><span class="section-number">4.3.3. </span>サイコロを振る実験<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">4.3.3. </span>サイコロを振る実験<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
 <p>サイコロを振って1が出たら成功（ <span class="math notranslate nohighlight">\( U=1 \)</span> ），それ以外は失敗（ <span class="math notranslate nohighlight">\( U=0 \)</span> ）とする．
 これを <span class="math notranslate nohighlight">\( n \)</span> 回繰り返すと，成功確率 <span class="math notranslate nohighlight">\( p=1/6 \)</span> のベルヌーイ過程となるので，<span class="math notranslate nohighlight">\( n \)</span> を大きくすると <span class="math notranslate nohighlight">\( U \)</span> の標本平均（1が出た割合）は理論値 <span class="math notranslate nohighlight">\( p \)</span> に近づく（大数の法則）．
 また，<span class="math notranslate nohighlight">\( n \)</span> を大きくすると <span class="math notranslate nohighlight">\( U \)</span> の標本平均（1が出た割合）の分布は正規分布 <span class="math notranslate nohighlight">\( N(p, p(1-p)/n) \)</span> に近づく（中心極限定理）．
@@ -1424,17 +1147,17 @@ title="Print to PDF"
 </section>
 </section>
 <section id="id23">
-<h2><span class="section-number">4.4. </span>マルコフ連鎖<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">#</a></h2>
+<h2><span class="section-number">4.4. </span>マルコフ連鎖<a class="headerlink" href="#id23" title="Link to this heading">#</a></h2>
 <section id="id24">
-<h3><span class="section-number">4.4.1. </span>マルコフ連鎖の定式化<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">4.4.1. </span>マルコフ連鎖の定式化<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
 <p>ベルヌーイ過程は，１回の試行で取りうる状態が2つ（成功／失敗）だけで，それぞれの出現確率が一定値（<span class="math notranslate nohighlight">\( p,\ 1-p \)</span>）であったが，これを次のように拡張する：</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>各時刻で取りうる状態が離散的で2つ以上</p></li>
 <li><p>次の時刻に取りうる状態が現在の状態だけに依存して決まる（<strong>マルコフ性</strong>）</p></li>
 </ol>
 <p>以上のような確率過程を<strong>マルコフ連鎖</strong>と呼ぶ．</p>
 <section id="id25">
-<h4>遷移確率<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>遷移確率<a class="headerlink" href="#id25" title="Link to this heading">#</a></h4>
 <p>時刻 <span class="math notranslate nohighlight">\( t \)</span> の状態を確率変数 <span class="math notranslate nohighlight">\( U_{t} \)</span> によって表す．
 <span class="math notranslate nohighlight">\( U_{t} \)</span> は離散的な状態 <span class="math notranslate nohighlight">\( \{0, 1, 2, \ldots\} \)</span> を取るものとする（取りうる状態の集合を<strong>状態空間</strong>と呼ぶ）．
 このとき，マルコフ性は以下のように表される：</p>
@@ -1473,12 +1196,12 @@ title="Print to PDF"
 <figure class="align-default" id="fig-markov-chain">
 <a class="reference internal image-reference" href="../_images/markov_chain.png"><img alt="../_images/markov_chain.png" src="../_images/markov_chain.png" style="height: 250px;" /></a>
 <figcaption>
-<p><span class="caption-number">図 4.1 </span><span class="caption-text">マルコフ連鎖の状態遷移図</span><a class="headerlink" href="#fig-markov-chain" title="この画像へのパーマリンク">#</a></p>
+<p><span class="caption-number">図 4.1 </span><span class="caption-text">マルコフ連鎖の状態遷移図</span><a class="headerlink" href="#fig-markov-chain" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="id26">
-<h4>状態ベクトル<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>状態ベクトル<a class="headerlink" href="#id26" title="Link to this heading">#</a></h4>
 <p>時刻 <span class="math notranslate nohighlight">\( t \)</span> に状態 <span class="math notranslate nohighlight">\( i \)</span> を取る確率を</p>
 <div class="math notranslate nohighlight">
 \[ 
@@ -1511,7 +1234,7 @@ title="Print to PDF"
 \end{split}\]</div>
 </section>
 <section id="id27">
-<h4>マルコフ連鎖の定常状態<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>マルコフ連鎖の定常状態<a class="headerlink" href="#id27" title="Link to this heading">#</a></h4>
 <p>状態ベクトルは遷移を繰り返すことによって変化していくが，もしそれ以上変化しなくなった場合，これを<strong>定常状態</strong>と呼ぶ．
 定常状態の状態ベクトル <span class="math notranslate nohighlight">\( \boldsymbol{w} \)</span> は遷移確率行列 <span class="math notranslate nohighlight">\( P \)</span> をかけても変化しないので，</p>
 <div class="math notranslate nohighlight">
@@ -1538,8 +1261,8 @@ title="Print to PDF"
     P^{\top}\boldsymbol{w}^{\top} = \lambda \boldsymbol{w}^{\top}
 \]</div>
 <p>単位行列を <span class="math notranslate nohighlight">\( I \)</span> とすると，上式は次のように変形できる：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c0dd6459-da55-4ac3-9e50-d199dd323c0a">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-c0dd6459-da55-4ac3-9e50-d199dd323c0a" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-93b0cdf0-9720-480c-bd9d-3538e3a39cac">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-93b0cdf0-9720-480c-bd9d-3538e3a39cac" title="Permalink to this equation">#</a></span>\[\begin{align}
     P^{\top}\boldsymbol{w}^{\top} &amp;= \lambda I \boldsymbol{w}^{\top}\\
     (P^{\top} - \lambda I)\boldsymbol{w}^{\top} &amp;= 0
 \end{align}\]</div>
@@ -1555,9 +1278,9 @@ title="Print to PDF"
 </section>
 </section>
 <section id="id28">
-<h3><span class="section-number">4.4.2. </span>マルコフ連鎖の例<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">4.4.2. </span>マルコフ連鎖の例<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
 <section id="id29">
-<h4>具体例<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>具体例<a class="headerlink" href="#id29" title="Link to this heading">#</a></h4>
 <p>あるスポーツにおいて，Aチームの得点を状態0，Bチームの得点を状態1で表す．
 Aチームが連続して得点する確率を0.8，Bチームが連続して得点する確率を0.7とすると，<a class="reference internal" href="#fig-markov-chain-2"><span class="std std-numref">図 4.2</span></a> のような状態遷移図が得られ，遷移確率行列は次のように与えられる：</p>
 <div class="math notranslate nohighlight">
@@ -1628,12 +1351,12 @@ Aチームが連続して得点する確率を0.8，Bチームが連続して得
 <figure class="align-default" id="fig-markov-chain-2">
 <a class="reference internal image-reference" href="../_images/markov_chain_2.png"><img alt="../_images/markov_chain_2.png" src="../_images/markov_chain_2.png" style="height: 80px;" /></a>
 <figcaption>
-<p><span class="caption-number">図 4.2 </span><span class="caption-text">２状態マルコフ連鎖の状態遷移図</span><a class="headerlink" href="#fig-markov-chain-2" title="この画像へのパーマリンク">#</a></p>
+<p><span class="caption-number">図 4.2 </span><span class="caption-text">２状態マルコフ連鎖の状態遷移図</span><a class="headerlink" href="#fig-markov-chain-2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="id30">
-<h4>応用例<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>応用例<a class="headerlink" href="#id30" title="Link to this heading">#</a></h4>
 <p>マルコフ連鎖は自然現象から社会現象に至るまで，様々な現象をモデル化するために用いられる．</p>
 <ul class="simple">
 <li><p>株価変動のモデル</p></li>
@@ -1648,7 +1371,7 @@ Aチームが連続して得点する確率を0.8，Bチームが連続して得
 </section>
 </section>
 <section id="python">
-<h3><span class="section-number">4.4.3. </span>Pythonによる実装<a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">4.4.3. </span>Pythonによる実装<a class="headerlink" href="#python" title="Link to this heading">#</a></h3>
 <p>以下のデータは，ある都市の30日間の天気を0（＝晴れ），1（＝曇），2（＝雨）の3つの状態で表したものである．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1782,12 +1505,12 @@ NumPy配列の行列積は <code class="docutils literal notranslate"><span clas
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.0)
 </pre></div>
 </div>
-<img alt="../_images/4_stochastic_model_78_1.png" src="../_images/4_stochastic_model_78_1.png" />
+<img alt="../_images/15f55f759187e7eed066049dca227ac01de408b43d129bae1f771fdbbd77ee75.png" src="../_images/15f55f759187e7eed066049dca227ac01de408b43d129bae1f771fdbbd77ee75.png" />
 </div>
 </div>
 </section>
 <section id="id31">
-<h3><span class="section-number">4.4.4. </span>演習問題<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">4.4.4. </span>演習問題<a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>上の具体例で扱った2状態マルコフ連鎖について，定常状態の状態ベクトルを数値的に求めよ．</p></li>
 <li><p>マルコフ連鎖の応用例について調べよ．</p></li>
@@ -1808,7 +1531,7 @@ NumPy配列の行列積は <code class="docutils literal notranslate"><span clas
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chap_4"
         },
         predefinedOutput: true
@@ -1816,51 +1539,145 @@ NumPy配列の行列積は <code class="docutils literal notranslate"><span clas
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../chap_3/3_curve_fitting.html" title="前へ ページ">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">前へ</p>
-            <p class="prev-next-title"><span class="section-number">3. </span>カーブフィッティング</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../chap_3/3_curve_fitting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">前へ</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>カーブフィッティング</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../chap_5/5_diff_eq.html" title="次へ ページ">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../chap_5/5_diff_eq.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">次へ</p>
         <p class="prev-next-title"><span class="section-number">5. </span>微分方程式モデル</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目次
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.1. 乱数の生成</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.1.1. 一様乱数</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">線形合同法</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">より性能の良い一様乱数生成アルゴリズム</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4.1.2. 任意の確率分布に従う乱数</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">逆関数法</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#box-muller">Box-Muller法（正規分布）</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">複雑な確率分布の場合</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4.2. ベルヌーイ過程</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">4.2.1. 二項分布</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">4.2.2. ポアソン分布</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">4.2.3. 演習問題</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">4.3. 大数の法則と中心極限定理</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">4.3.1. 大数の法則</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">ベルヌーイ過程の場合</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">大数の法則（一般の場合）</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">4.3.2. 中心極限定理</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">ベルヌーイ分布の場合</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">指数分布の場合</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">4.3.3. サイコロを振る実験</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">4.4. マルコフ連鎖</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">4.4.1. マルコフ連鎖の定式化</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">遷移確率</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">状態ベクトル</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">マルコフ連鎖の定常状態</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">4.4.2. マルコフ連鎖の例</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">具体例</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">応用例</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python">4.4.3. Pythonによる実装</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">4.4.4. 演習問題</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    <div class="extra_footer">
-      © Copyright 2023-present by 成塚拓真 (Takuma Narizuka). この講義ノートは<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja">CC BY-NC-ND 4.0</a>の下に提供する．</a>ただし，コード部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供する．
-
-    </div>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  © Copyright 2023-present by 成塚拓真 (Takuma Narizuka). この講義ノートは<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja">CC BY-NC-ND 4.0</a>の下に提供する．</a>ただし，コード部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供する．
+
 </div>
+  </div>
+  
+</div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

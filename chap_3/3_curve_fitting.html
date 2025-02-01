@@ -1,623 +1,429 @@
 
 <!DOCTYPE html>
 
-<html lang="ja">
+
+<html lang="ja" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>3. カーブフィッティング &#8212; Mathematical Modeling and Simulation</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/documentation_options.js?v=1cf7f4d9"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=91613774"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap_3/3_curve_fitting';</script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
     <link rel="next" title="4. 確率モデル" href="../chap_4/4_stochastic_model.html" />
     <link rel="prev" title="2. 準備" href="../chap_2/2_environment.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="ja">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="ja"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Mathematical Modeling and Simulation</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Mathematical Modeling and Simulation - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Mathematical Modeling and Simulation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">検索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../chap_1/1_introduction.html">
-   1. イントロダクション
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../chap_2/2_environment.html">
-   2. 準備
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   3. カーブフィッティング
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../chap_4/4_stochastic_model.html">
-   4. 確率モデル
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../chap_5/5_diff_eq.html">
-   5. 微分方程式モデル
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../chap_1/1_introduction.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap_2/2_environment.html">2. 準備</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. カーブフィッティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap_4/4_stochastic_model.html">4. 確率モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap_5/5_diff_eq.html">5. 微分方程式モデル</a></li>
 </ul>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../reference.html">
-   参考文献リスト
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">参考文献リスト</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/tnarizuka/modeling_simulation/main?urlpath=tree/docs/chap_3/3_curve_fitting.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tnarizuka/modeling_simulation" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="ソースリポジトリ"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tnarizuka/modeling_simulation/issues/new?title=Issue%20on%20page%20%2Fchap_3/3_curve_fitting.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="問題を報告"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="このページをダウンロード">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chap_3/3_curve_fitting.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="ソースファイルをダウンロード"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="PDFに印刷"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全画面モード"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/tnarizuka/modeling_simulation"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/tnarizuka/modeling_simulation/issues/new?title=Issue%20on%20page%20%2Fchap_3/3_curve_fitting.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/chap_3/3_curve_fitting.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </button>
-
-      </li>
+</div></div>
       
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
+    </div>
   
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   3.1. カーブフィッティングとは？
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   3.2. 回帰分析
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     3.2.1. 回帰モデル
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     3.2.2. 最小二乗法
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     3.2.3. 線形単回帰モデル
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id7">
-       理論
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id8">
-       決定係数
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#python">
-       Pythonによる実装
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     3.2.4. 非線形単回帰モデル
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id10">
-     3.2.5. 演習問題
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id11">
-   3.3. 確率分布のパラメータ推定
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id12">
-     3.3.1. ヒストグラムの作成とフィッティング
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id13">
-     3.3.2. 最尤推定
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#n">
-       <span class="math notranslate nohighlight">
-        \( n \)
-       </span>
-       個のデータが生成される同時確率
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id14">
-       最尤推定法
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id15">
-       対数尤度方程式
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id16">
-     3.3.3. ベルヌーイ分布の最尤推定
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id17">
-       Pythonによる実装
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id18">
-     3.3.4. 正規分布の最尤推定
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id19">
-       Pythonによる実装
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id20">
-     3.3.5. 演習問題
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>カーブフィッティング</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   3.1. カーブフィッティングとは？
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   3.2. 回帰分析
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     3.2.1. 回帰モデル
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     3.2.2. 最小二乗法
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     3.2.3. 線形単回帰モデル
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id7">
-       理論
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id8">
-       決定係数
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#python">
-       Pythonによる実装
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     3.2.4. 非線形単回帰モデル
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id10">
-     3.2.5. 演習問題
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id11">
-   3.3. 確率分布のパラメータ推定
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id12">
-     3.3.1. ヒストグラムの作成とフィッティング
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id13">
-     3.3.2. 最尤推定
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#n">
-       <span class="math notranslate nohighlight">
-        \( n \)
-       </span>
-       個のデータが生成される同時確率
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id14">
-       最尤推定法
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id15">
-       対数尤度方程式
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id16">
-     3.3.3. ベルヌーイ分布の最尤推定
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id17">
-       Pythonによる実装
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id18">
-     3.3.4. 正規分布の最尤推定
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id19">
-       Pythonによる実装
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id20">
-     3.3.5. 演習問題
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>カーブフィッティング</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目次 </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.1. カーブフィッティングとは？</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2. 回帰分析</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.2.1. 回帰モデル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.2.2. 最小二乗法</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2.3. 線形単回帰モデル</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">理論</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">決定係数</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Pythonによる実装</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">3.2.4. 非線形単回帰モデル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3.2.5. 演習問題</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">3.3. 確率分布のパラメータ推定</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">3.3.1. ヒストグラムの作成とフィッティング</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">3.3.2. 最尤推定</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#n"><span class="math notranslate nohighlight">\( n \)</span> 個のデータが生成される同時確率</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">最尤推定法</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">対数尤度方程式</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">3.3.3. ベルヌーイ分布の最尤推定</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Pythonによる実装</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">3.3.4. 正規分布の最尤推定</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Pythonによる実装</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">3.3.5. 演習問題</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1><span class="section-number">3. </span>カーブフィッティング<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">#</a></h1>
+<h1><span class="section-number">3. </span>カーブフィッティング<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -633,10 +439,10 @@ title="Print to PDF"
 </div>
 </div>
 <section id="id2">
-<h2><span class="section-number">3.1. </span>カーブフィッティングとは？<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">#</a></h2>
+<h2><span class="section-number">3.1. </span>カーブフィッティングとは？<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>手元にあるデータをある理論曲線に当てはめることを<strong>カーブフィッティング</strong>と呼ぶ．
 データ分析では，以下の場面でカーブフィッティングが用いられる：</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>回帰分析</p>
 <ul class="simple">
 <li><p>複数の変数から成るデータに対して説明変数と目的変数の間の関数関係（回帰モデル）を仮定し，パラメータを調整して当てはめる</p></li>
@@ -653,12 +459,12 @@ title="Print to PDF"
 一方，物理モデルでは，理論曲線のことはモデルと呼ばずに，理論曲線を導くための単純化した基礎方程式などをモデルと呼ぶ．</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">3.2. </span>回帰分析<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">#</a></h2>
+<h2><span class="section-number">3.2. </span>回帰分析<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <section id="id4">
-<h3><span class="section-number">3.2.1. </span>回帰モデル<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">3.2.1. </span>回帰モデル<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>データ <span class="math notranslate nohighlight">\( X, Y \)</span> が与えられたとき，変数 <span class="math notranslate nohighlight">\( X,\ Y \)</span> の間に</p>
 <div class="math notranslate nohighlight" id="equation-eq-regression-model">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-eq-regression-model" title="この数式へのパーマリンク">#</a></span>\[
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-eq-regression-model" title="Link to this equation">#</a></span>\[
 	y = f(x; \boldsymbol{\theta}) + \varepsilon
 \]</div>
 <p>という関数関係が成り立つとする．
@@ -672,20 +478,20 @@ title="Print to PDF"
 以下では，単回帰モデルのみを扱う．</p>
 </section>
 <section id="id5">
-<h3><span class="section-number">3.2.2. </span>最小二乗法<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">3.2.2. </span>最小二乗法<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>１つの説明変数 <span class="math notranslate nohighlight">\( X \)</span> と目的変数 <span class="math notranslate nohighlight">\( Y \)</span> について <span class="math notranslate nohighlight">\( n \)</span> 組のデータ <span class="math notranslate nohighlight">\( (x_{1}, y_{1}), \ldots, (x_{n}, y_{n}) \)</span> を取得したとする．
 このとき，横軸に変数 <span class="math notranslate nohighlight">\( X \)</span>，縦軸に変数 <span class="math notranslate nohighlight">\( Y \)</span> を取ったグラフを<strong>散布図</strong>と呼ぶ．
 散布図に対し，回帰モデル<a class="reference internal" href="#equation-eq-regression-model">(3.1)</a>のパラメータを変化させて理論曲線をうまく当てはめる作業がカーブフィッティングである．
 カーブフィッティングによって得られた式 <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> （<strong>回帰曲線</strong>）にデータ <span class="math notranslate nohighlight">\( x_{i} \)</span> を代入すると回帰モデルによる予測値が得られる．
 以下では，この予測値をハット <span class="math notranslate nohighlight">\(\hat{}\)</span> を付けて次のように表す：</p>
 <div class="math notranslate nohighlight" id="equation-eq-regression-curve">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-eq-regression-curve" title="この数式へのパーマリンク">#</a></span>\[
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-eq-regression-curve" title="Link to this equation">#</a></span>\[
 	\hat{y}_{i} = f(x_{i}; \boldsymbol{\theta})
 \]</div>
 <p>回帰分析では，最適な曲線を求める手法がいくつか存在するが，最も基本的な手法が<strong>最小二乗法</strong>である．
 最小二乗法では，回帰モデルによる予測値 <span class="math notranslate nohighlight">\( \hat{y}_{i}=f(x_{i}; \boldsymbol{\theta}) \)</span> と実データ <span class="math notranslate nohighlight">\( y_{i} \)</span> の差（<strong>残差</strong>）の二乗和</p>
 <div class="math notranslate nohighlight" id="equation-eq-rss">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-eq-rss" title="この数式へのパーマリンク">#</a></span>\[
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-eq-rss" title="Link to this equation">#</a></span>\[
 	E(\boldsymbol{\theta}) = \sum_{i=1}^{n}(\hat{y}_{i}-y_{i})^{2} = \sum_{i=1}^{n}(f(x_{i}; \boldsymbol{\theta})-y_{i})^{2}
 \]</div>
 <p>が最小となるようなパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} = (\theta_1, \theta_2, \ldots) \)</span> を選ぶ．
@@ -693,17 +499,17 @@ title="Print to PDF"
 残差変動 <span class="math notranslate nohighlight">\( E \)</span> を最小にすることは，<span class="math notranslate nohighlight">\( \theta_1,\ \theta_2,\ \ldots \)</span> を変数とする関数 <span class="math notranslate nohighlight">\( E(\boldsymbol{\theta}) \)</span> の最小値を求めることと言い換えられる．
 このための必要条件は，残差変動 <span class="math notranslate nohighlight">\( E(\boldsymbol{\theta}) \)</span> の <span class="math notranslate nohighlight">\( \theta_1,\ \theta_2,\ \ldots \)</span> による偏微分がゼロになることである：</p>
 <div class="math notranslate nohighlight" id="equation-eq-rss-diff">
-<span class="eqno">(3.4)<a class="headerlink" href="#equation-eq-rss-diff" title="この数式へのパーマリンク">#</a></span>\[
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-eq-rss-diff" title="Link to this equation">#</a></span>\[
 	\frac{\partial E}{\partial \theta_1} = 0, \quad \frac{\partial E}{\partial \theta_2} = 0,\ \ldots
 \]</div>
 </section>
 <section id="id6">
-<h3><span class="section-number">3.2.3. </span>線形単回帰モデル<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">3.2.3. </span>線形単回帰モデル<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <section id="id7">
-<h4>理論<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>理論<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ba7ad74b-df08-4479-af26-a8ddd19afd2b">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-ba7ad74b-df08-4479-af26-a8ddd19afd2b" title="この数式へのパーマリンク">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5b346c44-12db-4ce4-a43e-b68d3be08ba9">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-5b346c44-12db-4ce4-a43e-b68d3be08ba9" title="Permalink to this equation">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -721,7 +527,7 @@ title="Print to PDF"
 \end{align*}\]</div>
 <p>この連立方程式を解くと，最適解<span class="math notranslate nohighlight">\( a,\ b \)</span> は</p>
 <div class="math notranslate nohighlight" id="equation-eq-lsm-solution">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-eq-lsm-solution" title="この数式へのパーマリンク">#</a></span>\[\begin{split}
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-eq-lsm-solution" title="Link to this equation">#</a></span>\[\begin{split}
 	a =\frac{\displaystyle\left(\frac{1}{n}\sum_{i=1}^{n} x_{i}y_{i}\right) - \left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right)\left(\frac{1}{n}\sum_{i=1}^{n}y_{i}\right)}{\displaystyle \left(\frac{1}{n}\sum_{i=1}^{n} x_{i}^{2}\right) -  \left(\frac{1}{n}\sum_{i=1}^{n}x_{i}\right)^{2}}
 	   = \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\bar{x}^2} \\[10pt]
 	b = \left(\frac{1}{n} \sum_{i=1}^{n}y_{i}\right) - a\left(\frac{1}{n} \sum_{i=1}^{n}x_{i}\right) = \bar{y} - a \bar{x}
@@ -747,10 +553,10 @@ title="Print to PDF"
 </div>
 </section>
 <section id="id8">
-<h4>決定係数<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>決定係数<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
 <p>回帰モデルのデータへの当てはまりの良さを表す指標として，決定係数 <span class="math notranslate nohighlight">\( R^{2} \)</span>がある：</p>
 <div class="math notranslate nohighlight" id="equation-eq-r2">
-<span class="eqno">(3.7)<a class="headerlink" href="#equation-eq-r2" title="この数式へのパーマリンク">#</a></span>\[
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-eq-r2" title="Link to this equation">#</a></span>\[
 	R^{2} = 1 - \frac{\displaystyle \sum_{i=1}^{n} (y_{i} - \hat{y}_{i})^{2}}{\displaystyle \sum_{i=1}^{n} (y_{i} - \bar{y})^{2}}
 \]</div>
 <p>ここで，式<a class="reference internal" href="#equation-eq-r2">(3.7)</a>右辺第二項の分子は残差変動，分母は全変動と呼ばれる．
@@ -759,7 +565,7 @@ title="Print to PDF"
 <p>※ 予測値 <span class="math notranslate nohighlight">\( \hat{y} \)</span> が最小二乗法以外の方法によって決められた場合，決定係数が負になることもあり，さらに相関係数の２乗にはならない．</p>
 </section>
 <section id="python">
-<h4>Pythonによる実装<a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>Pythonによる実装<a class="headerlink" href="#python" title="Link to this heading">#</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">scipy</span></code>には最小二乗法を用いてカーブフィッティングを実行するための <code class="docutils literal notranslate"><span class="pre">scipy.optimize.curve_fit</span></code> 関数が用意されている．
 まずはこの関数をインポートしておく．</p>
 <div class="cell docutils container">
@@ -812,7 +618,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_21_0.png" src="../_images/3_curve_fitting_21_0.png" />
+<img alt="../_images/2ca80648a2184056cec48eac0e095bb05e60a8181a260fef7d3180cee5f6e70d.png" src="../_images/2ca80648a2184056cec48eac0e095bb05e60a8181a260fef7d3180cee5f6e70d.png" />
 </div>
 </div>
 <p><strong>3. カーブフィッティングを実行する</strong></p>
@@ -864,7 +670,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_27_0.png" src="../_images/3_curve_fitting_27_0.png" />
+<img alt="../_images/db6cf14b1b7ae227743cbb7d82a5a3b833a699cff8a45d2e462e9a80235ec87e.png" src="../_images/db6cf14b1b7ae227743cbb7d82a5a3b833a699cff8a45d2e462e9a80235ec87e.png" />
 </div>
 </div>
 <p><strong>5. 決定係数を求める</strong></p>
@@ -900,7 +706,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="id9">
-<h3><span class="section-number">3.2.4. </span>非線形単回帰モデル<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">3.2.4. </span>非線形単回帰モデル<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <p>次に，非線形単回帰モデルを考える．
 この場合はフィッティング関数に任意の非線形関数 <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> を指定することができる．
 フィッティングの手順は線形単回帰モデルの場合と同様である．</p>
@@ -943,7 +749,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_38_0.png" src="../_images/3_curve_fitting_38_0.png" />
+<img alt="../_images/ba0f4c348ec00a6a905195fb4932e583b6cdb1a246906432010484052711fcce.png" src="../_images/ba0f4c348ec00a6a905195fb4932e583b6cdb1a246906432010484052711fcce.png" />
 </div>
 </div>
 <p><strong>3. カーブフィッティングを実行する</strong></p>
@@ -973,7 +779,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_42_0.png" src="../_images/3_curve_fitting_42_0.png" />
+<img alt="../_images/34f16ad5b0d2c70dea7d74579dd0f39098816170fc1ecc35df9fa53b937325f5.png" src="../_images/34f16ad5b0d2c70dea7d74579dd0f39098816170fc1ecc35df9fa53b937325f5.png" />
 </div>
 </div>
 <p><strong>5. 決定係数を求める</strong></p>
@@ -1008,20 +814,20 @@ title="Print to PDF"
 </div>
 </section>
 <section id="id10">
-<h3><span class="section-number">3.2.5. </span>演習問題<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">3.2.5. </span>演習問題<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
 <p><strong>A. 最小二乗法の解析解</strong></p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>線形単回帰モデルについて，式<a class="reference internal" href="#equation-eq-lsm-solution">(3.6)</a>を導け</p></li>
 </ol>
 <p><strong>B. Excelによる最小二乗法</strong></p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">data_linear.csv</span></code>をエクセルで開いて散布図を描け</p></li>
 <li><p>近似曲線の追加機能（オプションは線形近似）から近似曲線を追加せよ．その際に，「グラフに数式を表示する」と「グラフにR-２乗値を表示する」にチェックを入れること．</p></li>
 <li><p>Excelで表示された結果がPythonによるカーブフィッティングの結果と一致することを確認せよ．</p></li>
 </ol>
 <p><strong>C. サッカー選手の身長と体重</strong></p>
-<ol>
-<li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=12-NKKj-fHFfCRHhQfJ6sTdZjDRxLc1hX">soccer_player_europe_2017.csv</a>は，2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．データをダウンロードし，データフレームに読み込め</p></li>
+<ol class="arabic">
+<li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;amp;id=12-NKKj-fHFfCRHhQfJ6sTdZjDRxLc1hX">soccer_player_europe_2017.csv</a>は，2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．データをダウンロードし，データフレームに読み込め</p></li>
 <li><p>体重（<code class="docutils literal notranslate"><span class="pre">weight</span></code>）が0となっている選手を削除せよ</p></li>
 <li><p>横軸に体重（<code class="docutils literal notranslate"><span class="pre">weight</span></code>），縦軸に身長（<code class="docutils literal notranslate"><span class="pre">height</span></code>）を取った散布図を描け</p></li>
 <li><p>線形単回帰モデルによるカーブフィッティングを実行し，散布図に回帰直線を追加せよ</p>
@@ -1029,8 +835,8 @@ title="Print to PDF"
 </li>
 </ol>
 <p><strong>D. コロナウイルスの感染者数の増加</strong></p>
-<ol>
-<li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=12-dPS038xvax8KwIZLYv2OFMZ55J-WaK">covid19_korea.csv</a>は，韓国における新型コロナウイルス感染者数の推移データである．データをダウンロードし，データフレームに読み込め<br>※ 本データの出典：<a class="reference external" href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series">John Hopkins CSSE</a></p></li>
+<ol class="arabic">
+<li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;amp;id=12-dPS038xvax8KwIZLYv2OFMZ55J-WaK">covid19_korea.csv</a>は，韓国における新型コロナウイルス感染者数の推移データである．データをダウンロードし，データフレームに読み込め<br>※ 本データの出典：<a class="reference external" href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series">John Hopkins CSSE</a></p></li>
 <li><p>データフレームに2020年1月22日を0日とした経過日数を追加せよ</p></li>
 <li><p>横軸に経過日数，縦軸に感染者数を取った散布図を描け．</p></li>
 <li><p>50日目までの散布図に対して，以下のロジスティック関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．</p>
@@ -1049,13 +855,13 @@ title="Print to PDF"
 </section>
 </section>
 <section id="id11">
-<h2><span class="section-number">3.3. </span>確率分布のパラメータ推定<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">#</a></h2>
+<h2><span class="section-number">3.3. </span>確率分布のパラメータ推定<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
 <p>手元にあるデータから作成したヒストグラムがある確率分布に従うと仮定し，データに合うように確率分布のパラメータを推定することもカーブフィッティングの一つである．
 確率分布のパラメータ推定には色々な方法があり，前節で説明した最小二乗法もその一つである．
 ヒストグラムに対して最小二乗法でカーブフィッティングする方法は回帰分析と全く同じである．
 本節では，確率分布のパラメータ推定手法として重要な最尤推定法について説明する．</p>
 <section id="id12">
-<h3><span class="section-number">3.3.1. </span>ヒストグラムの作成とフィッティング<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">3.3.1. </span>ヒストグラムの作成とフィッティング<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
 <p>まずは，与えられたデータからヒストグラムを描画し，適当な確率分布を重ね描きするプログラムを作成しておく．
 以下は，正規分布に従う乱数を生成し，そのヒストグラムに正規分布の確率密度関数を重ね描きする例である．
 確率密度関数の<code class="docutils literal notranslate"><span class="pre">mean</span></code>（平均）と<code class="docutils literal notranslate"><span class="pre">sd</span></code>（標準偏差）を変化させると，ヒストグラムに重ね描きされる確率密度関数が変化することが確認できる．
@@ -1099,33 +905,33 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_53_0.png" src="../_images/3_curve_fitting_53_0.png" />
+<img alt="../_images/846536088973bfde5daff6c9318d24391a2e10f11a5c0c8c0e7635004a8e12ed.png" src="../_images/846536088973bfde5daff6c9318d24391a2e10f11a5c0c8c0e7635004a8e12ed.png" />
 </div>
 </div>
 </section>
 <section id="id13">
-<h3><span class="section-number">3.3.2. </span>最尤推定<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">3.3.2. </span>最尤推定<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
 <div class="admonition- admonition">
 <p class="admonition-title">確率分布の表記</p>
 <p>これまで，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を持つ1次元確率分布を <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> と表記していたが，変数と定数の区別を強調するために，これ以降は <span class="math notranslate nohighlight">\( f(x\mid \boldsymbol{\theta}) \)</span> と表記する．
 例えば，<span class="math notranslate nohighlight">\( f(x\mid \boldsymbol{\theta}) \)</span> と書いたときは，<span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は与えられた定数（前提条件），<span class="math notranslate nohighlight">\( x \)</span> は変数を表しており，<span class="math notranslate nohighlight">\( f(x\mid \boldsymbol{\theta}) \)</span> は <span class="math notranslate nohighlight">\( x \)</span> の関数であると解釈できる．</p>
 </div>
 <section id="n">
-<h4><span class="math notranslate nohighlight">\( n \)</span> 個のデータが生成される同時確率<a class="headerlink" href="#n" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4><span class="math notranslate nohighlight">\( n \)</span> 個のデータが生成される同時確率<a class="headerlink" href="#n" title="Link to this heading">#</a></h4>
 <p>ある確率分布 <span class="math notranslate nohighlight">\( f(x\mid \boldsymbol{\theta}) \)</span> に従う母集団から <span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> を独立に生成することを考える．
 このとき，データ <span class="math notranslate nohighlight">\( (x_{1}, x_{2}, \ldots, x_{n}) \)</span> が得られる確率はどのように表されるだろうか？
 ここでは，データの生成元から見た場合とデータの観測者から見た場合の2通りの視点で考える．</p>
 <figure class="align-default" id="fig-maximum-likelihood">
 <a class="reference internal image-reference" href="../_images/maximum_likelihood.png"><img alt="../_images/maximum_likelihood.png" src="../_images/maximum_likelihood.png" style="height: 180px;" /></a>
 <figcaption>
-<p><span class="caption-number">図 3.1 </span><span class="caption-text">母集団からのデータ生成とパラメータ推定の模式図</span><a class="headerlink" href="#fig-maximum-likelihood" title="この画像へのパーマリンク">#</a></p>
+<p><span class="caption-number">図 3.1 </span><span class="caption-text">母集団からのデータ生成とパラメータ推定の模式図</span><a class="headerlink" href="#fig-maximum-likelihood" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p><strong>データの生成元からの視点</strong></p>
 <p>まず，データの生成元（母集団）から見た場合，母集団分布 <span class="math notranslate nohighlight">\( f(x\mid \boldsymbol{\theta}) \)</span> のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> は分かっており，毎回確率的にデータ <span class="math notranslate nohighlight">\( x_{i} \)</span> が生成される．
 このとき，<span class="math notranslate nohighlight">\( x_{i} \)</span> というデータが生成される確率は <span class="math notranslate nohighlight">\( f(x_{i}\mid \boldsymbol{\theta}) \)</span> であるので，<span class="math notranslate nohighlight">\( n \)</span> 個の独立なデータが得られる確率は</p>
 <div class="math notranslate nohighlight" id="equation-eq-joint-probability-1">
-<span class="eqno">(3.8)<a class="headerlink" href="#equation-eq-joint-probability-1" title="この数式へのパーマリンク">#</a></span>\[
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-eq-joint-probability-1" title="Link to this equation">#</a></span>\[
     f(x_{1}, x_{2},\ldots, x_{n}\mid \boldsymbol{\theta}) = f(x_{1}\mid \boldsymbol{\theta})f(x_{2}\mid \boldsymbol{\theta})\cdots f(x_{n}\mid \boldsymbol{\theta})
 \]</div>
 <p>と表される（データが独立に生成されるので，同時確率が個々の確率の積で書ける）．
@@ -1135,14 +941,14 @@ title="Print to PDF"
 ただし，データの観測者は母集団分布の情報が何も分からないので，通常は母集団分布 <span class="math notranslate nohighlight">\( f(x\mid \boldsymbol{\theta}) \)</span> の関数形を適当に仮定し，そのパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> を変数としてこれを推定する（これを確率分布のパラメータ推定と呼ぶ）．
 この状況において，手元の <span class="math notranslate nohighlight">\( n \)</span> 個のデータが得られる確率は式<a class="reference internal" href="#equation-eq-joint-probability-1">(3.8)</a>の右辺で計算できるが，データ <span class="math notranslate nohighlight">\( (x_{1},\ x_{2},\ \ldots, x_{n}) \)</span> が定数で，パラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> が変数であることを明示するために次のように表記する：</p>
 <div class="math notranslate nohighlight" id="equation-eq-joint-probability-2">
-<span class="eqno">(3.9)<a class="headerlink" href="#equation-eq-joint-probability-2" title="この数式へのパーマリンク">#</a></span>\[
+<span class="eqno">(3.9)<a class="headerlink" href="#equation-eq-joint-probability-2" title="Link to this equation">#</a></span>\[
     L(\boldsymbol{\theta}\mid x_{1},\ldots, x_{n}) = f(x_{1}\mid \boldsymbol{\theta})f(x_{2}\mid \boldsymbol{\theta})\cdots f(x_{n}\mid \boldsymbol{\theta})
 \]</div>
 <p>これを<strong>尤度関数</strong>と呼ぶ．
 式<a class="reference internal" href="#equation-eq-joint-probability-2">(3.9)</a>（尤度関数）と式<a class="reference internal" href="#equation-eq-joint-probability-1">(3.8)</a>（同時確率）は，データとパラメータのどちらを変数と見るかの違いだけで，データが得られる同時確率を意味することは変わらない．</p>
 </section>
 <section id="id14">
-<h4>最尤推定法<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>最尤推定法<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
 <p>尤度関数は，手元のデータが得られる確率を母集団分布のパラメータ <span class="math notranslate nohighlight">\( \boldsymbol{\theta} \)</span> の関数として捉えたものである．
 いま，手元のデータから生成元の確率分布のパラメータを推定する際，どのようなパラメータが良い値かを考える．
 「良い値」の基準は色々と考えられるが，ここでは手元のデータが得られる確率が最も高くなるようなパラメータを良い値と考えてみる．
@@ -1150,7 +956,7 @@ title="Print to PDF"
 この方法は，確率分布のパラメータ推定手法の一つであり，<strong>最尤推定法</strong>と呼ばれている．</p>
 </section>
 <section id="id15">
-<h4>対数尤度方程式<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>対数尤度方程式<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
 <p>尤度関数を最大にするようなパラメータを求めるには，尤度関数を各パラメータで偏微分して0になるという条件を課せば良いが，通常は尤度関数の対数を取った<strong>対数尤度関数</strong>に対して偏微分を実行する：</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1168,7 +974,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="id16">
-<h3><span class="section-number">3.3.3. </span>ベルヌーイ分布の最尤推定<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">3.3.3. </span>ベルヌーイ分布の最尤推定<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
 <p>最尤推定の具体例として，まずはデータ生成元の確率分布がベルヌーイ分布に従う場合を考える．
 ベルヌーイ分布とは，以下の式で与えられる離散型確率分布である：</p>
 <div class="math notranslate nohighlight">
@@ -1210,7 +1016,7 @@ title="Print to PDF"
 <p>が得られる．</p>
 </div>
 <section id="id17">
-<h4>Pythonによる実装<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>Pythonによる実装<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
 <p><strong>1. データの生成</strong></p>
 <p>パラメータ <span class="math notranslate nohighlight">\( p \)</span> のベルヌーイ分布から100個のデータ（サイズ100の標本）を生成する．
 ここでは，<span class="math notranslate nohighlight">\( p=0.3 \)</span> とする．これが母集団分布のパラメータの真の値となる．</p>
@@ -1435,13 +1241,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_78_0.png" src="../_images/3_curve_fitting_78_0.png" />
+<img alt="../_images/ff81ae2f223a0c8beacef66fd44654bd19c9dc33462e937385f21f6923ba6a71.png" src="../_images/ff81ae2f223a0c8beacef66fd44654bd19c9dc33462e937385f21f6923ba6a71.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="id18">
-<h3><span class="section-number">3.3.4. </span>正規分布の最尤推定<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">3.3.4. </span>正規分布の最尤推定<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
 <p>次に，最尤推定値の解析解が求まるもう少し複雑な例として，生成元の確率分布が正規分布の場合を考える．
 正規分布の確率密度関数は以下で与えられる：</p>
 <div class="math notranslate nohighlight">
@@ -1484,7 +1290,7 @@ title="Print to PDF"
 <p>が得られる．</p>
 </div>
 <section id="id19">
-<h4>Pythonによる実装<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>Pythonによる実装<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
 <p><strong>1. データの生成</strong></p>
 <p>まずは平均0，標準偏差1の標準正規分布から100個のデータ（サイズ100の標本）を生成する．</p>
 <div class="cell docutils container">
@@ -1587,7 +1393,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_93_0.png" src="../_images/3_curve_fitting_93_0.png" />
+<img alt="../_images/640dd6a74d5009a8648f3ef8e160105056ffe182797f6958a11b9fdf46a5a207.png" src="../_images/640dd6a74d5009a8648f3ef8e160105056ffe182797f6958a11b9fdf46a5a207.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1602,7 +1408,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_94_0.png" src="../_images/3_curve_fitting_94_0.png" />
+<img alt="../_images/ef341c19b3f9fd16e0ee0a7e5b015e265615f2f0194ccb89b5b5cdbdc8ccef9c.png" src="../_images/ef341c19b3f9fd16e0ee0a7e5b015e265615f2f0194ccb89b5b5cdbdc8ccef9c.png" />
 </div>
 </div>
 <p><strong>5. 最尤推定値でカーブフィッティング</strong></p>
@@ -1620,20 +1426,20 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3_curve_fitting_96_0.png" src="../_images/3_curve_fitting_96_0.png" />
+<img alt="../_images/fee38066eb61e4eddc79765d1ae2ed58b90fa26beed4b369abb0caa34b3e7c85.png" src="../_images/fee38066eb61e4eddc79765d1ae2ed58b90fa26beed4b369abb0caa34b3e7c85.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="id20">
-<h3><span class="section-number">3.3.5. </span>演習問題<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">3.3.5. </span>演習問題<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
 <p><strong>A. 指数分布の最尤推定（理論）</strong></p>
 <p>指数分布は以下で与えられる：</p>
 <div class="math notranslate nohighlight">
 \[
     f(x\mid \lambda) = \frac{1}{\lambda}\mathrm{e}^{-\frac{x}{\lambda}}
 \]</div>
-<ol>
+<ol class="arabic">
 <li><p>データ <span class="math notranslate nohighlight">\( x_{i} \)</span> が得られる確率を求めよ．</p></li>
 <li><p><span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する尤度関数を求めよ．</p></li>
 <li><p><span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する対数尤度関数を求めよ．</p></li>
@@ -1651,7 +1457,7 @@ title="Print to PDF"
 \[
     f(x\mid \mu) = \frac{\mu^{x}\mathrm{e}^{-\mu}}{x!}
 \]</div>
-<ol>
+<ol class="arabic">
 <li><p>データ <span class="math notranslate nohighlight">\( x_{i} \)</span> が得られる確率を求めよ．</p></li>
 <li><p><span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する尤度関数を求めよ．</p></li>
 <li><p><span class="math notranslate nohighlight">\( n \)</span> 個のデータ <span class="math notranslate nohighlight">\( x_{1}, \ldots, x_{n} \)</span> に対する対数尤度関数を求めよ．</p></li>
@@ -1664,14 +1470,14 @@ title="Print to PDF"
 </li>
 </ol>
 <p><strong>C. ポアソン分布の最尤推定（データ解析）</strong></p>
-<ol class="simple">
-<li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=1FVw2xauvJ1tOnYQ8WJTHKsIVO2Gvesso">score_germany.csv</a>は，ブンデスリーガ2017-2018シーズンにおけるホームチーム／アウェイチームの1試合の得点数データである．このデータをダウンロードし，データフレームに読み込め．</p></li>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://drive.google.com/file/d/1FVw2xauvJ1tOnYQ8WJTHKsIVO2Gvesso/view?usp=drive_link">score_germany.csv</a>は，ブンデスリーガ2017-2018シーズンにおけるホームチーム／アウェイチームの1試合の得点数データである．このデータをダウンロードし，データフレームに読み込め．</p></li>
 <li><p>ホームチームまたはアウェイチームどちらかのデータを選び，このデータがポアソン分布に従うと仮定してパラメータ <span class="math notranslate nohighlight">\( \mu \)</span> の最尤推定値をデータから計算せよ．</p></li>
 <li><p>このデータからヒストグラムを作成せよ．また，データから求めた <span class="math notranslate nohighlight">\( \mu \)</span> の最尤推定値をパラメータとするポアソン分布を重ね描きせよ．</p></li>
 </ol>
 <p><strong>D. 正規分布の最尤推定（データ解析）</strong></p>
-<ol class="simple">
-<li><p><a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=11w-vbKo7TWxDs9A76Gzp57V1mA9_xcYj">score_nba.csv</a>は，NBA2015-16シーズンにおけるホームチーム／アウェイチームの1試合の得点数データである．このデータをダウンロードし，データフレームに読み込め．</p></li>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://drive.google.com/file/d/11w-vbKo7TWxDs9A76Gzp57V1mA9_xcYj/view?usp=drive_link">score_nba.csv</a>は，NBA2015-16シーズンにおけるホームチーム／アウェイチームの1試合の得点数データである．このデータをダウンロードし，データフレームに読み込め．</p></li>
 <li><p>ホームチームまたはアウェイチームどちらかのデータを選び，このデータが正規分布に従うと仮定してパラメータ <span class="math notranslate nohighlight">\( \mu,\ \sigma \)</span> の最尤推定値をデータから計算せよ．</p></li>
 <li><p>このデータからヒストグラムを作成せよ．また，データから求めた <span class="math notranslate nohighlight">\( \mu,\ \sigma \)</span> の最尤推定値をパラメータとする正規分布を重ね描きせよ．</p></li>
 </ol>
@@ -1692,7 +1498,7 @@ title="Print to PDF"
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chap_3"
         },
         predefinedOutput: true
@@ -1700,51 +1506,128 @@ title="Print to PDF"
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../chap_2/2_environment.html" title="前へ ページ">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">前へ</p>
-            <p class="prev-next-title"><span class="section-number">2. </span>準備</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../chap_2/2_environment.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">前へ</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>準備</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../chap_4/4_stochastic_model.html" title="次へ ページ">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../chap_4/4_stochastic_model.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">次へ</p>
         <p class="prev-next-title"><span class="section-number">4. </span>確率モデル</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目次
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.1. カーブフィッティングとは？</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2. 回帰分析</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.2.1. 回帰モデル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.2.2. 最小二乗法</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2.3. 線形単回帰モデル</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">理論</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">決定係数</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Pythonによる実装</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">3.2.4. 非線形単回帰モデル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3.2.5. 演習問題</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">3.3. 確率分布のパラメータ推定</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">3.3.1. ヒストグラムの作成とフィッティング</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">3.3.2. 最尤推定</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#n"><span class="math notranslate nohighlight">\( n \)</span> 個のデータが生成される同時確率</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">最尤推定法</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">対数尤度方程式</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">3.3.3. ベルヌーイ分布の最尤推定</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Pythonによる実装</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">3.3.4. 正規分布の最尤推定</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Pythonによる実装</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">3.3.5. 演習問題</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    <div class="extra_footer">
-      © Copyright 2023-present by 成塚拓真 (Takuma Narizuka). この講義ノートは<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja">CC BY-NC-ND 4.0</a>の下に提供する．</a>ただし，コード部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供する．
-
-    </div>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  © Copyright 2023-present by 成塚拓真 (Takuma Narizuka). この講義ノートは<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja">CC BY-NC-ND 4.0</a>の下に提供する．</a>ただし，コード部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供する．
+
 </div>
+  </div>
+  
+</div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

@@ -1,625 +1,427 @@
 
 <!DOCTYPE html>
 
-<html lang="ja">
+
+<html lang="ja" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>2. 準備 &#8212; Mathematical Modeling and Simulation</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/documentation_options.js?v=1cf7f4d9"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=91613774"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap_2/2_environment';</script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
     <link rel="next" title="3. カーブフィッティング" href="../chap_3/3_curve_fitting.html" />
     <link rel="prev" title="1. イントロダクション" href="../chap_1/1_introduction.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="ja">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="ja"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Mathematical Modeling and Simulation</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Mathematical Modeling and Simulation - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Mathematical Modeling and Simulation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">検索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../chap_1/1_introduction.html">
-   1. イントロダクション
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   2. 準備
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../chap_3/3_curve_fitting.html">
-   3. カーブフィッティング
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../chap_4/4_stochastic_model.html">
-   4. 確率モデル
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../chap_5/5_diff_eq.html">
-   5. 微分方程式モデル
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../chap_1/1_introduction.html">1. イントロダクション</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. 準備</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap_3/3_curve_fitting.html">3. カーブフィッティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap_4/4_stochastic_model.html">4. 確率モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap_5/5_diff_eq.html">5. 微分方程式モデル</a></li>
 </ul>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../reference.html">
-   参考文献リスト
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">参考文献リスト</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/tnarizuka/modeling_simulation/main?urlpath=tree/docs/chap_2/2_environment.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tnarizuka/modeling_simulation" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="ソースリポジトリ"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tnarizuka/modeling_simulation/issues/new?title=Issue%20on%20page%20%2Fchap_2/2_environment.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="問題を報告"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="このページをダウンロード">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chap_2/2_environment.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="ソースファイルをダウンロード"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="PDFに印刷"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全画面モード"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/tnarizuka/modeling_simulation"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/tnarizuka/modeling_simulation/issues/new?title=Issue%20on%20page%20%2Fchap_2/2_environment.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/chap_2/2_environment.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </button>
-
-      </li>
+</div></div>
       
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
+    </div>
   
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   2.1. プログラミング環境の構築
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#anaconda">
-     2.1.1. Anacondaのインストール
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     2.1.2. 作業フォルダの作成
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#jupyter-lab">
-     2.1.3. Jupyter Lab
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#path">
-     2.1.4. パス（Path）について
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id4">
-       パスとは何か？
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id5">
-       絶対パスと相対パス
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id6">
-       1. 絶対パスによる指定
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id7">
-       2. 相対パスによる指定
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#jupyterpython">
-     2.1.5. JupyterとPythonスクリプトの使い分け
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python">
-   2.2. Pythonの基礎知識
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#csv">
-     2.2.1. データ（csvファイル）の読み込み
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#matplotlib">
-     2.2.2. matplotlibの基礎
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#maplotlib">
-       maplotlibの日本語対応
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id8">
-       描画結果の出力先
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id9">
-       グラフの作成手順
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id10">
-       基本のプロット関数
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id11">
-       ヒストグラム
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scipy-stats">
-     2.2.3.
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       scipy.stats
-      </span>
-     </code>
-     の基礎
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id12">
-       例：ポアソン分布
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id13">
-       例：正規分布
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>準備</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   2.1. プログラミング環境の構築
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#anaconda">
-     2.1.1. Anacondaのインストール
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     2.1.2. 作業フォルダの作成
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#jupyter-lab">
-     2.1.3. Jupyter Lab
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#path">
-     2.1.4. パス（Path）について
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id4">
-       パスとは何か？
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id5">
-       絶対パスと相対パス
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id6">
-       1. 絶対パスによる指定
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id7">
-       2. 相対パスによる指定
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#jupyterpython">
-     2.1.5. JupyterとPythonスクリプトの使い分け
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python">
-   2.2. Pythonの基礎知識
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#csv">
-     2.2.1. データ（csvファイル）の読み込み
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#matplotlib">
-     2.2.2. matplotlibの基礎
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#maplotlib">
-       maplotlibの日本語対応
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id8">
-       描画結果の出力先
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id9">
-       グラフの作成手順
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id10">
-       基本のプロット関数
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id11">
-       ヒストグラム
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scipy-stats">
-     2.2.3.
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       scipy.stats
-      </span>
-     </code>
-     の基礎
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id12">
-       例：ポアソン分布
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id13">
-       例：正規分布
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>準備</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目次 </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.1. プログラミング環境の構築</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda">2.1.1. Anacondaのインストール</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.1.2. 作業フォルダの作成</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">2.1.3. Jupyter Lab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#path">2.1.4. パス（Path）について</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">パスとは何か？</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">絶対パスと相対パス</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">1. 絶対パスによる指定</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2. 相対パスによる指定</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterpython">2.1.5. JupyterとPythonスクリプトの使い分け</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">2.2. Pythonの基礎知識</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv">2.2.1. データ（csvファイル）の読み込み</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">2.2.2. matplotlibの基礎</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#maplotlib">maplotlibの日本語対応</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">描画結果の出力先</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">グラフの作成手順</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">基本のプロット関数</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ヒストグラム</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-stats">2.2.3. <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>の基礎</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">例：ポアソン分布</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">例：正規分布</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1><span class="section-number">2. </span>準備<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">#</a></h1>
+<h1><span class="section-number">2. </span>準備<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -635,9 +437,9 @@ title="Print to PDF"
 </div>
 </div>
 <section id="id2">
-<h2><span class="section-number">2.1. </span>プログラミング環境の構築<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">#</a></h2>
+<h2><span class="section-number">2.1. </span>プログラミング環境の構築<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <section id="anaconda">
-<h3><span class="section-number">2.1.1. </span>Anacondaのインストール<a class="headerlink" href="#anaconda" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">2.1.1. </span>Anacondaのインストール<a class="headerlink" href="#anaconda" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Anacondaのアンインストール（環境再構築の場合）</p>
 <ul>
@@ -674,7 +476,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="id3">
-<h3><span class="section-number">2.1.2. </span>作業フォルダの作成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">2.1.2. </span>作業フォルダの作成<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>データ分析では，様々なファイルを扱わなければならない．
 例えば，本講義では，Pythonのソースコード（<code class="docutils literal notranslate"><span class="pre">.py</span></code>），Jupyter NoteBook（<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>），データ（<code class="docutils literal notranslate"><span class="pre">.csv</span></code>），図（<code class="docutils literal notranslate"><span class="pre">.pdf</span></code>や<code class="docutils literal notranslate"><span class="pre">.png</span></code>）などのファイルを扱うことになる．
 これらのファイルが自分のPC内のどこに保存されているかを把握しておかないと，ファイルを探すだけで時間を取られてしまう．
@@ -703,7 +505,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="jupyter-lab">
-<h3><span class="section-number">2.1.3. </span>Jupyter Lab<a class="headerlink" href="#jupyter-lab" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">2.1.3. </span>Jupyter Lab<a class="headerlink" href="#jupyter-lab" title="Link to this heading">#</a></h3>
 <p>本講義ノートは<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>ファイル形式でダウンロードしてJupyter上で実行可能である．
 Jupyterの環境構築の方法はいくつかあるので自分の好きな方法を選んで良いが，Anacondaをインストールすると，自動的にJupyter NotebookとJupyter Labが使えるようになる．</p>
 <p><strong>Jupyter Labの起動</strong></p>
@@ -728,9 +530,9 @@ Jupyterの環境構築の方法はいくつかあるので自分の好きな方�
 </ul>
 </section>
 <section id="path">
-<h3><span class="section-number">2.1.4. </span>パス（Path）について<a class="headerlink" href="#path" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">2.1.4. </span>パス（Path）について<a class="headerlink" href="#path" title="Link to this heading">#</a></h3>
 <section id="id4">
-<h4>パスとは何か？<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>パスとは何か？<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <p>Pythonプログラムの実行，自分のPC上のファイルの読み込み，加工したデータの保存を行うには，対象となるファイルの在り処，つまりアドレスが分からないといけない．
 このアドレスを指定する文字列のことをパス（Path）と呼ぶ．
 Windowsの場合，パスはフォルダの階層構造を区切り文字<code class="docutils literal notranslate"><span class="pre">¥</span></code>（またはバックスラッシュ<code class="docutils literal notranslate"><span class="pre">\</span></code>）によって区切った形式で以下のように表される：</p>
@@ -741,7 +543,7 @@ Windowsの場合，パスはフォルダの階層構造を区切り文字<code c
 上の例は，Cドライブ（<code class="docutils literal notranslate"><span class="pre">C:</span></code>）の<code class="docutils literal notranslate"><span class="pre">Users</span></code>フォルダの中の<code class="docutils literal notranslate"><span class="pre">narizuka</span></code>フォルダにある<code class="docutils literal notranslate"><span class="pre">Documents</span></code>フォルダのパスを表す．</p>
 </section>
 <section id="id5">
-<h4>絶対パスと相対パス<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>絶対パスと相対パス<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <p>パスには絶対パスと相対パスの2種類が存在する．
 パスを使用する場面の具体例として，matplotlibで描画した図を指定したフォルダ内に保存する場合を考える．
 まず，以下のプログラムを実行する．</p>
@@ -756,7 +558,7 @@ Windowsの場合，パスはフォルダの階層構造を区切り文字<code c
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2_environment_12_0.png" src="../_images/2_environment_12_0.png" />
+<img alt="../_images/1714c65e62c619bdceeec57ee5e57fef1535c2244e9918d753d7765077933424.png" src="../_images/1714c65e62c619bdceeec57ee5e57fef1535c2244e9918d753d7765077933424.png" />
 </div>
 </div>
 <p>実行がうまくいけば，サイン関数が出力されるはずである．
@@ -764,7 +566,7 @@ Windowsの場合，パスはフォルダの階層構造を区切り文字<code c
 このとき，パスの指定方法には以下の２つの方法が存在する．</p>
 </section>
 <section id="id6">
-<h4>1. 絶対パスによる指定<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>1. 絶対パスによる指定<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;C:\Users\narizuka\OneDrive\modeling_simulation\2_environment\graph.pdf&quot;</span><span class="p">)</span>
@@ -782,7 +584,7 @@ Windowsで絶対パスを取得するには，パスをコピーしたいファ�
 これは，raw文字列と呼ばれ，&quot;&quot;の中に指定した文字列をそのままの形で認識させることができる．</p>
 </section>
 <section id="id7">
-<h4>2. 相対パスによる指定<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>2. 相対パスによる指定<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;./graph2.pdf&quot;</span><span class="p">)</span>
@@ -802,7 +604,7 @@ Windowsで絶対パスを取得するには，パスをコピーしたいファ�
 </section>
 </section>
 <section id="jupyterpython">
-<h3><span class="section-number">2.1.5. </span>JupyterとPythonスクリプトの使い分け<a class="headerlink" href="#jupyterpython" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">2.1.5. </span>JupyterとPythonスクリプトの使い分け<a class="headerlink" href="#jupyterpython" title="Link to this heading">#</a></h3>
 <p>Jupyterは短いコードを逐次実行しながら結果を確認するのには適しているが，コードが長くなると分かりにくくなる．
 そこで，コードが長くなってきたら関数やクラスに適宜まとめてスクリプト（<code class="docutils literal notranslate"><span class="pre">.py</span></code>ファイル）に保存すると良い．
 <code class="docutils literal notranslate"><span class="pre">.py</span></code>ファイルを編集するにはVSCodeなどのエディタを使用する．
@@ -811,9 +613,9 @@ Windowsで絶対パスを取得するには，パスをコピーしたいファ�
 </section>
 </section>
 <section id="python">
-<h2><span class="section-number">2.2. </span>Pythonの基礎知識<a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">#</a></h2>
+<h2><span class="section-number">2.2. </span>Pythonの基礎知識<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
 <section id="csv">
-<h3><span class="section-number">2.2.1. </span>データ（csvファイル）の読み込み<a class="headerlink" href="#csv" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">2.2.1. </span>データ（csvファイル）の読み込み<a class="headerlink" href="#csv" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">.csv</span></code>形式のデータを読み込むには<code class="docutils literal notranslate"><span class="pre">pandas</span></code>ライブラリの<code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code>関数を使用する．
 以下の例は，カレントディレクトリ内の<code class="docutils literal notranslate"><span class="pre">data.csv</span></code>ファイルを読み込む例である．</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -821,7 +623,7 @@ Windowsで絶対パスを取得するには，パスをコピーしたいファ�
 </pre></div>
 </div>
 <p>第１引数には読み込むファイルのパス，第２引数以降には読み込む際のオプションを指定する．</p>
-<p>例として，<a class="reference external" href="https://drive.google.com/uc?export=download&amp;id=1Y0A04s0klZiUZWWabH3ozUTgXE63Az5j">Iris dataset</a>を読み込む．
+<p>例として，<a class="reference external" href="https://drive.google.com/file/d/1Y0A04s0klZiUZWWabH3ozUTgXE63Az5j/view?usp=drive_link">Iris dataset</a>を読み込む．
 Iris datasetはアヤメの花のデータセットであり，アヤメの種類（setosa, versicolor, virginica）ごとにがく片（sepal）と花弁（petal）の長さと幅が記録されている．</p>
 <ul class="simple">
 <li><p>出典：Ronald A Fisher. The use of multiple measurements in taxonomic problems. Annals of eugenics, 7(2):179–188, 1936.</p></li>
@@ -967,9 +769,9 @@ Iris datasetはアヤメの花のデータセットであり，アヤメの種�
 </div>
 </section>
 <section id="matplotlib">
-<h3><span class="section-number">2.2.2. </span>matplotlibの基礎<a class="headerlink" href="#matplotlib" title="このヘッドラインへのパーマリンク">#</a></h3>
+<h3><span class="section-number">2.2.2. </span>matplotlibの基礎<a class="headerlink" href="#matplotlib" title="Link to this heading">#</a></h3>
 <section id="maplotlib">
-<h4>maplotlibの日本語対応<a class="headerlink" href="#maplotlib" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>maplotlibの日本語対応<a class="headerlink" href="#maplotlib" title="Link to this heading">#</a></h4>
 <p>Matplotlibはグラフ作成のためのライブラリである（詳しくは基礎編で解説する）．
 Matplotlibは標準で日本語に対応していないので，ここでは日本語対応する方法を2つ紹介する．</p>
 <p><strong>方法1： japanize_matplotlib を利用する（詳しくは<a class="reference external" href="https://pypi.org/project/japanize-matplotlib/">こちら</a>）</strong></p>
@@ -1003,7 +805,7 @@ Macの場合は<code class="docutils literal notranslate"><span class="pre">'Hir
 </div>
 </section>
 <section id="id8">
-<h4>描画結果の出力先<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>描画結果の出力先<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
 <p>Jupyterでは，デフォルトでコードセルの下に描画結果が表示される設定になっている．
 これを明示的に指定するには，Jupyterのマジックコマンド<code class="docutils literal notranslate"><span class="pre">%matplotlib</span></code>の後に<code class="docutils literal notranslate"><span class="pre">inline</span></code>を指定する．</p>
 <p><strong>※ 一番最後のコマンドにセミコロンを付けることがある．これは，不要な文字列が出力されるのを防ぐ（隠す）ためである．</strong></p>
@@ -1027,17 +829,17 @@ Macの場合は<code class="docutils literal notranslate"><span class="pre">'Hir
 </div>
 </section>
 <section id="id9">
-<h4>グラフの作成手順<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>グラフの作成手順<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
 <p>matplotlibを用いたグラフ作成にはいくつかのスタイルがあるが，本講義ではオブジェクトを明示的に生成するスタイル（オブジェクト指向スタイル）に従う．
 このスタイルでは，<code class="docutils literal notranslate"><span class="pre">plt.subplots()</span></code>を用いて<a class="reference internal" href="#fig-fig-axes"><span class="std std-numref">図 2.1</span></a>のようにFigureオブジェクトとAxesオブジェクトを生成し，個々のAxesオブジェクトに対してプロットを行う．</p>
 <figure class="align-default" id="fig-fig-axes">
 <a class="reference internal image-reference" href="../_images/fig_axes.png"><img alt="../_images/fig_axes.png" src="../_images/fig_axes.png" style="height: 250px;" /></a>
 <figcaption>
-<p><span class="caption-number">図 2.1 </span><span class="caption-text">MatplotlibにおけるFigureオブジェクトとAxesオブジェクト</span><a class="headerlink" href="#fig-fig-axes" title="この画像へのパーマリンク">#</a></p>
+<p><span class="caption-number">図 2.1 </span><span class="caption-text">MatplotlibにおけるFigureオブジェクトとAxesオブジェクト</span><a class="headerlink" href="#fig-fig-axes" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>データのプロット，グラフの装飾，グラフの保存までの手順は以下の通りである．</p>
-<ol>
+<ol class="arabic">
 <li><p>FigureオブジェクトとAxesオブジェクトを生成する</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 </pre></div>
@@ -1080,12 +882,12 @@ Macの場合は<code class="docutils literal notranslate"><span class="pre">'Hir
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2_environment_38_0.png" src="../_images/2_environment_38_0.png" />
+<img alt="../_images/d703151a4aa47fdbcea3bb41a82980ea1896ca4077de193ccf5fe28944632da8.png" src="../_images/d703151a4aa47fdbcea3bb41a82980ea1896ca4077de193ccf5fe28944632da8.png" />
 </div>
 </div>
 </section>
 <section id="id10">
-<h4>基本のプロット関数<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>基本のプロット関数<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
 <p>Matplotlibの最も基本的なプロット関数が<code class="docutils literal notranslate"><span class="pre">pyplot.plot()</span></code>である．
 Axesオブジェクトを<code class="docutils literal notranslate"><span class="pre">ax</span></code>として取得した場合，<code class="docutils literal notranslate"><span class="pre">plot</span></code>関数は以下のように実行する：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;rx-&#39;</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
@@ -1093,7 +895,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">plot</span></code>関数の第3引数は色・マーカー・線種を同時指定することができる．
 主要なoptionを以下にまとめる．</p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>オプション名</p></th>
 <th class="head"><p>省略表記</p></th>
@@ -1144,6 +946,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </tr>
 </tbody>
 </table>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;FigureとAxesの生成&#39;&#39;&#39;</span>
@@ -1192,12 +995,12 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2_environment_42_0.png" src="../_images/2_environment_42_0.png" />
+<img alt="../_images/e9999708fd52ad0e972e34b8bf8bb719ae852f44af2c8d0fae02da9b95877adc.png" src="../_images/e9999708fd52ad0e972e34b8bf8bb719ae852f44af2c8d0fae02da9b95877adc.png" />
 </div>
 </div>
 </section>
 <section id="id11">
-<h4>ヒストグラム<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>ヒストグラム<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
 <p>Matplotlibで1次元ヒストグラムを描画するには<code class="docutils literal notranslate"><span class="pre">ax.hist()</span></code>を用いる：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
 </pre></div>
@@ -1229,7 +1032,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2_environment_45_0.png" src="../_images/2_environment_45_0.png" />
+<img alt="../_images/67c39e8a3f18d4a5410ccb509bffd3f400cc6988ca091ee6ac6406047733e86d.png" src="../_images/67c39e8a3f18d4a5410ccb509bffd3f400cc6988ca091ee6ac6406047733e86d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1356,7 +1159,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 <p><strong>ヒストグラムの装飾</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">ax.hist</span></code>メソッドにも，色やスタイルを変更するためのオプションが多数用意されている．
 主要なオプションを以下にまとめる．</p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>オプション</p></th>
 <th class="head"><p>内容</p></th>
@@ -1402,6 +1205,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </tr>
 </tbody>
 </table>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データの作成</span>
@@ -1427,13 +1231,13 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2_environment_49_0.png" src="../_images/2_environment_49_0.png" />
+<img alt="../_images/2b6e29a4ada8cfc97fc23571cf83720ae520b35a74e569d2bc4452b363d00b54.png" src="../_images/2b6e29a4ada8cfc97fc23571cf83720ae520b35a74e569d2bc4452b363d00b54.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="scipy-stats">
-<span id="scipy-stats-basic"></span><h3><span class="section-number">2.2.3. </span><code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>の基礎<a class="headerlink" href="#scipy-stats" title="このヘッドラインへのパーマリンク">#</a></h3>
+<span id="scipy-stats-basic"></span><h3><span class="section-number">2.2.3. </span><code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>の基礎<a class="headerlink" href="#scipy-stats" title="Link to this heading">#</a></h3>
 <p>Pythonには，科学技術計算に特化した <code class="docutils literal notranslate"><span class="pre">scipy</span></code> というライブラリが存在する．
 確率分布に関する計算（例えば，正規分布に従う乱数の生成など）には，<code class="docutils literal notranslate"><span class="pre">numpy</span></code>を使用することもできるが，<code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>の方が機能が充実している．
 ここでは，<code class="docutils literal notranslate"><span class="pre">scipy</span></code>の中で確率分布や乱数に関する機能をまとめた<code class="docutils literal notranslate"><span class="pre">sciy.stats</span></code>の基礎をまとめる．
@@ -1466,7 +1270,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <p><strong><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html">主要な確率分布</a></strong></p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>コマンド</p></th>
 <th class="head"><p>確率分布</p></th>
@@ -1496,8 +1300,9 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </tr>
 </tbody>
 </table>
+</div>
 <p><strong>主なメソッド</strong></p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>メソッド</p></th>
 <th class="head"><p>内容</p></th>
@@ -1527,8 +1332,9 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </tr>
 </tbody>
 </table>
+</div>
 <section id="id12">
-<h4>例：ポアソン分布<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>例：ポアソン分布<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mu=3のポアソン分布に従うサイズ100の標本を生成</span>
@@ -1568,12 +1374,12 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2_environment_61_0.png" src="../_images/2_environment_61_0.png" />
+<img alt="../_images/b8b2eb0685dc599e38dad5de3487e5a24c232c88b9799ab41ce9e10affadd9d4.png" src="../_images/b8b2eb0685dc599e38dad5de3487e5a24c232c88b9799ab41ce9e10affadd9d4.png" />
 </div>
 </div>
 </section>
 <section id="id13">
-<h4>例：正規分布<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">#</a></h4>
+<h4>例：正規分布<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 標準正規分布に従うサイズ100の標本を生成</span>
@@ -1603,7 +1409,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2_environment_64_0.png" src="../_images/2_environment_64_0.png" />
+<img alt="../_images/05fe3217566c0af8e0620a04fd4958ae37d350b0abf0e587631e896388697b33.png" src="../_images/05fe3217566c0af8e0620a04fd4958ae37d350b0abf0e587631e896388697b33.png" />
 </div>
 </div>
 </section>
@@ -1623,7 +1429,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chap_2"
         },
         predefinedOutput: true
@@ -1631,51 +1437,126 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../chap_1/1_introduction.html" title="前へ ページ">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">前へ</p>
-            <p class="prev-next-title"><span class="section-number">1. </span>イントロダクション</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../chap_1/1_introduction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">前へ</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>イントロダクション</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../chap_3/3_curve_fitting.html" title="次へ ページ">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../chap_3/3_curve_fitting.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">次へ</p>
         <p class="prev-next-title"><span class="section-number">3. </span>カーブフィッティング</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目次
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.1. プログラミング環境の構築</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda">2.1.1. Anacondaのインストール</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.1.2. 作業フォルダの作成</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">2.1.3. Jupyter Lab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#path">2.1.4. パス（Path）について</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">パスとは何か？</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">絶対パスと相対パス</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">1. 絶対パスによる指定</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2. 相対パスによる指定</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterpython">2.1.5. JupyterとPythonスクリプトの使い分け</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">2.2. Pythonの基礎知識</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv">2.2.1. データ（csvファイル）の読み込み</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">2.2.2. matplotlibの基礎</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#maplotlib">maplotlibの日本語対応</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">描画結果の出力先</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">グラフの作成手順</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">基本のプロット関数</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ヒストグラム</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-stats">2.2.3. <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>の基礎</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">例：ポアソン分布</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">例：正規分布</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    <div class="extra_footer">
-      © Copyright 2023-present by 成塚拓真 (Takuma Narizuka). この講義ノートは<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja">CC BY-NC-ND 4.0</a>の下に提供する．</a>ただし，コード部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供する．
-
-    </div>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  © Copyright 2023-present by 成塚拓真 (Takuma Narizuka). この講義ノートは<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja">CC BY-NC-ND 4.0</a>の下に提供する．</a>ただし，コード部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供する．
+
 </div>
+  </div>
+  
+</div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
