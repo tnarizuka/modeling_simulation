@@ -510,8 +510,8 @@ document.write(`
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-156b91d5-cef6-4472-8381-4cb26d3324d8">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-156b91d5-cef6-4472-8381-4cb26d3324d8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c494d99b-fefa-4b1d-9f7f-5ac4488fc5fc">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-c494d99b-fefa-4b1d-9f7f-5ac4488fc5fc" title="Permalink to this equation">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -829,7 +829,7 @@ document.write(`
 </ol>
 <p><strong>C. サッカー選手の身長と体重</strong></p>
 <ol class="arabic">
-<li><p><a class="reference external" href="https://drive.google.com/file/d/12-NKKj-fHFfCRHhQfJ6sTdZjDRxLc1hX/view?usp=drive_link">soccer_player_europe_2017.csv</a>は，2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．データをダウンロードし，データフレームに読み込め</p></li>
+<li><p><a class="reference external" href="https://tnarizuka.github.io/modeling_simulation/chap_3/soccer_player_europe_2017.csv">soccer_player_europe_2017.csv</a>は，2017シーズンにサッカーのヨーロッパ5大リーグに所属していた選手のプロフィールである．データをダウンロードし，データフレームに読み込め</p></li>
 <li><p>体重（<code class="docutils literal notranslate"><span class="pre">weight</span></code>）が0となっている選手を削除せよ</p></li>
 <li><p>横軸に体重（<code class="docutils literal notranslate"><span class="pre">weight</span></code>），縦軸に身長（<code class="docutils literal notranslate"><span class="pre">height</span></code>）を取った散布図を描け</p></li>
 <li><p>線形単回帰モデルによるカーブフィッティングを実行し，散布図に回帰直線を追加せよ</p>
@@ -838,7 +838,7 @@ document.write(`
 </ol>
 <p><strong>D. コロナウイルスの感染者数の増加</strong></p>
 <ol class="arabic">
-<li><p><a class="reference external" href="https://drive.google.com/file/d/12-dPS038xvax8KwIZLYv2OFMZ55J-WaK/view?usp=drive_link">covid19_korea.csv</a>は，韓国における新型コロナウイルス感染者数の推移データである．データをダウンロードし，データフレームに読み込め<br>※ 本データの出典：<a class="reference external" href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series">John Hopkins CSSE</a></p></li>
+<li><p><a class="reference external" href="https://tnarizuka.github.io/modeling_simulation/chap_3/covid19_korea.csv">covid19_korea.csv</a>は，韓国における新型コロナウイルス感染者数の推移データである．データをダウンロードし，データフレームに読み込め<br>※ 本データの出典：<a class="reference external" href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series">John Hopkins CSSE</a></p></li>
 <li><p>データフレームに2020年1月22日を0日とした経過日数を追加せよ</p></li>
 <li><p>横軸に経過日数，縦軸に感染者数を取った散布図を描け．</p></li>
 <li><p>50日目までの散布図に対して，以下のロジスティック関数によるフィッティングを実行し，散布図にフィッティング曲線を追加せよ．</p>
