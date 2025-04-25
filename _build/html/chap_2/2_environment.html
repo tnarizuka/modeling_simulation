@@ -378,23 +378,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.1. プログラミング環境の構築</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda">2.1.1. Anacondaのインストール</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.1.2. 作業フォルダの作成</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">2.1.3. Jupyter Lab</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#path">2.1.4. パス（Path）について</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.1. プログラミング環境の構築</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda">2.2. Anacondaのインストール</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.2.1. 作業フォルダの作成</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">2.2.2. Jupyter Lab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#path">2.2.3. パス（Path）について</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">パスとは何か？</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">絶対パスと相対パス</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">1. 絶対パスによる指定</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2. 相対パスによる指定</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterpython">2.1.5. JupyterとPythonスクリプトの使い分け</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterpython">2.2.4. JupyterとPythonスクリプトの使い分け</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">2.2. Pythonの基礎知識</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv">2.2.1. データ（csvファイル）の読み込み</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">2.2.2. matplotlibの基礎</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">2.3. Pythonの基礎知識</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv">2.3.1. データ（csvファイル）の読み込み</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">2.3.2. matplotlibの基礎</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#maplotlib">maplotlibの日本語対応</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">描画結果の出力先</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">グラフの作成手順</a></li>
@@ -402,7 +402,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ヒストグラム</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-stats">2.2.3. <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>の基礎</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-stats">2.3.3. <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>の基礎</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">例：ポアソン分布</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">例：正規分布</a></li>
 </ul>
@@ -438,30 +438,34 @@ document.write(`
 </div>
 <section id="id2">
 <h2><span class="section-number">2.1. </span>プログラミング環境の構築<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+</section>
 <section id="anaconda">
-<h3><span class="section-number">2.1.1. </span>Anacondaのインストール<a class="headerlink" href="#anaconda" title="Link to this heading">#</a></h3>
+<h2><span class="section-number">2.2. </span>Anacondaのインストール<a class="headerlink" href="#anaconda" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Anacondaのアンインストール（環境再構築の場合）</p>
 <ul>
 <li><p>コントロールパネル &gt; プログラムのアンインストール</p></li>
 <li><p>Anacondaを選択してアンインストール</p></li>
+<li><p>anaconda3というフォルダが残っている場合は手動で削除する</p>
+<ul>
+<li><p>ユーザフォルダまたはCドライブ直下を確認</p></li>
+</ul>
+</li>
 <li><p>PC再起動</p></li>
 </ul>
 </li>
 <li><p>インストーラのダウンロード</p>
 <ul>
 <li><p><a class="reference external" href="https://www.anaconda.com/download">Anaconda Distribution</a> にアクセス</p></li>
-<li><p>メールアドレスを入力して，届いたメールのURLを開く</p></li>
 <li><p>Anacondaをダウンロード</p></li>
 </ul>
 </li>
-<li><p>Cドライブ直下（ユーザフォルダと同じ階層）に<code class="docutils literal notranslate"><span class="pre">anaconda3</span></code>というフォルダを作っておく</p></li>
 <li><p>Anacondaのインストール</p>
 <ul>
 <li><p>Select Installation TypeでJust Meを選ぶ</p></li>
-<li><p>Choose Install LocationでCドライブ直下に作ったanaconda3フォルダを選ぶ</p>
+<li><p>Choose Install LocationはデフォルトのままでOKだが，anacondaのインストール先のパスに日本語が含まれるとうまくいかないので注意</p>
 <ul>
-<li><p>anacondaのインストール先のパスに日本語が含まれるとうまくいかないため</p></li>
+<li><p>例：C:\Users\ユーザ名\Anaconda3</p></li>
 </ul>
 </li>
 <li><p>Advanced Installation Optionsで以下の2つに必ずチェックを入れる</p>
@@ -474,9 +478,8 @@ document.write(`
 </li>
 <li><p>Anaconda Navigatorを起動して，インストールが成功しているか確認する（適宜アップデートする）</p></li>
 </ul>
-</section>
 <section id="id3">
-<h3><span class="section-number">2.1.2. </span>作業フォルダの作成<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">2.2.1. </span>作業フォルダの作成<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>データ分析では，様々なファイルを扱わなければならない．
 例えば，本講義では，Pythonのソースコード（<code class="docutils literal notranslate"><span class="pre">.py</span></code>），Jupyter NoteBook（<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>），データ（<code class="docutils literal notranslate"><span class="pre">.csv</span></code>），図（<code class="docutils literal notranslate"><span class="pre">.pdf</span></code>や<code class="docutils literal notranslate"><span class="pre">.png</span></code>）などのファイルを扱うことになる．
 これらのファイルが自分のPC内のどこに保存されているかを把握しておかないと，ファイルを探すだけで時間を取られてしまう．
@@ -505,7 +508,7 @@ document.write(`
 </div>
 </section>
 <section id="jupyter-lab">
-<h3><span class="section-number">2.1.3. </span>Jupyter Lab<a class="headerlink" href="#jupyter-lab" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">2.2.2. </span>Jupyter Lab<a class="headerlink" href="#jupyter-lab" title="Link to this heading">#</a></h3>
 <p>本講義ノートは<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>ファイル形式でダウンロードしてJupyter上で実行可能である．
 Jupyterの環境構築の方法はいくつかあるので自分の好きな方法を選んで良いが，Anacondaをインストールすると，自動的にJupyter NotebookとJupyter Labが使えるようになる．</p>
 <p><strong>Jupyter Labの起動</strong></p>
@@ -530,7 +533,7 @@ Jupyterの環境構築の方法はいくつかあるので自分の好きな方�
 </ul>
 </section>
 <section id="path">
-<h3><span class="section-number">2.1.4. </span>パス（Path）について<a class="headerlink" href="#path" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">2.2.3. </span>パス（Path）について<a class="headerlink" href="#path" title="Link to this heading">#</a></h3>
 <section id="id4">
 <h4>パスとは何か？<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <p>Pythonプログラムの実行，自分のPC上のファイルの読み込み，加工したデータの保存を行うには，対象となるファイルの在り処，つまりアドレスが分からないといけない．
@@ -604,7 +607,7 @@ Windowsで絶対パスを取得するには，パスをコピーしたいファ�
 </section>
 </section>
 <section id="jupyterpython">
-<h3><span class="section-number">2.1.5. </span>JupyterとPythonスクリプトの使い分け<a class="headerlink" href="#jupyterpython" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">2.2.4. </span>JupyterとPythonスクリプトの使い分け<a class="headerlink" href="#jupyterpython" title="Link to this heading">#</a></h3>
 <p>Jupyterは短いコードを逐次実行しながら結果を確認するのには適しているが，コードが長くなると分かりにくくなる．
 そこで，コードが長くなってきたら関数やクラスに適宜まとめてスクリプト（<code class="docutils literal notranslate"><span class="pre">.py</span></code>ファイル）に保存すると良い．
 <code class="docutils literal notranslate"><span class="pre">.py</span></code>ファイルを編集するにはVSCodeなどのエディタを使用する．
@@ -613,9 +616,9 @@ Windowsで絶対パスを取得するには，パスをコピーしたいファ�
 </section>
 </section>
 <section id="python">
-<h2><span class="section-number">2.2. </span>Pythonの基礎知識<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.3. </span>Pythonの基礎知識<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
 <section id="csv">
-<h3><span class="section-number">2.2.1. </span>データ（csvファイル）の読み込み<a class="headerlink" href="#csv" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">2.3.1. </span>データ（csvファイル）の読み込み<a class="headerlink" href="#csv" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">.csv</span></code>形式のデータを読み込むには<code class="docutils literal notranslate"><span class="pre">pandas</span></code>ライブラリの<code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code>関数を使用する．
 以下の例は，カレントディレクトリ内の<code class="docutils literal notranslate"><span class="pre">data.csv</span></code>ファイルを読み込む例である．</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -769,7 +772,7 @@ Iris datasetはアヤメの花のデータセットであり，アヤメの種�
 </div>
 </section>
 <section id="matplotlib">
-<h3><span class="section-number">2.2.2. </span>matplotlibの基礎<a class="headerlink" href="#matplotlib" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">2.3.2. </span>matplotlibの基礎<a class="headerlink" href="#matplotlib" title="Link to this heading">#</a></h3>
 <section id="maplotlib">
 <h4>maplotlibの日本語対応<a class="headerlink" href="#maplotlib" title="Link to this heading">#</a></h4>
 <p>Matplotlibはグラフ作成のためのライブラリである（詳しくは基礎編で解説する）．
@@ -1225,7 +1228,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 </section>
 </section>
 <section id="scipy-stats">
-<span id="scipy-stats-basic"></span><h3><span class="section-number">2.2.3. </span><code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>の基礎<a class="headerlink" href="#scipy-stats" title="Link to this heading">#</a></h3>
+<span id="scipy-stats-basic"></span><h3><span class="section-number">2.3.3. </span><code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>の基礎<a class="headerlink" href="#scipy-stats" title="Link to this heading">#</a></h3>
 <p>Pythonには，科学技術計算に特化した <code class="docutils literal notranslate"><span class="pre">scipy</span></code> というライブラリが存在する．
 確率分布に関する計算（例えば，正規分布に従う乱数の生成など）には，<code class="docutils literal notranslate"><span class="pre">numpy</span></code>を使用することもできるが，<code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>の方が機能が充実している．
 ここでは，<code class="docutils literal notranslate"><span class="pre">scipy</span></code>の中で確率分布や乱数に関する機能をまとめた<code class="docutils literal notranslate"><span class="pre">sciy.stats</span></code>の基礎をまとめる．
@@ -1469,23 +1472,23 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.1. プログラミング環境の構築</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda">2.1.1. Anacondaのインストール</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.1.2. 作業フォルダの作成</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">2.1.3. Jupyter Lab</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#path">2.1.4. パス（Path）について</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.1. プログラミング環境の構築</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda">2.2. Anacondaのインストール</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.2.1. 作業フォルダの作成</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">2.2.2. Jupyter Lab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#path">2.2.3. パス（Path）について</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">パスとは何か？</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">絶対パスと相対パス</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">1. 絶対パスによる指定</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2. 相対パスによる指定</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterpython">2.1.5. JupyterとPythonスクリプトの使い分け</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterpython">2.2.4. JupyterとPythonスクリプトの使い分け</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">2.2. Pythonの基礎知識</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv">2.2.1. データ（csvファイル）の読み込み</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">2.2.2. matplotlibの基礎</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">2.3. Pythonの基礎知識</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv">2.3.1. データ（csvファイル）の読み込み</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">2.3.2. matplotlibの基礎</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#maplotlib">maplotlibの日本語対応</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">描画結果の出力先</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">グラフの作成手順</a></li>
@@ -1493,7 +1496,7 @@ Axesオブジェクトを<code class="docutils literal notranslate"><span class=
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ヒストグラム</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-stats">2.2.3. <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>の基礎</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-stats">2.3.3. <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>の基礎</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">例：ポアソン分布</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">例：正規分布</a></li>
 </ul>
