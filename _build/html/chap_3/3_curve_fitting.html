@@ -433,7 +433,9 @@ document.write(`
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">bernoulli</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">poisson</span><span class="p">,</span> <span class="n">expon</span>
-<span class="kn">import</span> <span class="nn">japanize_matplotlib</span>
+
+<span class="c1"># 日本語フォントの設定（Mac:&#39;Hiragino Sans&#39;, Windows:&#39;MS Gothic&#39;）</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MS Gothic&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -508,8 +510,8 @@ document.write(`
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-39e8f3b9-72d5-4bb9-a2c6-3afcab853197">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-39e8f3b9-72d5-4bb9-a2c6-3afcab853197" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-156b91d5-cef6-4472-8381-4cb26d3324d8">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-156b91d5-cef6-4472-8381-4cb26d3324d8" title="Permalink to this equation">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>

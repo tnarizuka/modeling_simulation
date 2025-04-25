@@ -431,7 +431,9 @@ document.write(`
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">bernoulli</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">poisson</span><span class="p">,</span> <span class="n">expon</span>
-<span class="kn">import</span> <span class="nn">japanize_matplotlib</span>
+
+<span class="c1"># 日本語フォントの設定（Mac:&#39;Hiragino Sans&#39;, Windows:&#39;MS Gothic&#39;）</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MS Gothic&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -622,7 +624,7 @@ Windowsで絶対パスを取得するには，パスをコピーしたいファ�
 </pre></div>
 </div>
 <p>第１引数には読み込むファイルのパス，第２引数以降には読み込む際のオプションを指定する．</p>
-<p>例として，<a class="reference external" href="https://drive.google.com/file/d/1Y0A04s0klZiUZWWabH3ozUTgXE63Az5j/view?usp=drive_link">Iris dataset</a>を読み込む．
+<p>例として，<a class="reference external" href="https://tnarizuka.github.io/modeling_simulation/chap_2/iris_dataset.csv">Iris dataset</a>を読み込む．
 Iris datasetはアヤメの花のデータセットであり，アヤメの種類（setosa, versicolor, virginica）ごとにがく片（sepal）と花弁（petal）の長さと幅が記録されている．</p>
 <ul class="simple">
 <li><p>出典：Ronald A Fisher. The use of multiple measurements in taxonomic problems. Annals of eugenics, 7(2):179–188, 1936.</p></li>
