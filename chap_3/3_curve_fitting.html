@@ -442,7 +442,7 @@ document.write(`
 </div>
 <section id="id2">
 <h2><span class="section-number">3.1. </span>カーブフィッティングとは？<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>手元にあるデータをある理論曲線に当てはめることを<strong>カーブフィッティング</strong>と呼ぶ．
+<p>手元のデータに対して理論曲線を当てはめることを<strong>カーブフィッティング</strong>と呼ぶ．
 データ分析では，以下の場面でカーブフィッティングが用いられる：</p>
 <ol class="arabic simple">
 <li><p>回帰分析</p>
@@ -464,10 +464,10 @@ document.write(`
 <h2><span class="section-number">3.2. </span>回帰分析<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <section id="id4">
 <h3><span class="section-number">3.2.1. </span>回帰モデル<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<p>データ <span class="math notranslate nohighlight">\( X, Y \)</span> が与えられたとき，変数 <span class="math notranslate nohighlight">\( X,\ Y \)</span> の間に</p>
+<p>2つの変数 <span class="math notranslate nohighlight">\( X,\ Y \)</span> （例えば， <span class="math notranslate nohighlight">\( X \)</span> が身長， <span class="math notranslate nohighlight">\( Y \)</span> が体重）について，</p>
 <div class="math notranslate nohighlight" id="equation-eq-regression-model">
 <span class="eqno">(3.1)<a class="headerlink" href="#equation-eq-regression-model" title="Link to this equation">#</a></span>\[
-	y = f(x; \boldsymbol{\theta}) + \varepsilon
+	Y = f(X; \boldsymbol{\theta}) + \varepsilon
 \]</div>
 <p>という関数関係が成り立つとする．
 ここで，<span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> は変数 <span class="math notranslate nohighlight">\( X \)</span> の関数で <span class="math notranslate nohighlight">\( \boldsymbol{\theta} = (\theta_1, \theta_2, \ldots) \)</span> はパラメータである．
@@ -481,11 +481,11 @@ document.write(`
 </section>
 <section id="id5">
 <h3><span class="section-number">3.2.2. </span>最小二乗法<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
-<p>１つの説明変数 <span class="math notranslate nohighlight">\( X \)</span> と目的変数 <span class="math notranslate nohighlight">\( Y \)</span> について <span class="math notranslate nohighlight">\( n \)</span> 組のデータ <span class="math notranslate nohighlight">\( (x_{1}, y_{1}), \ldots, (x_{n}, y_{n}) \)</span> を取得したとする．
+<p>１つの説明変数 <span class="math notranslate nohighlight">\( X \)</span> と目的変数 <span class="math notranslate nohighlight">\( Y \)</span> について， <span class="math notranslate nohighlight">\( n \)</span> 組のデータ <span class="math notranslate nohighlight">\( (x_{1}, y_{1}), \ldots, (x_{n}, y_{n}) \)</span> を取得したとする．
 このとき，横軸に変数 <span class="math notranslate nohighlight">\( X \)</span>，縦軸に変数 <span class="math notranslate nohighlight">\( Y \)</span> を取ったグラフを<strong>散布図</strong>と呼ぶ．
 散布図に対し，回帰モデル<a class="reference internal" href="#equation-eq-regression-model">(3.1)</a>のパラメータを変化させて理論曲線をうまく当てはめる作業がカーブフィッティングである．
 カーブフィッティングによって得られた式 <span class="math notranslate nohighlight">\( f(x; \boldsymbol{\theta}) \)</span> （<strong>回帰曲線</strong>）にデータ <span class="math notranslate nohighlight">\( x_{i} \)</span> を代入すると回帰モデルによる予測値が得られる．
-以下では，この予測値をハット <span class="math notranslate nohighlight">\(\hat{}\)</span> を付けて次のように表す：</p>
+以下では，この予測値をハットを付けて次のように表す：</p>
 <div class="math notranslate nohighlight" id="equation-eq-regression-curve">
 <span class="eqno">(3.2)<a class="headerlink" href="#equation-eq-regression-curve" title="Link to this equation">#</a></span>\[
 	\hat{y}_{i} = f(x_{i}; \boldsymbol{\theta})
@@ -510,8 +510,8 @@ document.write(`
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-024ba4a1-fdc1-4061-8960-cf3370eb9d44">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-024ba4a1-fdc1-4061-8960-cf3370eb9d44" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c79d5e55-b9fa-4e73-be37-07a8df90b821">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-c79d5e55-b9fa-4e73-be37-07a8df90b821" title="Permalink to this equation">#</a></span>\[\begin{align}
  y = ax + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
