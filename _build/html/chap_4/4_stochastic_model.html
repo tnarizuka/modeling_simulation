@@ -589,7 +589,7 @@ document.write(`
 <h4>より性能の良い一様乱数生成アルゴリズム<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <p>線形合同法は，周期性の問題などがあるため，実用的にはより性能の良いアルゴリズムが用いられる．
 例えば，NumpyやSciPyでは，高速で長い周期を持つ一様乱数を生成するために，<a class="reference external" href="http://www.math.sci.hiroshima-u.ac.jp/m-mat/TEACH/ichimura-sho-koen.pdf">メルセンヌ・ツイスタ</a>やPCG64などのアルゴリズムを選ぶことができる．</p>
-<p>※ ライブラリのバージョンアップによって変わる可能性がある．</p>
+<p>※ ライブラリのバージョンアップによって変わる可能性があるので，最新の情報は公式ドキュメントを参照すること．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scipyを用いて[0, 1)の一様乱数を生成する</span>
@@ -598,8 +598,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.71343349, 0.76172479, 0.84901057, 0.93015121, 0.32869497,
-       0.02596545, 0.88018555, 0.51275695, 0.53515421, 0.17065516])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.54552553, 0.21931384, 0.87670632, 0.22751795, 0.17759262,
+       0.8413425 , 0.43297564, 0.94800449, 0.50680963, 0.68071855])
 </pre></div>
 </div>
 </div>
@@ -626,7 +626,8 @@ document.write(`
 <section id="id9">
 <h4>逆関数法<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
 <p>ある確率分布に従う乱数を生成したいとする．
-もし，求めたい確率分布について，その累積分布関数の逆関数が求まるならば，以下の<strong>逆関数法</strong>が適用できる．</p>
+もし，求めたい確率分布について，その累積分布関数の逆関数が求まるならば，以下のアルゴリズムを用いることで，その確率分布に従う乱数を生成することができる．
+これを<strong>逆関数法</strong>と呼ぶ．</p>
 <div class="admonition- admonition">
 <p class="admonition-title">逆関数法のアルゴリズム</p>
 <ol class="arabic simple">
@@ -637,7 +638,7 @@ document.write(`
 </div>
 <div class="dropdown admonition">
 <p class="admonition-title">逆関数法の証明</p>
-<p><span class="math notranslate nohighlight">\( [0, 1] \)</span> の範囲の一様分布に従う確率変数（一様乱数）を <span class="math notranslate nohighlight">\( U \)</span> とすると，その累積分布関数は</p>
+<p><span class="math notranslate nohighlight">\( [0, 1] \)</span> の範囲の一様分布に従う確率変数（一様乱数）を <span class="math notranslate nohighlight">\( U \)</span> とすると，その累積分布関数は <span class="math notranslate nohighlight">\( 0\le u \le 1 \)</span> において</p>
 <div class="math notranslate nohighlight">
 \[
     P(U \leq u) = u
@@ -707,7 +708,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;確率密度 $ f(x) $&#39;)
 </pre></div>
 </div>
-<img alt="../_images/34db408c7cc702a3ef00a356ab1698653272379f58a047a15737a4503071fb2c.png" src="../_images/34db408c7cc702a3ef00a356ab1698653272379f58a047a15737a4503071fb2c.png" />
+<img alt="../_images/03d9d8855406cf4569df23576fb66ecc88a056cb04184038a13c89d7880027c5.png" src="../_images/03d9d8855406cf4569df23576fb66ecc88a056cb04184038a13c89d7880027c5.png" />
 </div>
 </div>
 </section>
@@ -761,7 +762,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;確率密度 $ f(x) $&#39;)
 </pre></div>
 </div>
-<img alt="../_images/2cd6b34b84076f6ae562b8fb0167e489f48ecdca5032ec1802d7a954dfd21641.png" src="../_images/2cd6b34b84076f6ae562b8fb0167e489f48ecdca5032ec1802d7a954dfd21641.png" />
+<img alt="../_images/549797836366175fd9cee75de754ab8a7bcc07a219c98f4649dcf58789a6fcd6.png" src="../_images/549797836366175fd9cee75de754ab8a7bcc07a219c98f4649dcf58789a6fcd6.png" />
 </div>
 </div>
 </section>
@@ -1268,8 +1269,8 @@ document.write(`
     P^{\top}\boldsymbol{w}^{\top} = \lambda \boldsymbol{w}^{\top}
 \]</div>
 <p>単位行列を <span class="math notranslate nohighlight">\( I \)</span> とすると，上式は次のように変形できる：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7a70cab1-5541-499a-bbc0-4037106db8cf">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-7a70cab1-5541-499a-bbc0-4037106db8cf" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-603d6ec0-ef49-4a8e-ba76-508720d34c98">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-603d6ec0-ef49-4a8e-ba76-508720d34c98" title="Permalink to this equation">#</a></span>\[\begin{align}
     P^{\top}\boldsymbol{w}^{\top} &amp;= \lambda I \boldsymbol{w}^{\top}\\
     (P^{\top} - \lambda I)\boldsymbol{w}^{\top} &amp;= 0
 \end{align}\]</div>
