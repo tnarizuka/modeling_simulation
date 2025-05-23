@@ -502,10 +502,10 @@ document.write(`
 </ol>
 </div>
 <p>以上のアルゴリズムを用いると，<span class="math notranslate nohighlight">\( 0 \)</span> 以上 <span class="math notranslate nohighlight">\( M-1 \)</span> 以下の一様乱数列が得られる．
-線形合同法によって得られた一様乱数には，実用的には問題も多く，例えば<span class="math notranslate nohighlight">\( M \)</span> が偶数の場合には偶数と奇数が交互に出現してしまう．
-また，同じ値からは同じ乱数列が得られるので，乱数列が必ず周期を持ってしまう．
-特に，<span class="math notranslate nohighlight">\( a, b, M \)</span> がいくつかの条件を満たすと，最大周期が <span class="math notranslate nohighlight">\( M \)</span> となることが知られているため<span id="id6">[<a class="reference internal" href="../reference.html#id7" title="東京大学教養学部統計学教室編. 自然科学の統計学. 東京大学出版会, 2019.">5</a>]</span>，良い乱数を生成するためには条件を満たした上で <span class="math notranslate nohighlight">\( M \)</span> を大きく取る必要がある．
-例えば，<span class="math notranslate nohighlight">\( M=2^{32},\ a=1664525,\ b=1013904223 \)</span> の場合には，最大周期が <span class="math notranslate nohighlight">\( 2^{32} \)</span> となる．</p>
+線形合同法によって得られた一様乱数には実用的な問題が多く，例えば<span class="math notranslate nohighlight">\( M \)</span> が偶数の場合には偶数と奇数が交互に出現してしまう．
+また，同じ初期値（シード）からは同じ乱数列が得られるので，乱数列が必ず周期を持ってしまう．
+特に，<span class="math notranslate nohighlight">\( a, b, M \)</span> がいくつかの条件を満たすと，最大周期が <span class="math notranslate nohighlight">\( M \)</span> となることが知られているため<span id="id6">[<a class="reference internal" href="../reference.html#id7" title="東京大学教養学部統計学教室編. 自然科学の統計学. 東京大学出版会, 2019.">5</a>]</span>，良い乱数を生成するためには <span class="math notranslate nohighlight">\( M \)</span> を大きく取る必要がある．
+例えば，<span class="math notranslate nohighlight">\( M=2^{32},\ a=1664525,\ b=1013904223 \)</span> の場合には，最大周期が <span class="math notranslate nohighlight">\( 2^{32} \)</span> となることが知られている．</p>
 <p><strong>Pythonでの実装</strong></p>
 <p>まず，アルゴリズムに従って素朴に実装すると以下のようになる．</p>
 <div class="cell docutils container">
@@ -1263,8 +1263,8 @@ document.write(`
     P^{\top}\boldsymbol{w}^{\top} = \lambda \boldsymbol{w}^{\top}
 \]</div>
 <p>単位行列を <span class="math notranslate nohighlight">\( I \)</span> とすると，上式は次のように変形できる：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e48723c3-6f4f-431d-af71-72f8ec8da150">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-e48723c3-6f4f-431d-af71-72f8ec8da150" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9d683f47-a1a3-43bb-a3ac-a009c86b223c">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-9d683f47-a1a3-43bb-a3ac-a009c86b223c" title="Permalink to this equation">#</a></span>\[\begin{align}
     P^{\top}\boldsymbol{w}^{\top} &amp;= \lambda I \boldsymbol{w}^{\top}\\
     (P^{\top} - \lambda I)\boldsymbol{w}^{\top} &amp;= 0
 \end{align}\]</div>
