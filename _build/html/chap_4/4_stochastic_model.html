@@ -551,10 +551,13 @@ document.write(`
 <span class="k">def</span> <span class="nf">generagte_rand_u</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">umin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">umax</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">1664525</span><span class="p">,</span> <span class="mi">1013904223</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">32</span>
 
-    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">seed</span><span class="p">])</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="p">[</span><span class="n">seed</span><span class="p">]</span>  <span class="c1"># 初期値</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span><span class="p">)</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span>
+        <span class="n">U</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
     
+    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">U</span><span class="p">)</span> <span class="c1"># numpy配列に変換</span>
+     
     <span class="c1"># [umin, umax)の範囲に変換して返す</span>
     <span class="k">return</span> <span class="n">umin</span> <span class="o">+</span> <span class="p">(</span><span class="n">umax</span> <span class="o">-</span> <span class="n">umin</span><span class="p">)</span> <span class="o">*</span> <span class="n">U</span> <span class="o">/</span> <span class="n">M</span>
 </pre></div>
@@ -578,7 +581,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6ae2a076e2ff53333e4a8bd86a649691de4d046f634d88c7a41af71a4b195ec0.png" src="../_images/6ae2a076e2ff53333e4a8bd86a649691de4d046f634d88c7a41af71a4b195ec0.png" />
+<img alt="../_images/ad9a0bdb969a955edf1a3d4134c323b4ff22d506d85502063503258ef4acf901.png" src="../_images/ad9a0bdb969a955edf1a3d4134c323b4ff22d506d85502063503258ef4acf901.png" />
 </div>
 </div>
 </section>
@@ -1265,8 +1268,8 @@ document.write(`
     P^{\top}\boldsymbol{w}^{\top} = \lambda \boldsymbol{w}^{\top}
 \]</div>
 <p>単位行列を <span class="math notranslate nohighlight">\( I \)</span> とすると，上式は次のように変形できる：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ccebb753-02e4-41b9-a150-3dfeaefe6fe7">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-ccebb753-02e4-41b9-a150-3dfeaefe6fe7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7a70cab1-5541-499a-bbc0-4037106db8cf">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-7a70cab1-5541-499a-bbc0-4037106db8cf" title="Permalink to this equation">#</a></span>\[\begin{align}
     P^{\top}\boldsymbol{w}^{\top} &amp;= \lambda I \boldsymbol{w}^{\top}\\
     (P^{\top} - \lambda I)\boldsymbol{w}^{\top} &amp;= 0
 \end{align}\]</div>
