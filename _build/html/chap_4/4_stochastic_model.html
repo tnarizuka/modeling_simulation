@@ -457,16 +457,15 @@ document.write(`
 </div>
 </div>
 <p>本章の内容は，文献<span id="id2">[<a class="reference internal" href="../reference.html#id6" title="小高知宏. Pythonによる数値計算とシミュレーション. オーム社, 2018.">4</a>, <a class="reference internal" href="../reference.html#id7" title="東京大学教養学部統計学教室編. 自然科学の統計学. 東京大学出版会, 2019.">5</a>]</span> を参考にしている．</p>
-<!-- ## 確率モデルとは？ -->
 <p>確率モデルとは，数理モデルの変数が確率変数となっているモデルであり，自然現象から社会現象まで様々な現象の記述に用いられる．
-例えば，コイン投げは，表と裏が一定の確率で出るという数理モデルで記述できる．
-また，株価の変動は，毎時刻ごとに株価の上がり幅と下がり幅が確率的に決まるようなモデル（ランダムウォーク）によって記述することができる．
-本章では，確率モデルを用いたシミュレーションで必要な乱数について述べた後，確率モデルにおいて重要となる大数の法則と中心極限定理，そしてランダムウォークについて説明する．</p>
+例えば，コイン投げは，表と裏が一定の確率で出現するという数理モデルで記述できる．
+また，株価の変動は，毎時刻ごとに株価の上がり幅と下がり幅が確率的に決まるようなモデル（ランダムウォーク）によって記述される．
+本章では，確率モデルのシミュレーションで必要な乱数の生成，確率モデルにおいて重要となる大数の法則と中心極限定理，そしてランダムウォークの例であるマルコフ連鎖について取り上げる．</p>
 <section id="id3">
 <h2><span class="section-number">4.1. </span>乱数の生成<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>ある数列が与えられたとき，数の並び方に規則性や周期性がない場合，この数列の各要素を<strong>乱数</strong>と呼ぶ．
 乱数を生成するにはいくつかの方法がある．
-例えば，サイコロを振って出た目を記録するだけでも，1〜6の数値から成る乱数を生成することができる．
+例えば，サイコロを振って出た目を記録するだけでも，1〜6の数値からなる乱数を生成することができる．
 また，カオスや量子力学などの物理現象を利用した乱数は<strong>物理乱数</strong>と呼ばれ，規則性や周期性がない真の乱数として研究されている．</p>
 <p>一方，コンピュータ上でアルゴリズムにしたがって乱数を生成する方法もある．
 このように生成された乱数は<strong>疑似乱数</strong>と呼ばれる．
@@ -480,7 +479,8 @@ document.write(`
 <section id="id5">
 <h4>線形合同法<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <p>一様乱数を生成するアルゴリズムの中で，最も基本的なものが<strong>線形合同法</strong>である．
-線形合同法にはいくつかの問題があるため，精度が求められる大規模なシミュレーションには使われないが，手軽に乱数を生成したりアルゴリズムの基礎を理解するためには便利である．</p>
+線形合同法にはいくつかの問題があるため，精度が求められる大規模なシミュレーションには使われないが，手軽に乱数を生成したりアルゴリズムの基礎を理解したりする上では有用である．
+線形合同法のアルゴリズムは以下のように与えられる：</p>
 <div class="admonition- admonition">
 <p class="admonition-title">線形合同法のアルゴリズム</p>
 <ol class="arabic">
@@ -1263,8 +1263,8 @@ document.write(`
     P^{\top}\boldsymbol{w}^{\top} = \lambda \boldsymbol{w}^{\top}
 \]</div>
 <p>単位行列を <span class="math notranslate nohighlight">\( I \)</span> とすると，上式は次のように変形できる：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d99d8604-a170-4ccf-9092-78b066092182">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-d99d8604-a170-4ccf-9092-78b066092182" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e48723c3-6f4f-431d-af71-72f8ec8da150">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-e48723c3-6f4f-431d-af71-72f8ec8da150" title="Permalink to this equation">#</a></span>\[\begin{align}
     P^{\top}\boldsymbol{w}^{\top} &amp;= \lambda I \boldsymbol{w}^{\top}\\
     (P^{\top} - \lambda I)\boldsymbol{w}^{\top} &amp;= 0
 \end{align}\]</div>
