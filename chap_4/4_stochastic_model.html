@@ -492,10 +492,10 @@ document.write(`
    \end{split}\]</div>
 </li>
 <li><p>乱数列の初期値 <span class="math notranslate nohighlight">\( x_0 \)</span> を決める（乱数の<strong>シード</strong>と呼ぶ）．</p></li>
-<li><p>以下の漸化式によって乱数列 <span class="math notranslate nohighlight">\( \{x_n\} \)</span> を生成する：</p>
+<li><p>以下の漸化式によって乱数列 <span class="math notranslate nohighlight">\( \{u_n\} \)</span> を生成する：</p>
 <div class="math notranslate nohighlight">
 \[
-    x_{n+1} = (ax_{n} + b) \% M
+    u_{n+1} = (au_{n} + b) \% M
     \]</div>
 <p>ここで，<span class="math notranslate nohighlight">\( \% \)</span> は余りを求める演算子を表す．</p>
 </li>
@@ -510,13 +510,15 @@ document.write(`
 <p>まず，アルゴリズムに従って素朴に実装すると以下のようになる．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 10個の一様乱数を生成する</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 線形合同法で100個の一様乱数を生成する</span>
 <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">1664525</span><span class="p">,</span> <span class="mi">1013904223</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">32</span>
 
-<span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">U</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># 初期値</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span>
+    <span class="n">U</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">U</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1263,8 +1265,8 @@ document.write(`
     P^{\top}\boldsymbol{w}^{\top} = \lambda \boldsymbol{w}^{\top}
 \]</div>
 <p>単位行列を <span class="math notranslate nohighlight">\( I \)</span> とすると，上式は次のように変形できる：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9d683f47-a1a3-43bb-a3ac-a009c86b223c">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-9d683f47-a1a3-43bb-a3ac-a009c86b223c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ccebb753-02e4-41b9-a150-3dfeaefe6fe7">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-ccebb753-02e4-41b9-a150-3dfeaefe6fe7" title="Permalink to this equation">#</a></span>\[\begin{align}
     P^{\top}\boldsymbol{w}^{\top} &amp;= \lambda I \boldsymbol{w}^{\top}\\
     (P^{\top} - \lambda I)\boldsymbol{w}^{\top} &amp;= 0
 \end{align}\]</div>
