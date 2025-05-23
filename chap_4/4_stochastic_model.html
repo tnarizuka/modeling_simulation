@@ -626,7 +626,7 @@ document.write(`
 <section id="id9">
 <h4>逆関数法<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
 <p>ある確率分布に従う乱数を生成したいとする．
-もし，求めたい確率分布について，その累積分布関数の逆関数が求まるならば，以下のアルゴリズムを用いることで，その確率分布に従う乱数を生成することができる．
+もし求めたい確率分布について，その累積分布関数が単調増加関数である場合，以下のアルゴリズムを用いることで，その確率分布に従う乱数を生成することができる．
 これを<strong>逆関数法</strong>と呼ぶ．</p>
 <div class="admonition- admonition">
 <p class="admonition-title">逆関数法のアルゴリズム</p>
@@ -644,8 +644,8 @@ document.write(`
     P(U \leq u) = u
 \]</div>
 <p>と表される．
-ここで，求めたい確率分布の累積分布関数を <span class="math notranslate nohighlight">\( F(x) \)</span> とし，その逆関数 <span class="math notranslate nohighlight">\( F^{-1} \)</span> が求まったとする．
-このとき，上の式は</p>
+ここで，求めたい確率分布の累積分布関数 <span class="math notranslate nohighlight">\( F(x) \)</span> は単調増加関数であるので，その逆関数 <span class="math notranslate nohighlight">\( F^{-1} \)</span> が存在する．
+特に，単調増加関数の逆関数は単調増加関数であるため，上の式は</p>
 <div class="math notranslate nohighlight">
 \[
     P(F^{-1}(U) \leq F^{-1}(u)) = u
@@ -1269,8 +1269,8 @@ document.write(`
     P^{\top}\boldsymbol{w}^{\top} = \lambda \boldsymbol{w}^{\top}
 \]</div>
 <p>単位行列を <span class="math notranslate nohighlight">\( I \)</span> とすると，上式は次のように変形できる：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-603d6ec0-ef49-4a8e-ba76-508720d34c98">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-603d6ec0-ef49-4a8e-ba76-508720d34c98" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f798c077-348f-462d-b4d8-7fe99cd7ddb1">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-f798c077-348f-462d-b4d8-7fe99cd7ddb1" title="Permalink to this equation">#</a></span>\[\begin{align}
     P^{\top}\boldsymbol{w}^{\top} &amp;= \lambda I \boldsymbol{w}^{\top}\\
     (P^{\top} - \lambda I)\boldsymbol{w}^{\top} &amp;= 0
 \end{align}\]</div>
