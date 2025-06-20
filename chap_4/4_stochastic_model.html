@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -443,12 +443,12 @@ document.write(`
 <h1><span class="section-number">4. </span>確率モデル<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">uniform</span><span class="p">,</span> <span class="n">bernoulli</span><span class="p">,</span> <span class="n">binom</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">poisson</span><span class="p">,</span> <span class="n">expon</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.mplot3d</span><span class="w"> </span><span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">uniform</span><span class="p">,</span> <span class="n">bernoulli</span><span class="p">,</span> <span class="n">binom</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">poisson</span><span class="p">,</span> <span class="n">expon</span>
 
 <span class="c1"># 日本語フォントの設定（Mac:&#39;Hiragino Sans&#39;, Windows:&#39;MS Gothic&#39;）</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MS Gothic&#39;</span>
@@ -548,7 +548,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 線形合同法により[0, 1)の一様乱数を生成する</span>
-<span class="k">def</span> <span class="nf">generagte_rand_u</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">umin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">umax</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generagte_rand_u</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">umin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">umax</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">1664525</span><span class="p">,</span> <span class="mi">1013904223</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">32</span>
 
     <span class="n">U</span> <span class="o">=</span> <span class="p">[</span><span class="n">seed</span><span class="p">]</span>  <span class="c1"># 初期値</span>
@@ -723,9 +723,9 @@ document.write(`
 <li><p>以下の式で一様乱数を変換する：</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    Z_1 &amp;= \sqrt{-2 \log U_1} \cos(2 \pi U_2)\\
-    Z_2 &amp;= \sqrt{-2 \log U_1} \sin(2 \pi U_2)
-    \end{align*}\]</div>
+Z_1 &amp;= \sqrt{-2 \log U_1} \cos(2 \pi U_2)\\
+Z_2 &amp;= \sqrt{-2 \log U_1} \sin(2 \pi U_2)
+\end{align*}\]</div>
 <p><span class="math notranslate nohighlight">\( Z_1, Z_2 \)</span> は標準正規分布に従う．</p>
 </li>
 </ol>
@@ -1093,7 +1093,7 @@ document.write(`
 <span class="n">lmd</span><span class="o">=</span><span class="mi">2</span>  <span class="c1"># 指数分布のパラメータ</span>
 <span class="n">T3</span><span class="p">,</span> <span class="n">T10</span><span class="p">,</span> <span class="n">T50</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
-    <span class="c1"># パラメータlmdのポアソン分布からサイズnの標本を生成</span>
+    <span class="c1"># パラメータlmdの指数分布からサイズnの標本を生成</span>
     <span class="n">U3</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">expon</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">lmd</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> 
     <span class="n">U10</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">expon</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">lmd</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     <span class="n">U50</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">expon</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">lmd</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
@@ -1105,9 +1105,9 @@ document.write(`
 
 <span class="c1"># 標本平均のヒストグラムを描画</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">T3</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$n=10$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">T10</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$n=20$&#39;</span><span class="p">)</span>
-<span class="n">ret</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">T50</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$n=50$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">T3</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$n=10$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">T10</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$n=20$&#39;</span><span class="p">)</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">T50</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$n=50$&#39;</span><span class="p">)</span>
 
 <span class="c1"># 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
@@ -1122,7 +1122,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c88be68d2008809b3184c6be8936f859df073bb7afa22e32228158973c887c8f.png" src="../_images/c88be68d2008809b3184c6be8936f859df073bb7afa22e32228158973c887c8f.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:24: SyntaxWarning: invalid escape sequence &#39;\l&#39;
+&lt;&gt;:24: SyntaxWarning: invalid escape sequence &#39;\l&#39;
+/var/folders/15/9xbz42sj4_ncrjjdpr251pr00000gn/T/ipykernel_39645/4104371858.py:24: SyntaxWarning: invalid escape sequence &#39;\l&#39;
+  ax.plot(t, gt, &#39;k--&#39;, lw=1, label=&#39;$N(\lambda, \lambda/n)$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/f789a1b177fd1b3d5c1fede6c38fddfe0393c5ee6ceb1c250704b10c62a6694a.png" src="../_images/f789a1b177fd1b3d5c1fede6c38fddfe0393c5ee6ceb1c250704b10c62a6694a.png" />
 </div>
 </div>
 </section>
@@ -1203,7 +1209,8 @@ document.write(`
 <p>ここで，遷移確率行列は各行の和が必ず1になることに注意する．
 これは，次の時刻で必ずいずれかの状態に遷移することを意味している．</p>
 <figure class="align-default" id="fig-markov-chain">
-<a class="reference internal image-reference" href="../_images/markov_chain.png"><img alt="../_images/markov_chain.png" src="../_images/markov_chain.png" style="height: 250px;" /></a>
+<a class="reference internal image-reference" href="../_images/markov_chain.png"><img alt="../_images/markov_chain.png" src="../_images/markov_chain.png" style="height: 250px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">図 4.1 </span><span class="caption-text">マルコフ連鎖の状態遷移図</span><a class="headerlink" href="#fig-markov-chain" title="Link to this image">#</a></p>
 </figcaption>
@@ -1270,8 +1277,8 @@ document.write(`
     P^{\top}\boldsymbol{w}^{\top} = \lambda \boldsymbol{w}^{\top}
 \]</div>
 <p>単位行列を <span class="math notranslate nohighlight">\( I \)</span> とすると，上式は次のように変形できる：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9bc14468-abc0-401d-b613-3fb49bbc5249">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-9bc14468-abc0-401d-b613-3fb49bbc5249" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d8ca51d8-9f6e-48be-a5e2-bece1e6f6963">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-d8ca51d8-9f6e-48be-a5e2-bece1e6f6963" title="Permalink to this equation">#</a></span>\[\begin{align}
     P^{\top}\boldsymbol{w}^{\top} &amp;= \lambda I \boldsymbol{w}^{\top}\\
     (P^{\top} - \lambda I)\boldsymbol{w}^{\top} &amp;= 0
 \end{align}\]</div>
@@ -1358,7 +1365,8 @@ Aチームが連続して得点する確率を0.8，Bチームが連続して得
 \end{split}\]</div>
 <p>と求まる．</p>
 <figure class="align-default" id="fig-markov-chain-2">
-<a class="reference internal image-reference" href="../_images/markov_chain_2.png"><img alt="../_images/markov_chain_2.png" src="../_images/markov_chain_2.png" style="height: 80px;" /></a>
+<a class="reference internal image-reference" href="../_images/markov_chain_2.png"><img alt="../_images/markov_chain_2.png" src="../_images/markov_chain_2.png" style="height: 80px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">図 4.2 </span><span class="caption-text">２状態マルコフ連鎖の状態遷移図</span><a class="headerlink" href="#fig-markov-chain-2" title="Link to this image">#</a></p>
 </figcaption>
