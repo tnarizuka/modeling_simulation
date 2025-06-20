@@ -1112,7 +1112,7 @@ Z_2 &amp;= \sqrt{-2 \log U_1} \sin(2 \pi U_2)
 <span class="c1"># 正規分布N(\mu, \sigma^2/n)の確率密度関数を描画</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
 <span class="n">gt</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">lmd</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">lmd</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">50</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$N(\lambda, \lambda/n)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$N(\lambda, \lambda/n)$&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;標本平均 $ t $ &#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
@@ -1122,13 +1122,7 @@ Z_2 &amp;= \sqrt{-2 \log U_1} \sin(2 \pi U_2)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:24: SyntaxWarning: invalid escape sequence &#39;\l&#39;
-&lt;&gt;:24: SyntaxWarning: invalid escape sequence &#39;\l&#39;
-/var/folders/15/9xbz42sj4_ncrjjdpr251pr00000gn/T/ipykernel_39645/4104371858.py:24: SyntaxWarning: invalid escape sequence &#39;\l&#39;
-  ax.plot(t, gt, &#39;k--&#39;, lw=1, label=&#39;$N(\lambda, \lambda/n)$&#39;)
-</pre></div>
-</div>
-<img alt="../_images/f789a1b177fd1b3d5c1fede6c38fddfe0393c5ee6ceb1c250704b10c62a6694a.png" src="../_images/f789a1b177fd1b3d5c1fede6c38fddfe0393c5ee6ceb1c250704b10c62a6694a.png" />
+<img alt="../_images/69af26f85d4b23aa2cee67692b59160cd5b9387d7bcc50193fff5ec85b009112.png" src="../_images/69af26f85d4b23aa2cee67692b59160cd5b9387d7bcc50193fff5ec85b009112.png" />
 </div>
 </div>
 </section>
@@ -1277,8 +1271,8 @@ Z_2 &amp;= \sqrt{-2 \log U_1} \sin(2 \pi U_2)
     P^{\top}\boldsymbol{w}^{\top} = \lambda \boldsymbol{w}^{\top}
 \]</div>
 <p>単位行列を <span class="math notranslate nohighlight">\( I \)</span> とすると，上式は次のように変形できる：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d8ca51d8-9f6e-48be-a5e2-bece1e6f6963">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-d8ca51d8-9f6e-48be-a5e2-bece1e6f6963" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c7f89543-941a-46e6-82b2-044257fa5194">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-c7f89543-941a-46e6-82b2-044257fa5194" title="Permalink to this equation">#</a></span>\[\begin{align}
     P^{\top}\boldsymbol{w}^{\top} &amp;= \lambda I \boldsymbol{w}^{\top}\\
     (P^{\top} - \lambda I)\boldsymbol{w}^{\top} &amp;= 0
 \end{align}\]</div>
