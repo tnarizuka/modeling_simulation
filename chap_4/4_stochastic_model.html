@@ -1130,7 +1130,7 @@ document.write(`
 <section id="id22">
 <h3><span class="section-number">4.3.3. </span>サイコロを振る実験<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
 <p>サイコロを振って1が出たら成功（ <span class="math notranslate nohighlight">\( U=1 \)</span> ），それ以外は失敗（ <span class="math notranslate nohighlight">\( U=0 \)</span> ）とする．
-これを <span class="math notranslate nohighlight">\( n \)</span> 回繰り返すと，成功確率 <span class="math notranslate nohighlight">\( p=1/6 \)</span> のベルヌーイ過程となるので，<span class="math notranslate nohighlight">\( n \)</span> を大きくすると <span class="math notranslate nohighlight">\( U \)</span> の標本平均（1が出た割合）は理論値 <span class="math notranslate nohighlight">\( p \)</span> に近づく（大数の法則）．
+これを <span class="math notranslate nohighlight">\( n \)</span> 回繰り返すと，成功確率 <span class="math notranslate nohighlight">\( p=1/6 \)</span> のベルヌーイ過程となり，<span class="math notranslate nohighlight">\( n \)</span> を大きくすると <span class="math notranslate nohighlight">\( U \)</span> の標本平均（1が出た割合）は理論値 <span class="math notranslate nohighlight">\( p \)</span> に近づく（大数の法則）．
 また，<span class="math notranslate nohighlight">\( n \)</span> を大きくすると <span class="math notranslate nohighlight">\( U \)</span> の標本平均（1が出た割合）の分布は正規分布 <span class="math notranslate nohighlight">\( N(p, p(1-p)/n) \)</span> に近づく（中心極限定理）．
 以上の性質を実際にサイコロを振る実験を行って確認せよ．</p>
 <p><strong>サイコロを振る実験</strong></p>
@@ -1144,13 +1144,14 @@ document.write(`
 <p><strong>サイコロ実験の集計（Excel）</strong></p>
 <ul class="simple">
 <li><p>1セットの試行回数が <span class="math notranslate nohighlight">\( n=10,20,50 \)</span> の場合について，各セットで1が出た割合を計算せよ．</p></li>
-<li><p><span class="math notranslate nohighlight">\( n=10,20,50 \)</span> の場合について，1が出た割合のデータをcsvファイルに保存せよ．</p></li>
+<li><p><span class="math notranslate nohighlight">\( n=10,20,50 \)</span> の場合について，1が出た割合のデータを全グループで統合し，csvファイルに保存せよ．</p></li>
 </ul>
 <p><strong>サイコロ実験の解析（Python）</strong></p>
 <ul class="simple">
 <li><p>csvファイルをPandasのDataFrameに読み込め．</p></li>
 <li><p><span class="math notranslate nohighlight">\( n=10,20,50 \)</span> の場合について，1が出た割合のヒストグラムを描け．</p></li>
 <li><p><span class="math notranslate nohighlight">\( n=50 \)</span> の場合について，正規分布 <span class="math notranslate nohighlight">\( N(p, p(1-p)/n) \)</span> を重ね描きし，中心極限定理を確認せよ．</p></li>
+<li><p>過年度のデータがある場合は，それらのデータも一つに統合し，サンプルサイズを大きくして，中心極限定理を確認せよ．</p></li>
 </ul>
 </section>
 </section>
@@ -1269,8 +1270,8 @@ document.write(`
     P^{\top}\boldsymbol{w}^{\top} = \lambda \boldsymbol{w}^{\top}
 \]</div>
 <p>単位行列を <span class="math notranslate nohighlight">\( I \)</span> とすると，上式は次のように変形できる：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-05bf41f4-91ee-41dd-858b-7ca24406084f">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-05bf41f4-91ee-41dd-858b-7ca24406084f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9bc14468-abc0-401d-b613-3fb49bbc5249">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-9bc14468-abc0-401d-b613-3fb49bbc5249" title="Permalink to this equation">#</a></span>\[\begin{align}
     P^{\top}\boldsymbol{w}^{\top} &amp;= \lambda I \boldsymbol{w}^{\top}\\
     (P^{\top} - \lambda I)\boldsymbol{w}^{\top} &amp;= 0
 \end{align}\]</div>
