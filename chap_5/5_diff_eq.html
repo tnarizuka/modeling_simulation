@@ -493,8 +493,8 @@ document.write(`
 </section>
 <section id="id6">
 <h2><span class="section-number">5.2. </span>人口の増加<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>個体数の増減という問題は，実社会から自然界まで幅広く存在する．
-例えば，実社会において，今後数十年で人口がどのように増減するかを予測することは，国家レベルで議論するべき大問題である．
+<p>個体数の増減に関する現象は，実社会から自然界まで幅広く存在する．
+例えば，今後数十年で国の人口がどのように増減するかを予測することは，国家レベルで議論するべき大問題である．
 また，自然界においても，様々な生物種の個体数がどのように増減するか分かれば，食物連鎖のダイナミクスを理解したり，獣害に関する対策を立てたりするのに役立つ．
 個体数の増減は，微分方程式で記述される現象の典型例であり，微分方程式の基礎を理解するのにも適した問題である．</p>
 <section id="id7">
@@ -561,6 +561,7 @@ document.write(`
 \[
 	\alpha \rightarrow r \left(1 - \frac{N(t)}{N_{\infty}}\right)
 \]</div>
+<p>このような拡張により，個体数 <span class="math notranslate nohighlight">\( N(t) \)</span> が <span class="math notranslate nohighlight">\( N_{\infty} \)</span> に近づくにつれて増加率が減少するという増加率の抑制効果を実現している．</p>
 <p>ロジスティックモデルは右辺が非線形な関数となっているが，これも変数分離形なのでマルサスモデルと同じように解くことができる．
 まず，微分方程式を以下のように変形する：</p>
 <div class="math notranslate nohighlight">
@@ -590,11 +591,11 @@ document.write(`
 初期の個体数が <span class="math notranslate nohighlight">\( N_{0} &lt; N_{\infty} \)</span> を満たす場合には，最初は指数関数的な増加を示すが，次第に増加率が小さくなっていき，最終的には <span class="math notranslate nohighlight">\( N_{\infty} \)</span> に収束する．
 この意味で，<span class="math notranslate nohighlight">\( N_{\infty} \)</span> は人口の上限を表す定数であることが分かる．
 一方，<span class="math notranslate nohighlight">\( N_{0} &gt; N_{\infty} \)</span> の場合には指数関数的な減少を示すが，この場合にも最終的には <span class="math notranslate nohighlight">\( N_{\infty} \)</span> へと収束する．
-なお，ロジスティック関数の特別な場合である <span class="math notranslate nohighlight">\( f(x) = 1/(1+\mathrm{e}^{-x}) \)</span> は<strong>シグモイド関数</strong>と呼ばれ，機械学習の分野でよく使われる．</p>
+なお，ロジスティック関数の特別な場合である <span class="math notranslate nohighlight">\( f(x) = 1/(1+\mathrm{e}^{-rx}) \)</span> は<strong>シグモイド関数</strong>と呼ばれ，機械学習の分野でよく使われる．</p>
 <p>実社会における人口の増加はマルサスモデルよりもロジスティックモデルに近いふるまいをする．
 特に微生物などの場合には，環境をコントロールした実験によって，その増殖の仕方がロジスティックモデルによく従うことが分かっている．
 また，感染症のモデルとして知られるSIモデル（未感染者が感染者と接触すると一定の確率で感染するモデル）は感染者数の増減がロジスティックモデルに従う．
-さらに，家電の普及率など，近似的にロジスティックモデルで記述できる現象は多い．</p>
+さらに，家電の普及率など，近似的にロジスティックモデルで記述できる現象は多く存在する．</p>
 <p>生物集団における個体数変化のモデルをより現実に近づけるためには，多数の生物種の間の捕食・被食関係を考慮する方法が考えられる．
 このようなモデルの中で単純なものとして，2種の生物間の相互作用を考慮した<strong>ロトカ・ヴォルテラモデル</strong>が知られている．</p>
 <div class="cell docutils container">
@@ -663,7 +664,7 @@ document.write(`
 <h2><span class="section-number">5.3. </span>微分方程式の数値計算<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
 <section id="id10">
 <h3><span class="section-number">5.3.1. </span>オイラー法による数値計算<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
-<p>マルサスモデルやロジスティックモデルのように解析的に解ける微分方程式は多くない．
+<p>マルサスモデルやロジスティックモデルのように解析的に解ける微分方程式は限られている．
 そこで，微分方程式を解くもう一つの方法である数値解法が必要となる．
 数値解法は，非線形項を含む微分方程式や偏微分方程式などに対しても解を求めることができるが，あくまでも近似的な解であることに注意する必要がある．
 ここでは次のような１階微分方程式を対象とする：</p>
@@ -678,20 +679,20 @@ document.write(`
 \[
     \frac{du}{dt} = \lim_{\Delta t \to 0} \frac{u(t+\Delta t) - u(t)}{\Delta t}
 \]</div>
-<p>を行う必要があるが，コンピュータ上で <span class="math notranslate nohighlight">\( \Delta t \)</span> を厳密に0にすることはできない．
+<p>を実行する必要があるが，コンピュータ上で <span class="math notranslate nohighlight">\( \Delta t \)</span> を厳密に0にすることはできない．
 しかし，<span class="math notranslate nohighlight">\( \Delta t \)</span> を十分に小さくとれば，微分の近似値として十分に精度の高い値を得ることができる．
 そこで，元の微分方程式を以下のように置き換えてみる：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \frac{u(t+\Delta t) - u(t)}{\Delta t} = g(t, u(t)) \\[10pt]
 \end{split}\]</div>
-<p>さらに，<span class="math notranslate nohighlight">\( u(t+\Delta t) \)</span> を左辺に移項すると以下を得る：</p>
+<p>さらに，<span class="math notranslate nohighlight">\( u(t+\Delta t) \)</span> だけを左辺に残すと次の式を得る：</p>
 <div class="math notranslate nohighlight">
 \[
     u(t+\Delta t) = u(t) + g(t, u(t))\Delta t
 \]</div>
 <p>この式は <span class="math notranslate nohighlight">\( u(t) \)</span> から次の時刻の <span class="math notranslate nohighlight">\( u(t+\Delta t) \)</span> を求める漸化式と見なすことができる．
-よって，初期条件 <span class="math notranslate nohighlight">\( u(0) \)</span> から <span class="math notranslate nohighlight">\( u(\Delta t) \)</span> を求め，さらに <span class="math notranslate nohighlight">\( u(2\Delta t) \)</span> を求めていけば，任意の時刻における <span class="math notranslate nohighlight">\( u(t) \)</span> を求めることができる．</p>
+よって，初期条件 <span class="math notranslate nohighlight">\( u(0) \)</span> から <span class="math notranslate nohighlight">\( u(\Delta t) \)</span> を求め，さらに <span class="math notranslate nohighlight">\( u(2\Delta t) \)</span> を求めていけば， <span class="math notranslate nohighlight">\( \Delta t \)</span> 刻みで様々な時刻の <span class="math notranslate nohighlight">\( u(t) \)</span> を求めることができる．</p>
 <p>以上の方法は<strong>オイラー法</strong>と呼ばれ，微分方程式の数値解法の中で最も基本的なアルゴリズムである．
 オイラー法は <span class="math notranslate nohighlight">\( \Delta t \)</span> を小さくとると精度が向上するが，その分計算量が増えてしまうという欠点がある．
 そこで，ホイン法やルンゲクッタ法などより精度の高い方法が数多く提案されている．</p>
@@ -714,7 +715,7 @@ $$
 \[
 	\frac{dN}{dt} = \alpha N(t)
 \]</div>
-<p>をオイラー法で離散化すると，以下のようになる：</p>
+<p>をオイラー法で離散化すると， <span class="math notranslate nohighlight">\( g(t, N(t)) = \alpha N(t) \)</span> として，次の式が得られる：</p>
 <div class="math notranslate nohighlight">
 \[
     N(t+\Delta t) = N(t) + \alpha N(t)\Delta t
@@ -767,14 +768,14 @@ $$
 \[
 	\frac{dN}{dt} = r \left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)
 \]</div>
-<p>をオイラー法で離散化すると，以下のようになる：</p>
+<p>をオイラー法で離散化すると， <span class="math notranslate nohighlight">\( g(t, N(t)) = r\left(1 - \frac{N(t)}{N_{\infty}}\right)N(t) \)</span> として，次の式が得られる：</p>
 <div class="math notranslate nohighlight">
 \[
     N(t+\Delta t) = N(t) + r\left(1 - \frac{N(t)}{N_{\infty}}\right)N(t)\Delta t
 \]</div>
 <p>この場合も時間刻み <span class="math notranslate nohighlight">\( \Delta t \)</span> を小さくすると数値解と厳密解がよく一致することが分かる．
 一方，<span class="math notranslate nohighlight">\( \Delta t \)</span> を大きくしていくと，マルサスモデルの場合とは異なった振る舞いが見られる．
-詳しくは，演習問題をやれば分かるが，オイラー法が全く役に立たないことが実感できるだろう．
+詳しくは，演習問題に譲るとして，ロジスティックモデルにはオイラー法が全く役に立たないことが分かる．
 実は，ロジスティック方程式をオイラー法で離散化した方程式は<strong>ロジスティック写像</strong>と呼ばれており，<strong>周期倍分岐</strong>と呼ばれる特異な振る舞いをすることが知られている．
 特に，パラメータ（今の場合は <span class="math notranslate nohighlight">\( 1+ r\Delta t \)</span> ）がある値（3.5699456...）を超えると，特定の周期を持たない非常に複雑な振る舞いを示す．
 これは，<strong>カオス</strong>の一例として知られている．</p>
@@ -845,7 +846,7 @@ $$
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>は以下のような連立常微分方程式を解くことができる：</p>
+<p><code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>は以下のような形式の連立常微分方程式を解くことができる：</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     \frac{dx}{dt} &amp;= f(t, x, y,\ldots) \\[10pt]
@@ -854,9 +855,11 @@ $$
 \end{align*}\]</div>
 <p>ただし，初期条件を <span class="math notranslate nohighlight">\( x(t_0) = x_0,\ y(t_0) = y_0, \ldots \)</span> とする．</p>
 <p><code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>は以下のように実行する：</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">t_eval</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">t_eval</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
 </pre></div>
 </div>
+</div></blockquote>
 <p>それぞれの引数の意味は以下の通りである：</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -922,7 +925,7 @@ $$
 <p>オイラー法の場合は時間刻みを大きくすると解析解から大幅にずれるが，<code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>を用いると，時間刻みが粗くても解析解に近い振る舞いを示すことが分かる．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># マルサスモデルの微分方程式</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># マルサスモデルの微分方程式の定義</span>
 <span class="k">def</span> <span class="nf">ode_malthus</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
     <span class="n">dNdt</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">N</span>
 
@@ -966,7 +969,7 @@ $$
 <p>オイラー法の場合は時間刻みを大きくすると解析解から大幅にずれるが，<code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>を用いると，時間刻みが粗くても解析解に近い振る舞いを示すことが分かる．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ロジスティックモデルの微分方程式</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ロジスティックモデルの微分方程式の定義</span>
 <span class="k">def</span> <span class="nf">ode_logistic</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N_inf</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
     <span class="n">dNdt</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">N</span> <span class="o">/</span> <span class="n">N_inf</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span>
 
@@ -1035,7 +1038,8 @@ $$
 <p>このように変形すれば，解くべき式は4変数の1階微分方程式となるので，<code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>が適用できる．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ode_projectile</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 斜方投射の運動方程式の定義</span>
+<span class="k">def</span> <span class="nf">ode_projectile</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    斜方投射の運動方程式</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -1046,8 +1050,13 @@ $$
     <span class="n">dvydt</span> <span class="o">=</span> <span class="o">-</span><span class="n">g</span>
     
     <span class="k">return</span> <span class="p">[</span><span class="n">dxdt</span><span class="p">,</span> <span class="n">dydt</span><span class="p">,</span> <span class="n">dvxdt</span><span class="p">,</span> <span class="n">dvydt</span><span class="p">]</span>
-
-<span class="c1"># パラメータ</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># パラメータ</span>
 <span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span> <span class="c1"># 重力加速度 [m/s^2]</span>
 
 <span class="c1"># 初期条件</span>
@@ -1206,7 +1215,8 @@ $$
 <p>微分方程式の数値解を求める</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ode_simple_pendulum</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 単振り子の運動方程式の定義</span>
+<span class="k">def</span> <span class="nf">ode_simple_pendulum</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    単振り子の運動方程式</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -1215,8 +1225,13 @@ $$
     <span class="n">dvdt</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">g</span><span class="o">/</span><span class="n">l</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ag</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="p">[</span><span class="n">dagdt</span><span class="p">,</span> <span class="n">dvdt</span><span class="p">]</span>
-
-<span class="c1"># パラメータ</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># パラメータ</span>
 <span class="n">l</span> <span class="o">=</span> <span class="mi">2</span>    <span class="c1"># 糸の長さ</span>
 <span class="n">g</span> <span class="o">=</span> <span class="mf">9.8</span>  <span class="c1"># 重力加速度</span>
 
