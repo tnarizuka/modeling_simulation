@@ -510,8 +510,8 @@ document.write(`
 <section id="id7">
 <h4>理論<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <p>線形単回帰モデルは</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d915e792-fb80-4428-ba9e-fdd70b1ee139">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-d915e792-fb80-4428-ba9e-fdd70b1ee139" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e23170a3-965c-4d22-8d6f-a6c3c03b6145">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-e23170a3-965c-4d22-8d6f-a6c3c03b6145" title="Permalink to this equation">#</a></span>\[\begin{align}
  Y = aX + b + \varepsilon
 \end{align}\]</div>
 <p>で与えられ，残差変動は</p>
@@ -1471,19 +1471,22 @@ document.write(`
 <p>になることを示せ．</p>
 </li>
 </ol>
-<p><strong>C. ポアソン分布の最尤推定（データ解析）</strong></p>
+<p><strong>C. ポアソン分布のパラメータ推定（データ解析）</strong></p>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://tnarizuka.github.io/modeling_simulation/chap_3/score_germany.csv">score_germany.csv</a>は，ブンデスリーガ2017-2018シーズンにおけるホームチーム／アウェイチームの1試合の得点数データである．このデータをダウンロードし，データフレームに読み込め．</p></li>
-<li><p>ホームチームまたはアウェイチームどちらかのデータを選び，このデータがポアソン分布に従うと仮定してパラメータ <span class="math notranslate nohighlight">\( \mu \)</span> の最尤推定値をデータから計算せよ．</p></li>
-<li><p>このデータからヒストグラムを作成せよ．また，データから求めた <span class="math notranslate nohighlight">\( \mu \)</span> の最尤推定値をパラメータとするポアソン分布を重ね描きせよ．</p></li>
+<li><p>ホームチームまたはアウェイチームどちらかのデータを選び，ヒストグラムを作成せよ．</p></li>
+<li><p>このヒストグラムがポアソン分布に従うと仮定して，最小二乗法でカーブフィッティングを実行し，パラメータ <span class="math notranslate nohighlight">\( \mu \)</span> を推定せよ．得られたパラメータを用いて，ヒストグラムにポアソン分布を重ね描きせよ．</p></li>
+<li><p>同様に，パラメータ <span class="math notranslate nohighlight">\( \mu \)</span> の最尤推定値をデータから計算せよ．得られた <span class="math notranslate nohighlight">\( \mu \)</span> の最尤推定値を用いて，ヒストグラムにポアソン分布を重ね描きせよ．</p></li>
 </ol>
-<p><strong>D. 正規分布の最尤推定（データ解析）</strong></p>
+<p>※ ポアソン分布のヒストグラムの描画は <a class="reference internal" href="../chap_2/2_environment.html#scipy-stats-basic"><span class="std std-ref">scipy.statsの基礎</span></a> を参照</p>
+<p><strong>D. 正規分布のパラメータ推定（データ解析）</strong></p>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://tnarizuka.github.io/modeling_simulation/chap_3/score_nba.csv">score_nba.csv</a>は，NBA2015-16シーズンにおけるホームチーム／アウェイチームの1試合の得点数データである．このデータをダウンロードし，データフレームに読み込め．</p></li>
-<li><p>ホームチームまたはアウェイチームどちらかのデータを選び，このデータが正規分布に従うと仮定してパラメータ <span class="math notranslate nohighlight">\( \mu,\ \sigma \)</span> の最尤推定値をデータから計算せよ．</p></li>
-<li><p>このデータからヒストグラムを作成せよ．また，データから求めた <span class="math notranslate nohighlight">\( \mu,\ \sigma \)</span> の最尤推定値をパラメータとする正規分布を重ね描きせよ．</p></li>
+<li><p>ホームチームまたはアウェイチームどちらかのデータを選び，ヒストグラムを作成せよ．</p></li>
+<li><p>このヒストグラムが正規分布に従うと仮定して，最小二乗法でカーブフィッティングを実行し，パラメータ <span class="math notranslate nohighlight">\( \mu,\ \sigma \)</span> を推定せよ．得られたパラメータを用いて，ヒストグラムに正規分布を重ね描きせよ．</p></li>
+<li><p>同様に，パラメータ <span class="math notranslate nohighlight">\( \mu,\ \sigma \)</span> の最尤推定値をデータから計算せよ．得られた <span class="math notranslate nohighlight">\( \mu,\ \sigma \)</span> の最尤推定値を用いて，ヒストグラムに正規分布を重ね描きせよ．</p></li>
 </ol>
-<p>※ ポアソン分布と正規分布のヒストグラムの描画は <a class="reference internal" href="../chap_2/2_environment.html#scipy-stats-basic"><span class="std std-ref">scipy.statsの基礎</span></a> を参照</p>
+<p>※ 正規分布のヒストグラムの描画は <a class="reference internal" href="../chap_2/2_environment.html#scipy-stats-basic"><span class="std std-ref">scipy.statsの基礎</span></a> を参照</p>
 </section>
 </section>
 </section>
