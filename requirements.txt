@@ -1,3 +1,6 @@
 jupyter-book
 matplotlib
+matplotlib-fontja
 numpy
+pandas
+scipy
