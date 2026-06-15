@@ -11,6 +11,9 @@ exclude_patterns:
   - .DS_Store
   - docs/**
   - private/**
+  # Source notebooks kept in the repository, but not included in the public book.
+  - modeling_simulation.ipynb
+  - appendix/appendix.ipynb
 only_build_toc_files: true
 
 #######################################################################################

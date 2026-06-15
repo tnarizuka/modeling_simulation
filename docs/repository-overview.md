@@ -35,6 +35,12 @@
 - `docs/` は公開リポジトリ上の運用資料として管理しますが，Jupyter Book には含めません．
 - 管理者用メモ，復旧記録，手元環境固有の情報は `private/` に置き，Git 管理しません．
 
+## Jupyter Book に含めないファイル
+
+`modeling_simulation.ipynb` と `appendix/appendix.ipynb` は，リポジトリには残しますが，公開用 Jupyter Book には含めません．
+これらは `_config.yml` の `exclude_patterns` で明示的に除外します．
+公開ページとして追加する場合は，`exclude_patterns` から外したうえで `_toc.yml` に追加します．
+
 ## 日本語フォント
 
 Matplotlib で日本語を表示する補助パッケージとして，このリポジトリでは `matplotlib-fontja` を推奨します．

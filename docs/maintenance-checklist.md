@@ -17,6 +17,7 @@
 - [ ] Jupyter Notebook の出力や表示が不自然に壊れていない
 - [ ] Markdown の見出しレベルが不自然に飛んでいない
 - [ ] 公開してはいけない情報が `README.md` や `docs/` に入っていない
+- [ ] Jupyter Book に含めないソースファイルが `_config.yml` の `exclude_patterns` に入っている
 
 ## ビルド確認
 
